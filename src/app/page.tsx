@@ -53,25 +53,11 @@ export default function Home() {
       icon: "🔧",
     },
     {
-      id: "interview",
-      name: "面接対策",
-      description: "ITエンジニアの転職・就職面接でよく聞かれる質問と回答を練習。実践的な面接スキルを身につけます。",
-      color: "from-pink-500 to-rose-600",
-      icon: "💼",
-    },
-    {
       id: "seo",
       name: "SEO",
       description: "検索エンジン最適化の基礎から実践まで。ウェブサイトの検索順位向上とアクセス数増加のスキルを身につけます。",
       color: "from-emerald-500 to-teal-600",
       icon: "🔍",
-    },
-    {
-      id: "aws",
-      name: "独自AWS試験（非公式）",
-      description: "AWS認定試験の準備に最適。Associate、Professional、Expertレベルの問題を体系的に学習できます。",
-      color: "from-orange-500 to-yellow-600",
-      icon: "☁️",
     },
   ];
 
