@@ -23,8 +23,8 @@ export default function DevToolLearnPage() {
       lessons: 20,
     },
     {
-      id: "intermediate",
-      name: "実践編",
+      id: "professional",
+      name: "Professional",
       description: "ネットワーク監視、パフォーマンス分析、高度なデバッグテクニックを学びます。",
       color: "from-purple-500 to-indigo-600",
       icon: "📚",
@@ -40,8 +40,8 @@ export default function DevToolLearnPage() {
       lessons: 25,
     },
     {
-      id: "advanced",
-      name: "上級編",
+      id: "expert",
+      name: "Expert",
       description: "高度な機能とベストプラクティスを学び、効率的な開発ワークフローを構築します。",
       color: "from-purple-600 to-pink-600",
       icon: "🚀",
@@ -150,9 +150,9 @@ export default function DevToolLearnPage() {
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        : level.id === "intermediate"
+                        : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : level.id === "advanced"
+                        : level.id === "expert"
                         ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
@@ -232,6 +232,26 @@ export default function DevToolLearnPage() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {/* Membership Badges */}
+                {level.id === "associate" && (
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-300">
+                      無料会員
+                    </span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">・</span>
+                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      有料会員
+                    </span>
+                  </div>
+                )}
+                {(level.id === "professional" || level.id === "expert") && (
+                  <div className="mt-4 flex items-center justify-center">
+                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      有料会員
+                    </span>
                   </div>
                 )}
 
