@@ -236,6 +236,26 @@ export default function AWSLearnPage() {
                   </div>
                 )}
 
+                {/* Membership Badges */}
+                {level.id === "associate" && (
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-300">
+                      無料会員
+                    </span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">・</span>
+                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      有料会員
+                    </span>
+                  </div>
+                )}
+                {(level.id === "professional" || level.id === "expert") && (
+                  <div className="mt-4 flex items-center justify-center">
+                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      有料会員
+                    </span>
+                  </div>
+                )}
+
                 {/* Action Button */}
                 <>
                   <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
