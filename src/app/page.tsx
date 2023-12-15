@@ -117,7 +117,7 @@ export default function Home() {
             </nav>
             <div className="flex items-center gap-4">
               <Link
-                href="/corporate-login"
+                href="/login/corporate"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
               >
                 法人ログイン
@@ -275,7 +275,7 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/corporate-login" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                  <Link href="/login/corporate" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                     法人ログイン
                   </Link>
                 </li>
