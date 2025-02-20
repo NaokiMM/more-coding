@@ -7,6 +7,7 @@
  * 各カテゴリ（例：Console 操作・ログ活用、Elements・CSS デバッグなど）をクリックすると、そのカテゴリの学習ページに遷移します。
  */
 
+// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
 import Link from "next/link";
