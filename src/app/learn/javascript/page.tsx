@@ -1,4 +1,5 @@
 // JavaScript 学習コース　のページ
+// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
 import Link from "next/link";
