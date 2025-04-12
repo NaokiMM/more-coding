@@ -1,6 +1,6 @@
 ---
 title: TypeScript ベストプラクティス 10選
-date: 2024-11-28
+date: 2026-01-02
 tags: ["TypeScript", "プログラミング", "ベストプラクティス"]
 excerpt: TypeScriptを使った開発を効率的にするための実践的なテクニックを紹介します。
 ---

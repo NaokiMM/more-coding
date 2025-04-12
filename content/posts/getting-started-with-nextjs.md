@@ -1,6 +1,6 @@
 ---
 title: Next.js 16 App Router 入門ガイド
-date: 2024-12-01
+date: 2026-01-01
 tags: ["Next.js", "React", "Web開発"]
 excerpt: Next.js 16のApp Routerを使ったモダンなWebアプリケーション開発の基礎を学びましょう。
 ---
