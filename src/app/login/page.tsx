@@ -83,12 +83,20 @@ export default function LoginPage() {
                 SkillBoost
               </span>
             </Link>
-            <Link
-              href="/signup"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              会員登録
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/login/corporate"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                法人ログイン
+              </Link>
+              <Link
+                href="/signup"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                会員登録
+              </Link>
+            </div>
           </div>
         </div>
       </header>
