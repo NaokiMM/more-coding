@@ -84,6 +84,19 @@ export default function TypeScriptAssociatePage() {
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             TypeScriptの基礎を学びます。型の基本から始めて、基本的な構文をマスターしましょう。
           </p>
+          {/* Membership Badges */}
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-300">
+              無料会員
+            </span>
+            <span className="text-sm text-slate-500 dark:text-slate-400">・</span>
+            <span className="rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+              有料会員
+            </span>
+          </div>
+          <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+            どちらの会員プランでもご利用いただけます
+          </p>
         </div>
 
         {/* Categories Grid */}
