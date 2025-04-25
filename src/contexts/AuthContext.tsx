@@ -1,4 +1,6 @@
 // useState/useEffect/useContext を使うため（Client Component）
+
+// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
