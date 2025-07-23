@@ -1,66 +1,67 @@
-// SEO 学習コース　のページ
+// AWS 学習コース　のページ
 "use client";
 
 import Link from "next/link";
 import { useState } from "react";
 
-export default function SEOLearnPage() {
+export default function AWSLearnPage() {
   const levels = [
     {
       id: "associate",
       name: "Associate",
-      description: "SEOの基本概念と重要用語、検索エンジンの仕組みを学びます。",
-      color: "from-emerald-500 to-teal-600",
+      description: "AWS認定試験の基礎レベル。クラウドの基本概念と主要サービスを学びます。",
+      color: "from-orange-500 to-yellow-600",
       icon: "🌱",
       topics: [
-        "SEO - HTML構造・マークアップ最適化",
-        "SEO - メタ情報・クロール制御",
-        "SEO - ユーザビリティ・UX（モバイル・速度）",
-        "SEO - リンク・サイト構造最適化",
-        "SEO - アクセシビリティ・補助情報",
-      ],
-      estimatedTime: "15時間",
-      lessons: 20,
-    },
-    {
-      id: "intermediate",
-      name: "実践編",
-      description: "実践的なSEO施策とテクニカルSEO、コンテンツ最適化の方法を学びます。",
-      color: "from-teal-500 to-emerald-600",
-      icon: "📚",
-      topics: [
-        "サイト構造の最適化",
-        "ページ速度の改善",
-        "モバイルフレンドリー対応",
-        "構造化データ（JSON-LD）",
-        "コンテンツマーケティング",
-        "外部リンク戦略",
+        "AWSの基本概念",
+        "EC2とコンピューティング",
+        "S3とストレージ",
+        "VPCとネットワーク",
+        "IAMとセキュリティ",
+        "RDSとデータベース",
       ],
       estimatedTime: "20時間",
-      lessons: 28,
+      lessons: 30,
     },
     {
-      id: "advanced",
-      name: "上級編",
-      description: "高度なSEO戦略、データ分析、パフォーマンス測定と改善手法を学びます。",
-      color: "from-teal-600 to-cyan-600",
+      id: "professional",
+      name: "Professional",
+      description: "AWS認定試験の上級レベル。高度な設計と運用のスキルを身につけます。",
+      color: "from-yellow-500 to-orange-600",
+      icon: "📚",
+      topics: [
+        "高度なアーキテクチャ設計",
+        "コスト最適化",
+        "セキュリティのベストプラクティス",
+        "高可用性と障害対策",
+        "パフォーマンス最適化",
+        "運用とモニタリング",
+      ],
+      estimatedTime: "35時間",
+      lessons: 50,
+    },
+    {
+      id: "expert",
+      name: "Expert",
+      description: "AWS認定試験の最上級レベル。エキスパートレベルの知識と実践スキルを習得します。",
+      color: "from-orange-600 to-red-600",
       icon: "🚀",
       topics: [
-        "SEO分析ツールの活用（Google Analytics, Search Console）",
-        "競合分析とベンチマーク",
-        "国際SEO（多言語対応）",
-        "ローカルSEO",
-        "E-E-A-Tの実践",
-        "SEOのROI測定とレポート作成",
+        "エンタープライズアーキテクチャ",
+        "複雑なシステム設計",
+        "高度なセキュリティ設計",
+        "大規模システムの運用",
+        "コスト最適化の実践",
+        "災害復旧とビジネス継続性",
       ],
-      estimatedTime: "30時間",
-      lessons: 42,
+      estimatedTime: "50時間",
+      lessons: 70,
     },
     {
       id: "exam",
       name: "本番試験",
       description: "実際の試験形式で実力を試し、合格に向けた最終準備を行います。",
-      color: "from-orange-500 to-red-600",
+      color: "from-red-500 to-orange-600",
       icon: "📝",
       topics: [
         "模擬試験（全3回）",
@@ -70,8 +71,8 @@ export default function SEOLearnPage() {
         "よく出る問題パターン",
         "合格ライン突破のコツ",
       ],
-      estimatedTime: "15時間",
-      lessons: 20,
+      estimatedTime: "20時間",
+      lessons: 25,
     },
   ];
 
@@ -113,14 +114,14 @@ export default function SEOLearnPage() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-3xl font-bold shadow-lg">
-            🔍
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-yellow-600 text-white text-3xl font-bold shadow-lg">
+            ☁️
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            SEO 学習コース
+            独自AWS試験（非公式）学習コース
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            検索エンジン最適化の基礎から実践まで。ウェブサイトの検索順位向上とアクセス数増加のスキルを身につけます。
+            AWS認定試験の準備に最適。Associate、Professional、Expertレベルの問題を体系的に学習できます。
           </p>
         </div>
 
@@ -150,9 +151,9 @@ export default function SEOLearnPage() {
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        : level.id === "intermediate"
+                        : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : level.id === "advanced"
+                        : level.id === "expert"
                         ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
@@ -236,39 +237,30 @@ export default function SEOLearnPage() {
                 )}
 
                 {/* Action Button */}
-                {level.id === "associate" ? (
-                  <Link
-                    href="/learn/seo/associate"
-                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
-                  >
+                <>
+                  <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
                     学習を始める
-                  </Link>
-                ) : (
-                  <>
-                    <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
-                      学習を始める
-                    </div>
-                    {/* 現在利用不可能 UI */}
-                    <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
-                      <svg
-                        className="h-4 w-4 text-red-600 dark:text-red-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <span className="text-sm font-semibold text-red-600 dark:text-red-400">
-                        現在利用不可能
-                      </span>
-                    </div>
-                  </>
-                )}
+                  </div>
+                  {/* 現在利用不可能 UI */}
+                  <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
+                    <svg
+                      className="h-4 w-4 text-red-600 dark:text-red-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span className="text-sm font-semibold text-red-600 dark:text-red-400">
+                      現在利用不可能
+                    </span>
+                  </div>
+                </>
               </div>
             </div>
           ))}
