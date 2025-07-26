@@ -7,21 +7,20 @@ import { useState } from "react";
 export default function NextJSLearnPage() {
   const levels = [
     {
-      id: "beginner",
-      name: "初級",
+      id: "associate",
+      name: "Associate",
       description: "Next.jsの基礎を学びます。プロジェクトの作成から始めて、基本的な機能をマスターしましょう。",
-      color: "from-green-500 to-emerald-600",
+      color: "from-gray-700 to-gray-900",
       icon: "🌱",
       topics: [
-        "Next.jsとは",
-        "プロジェクトの作成とセットアップ",
-        "ページとルーティング",
-        "Linkコンポーネント",
-        "画像最適化（next/image）",
-        "メタデータの設定",
+        "Next.js - はじめに",
+        "Next.js - ページとルーティング",
+        "Next.js - データフェッチング",
+        "Next.js - APIルート",
+        "Next.js - レイアウトとコンポーネント",
       ],
-      estimatedTime: "12時間",
-      lessons: 18,
+      estimatedTime: "15時間",
+      lessons: 20,
     },
     {
       id: "intermediate",
@@ -149,7 +148,7 @@ export default function NextJSLearnPage() {
                   </div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      level.id === "beginner"
+                      level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                         : level.id === "intermediate"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
