@@ -72,27 +72,51 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // デバッグ用：フォーム送信イベントが発火しているか確認するため
+    console.log("SUBMIT fired", formData);
     if (!validate()) return;
 
     setIsSubmitting(true);
     setErrors({});
 
     try {
-      // 実際の送信処理はここに実装
-      // 今回はプレースホルダーとして、少し待機してから成功画面を表示
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL;
       
-      setIsSubmitted(true);
-      setIsSubmitting(false);
-      
-      // フォームをリセット
-      setFormData({
-        name: "",
-        email: "",
-        category: "",
-        subject: "",
-        message: "",
+      if (!apiUrl) {
+        throw new Error("API URLが設定されていません。");
+      }
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          category: formData.category,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
+
+      const data = await response.json();
+
+      if (data.ok === true) {
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        
+        // フォームをリセット
+        setFormData({
+          name: "",
+          email: "",
+          category: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message || "送信に失敗しました。もう一度お試しください。");
+      }
     } catch (error) {
       setErrors({
         submit: error instanceof Error ? error.message : "送信に失敗しました。もう一度お試しください。",
