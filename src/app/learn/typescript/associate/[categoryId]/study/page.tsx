@@ -12,7 +12,7 @@ import StudyClient from "./StudyClient";
 import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/typescript/associate-categories";
 
 export default async function StudyPage({ params }: PageProps) {
-  const { categoryId } = await params;
+  const categoryId = (await params).categoryId;
   const categoryData = await getCategoryData(categoryId);
   
   if (!categoryData) {
