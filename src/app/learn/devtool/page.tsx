@@ -7,21 +7,20 @@ import { useState } from "react";
 export default function DevToolLearnPage() {
   const levels = [
     {
-      id: "beginner",
-      name: "基礎編",
+      id: "associate",
+      name: "Associate",
       description: "ブラウザの開発者ツールの基本的な使い方を学びます。Elements、Consoleの基本操作から始めましょう。",
       color: "from-indigo-500 to-purple-600",
       icon: "🌱",
       topics: [
-        "開発者ツールの起動方法",
-        "Elementsパネルの使い方",
-        "Consoleパネルの基本",
-        "DOM要素の検証",
-        "スタイルの編集方法",
-        "基本的なデバッグ方法",
+        "DevTool - Console 操作・ログ活用",
+        "DevTool - Elements・CSS デバッグ",
+        "DevTool - Sources・JavaScript デバッグ",
+        "DevTool - Network・通信解析",
+        "DevTool - Performance・Application・品質評価",
       ],
-      estimatedTime: "10時間",
-      lessons: 15,
+      estimatedTime: "15時間",
+      lessons: 20,
     },
     {
       id: "intermediate",
@@ -149,7 +148,7 @@ export default function DevToolLearnPage() {
                   </div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      level.id === "beginner"
+                      level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                         : level.id === "intermediate"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
@@ -162,7 +161,7 @@ export default function DevToolLearnPage() {
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.name}
+                  {level.id === "exam" ? level.name : `${level.name}コース`}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
                   {level.description}
@@ -237,30 +236,39 @@ export default function DevToolLearnPage() {
                 )}
 
                 {/* Action Button */}
-                <>
-                  <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
+                {level.id === "associate" ? (
+                  <Link
+                    href="/learn/devtool/associate"
+                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
+                  >
                     学習を始める
-                  </div>
-                  {/* 現在利用不可能 UI */}
-                  <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
-                    <svg
-                      className="h-4 w-4 text-red-600 dark:text-red-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="text-sm font-semibold text-red-600 dark:text-red-400">
-                      現在利用不可能
-                    </span>
-                  </div>
-                </>
+                  </Link>
+                ) : (
+                  <>
+                    <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
+                      学習を始める
+                    </div>
+                    {/* 現在利用不可能 UI */}
+                    <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
+                      <svg
+                        className="h-4 w-4 text-red-600 dark:text-red-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="text-sm font-semibold text-red-600 dark:text-red-400">
+                        現在利用不可能
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}
