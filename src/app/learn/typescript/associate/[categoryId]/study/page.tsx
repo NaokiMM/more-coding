@@ -28,6 +28,7 @@ export default async function StudyPage({ params }: PageProps) {
     );
   }
 
+  // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
