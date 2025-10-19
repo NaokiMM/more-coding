@@ -6,21 +6,20 @@ import { useState } from "react";
 export default function VueLearnPage() {
   const levels = [
     {
-      id: "beginner",
-      name: "初級",
+      id: "associate",
+      name: "Associate",
       description: "Vue.jsの基礎を学びます。テンプレート構文から始めて、基本的な概念をマスターしましょう。",
       color: "from-green-500 to-emerald-600",
       icon: "🌱",
       topics: [
-        "Vue.jsとは",
-        "テンプレート構文",
-        "ディレクティブ（v-if, v-for）",
-        "データバインディング",
-        "コンポーネントの基本",
-        "イベントハンドリング",
+        "Vue - 基礎・設計思想",
+        "Vue - テンプレート・描画・UI構造",
+        "Vue - Props・Events・コンポーネント連携",
+        "Vue - リアクティブ状態・Composition API",
+        "Vue - ルーティング・状態管理・周辺ツール",
       ],
-      estimatedTime: "10時間",
-      lessons: 16,
+      estimatedTime: "15時間",
+      lessons: 20,
     },
     {
       id: "intermediate",
@@ -148,7 +147,7 @@ export default function VueLearnPage() {
                   </div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      level.id === "beginner"
+                      level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                         : level.id === "intermediate"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
@@ -236,30 +235,39 @@ export default function VueLearnPage() {
                 )}
 
                 {/* Action Button */}
-                <>
-                  <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
+                {level.id === "associate" ? (
+                  <Link
+                    href="/learn/vue/associate"
+                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
+                  >
                     学習を始める
-                  </div>
-                  {/* 現在利用不可能 UI */}
-                  <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
-                    <svg
-                      className="h-4 w-4 text-red-600 dark:text-red-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="text-sm font-semibold text-red-600 dark:text-red-400">
-                      現在利用不可能
-                    </span>
-                  </div>
-                </>
+                  </Link>
+                ) : (
+                  <>
+                    <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
+                      学習を始める
+                    </div>
+                    {/* 現在利用不可能 UI */}
+                    <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
+                      <svg
+                        className="h-4 w-4 text-red-600 dark:text-red-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="text-sm font-semibold text-red-600 dark:text-red-400">
+                        現在利用不可能
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}
