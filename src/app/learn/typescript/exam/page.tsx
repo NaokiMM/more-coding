@@ -1,91 +1,67 @@
-/**
- * TypeScript 試験・模擬試験 トップページ
- * 
- * ルート: /learn/typescript/exam
- * 
- * このページは、TypeScript技術者認定試験の模擬試験や過去問題演習を選択するページです。
- * 模擬試験（第1回、第2回、第3回）、過去問題演習、試験対策ポイントなどを表示します。
- */
-
+// TypeScript 本番試験 トップページ
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function TypeScriptExamPage() {
-  const categories = [
+  const levels = [
     {
-      id: "mock-exam-1",
-      name: "模擬試験 第1回",
-      description: "本番試験形式の模擬試験です。時間を計って挑戦しましょう。",
-      icon: "📋",
-      color: "from-orange-500 to-red-600",
-      questions: 50,
+      id: "associate",
+      name: "本番試験 Associate",
+      description:
+        "TypeScript基礎レベルの本番試験。型の基本や基本構文の理解を試験形式で確認します。",
+      color: "from-green-500 to-emerald-600",
+      icon: "🌱",
+      topics: [
+        "TypeScriptとは",
+        "型の基本（string, number, boolean）",
+        "変数と関数の型定義",
+        "インターフェースと型エイリアス",
+        "基本的な型推論",
+      ],
       estimatedTime: "90分",
+      questions: 50,
     },
     {
-      id: "mock-exam-2",
-      name: "模擬試験 第2回",
-      description: "本番試験形式の模擬試験です。時間を計って挑戦しましょう。",
-      icon: "📋",
-      color: "from-red-500 to-orange-600",
-      questions: 50,
-      estimatedTime: "90分",
-    },
-    {
-      id: "mock-exam-3",
-      name: "模擬試験 第3回",
-      description: "本番試験形式の模擬試験です。時間を計って挑戦しましょう。",
-      icon: "📋",
-      color: "from-orange-600 to-red-700",
-      questions: 50,
-      estimatedTime: "90分",
-    },
-    {
-      id: "past-questions",
-      name: "過去問題演習",
-      description: "過去に出題された問題をカテゴリ別に学習できます。",
+      id: "professional",
+      name: "本番試験 Professional",
+      description:
+        "より高度な型システムを試験形式で確認。実践的なTypeScript開発スキルを試します。",
+      color: "from-blue-500 to-cyan-600",
       icon: "📚",
-      color: "from-amber-500 to-orange-600",
-      questions: 200,
-      estimatedTime: "5時間",
+      topics: [
+        "ジェネリクス",
+        "ユニオン型とインターセクション型",
+        "型ガードと型アサーション",
+        "モジュールと名前空間",
+        "デコレータ",
+        "クラスと継承",
+      ],
+      estimatedTime: "90分",
+      questions: 50,
     },
     {
-      id: "exam-tips",
-      name: "試験対策ポイント",
-      description: "試験でよく出るポイントを効率的に学習できます。",
-      icon: "💡",
-      color: "from-yellow-500 to-orange-600",
-      questions: 100,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "time-management",
-      name: "時間配分のコツ",
-      description: "試験時間を有効活用するための時間配分を学びます。",
-      icon: "⏱️",
-      color: "from-orange-500 to-amber-600",
-      lessons: 5,
-      estimatedTime: "1時間",
-    },
-    {
-      id: "common-patterns",
-      name: "よく出る問題パターン",
-      description: "頻出する問題パターンを集中的に学習できます。",
-      icon: "🎯",
-      color: "from-red-500 to-pink-600",
-      questions: 150,
-      estimatedTime: "4時間",
-    },
-    {
-      id: "passing-tips",
-      name: "合格ライン突破のコツ",
-      description: "合格点を確実に取るための戦略とテクニックを学びます。",
-      icon: "🏆",
-      color: "from-orange-600 to-red-700",
-      lessons: 8,
-      estimatedTime: "2時間",
+      id: "expert",
+      name: "本番試験 Expert",
+      description:
+        "高度な型操作と実践的なパターンを試験形式で確認。エキスパートレベルのスキルを試します。",
+      color: "from-purple-500 to-pink-600",
+      icon: "🚀",
+      topics: [
+        "条件付き型（Conditional Types）",
+        "マップ型（Mapped Types）",
+        "テンプレートリテラル型",
+        "型の再帰と複雑な型操作",
+        "実践的なデザインパターン",
+        "パフォーマンス最適化",
+      ],
+      estimatedTime: "90分",
+      questions: 50,
     },
   ];
+
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
@@ -138,7 +114,7 @@ export default function TypeScriptExamPage() {
         </nav>
 
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justifycenter rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white text-3xl font-bold shadow-lg">
             📝
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -149,38 +125,53 @@ export default function TypeScriptExamPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              href={`/learn/typescript/exam/${category.id}`}
-              className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {levels.map((level) => (
+            <div
+              key={level.id}
+              className={`group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 ${
+                selectedLevel === level.id ? "ring-4 ring-blue-500" : ""
+              }`}
+              onClick={() =>
+                setSelectedLevel(selectedLevel === level.id ? null : level.id)
+              }
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 transition-opacity group-hover:opacity-10`}
+                className={`absolute inset-0 bg-gradient-to-br ${level.color} opacity-0 transition-opacity group-hover:opacity-10 ${
+                  selectedLevel === level.id ? "opacity-10" : ""
+                }`}
               />
               <div className="relative">
                 <div className="mb-4 flex items-center justify-between">
                   <div
-                    className={`flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${category.color} text-2xl shadow-lg`}
+                    className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${level.color} text-3xl shadow-lg`}
                   >
-                    {category.icon}
+                    {level.icon}
                   </div>
-                  <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-800 dark:bg-orange-900 dark:text-orange-200">
-                    本番試験
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                      level.id === "associate"
+                        ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                        : level.id === "professional"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                        : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                    }`}
+                  >
+                    {level.name.split(" ")[1]}
                   </span>
                 </div>
-                <h2 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  {category.name}
+                <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                  {level.name}
                 </h2>
-                <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
-                  {category.description}
+                <p className="mb-4 text-slate-600 dark:text-slate-400">
+                  {level.description}
                 </p>
 
-                <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                {/* Stats */}
+                <div className="mb-4 flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
                   <div className="flex items-center gap-1">
                     <svg
-                      className="h-3 w-3"
+                      className="h-4 w-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -192,50 +183,68 @@ export default function TypeScriptExamPage() {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span>{category.estimatedTime}</span>
+                    <span>{level.estimatedTime}</span>
                   </div>
-                  {category.questions && (
-                    <div className="flex items-center gap-1">
-                      <svg
-                        className="h-3 w-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
-                      <span>{category.questions}問</span>
-                    </div>
-                  )}
-                  {category.lessons && (
-                    <div className="flex items-center gap-1">
-                      <svg
-                        className="h-3 w-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                        />
-                      </svg>
-                      <span>{category.lessons}レッスン</span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-1">
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    <span>{level.questions}問</span>
+                  </div>
                 </div>
 
-                <div className="mt-4 flex items-center text-sm font-semibold text-orange-600 dark:text-orange-400">
-                  <span>学習を始める</span>
+                {/* Topics (expanded when selected) */}
+                {selectedLevel === level.id && (
+                  <div className="mt-4 space-y-2 border-t border-slate-200 pt-4 dark:border-slate-700">
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                      試験範囲:
+                    </h3>
+                    <ul className="space-y-1">
+                      {level.topics.map((topic, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
+                        >
+                          <svg
+                            className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Action Button - 現在利用不可能 */}
+                <div
+                  className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}
+                >
+                  試験を始める
+                </div>
+                {/* 現在利用不可能 UI */}
+                <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
                   <svg
-                    className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
+                    className="h-4 w-4 text-red-600 dark:text-red-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -244,22 +253,26 @@ export default function TypeScriptExamPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5l7 7-7 7"
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
+                  <span className="text-sm font-semibold text-red-600 dark:text-red-400">
+                    現在利用不可能
+                  </span>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 
         <div className="mt-12 text-center">
-          <Link
-            href="/learn/typescript"
-            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
-              className="mr-2 h-4 w-4"
+              className="mr-2 h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -268,15 +281,14 @@ export default function TypeScriptExamPage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
             TypeScript技術者認定に戻る
-          </Link>
+          </button>
         </div>
       </div>
     </div>
   );
 }
-
 
