@@ -13,8 +13,15 @@ import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/ty
 
 // URL パラメータから categoryId を取得
 export default async function StudyPage({ params }: PageProps) {
+
   const categoryId = (await params).categoryId;
   const categoryData = await getCategoryData(categoryId);
+
+  console.log(
+    "StudyPage: before return, categoryData =",
+    !!categoryData,
+    "(StudyPage 戻り値直前：カテゴリデータ取得結果)"
+  );
   
   // カテゴリデータが取得できなかった場合
   if (!categoryData) {
