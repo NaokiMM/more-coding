@@ -35,10 +35,11 @@ Top-Down Readability（トップダウン設計）
 # AWSクラウドの主な使用サービス
 DB: DynamoDB/認証: Cognito/サーバー: Lambda/API: API Gateway/オブジェクトストレージ: S3/CDN: CloudFront/アカウン制御: IAM
 
-# Contribution / コントリビューションについて
+# Contribution / コントリビューション
+本リポジトリは OSSに近い運用 をしています。
 
-### このリポジトリは OSS運用に近い設定で管理
-リポジトリオーナーのみ main ブランチへ直接 push 可能。第三者からの変更は Pull Request（PR）必須。すべての PR はオーナーのレビュー・承認後にマージされます。
+### 共同開発者
+リポジトリオーナーが Write 権限 を付与します。作業はブランチ作成 → PR。main への直接 push は不可。すべての PR は オーナーのレビュー・承認後にマージされます。
 
-### Pull Request の流れ
-このリポジトリを Forkし、変更用ブランチを作成する。その後、Pull Request を作成し、レビュー後に問題なければマージされます。
+### 外部コントリビューター
+Fork → 変更 → Pull Request を作成してください。
