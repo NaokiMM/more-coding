@@ -66,6 +66,13 @@ export default function Home() {
       color: "from-emerald-500 to-teal-600",
       icon: "🔍",
     },
+    {
+      id: "aws",
+      name: "独自AWS試験（非公式）",
+      description: "AWS認定試験の準備に最適。Associate、Professional、Expertレベルの問題を体系的に学習できます。",
+      color: "from-orange-500 to-yellow-600",
+      icon: "☁️",
+    },
   ];
 
   return (
