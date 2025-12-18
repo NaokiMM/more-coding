@@ -263,6 +263,13 @@ export default function ReactLearnPage() {
                   >
                     学習を始める
                   </Link>
+                ) : level.id === "exam" ? (
+                  <Link
+                    href="/learn/react/exam"
+                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
+                  >
+                    学習を始める
+                  </Link>
                 ) : (
                   <>
                     <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
