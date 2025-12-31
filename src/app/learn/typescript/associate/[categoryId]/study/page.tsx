@@ -29,6 +29,7 @@ export default async function StudyPage({ params }: PageProps) {
 
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
+
 // 静的エクスポート用: すべてのcategoryIdを生成
 export function generateStaticParams() {
   return tsAssociateCategoriesData.map((category) => ({
