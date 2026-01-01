@@ -11,6 +11,7 @@
 import StudyClient from "./StudyClient";
 import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/typescript/associate-categories";
 
+// URL パラメータから categoryId を取得
 export default async function StudyPage({ params }: PageProps) {
   const categoryId = (await params).categoryId;
   const categoryData = await getCategoryData(categoryId);
@@ -39,6 +40,7 @@ export function generateStaticParams() {
   }));
 }
 
+// categoryId に対応する学習データ(JSON)を S3 から取得する
 async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
   // tsAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = tsAssociateCategoriesData.find((cat) => cat.id === categoryId);
