@@ -42,6 +42,7 @@ export function generateStaticParams() {
 
 // categoryId に対応する学習データ(JSON)を S3 から取得する
 async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+  
   // tsAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = tsAssociateCategoriesData.find((cat) => cat.id === categoryId);
   
@@ -70,7 +71,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
     const data: CategoryData = await response.json();
     return data;
   } catch (error) {
-    console.error("Failed to fetch category data:", error);
+    console.error("Failed to fetch category data (カテゴリデータの取得に失敗しました):", error);
     return null;
   }
 }
