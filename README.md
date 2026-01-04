@@ -33,23 +33,12 @@ Top-Down Readability（トップダウン設計）
 1 push = 1 機能追加 を原則とし、変更するファイル数は問わない。また各 push は「何をしたのか」を第三者に説明できる、理解しやすい単位にまとめる。commit メッセージには「何に」「何を」（可能であれば「どのように」も）したのかを記載する
 
 # AWSクラウドの主な使用サービス
-### DB
-DynamoDB
+DB: DynamoDB/認証: Cognito/サーバー: Lambda/API: API Gateway/オブジェクトストレージ: S3/CDN: CloudFront/アカウン制御: IAM
 
-### 認証
-Cognito
+# Contribution / コントリビューションについて
 
-### サーバー
-Lambda
+### このリポジトリは OSS運用に近い設定で管理
+リポジトリオーナーのみ main ブランチへ直接 push 可能。第三者からの変更は Pull Request（PR）必須。すべての PR はオーナーのレビュー・承認後にマージされます。
 
-### API
-API Gateway
-
-### オブジェクト
-S3
-
-### CDN
-CloudFront
-
-### アカウント制御
-IAM
+### Pull Request の流れ
+このリポジトリを Forkし、変更用ブランチを作成する。その後、Pull Request を作成し、レビュー後に問題なければマージされます。
