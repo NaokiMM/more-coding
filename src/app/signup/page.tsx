@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUp, signIn } from "@/lib/cognito";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function SignupPage() {
+  const router = useRouter();
+  const { refreshUser } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,11 +59,57 @@ export default function SignupPage() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // TODO: 実際のAPI呼び出しを実装
-    setTimeout(() => {
+    setErrors({});
+
+    try {
+      const result = await signUp(
+        formData.email,
+        formData.password,
+        formData.name
+      );
+
+      if (result.success) {
+        // 会員登録成功
+        if (result.requiresConfirmation) {
+          // メール確認が必要な場合、確認画面へリダイレクト
+          router.push(`/verify-email?email=${encodeURIComponent(formData.email)}`);
+        } else {
+          // メール確認が不要な場合（自動確認）、自動的にログイン
+          try {
+            // 少し待ってからログインを試みる（Cognitoの処理が完了するまで）
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            
+            const loginResult = await signIn(formData.email, formData.password);
+            if (loginResult.success) {
+              // ユーザー情報を更新
+              await refreshUser();
+              // マイページへリダイレクト
+              router.push("/mypage");
+            } else {
+              // ログインに失敗した場合は、ログイン画面へ
+              setErrors({
+                submit: `会員登録は完了しましたが、ログインに失敗しました: ${loginResult.error}。ログイン画面からログインしてください。`,
+              });
+              setIsSubmitting(false);
+            }
+          } catch (loginError) {
+            console.error("ログインエラー:", loginError);
+            setErrors({
+              submit: `会員登録は完了しましたが、ログインに失敗しました。ログイン画面からログインしてください。`,
+            });
+            setIsSubmitting(false);
+          }
+        }
+      } else {
+        setErrors({ submit: result.error || "会員登録に失敗しました" });
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      setErrors({
+        submit: error instanceof Error ? error.message : "会員登録に失敗しました",
+      });
       setIsSubmitting(false);
-      alert("会員登録が完了しました！（デモモード）");
-    }, 1000);
+    }
   };
 
   return (
@@ -208,6 +259,13 @@ export default function SignupPage() {
                   </p>
                 )}
               </div>
+
+              {/* Error Message */}
+              {errors.submit && (
+                <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+                  {errors.submit}
+                </div>
+              )}
 
               {/* Submit Button */}
               <button

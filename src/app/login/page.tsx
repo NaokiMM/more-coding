@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "@/lib/cognito";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { refreshUser } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,11 +47,25 @@ export default function LoginPage() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // TODO: 実際のAPI呼び出しを実装
-    setTimeout(() => {
+    setErrors({});
+
+    try {
+      const result = await signIn(formData.email, formData.password);
+
+      if (result.success) {
+        // ログイン成功
+        await refreshUser();
+        router.push("/mypage");
+      } else {
+        setErrors({ submit: result.error || "ログインに失敗しました" });
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      setErrors({
+        submit: error instanceof Error ? error.message : "ログインに失敗しました",
+      });
       setIsSubmitting(false);
-      alert("ログインに成功しました！（デモモード）");
-    }, 1000);
+    }
   };
 
   return (
@@ -164,6 +183,13 @@ export default function LoginPage() {
                   ログイン状態を保持する
                 </label>
               </div>
+
+              {/* Error Message */}
+              {errors.submit && (
+                <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+                  {errors.submit}
+                </div>
+              )}
 
               {/* Submit Button */}
               <button
