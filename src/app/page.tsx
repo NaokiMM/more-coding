@@ -23,23 +23,19 @@ export default function Home() {
       color: "from-green-500 to-emerald-600",
       icon: "Vue",
     },
-  ];
-
-  const certifications = [
     {
-      name: "基本情報技術者",
-      category: "国家資格",
-      level: "初級",
+      id: "nextjs",
+      name: "Next.js",
+      description: "Reactベースのフルスタックフレームワーク。SSR、SSG、APIルートなどの機能を提供します。",
+      color: "from-gray-700 to-gray-900",
+      icon: "▲",
     },
     {
-      name: "応用情報技術者",
-      category: "国家資格",
-      level: "中級",
-    },
-    {
-      name: "AWS認定資格",
-      category: "ベンダー資格",
-      level: "初級〜上級",
+      id: "nuxtjs",
+      name: "Nuxt.js",
+      description: "Vue.jsベースのフルスタックフレームワーク。SSR、静的サイト生成、モジュールシステムを提供します。",
+      color: "from-green-600 to-emerald-700",
+      icon: "ν",
     },
   ];
 
@@ -62,13 +58,7 @@ export default function Home() {
                 href="#technologies"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
               >
-                学習コンテンツ
-              </Link>
-              <Link
-                href="#certifications"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                資格紹介
+                学習できる技術・資格
               </Link>
               <Link
                 href="#about"
@@ -116,27 +106,21 @@ export default function Home() {
             >
               学習を始める
             </Link>
-            <Link
-              href="#certifications"
-              className="rounded-lg border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
-            >
-              資格を見る
-            </Link>
           </div>
         </div>
       </section>
 
       {/* Technologies Section */}
-      <section id="technologies" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section id="technologies" className="mx-auto max-w-7xl px-4 pt-8 pb-20 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-            学習できる技術
+            学習できる技術・資格
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             最新のフロントエンド技術を体系的に学べます
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {technologies.map((tech) => (
             <Link
               key={tech.id}
@@ -173,43 +157,6 @@ export default function Home() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section id="certifications" className="bg-slate-100 dark:bg-slate-800/50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              人気のIT資格
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              取得を目指せる資格を紹介します
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {certifications.map((cert, index) => (
-              <div
-                key={index}
-                className="rounded-xl bg-white p-6 shadow-md transition-all hover:shadow-lg dark:bg-slate-700"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                    {cert.category}
-                  </span>
-                  <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                    {cert.level}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  {cert.name}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                  詳細を見る →
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
