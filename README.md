@@ -7,6 +7,7 @@ aws configure list-profiles
 
 # s3にアプリをuploadする前の準備
 npm run build
+node scripts/fix-static-paths.js
 
 # aws cli login & upload
 aws s3 sync out/ s3://skillboost-bucket/ --delete --profile AdministratorAccess-077793792738
