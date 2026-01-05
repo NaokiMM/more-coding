@@ -10,3 +10,6 @@ npm run build
 
 # aws cli login & upload
 aws s3 sync out/ s3://skillboost-bucket/ --delete --profile AdministratorAccess-077793792738
+
+# cloudfrontのキャッシュを更新
+CloudFront > Distributions > Invalidations > Create invalidations > 「/*」 > Save

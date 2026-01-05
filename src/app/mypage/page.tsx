@@ -32,6 +32,11 @@ export default function MyPage() {
   const userDisplayName = user.name || user.email || "ユーザー";
   const userEmail = user.email || "";
   const joinDate = user["custom:joinDate"] || "不明";
+  // プロフィール画像（localStorageから取得、またはユーザー属性から）
+  const profileImage =
+    user.picture ||
+    user["custom:picture"] ||
+    (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
 
   const [learningProgress] = useState([
     {
@@ -121,8 +126,16 @@ export default function MyPage() {
         <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
           <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between">
             <div className="flex items-center gap-6">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
-                {userDisplayName.charAt(0).toUpperCase()}
+              <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
+                {profileImage ? (
+                  <img
+                    src={profileImage}
+                    alt={userDisplayName}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span>{userDisplayName.charAt(0).toUpperCase()}</span>
+                )}
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white">

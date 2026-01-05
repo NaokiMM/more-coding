@@ -20,6 +20,8 @@ export default function SettingsPage() {
     name: "",
     email: "",
   });
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -30,8 +32,39 @@ export default function SettingsPage() {
         name: user.name || "",
         email: user.email || "",
       });
+      // プロフィール画像があれば設定
+      if (user.picture || user["custom:picture"]) {
+        setProfileImage(user.picture || user["custom:picture"]);
+      }
     }
   }, [user]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // ファイルサイズチェック（5MB以下）
+      if (file.size > 5 * 1024 * 1024) {
+        setErrors({ image: "画像サイズは5MB以下にしてください" });
+        return;
+      }
+
+      // ファイルタイプチェック
+      if (!file.type.startsWith("image/")) {
+        setErrors({ image: "画像ファイルを選択してください" });
+        return;
+      }
+
+      setProfileImageFile(file);
+      setErrors((prev) => ({ ...prev, image: "" }));
+
+      // プレビュー用に画像を読み込み
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,6 +82,31 @@ export default function SettingsPage() {
     setSuccessMessage("");
 
     try {
+      let imageUrl = profileImage;
+
+      // 画像がアップロードされている場合
+      if (profileImageFile) {
+        // TODO: S3に画像をアップロード
+        // const formData = new FormData();
+        // formData.append("image", profileImageFile);
+        // const uploadResponse = await fetch("https://your-api-gateway-url/upload-image", {
+        //   method: "POST",
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        //   body: formData,
+        // });
+        // const uploadData = await uploadResponse.json();
+        // imageUrl = uploadData.imageUrl;
+
+        // デモ: ローカルストレージに保存（実際の実装ではS3にアップロード）
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          localStorage.setItem("profileImage", reader.result as string);
+        };
+        reader.readAsDataURL(profileImageFile);
+      }
+
       // TODO: API Gateway経由でユーザー情報を更新
       // const response = await fetch("https://your-api-gateway-url/update-user", {
       //   method: "PUT",
@@ -56,13 +114,20 @@ export default function SettingsPage() {
       //     "Content-Type": "application/json",
       //     Authorization: `Bearer ${token}`,
       //   },
-      //   body: JSON.stringify(formData),
+      //   body: JSON.stringify({
+      //     ...formData,
+      //     picture: imageUrl,
+      //   }),
       // });
 
       // デモ: 成功メッセージを表示
       setTimeout(() => {
         setSuccessMessage("設定を更新しました");
         setIsSubmitting(false);
+        // ユーザー情報を更新
+        if (imageUrl) {
+          // 実際の実装ではAuthContextを更新
+        }
       }, 1000);
     } catch (error) {
       setErrors({
@@ -157,6 +222,56 @@ export default function SettingsPage() {
         {/* Settings Form */}
         <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Profile Image */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                プロフィール画像
+              </label>
+              <div className="flex items-center gap-6">
+                <div className="relative">
+                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
+                    {profileImage ? (
+                      <img
+                        src={profileImage}
+                        alt="Profile"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <span>
+                        {formData.name.charAt(0).toUpperCase() || "U"}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <label
+                    htmlFor="image-upload"
+                    className="cursor-pointer rounded-lg border-2 border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                  >
+                    画像を選択
+                  </label>
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                  {profileImageFile && (
+                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                      {profileImageFile.name}
+                    </p>
+                  )}
+                  {errors.image && (
+                    <p className="mt-1 text-sm text-red-600">{errors.image}</p>
+                  )}
+                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    JPG、PNG形式、5MB以下
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Name */}
             <div>
               <label
