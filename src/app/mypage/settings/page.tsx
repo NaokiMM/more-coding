@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { getSession } from "@/lib/cognito";
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { user, loading, isAuthenticated, signOut } = useAuth();
+  const { user, loading, isAuthenticated, signOut, refreshUser } = useAuth();
 
   // 認証チェック
   useEffect(() => {
@@ -25,6 +26,8 @@ export default function SettingsPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [uploadStatus, setUploadStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
+  const [uploadedImageKey, setUploadedImageKey] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -39,31 +42,92 @@ export default function SettingsPage() {
     }
   }, [user]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // ファイルサイズチェック（5MB以下）
-      if (file.size > 5 * 1024 * 1024) {
-        setErrors({ image: "画像サイズは5MB以下にしてください" });
-        return;
-      }
-
-      // ファイルタイプチェック
-      if (!file.type.startsWith("image/")) {
-        setErrors({ image: "画像ファイルを選択してください" });
-        return;
-      }
-
-      setProfileImageFile(file);
+  // 画像アップロード関数
+  const uploadProfileImage = async (file: File): Promise<string | null> => {
+    try {
+      setUploadStatus("uploading");
       setErrors((prev) => ({ ...prev, image: "" }));
 
-      // プレビュー用に画像を読み込み
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      // セッション取得
+      const session = await getSession();
+      if (!session) {
+        throw new Error("認証が必要です");
+      }
+
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
+
+      // 1. プリサインドURL取得
+      const presignResponse = await fetch(`${apiBaseUrl}/profile-image/presign`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.idToken}`,
+        },
+        body: JSON.stringify({
+          contentType: file.type,
+        }),
+      });
+
+      if (!presignResponse.ok) {
+        const errorData = await presignResponse.json().catch(() => ({}));
+        throw new Error(errorData.message || "プリサインドURLの取得に失敗しました");
+      }
+
+      const { key, uploadUrl } = await presignResponse.json();
+
+      // 2. S3に画像をアップロード
+      const uploadResponse = await fetch(uploadUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": file.type,
+        },
+        body: file,
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("画像のアップロードに失敗しました");
+      }
+
+      setUploadStatus("success");
+      setUploadedImageKey(key);
+      return key;
+    } catch (error) {
+      setUploadStatus("error");
+      const errorMessage = error instanceof Error ? error.message : "画像のアップロードに失敗しました";
+      setErrors((prev) => ({ ...prev, image: errorMessage }));
+      return null;
     }
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // ファイル形式チェック
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      setErrors({ image: "JPEG、PNG、WebP形式のみ対応しています" });
+      return;
+    }
+
+    // ファイルサイズチェック（5MB以下）
+    if (file.size > 5 * 1024 * 1024) {
+      setErrors({ image: "画像サイズは5MB以下にしてください" });
+      return;
+    }
+
+    setProfileImageFile(file);
+    setErrors((prev) => ({ ...prev, image: "" }));
+
+    // プレビュー用に画像を読み込み
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfileImage(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+
+    // 自動アップロード
+    await uploadProfileImage(file);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,57 +146,60 @@ export default function SettingsPage() {
     setSuccessMessage("");
 
     try {
-      let imageUrl = profileImage;
-
-      // 画像がアップロードされている場合
-      if (profileImageFile) {
-        // TODO: S3に画像をアップロード
-        // const formData = new FormData();
-        // formData.append("image", profileImageFile);
-        // const uploadResponse = await fetch("https://your-api-gateway-url/upload-image", {
-        //   method: "POST",
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        //   body: formData,
-        // });
-        // const uploadData = await uploadResponse.json();
-        // imageUrl = uploadData.imageUrl;
-
-        // デモ: ローカルストレージに保存（実際の実装ではS3にアップロード）
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          localStorage.setItem("profileImage", reader.result as string);
-        };
-        reader.readAsDataURL(profileImageFile);
+      const session = await getSession();
+      if (!session) {
+        throw new Error("認証が必要です");
       }
 
-      // TODO: API Gateway経由でユーザー情報を更新
-      // const response = await fetch("https://your-api-gateway-url/update-user", {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify({
-      //     ...formData,
-      //     picture: imageUrl,
-      //   }),
-      // });
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
 
-      // デモ: 成功メッセージを表示
-      setTimeout(() => {
-        setSuccessMessage("設定を更新しました");
-        setIsSubmitting(false);
-        // ユーザー情報を更新
-        if (imageUrl) {
-          // 実際の実装ではAuthContextを更新
+      // 画像がアップロード済みの場合、keyを使用
+      // まだアップロードされていない場合は再アップロード
+      let imageKey = uploadedImageKey;
+      if (profileImageFile && !uploadedImageKey && uploadStatus !== "uploading") {
+        imageKey = await uploadProfileImage(profileImageFile);
+        if (!imageKey) {
+          setIsSubmitting(false);
+          return;
         }
-      }, 1000);
+      }
+
+      // ユーザー情報を更新
+      const updatePayload: { name: string; picture?: string } = {
+        name: formData.name,
+      };
+      if (imageKey) {
+        updatePayload.picture = imageKey;
+      }
+
+      const response = await fetch(`${apiBaseUrl}/me`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.idToken}`,
+        },
+        body: JSON.stringify(updatePayload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || "設定の更新に失敗しました");
+      }
+
+      setSuccessMessage("設定を更新しました");
+      
+      // ユーザー情報を再読み込み
+      await refreshUser();
+
+      // フォームをリセット
+      setProfileImageFile(null);
+      setUploadStatus("idle");
+      setUploadedImageKey(null);
     } catch (error) {
       setErrors({
         submit: error instanceof Error ? error.message : "設定の更新に失敗しました",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -253,20 +320,32 @@ export default function SettingsPage() {
                   <input
                     id="image-upload"
                     type="file"
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/webp"
                     onChange={handleImageChange}
+                    disabled={uploadStatus === "uploading"}
                     className="hidden"
                   />
                   {profileImageFile && (
-                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                      {profileImageFile.name}
-                    </p>
+                    <div className="mt-2">
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        {profileImageFile.name}
+                      </p>
+                      {uploadStatus === "uploading" && (
+                        <p className="mt-1 text-xs text-blue-600">アップロード中...</p>
+                      )}
+                      {uploadStatus === "success" && (
+                        <p className="mt-1 text-xs text-green-600">✓ アップロード完了</p>
+                      )}
+                      {uploadStatus === "error" && (
+                        <p className="mt-1 text-xs text-red-600">✗ アップロード失敗</p>
+                      )}
+                    </div>
                   )}
                   {errors.image && (
                     <p className="mt-1 text-sm text-red-600">{errors.image}</p>
                   )}
                   <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                    JPG、PNG形式、5MB以下
+                    JPEG、PNG、WebP形式、5MB以下
                   </p>
                 </div>
               </div>
