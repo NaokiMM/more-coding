@@ -1,67 +1,21 @@
+// TypeScript技術者認定 Associate コースページ
+
 "use client";
 
 import Link from "next/link";
+import { categoriesData } from "@/lib/typescript-categories";
 
-export default function TypeScriptProfessionalPage() {
-  const categories = [
-    {
-      id: "generics",
-      name: "ジェネリクス",
-      description: "型パラメータを使った汎用的なコードの書き方を学びます。",
-      icon: "🔷",
-      color: "from-blue-500 to-cyan-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "union-intersection",
-      name: "ユニオン型とインターセクション型",
-      description: "複数の型を組み合わせる方法を学びます。",
-      icon: "🔀",
-      color: "from-indigo-500 to-indigo-600",
-      lessons: 4,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "type-guards",
-      name: "型ガードと型アサーション",
-      description: "実行時に型を絞り込む方法を学びます。",
-      icon: "🛡️",
-      color: "from-teal-500 to-teal-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "modules-namespaces",
-      name: "モジュールと名前空間",
-      description: "コードを整理し、再利用可能にする方法を学びます。",
-      icon: "📦",
-      color: "from-cyan-500 to-cyan-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "decorators",
-      name: "デコレータ",
-      description: "クラスやメソッドに機能を追加するデコレータを学びます。",
-      icon: "✨",
-      color: "from-violet-500 to-violet-600",
-      lessons: 6,
-      estimatedTime: "4時間",
-    },
-    {
-      id: "classes-inheritance",
-      name: "クラスと継承",
-      description: "オブジェクト指向プログラミングの概念を学びます。",
-      icon: "🏗️",
-      color: "from-blue-600 to-blue-700",
-      lessons: 5,
-      estimatedTime: "4時間",
-    },
-  ];
+export default function TypeScriptAssociatePage() {
+  const categories = categoriesData.map((cat) => ({
+    ...cat,
+    description: `${cat.name}について学習します。`,
+    lessons: 10, // 各JSONファイルには10問ずつ含まれている想定
+    estimatedTime: "1-2時間",
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
@@ -91,7 +45,9 @@ export default function TypeScriptProfessionalPage() {
         </div>
       </header>
 
+      {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
           <Link
             href="/"
@@ -107,26 +63,28 @@ export default function TypeScriptProfessionalPage() {
             TypeScript技術者認定
           </Link>
           <span>/</span>
-          <span className="text-slate-900 dark:text-white">Professional</span>
+          <span className="text-slate-900 dark:text-white">Associate</span>
         </nav>
 
+        {/* Page Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white text-3xl font-bold shadow-lg">
-            📚
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 text-white text-3xl font-bold shadow-lg">
+            🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Professional コース
+            Associate コース
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            より高度な型システムを学び、実践的な開発スキルを身につけます。
+            TypeScriptの基礎を学びます。型の基本から始めて、基本的な構文をマスターしましょう。
           </p>
         </div>
 
+        {/* Categories Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/learn/typescript/intermediate/${category.id}`}
+              href={`/learn/typescript/associate/${category.id}/study`}
               className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
             >
               <div
@@ -139,8 +97,8 @@ export default function TypeScriptProfessionalPage() {
                   >
                     {category.icon}
                   </div>
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                    Professional
+                  <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900 dark:text-green-200">
+                    Associate
                   </span>
                 </div>
                 <h2 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
@@ -150,6 +108,7 @@ export default function TypeScriptProfessionalPage() {
                   {category.description}
                 </p>
 
+                {/* Stats */}
                 <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                   <div className="flex items-center gap-1">
                     <svg
@@ -185,6 +144,7 @@ export default function TypeScriptProfessionalPage() {
                   </div>
                 </div>
 
+                {/* Arrow Icon */}
                 <div className="mt-4 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
                   <span>学習を始める</span>
                   <svg
@@ -206,6 +166,7 @@ export default function TypeScriptProfessionalPage() {
           ))}
         </div>
 
+        {/* Back Link */}
         <div className="mt-12 text-center">
           <Link
             href="/learn/typescript"

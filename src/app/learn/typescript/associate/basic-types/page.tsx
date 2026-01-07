@@ -1,3 +1,5 @@
+// 🔤型の基本（string, number, boolean）ページ
+
 "use client";
 
 import Link from "next/link";
@@ -78,7 +80,7 @@ export default function TypeScriptBasicTypesPage() {
           </Link>
           <span>/</span>
           <Link
-            href="/learn/typescript/beginner"
+            href="/learn/typescript/associate"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             Associate
@@ -138,7 +140,7 @@ export default function TypeScriptBasicTypesPage() {
                   </div>
                 </div>
                 <Link
-                  href="/learn/typescript/beginner/basic-types/study"
+                  href="/learn/typescript/associate/basic-types/study"
                   className="ml-4 rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                 >
                   学習開始
@@ -150,7 +152,7 @@ export default function TypeScriptBasicTypesPage() {
 
         <div className="mt-12 text-center">
           <Link
-            href="/learn/typescript/beginner"
+            href="/learn/typescript/associate"
             className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
             <svg

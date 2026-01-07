@@ -2,60 +2,60 @@
 
 import Link from "next/link";
 
-export default function TypeScriptSpecialtyPage() {
+export default function TypeScriptProfessionalPage() {
   const categories = [
     {
-      id: "conditional-types",
-      name: "条件付き型（Conditional Types）",
-      description: "条件に応じて型を決定する高度な型操作を学びます。",
+      id: "generics",
+      name: "ジェネリクス",
+      description: "型パラメータを使った汎用的なコードの書き方を学びます。",
+      icon: "🔷",
+      color: "from-blue-500 to-cyan-600",
+      lessons: 5,
+      estimatedTime: "3時間",
+    },
+    {
+      id: "union-intersection",
+      name: "ユニオン型とインターセクション型",
+      description: "複数の型を組み合わせる方法を学びます。",
       icon: "🔀",
-      color: "from-purple-500 to-pink-600",
-      lessons: 8,
-      estimatedTime: "5時間",
+      color: "from-indigo-500 to-indigo-600",
+      lessons: 4,
+      estimatedTime: "3時間",
     },
     {
-      id: "mapped-types",
-      name: "マップ型（Mapped Types）",
-      description: "既存の型から新しい型を生成する方法を学びます。",
-      icon: "🗺️",
-      color: "from-pink-500 to-rose-600",
-      lessons: 7,
-      estimatedTime: "5時間",
+      id: "type-guards",
+      name: "型ガードと型アサーション",
+      description: "実行時に型を絞り込む方法を学びます。",
+      icon: "🛡️",
+      color: "from-teal-500 to-teal-600",
+      lessons: 5,
+      estimatedTime: "3時間",
     },
     {
-      id: "template-literal-types",
-      name: "テンプレートリテラル型",
-      description: "文字列リテラル型を組み合わせて新しい型を作る方法を学びます。",
-      icon: "📝",
-      color: "from-rose-500 to-pink-600",
+      id: "modules-namespaces",
+      name: "モジュールと名前空間",
+      description: "コードを整理し、再利用可能にする方法を学びます。",
+      icon: "📦",
+      color: "from-cyan-500 to-cyan-600",
+      lessons: 5,
+      estimatedTime: "3時間",
+    },
+    {
+      id: "decorators",
+      name: "デコレータ",
+      description: "クラスやメソッドに機能を追加するデコレータを学びます。",
+      icon: "✨",
+      color: "from-violet-500 to-violet-600",
       lessons: 6,
       estimatedTime: "4時間",
     },
     {
-      id: "recursive-types",
-      name: "型の再帰と複雑な型操作",
-      description: "再帰的な型定義と高度な型操作テクニックを学びます。",
-      icon: "🌀",
-      color: "from-fuchsia-500 to-purple-600",
-      lessons: 8,
-      estimatedTime: "6時間",
-    },
-    {
-      id: "design-patterns",
-      name: "実践的なデザインパターン",
-      description: "TypeScriptを使った実践的なデザインパターンを学びます。",
-      icon: "🎨",
-      color: "from-violet-500 to-purple-600",
-      lessons: 10,
-      estimatedTime: "6時間",
-    },
-    {
-      id: "performance",
-      name: "パフォーマンス最適化",
-      description: "TypeScriptコードのパフォーマンスを最適化する方法を学びます。",
-      icon: "⚡",
-      color: "from-purple-600 to-indigo-600",
-      lessons: 6,
+      id: "classes-inheritance",
+      name: "クラスと継承",
+      description: "オブジェクト指向プログラミングの概念を学びます。",
+      icon: "🏗️",
+      color: "from-blue-600 to-blue-700",
+      lessons: 5,
       estimatedTime: "4時間",
     },
   ];
@@ -107,18 +107,18 @@ export default function TypeScriptSpecialtyPage() {
             TypeScript技術者認定
           </Link>
           <span>/</span>
-          <span className="text-slate-900 dark:text-white">Specialty</span>
+          <span className="text-slate-900 dark:text-white">Professional</span>
         </nav>
 
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white text-3xl font-bold shadow-lg">
-            🚀
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white text-3xl font-bold shadow-lg">
+            📚
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Specialty コース
+            Professional コース
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            高度な型操作と実践的なパターンを学び、TypeScriptのエキスパートを目指します。
+            より高度な型システムを学び、実践的な開発スキルを身につけます。
           </p>
         </div>
 
@@ -126,7 +126,7 @@ export default function TypeScriptSpecialtyPage() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/learn/typescript/advanced/${category.id}`}
+              href={`/learn/typescript/professional/${category.id}`}
               className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
             >
               <div
@@ -139,8 +139,8 @@ export default function TypeScriptSpecialtyPage() {
                   >
                     {category.icon}
                   </div>
-                  <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                    Specialty
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                    Professional
                   </span>
                 </div>
                 <h2 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
@@ -185,7 +185,7 @@ export default function TypeScriptSpecialtyPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center text-sm font-semibold text-purple-600 dark:text-purple-400">
+                <div className="mt-4 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
                   <span>学習を始める</span>
                   <svg
                     className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"

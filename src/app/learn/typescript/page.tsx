@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function TypeScriptLearnPage() {
   const levels = [
     {
-      id: "beginner",
+      id: "associate",
       name: "Associate",
       description: "TypeScriptの基礎を学びます。型の基本から始めて、基本的な構文をマスターしましょう。",
       color: "from-green-500 to-emerald-600",
@@ -22,7 +22,7 @@ export default function TypeScriptLearnPage() {
       lessons: 15,
     },
     {
-      id: "intermediate",
+      id: "professional",
       name: "Professional",
       description: "より高度な型システムを学び、実践的な開発スキルを身につけます。",
       color: "from-blue-500 to-cyan-600",
@@ -39,7 +39,7 @@ export default function TypeScriptLearnPage() {
       lessons: 30,
     },
     {
-      id: "advanced",
+      id: "specialty",
       name: "Specialty",
       description: "高度な型操作と実践的なパターンを学び、TypeScriptのエキスパートを目指します。",
       color: "from-purple-500 to-pink-600",
@@ -147,11 +147,11 @@ export default function TypeScriptLearnPage() {
                   </div>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      level.id === "beginner"
+                      level.id === "associate"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        : level.id === "intermediate"
+                        : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : level.id === "advanced"
+                        : level.id === "specialty"
                         ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}

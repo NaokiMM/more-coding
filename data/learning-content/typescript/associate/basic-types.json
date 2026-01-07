@@ -15,10 +15,7 @@
         "string 型は TypeScript 独自の型で、JavaScriptには存在しない"
       ],
       "correctAnswer": 1,
-      "explanation": "A：誤り\nstring はプリミティブ型です。String（大文字）はオブジェクト型で、別物です。\nB：正しい\nstring は 文字列専用のプリミティブ型で、数値や真偽値は代入できません。\nC：誤り\nTypeScriptでは自動変換されません。\nlet s: string = 123; // エラー\nD：誤り\nstring は JavaScript にも存在する基本的な値の型です。",
-      "difficulty": "easy",
-      "tags": ["基本型", "プリミティブ", "string"],
-      "function": "string"
+      "explanation": "A：誤り\nstring はプリミティブ型です。String（大文字）はオブジェクト型で、別物です。\nB：正しい\nstring は 文字列専用のプリミティブ型で、数値や真偽値は代入できません。\nC：誤り\nTypeScriptでは自動変換されません。\nlet s: string = 123; // エラー\nD：誤り\nstring は JavaScript にも存在する基本的な値の型です。"
     },
     {
       "id": "q2",
@@ -31,10 +28,7 @@
         "number 型は Java の double と完全に同じ仕様である"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\nA：誤り\nTypeScriptには int / float の区別はありません。\nB：正しい\nnumber 型は 整数・小数・指数表現をすべて扱います。\nC：誤り\n\"123\" は文字列であり、number には代入できません。\nD：誤り\n実体は JavaScript の number（IEEE 754）であり、Javaとは別物です。",
-      "difficulty": "easy",
-      "tags": ["基本型", "プリミティブ", "number"],
-      "function": "number"
+      "explanation": "解説\nA：誤り\nTypeScriptには int / float の区別はありません。\nB：正しい\nnumber 型は 整数・小数・指数表現をすべて扱います。\nC：誤り\n\"123\" は文字列であり、number には代入できません。\nD：誤り\n実体は JavaScript の number（IEEE 754）であり、Javaとは別物です。"
     },
     {
       "id": "q3",
@@ -47,10 +41,7 @@
         "boolean 型は TypeScript 独自の型で、JavaScriptには存在しない"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\n\"true\" / \"false\" は文字列（string）です。\n\nB：正しい\nboolean 型は 真（true）か偽（false）の2値のみを扱います。\n\nC：誤り\nTypeScriptでは 0 / 1 の自動変換は行われません。\n\nD：誤り\nboolean は JavaScript にも存在する基本型です。",
-      "difficulty": "easy",
-      "tags": ["基本型", "プリミティブ", "boolean"],
-      "function": "boolean"
+      "explanation": "解説\n\nA：誤り\n\"true\" / \"false\" は文字列（string）です。\n\nB：正しい\nboolean 型は 真（true）か偽（false）の2値のみを扱います。\n\nC：誤り\nTypeScriptでは 0 / 1 の自動変換は行われません。\n\nD：誤り\nboolean は JavaScript にも存在する基本型です。"
     },
     {
       "id": "q4",
@@ -63,10 +54,7 @@
         "bigint 型は JavaScript には存在せず、TypeScript 独自の型である"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\nbigint と number は そのまま混在できません。明示的な変換が必要です。\n\nB：正しい\nbigint は Number の安全な整数範囲を超える値を正確に扱うための型です。\n\nC：誤り\nbigint は 整数専用で、小数は扱えません。\n\nD：誤り\nbigint は JavaScript（ES2020以降）にも存在する型です。",
-      "difficulty": "medium",
-      "tags": ["基本型", "プリミティブ", "bigint"],
-      "function": "bigint"
+      "explanation": "解説\n\nA：誤り\nbigint と number は そのまま混在できません。明示的な変換が必要です。\n\nB：正しい\nbigint は Number の安全な整数範囲を超える値を正確に扱うための型です。\n\nC：誤り\nbigint は 整数専用で、小数は扱えません。\n\nD：誤り\nbigint は JavaScript（ES2020以降）にも存在する型です。"
     },
     {
       "id": "q5",
@@ -79,10 +67,7 @@
         "symbol 型は TypeScript 独自で、JavaScript には存在しない"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\ndescription が同じでも、symbol は常に別の値です。\n\nB：正しい\nsymbol は 一意性が保証されたプリミティブ型で、キー衝突防止などに使われます。\n\nC：誤り\nsymbol は文字列とは別物で、自動変換もされません。\n\nD：誤り\nsymbol は JavaScript（ES2015以降）にも存在します。",
-      "difficulty": "medium",
-      "tags": ["基本型", "プリミティブ", "symbol"],
-      "function": "symbol"
+      "explanation": "解説\n\nA：誤り\ndescription が同じでも、symbol は常に別の値です。\n\nB：正しい\nsymbol は 一意性が保証されたプリミティブ型で、キー衝突防止などに使われます。\n\nC：誤り\nsymbol は文字列とは別物で、自動変換もされません。\n\nD：誤り\nsymbol は JavaScript（ES2015以降）にも存在します。"
     },
     {
       "id": "q6",
@@ -95,10 +80,7 @@
         "null は undefined と完全に同じ意味を持つ"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\nstrictNullChecks が有効な場合、\nnull は 明示的に許可された型にしか代入できません。\n\nB：正しい\nnull は 意図的に値が存在しないことを表します。\n\nC：誤り\nJavaScript では typeof null === \"object\" ですが、\n型としてはプリミティブです。\n\nD：誤り\nnull と undefined は意味が異なります。",
-      "difficulty": "easy",
-      "tags": ["基本型", "プリミティブ", "null"],
-      "function": "null"
+      "explanation": "解説\n\nA：誤り\nstrictNullChecks が有効な場合、\nnull は 明示的に許可された型にしか代入できません。\n\nB：正しい\nnull は 意図的に値が存在しないことを表します。\n\nC：誤り\nJavaScript では typeof null === \"object\" ですが、\n型としてはプリミティブです。\n\nD：誤り\nnull と undefined は意味が異なります。"
     },
     {
       "id": "q7",
@@ -111,10 +93,7 @@
         "undefined はオブジェクト型の一種である"
       ],
       "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\n明示的に「空」を表すのは一般に null です。\n\nB：正しい\nundefined は 値がまだ設定されていない状態を表します。\n\nC：誤り\nundefined と null は意味・用途が異なります。\n\nD：誤り\nundefined はプリミティブ型です。",
-      "difficulty": "easy",
-      "tags": ["基本型", "プリミティブ", "undefined"],
-      "function": "undefined"
+      "explanation": "解説\n\nA：誤り\n明示的に「空」を表すのは一般に null です。\n\nB：正しい\nundefined は 値がまだ設定されていない状態を表します。\n\nC：誤り\nundefined と null は意味・用途が異なります。\n\nD：誤り\nundefined はプリミティブ型です。"
     }
   ],
   "metadata": {
