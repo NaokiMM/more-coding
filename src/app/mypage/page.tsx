@@ -32,6 +32,12 @@ export default function MyPage() {
   const userDisplayName = user.name || user.email || "ユーザー";
   const userEmail = user.email || "";
   const joinDate = user["custom:joinDate"] || "不明";
+  // 会員種別（デフォルトは無料会員）
+  const subscriptionType = user.subscriptionType || "free";
+  const membershipLabel = subscriptionType === "premium" ? "有料会員" : "無料会員";
+  const membershipColor = subscriptionType === "premium" 
+    ? "bg-gradient-to-r from-yellow-500 to-orange-500" 
+    : "bg-gradient-to-r from-slate-500 to-slate-600";
   // プロフィール画像（localStorageから取得、またはユーザー属性から）
   const profileImage =
     user.picture ||
@@ -138,9 +144,14 @@ export default function MyPage() {
                 )}
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  {userDisplayName}
-                </h1>
+                <div className="flex items-center gap-3">
+                  <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {userDisplayName}
+                  </h1>
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold text-white ${membershipColor}`}>
+                    {membershipLabel}
+                  </span>
+                </div>
                 <p className="mt-1 text-slate-600 dark:text-slate-400">
                   {userEmail}
                 </p>

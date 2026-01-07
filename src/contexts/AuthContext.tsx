@@ -12,7 +12,8 @@ import {
 interface User {
   email: string;
   name: string;
-  [key: string]: string;
+  subscriptionType?: string;
+  [key: string]: string | undefined;
 }
 
 interface AuthContextType {
