@@ -139,9 +139,12 @@ export default function TypeScriptIntroductionPage() {
                     </div>
                   </div>
                 </div>
-                <button className="ml-4 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl">
+                <Link
+                  href="/learn/typescript/beginner/introduction/study"
+                  className="ml-4 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                >
                   学習開始
-                </button>
+                </Link>
               </div>
             </div>
           ))}

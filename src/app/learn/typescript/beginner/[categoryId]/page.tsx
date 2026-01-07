@@ -28,9 +28,9 @@ interface CategoryData {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     categoryId: string;
-  };
+  }>;
 }
 
 // 静的エクスポート用: すべてのcategoryIdを生成
@@ -69,13 +69,14 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
 }
 
 export default async function CategoryPage({ params }: PageProps) {
-  const categoryData = await getCategoryData(params.categoryId);
+  const { categoryId } = await params;
+  const categoryData = await getCategoryData(categoryId);
 
   if (!categoryData) {
     notFound();
   }
 
-  const category = categoriesData.find((cat) => cat.id === params.categoryId)!;
+  const category = categoriesData.find((cat) => cat.id === categoryId)!;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
