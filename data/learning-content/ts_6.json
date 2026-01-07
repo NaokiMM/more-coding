@@ -1,0 +1,173 @@
+{
+  "categoryId": "array-object-functions",
+  "categoryName": "配列関数・オブジェクト操作関数",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q51",
+      "question": "find 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列の要素を条件で絞り込み、一致した要素だけの配列を返す",
+        "配列の各要素を変換し、新しい配列を返す",
+        "条件に一致する最初の1要素を返す",
+        "配列の各要素を順に処理するが、戻り値はない"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：filter の説明。複数要素を配列で返す\n選択肢2：map の説明。要素を変換する\n選択肢3：正解。find は条件に一致した最初の1要素を返す\n選択肢4：forEach の説明。戻り値はない",
+      "difficulty": "easy",
+      "tags": ["配列関数", "find"],
+      "function": "find"
+    },
+    {
+      "id": "q52",
+      "question": "some 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "すべての要素が条件を満たすかどうかを判定し、真偽値を返す",
+        "条件に一致する要素が1つでも存在するかを判定し、真偽値を返す",
+        "条件に一致する最初の1要素を返す",
+        "条件に一致する要素だけの配列を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：every の説明。全要素が条件を満たすかを判定\n選択肢2：正解。some は1つでも条件を満たせば true を返す\n選択肢3：find の説明。最初の1要素を返す\n選択肢4：filter の説明。配列で返す",
+      "difficulty": "easy",
+      "tags": ["配列関数", "some"],
+      "function": "some"
+    },
+    {
+      "id": "q53",
+      "question": "every 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "条件に一致する要素が1つでも存在するかを判定し、真偽値を返す",
+        "すべての要素が条件を満たすかどうかを判定し、真偽値を返す",
+        "条件に一致する最初の1要素を返す",
+        "条件に一致する要素だけの配列を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：some の説明。1つでも満たせば true\n選択肢2：正解。every は全要素が条件を満たすかを判定\n選択肢3：find の説明。最初の1要素を返す\n選択肢4：filter の説明。配列を返す",
+      "difficulty": "easy",
+      "tags": ["配列関数", "every"],
+      "function": "every"
+    },
+    {
+      "id": "q54",
+      "question": "reduce 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列の各要素を変換し、新しい配列を返す",
+        "条件に一致する要素だけの配列を返す",
+        "配列の要素を1つずつ処理し、1つの値にまとめて返す",
+        "条件に一致する最初の1要素を返す"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：map の説明。要素を変換する\n選択肢2：filter の説明。配列を返す\n選択肢3：正解。reduce は配列を集計・合成して1つの値にする\n選択肢4：find の説明。最初の1要素を返す",
+      "difficulty": "medium",
+      "tags": ["配列関数", "reduce"],
+      "function": "reduce"
+    },
+    {
+      "id": "q55",
+      "question": "forEach 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列の各要素を変換し、新しい配列を返す",
+        "配列の要素を1つずつ処理するが、戻り値はない",
+        "配列の要素を1つの値にまとめて返す",
+        "条件に一致する要素だけの配列を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：map の説明。変換して配列を返す\n選択肢2：正解。forEach は処理のみ行い、戻り値は undefined\n選択肢3：reduce の説明。1つの値にまとめる\n選択肢4：filter の説明。配列を返す",
+      "difficulty": "easy",
+      "tags": ["配列関数", "forEach"],
+      "function": "forEach"
+    },
+    {
+      "id": "q56",
+      "question": "includes 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列の中に指定した要素が含まれているかを判定し、真偽値を返す",
+        "条件に一致する要素が1つでも存在するかを判定し、真偽値を返す",
+        "条件に一致する最初の1要素を返す",
+        "配列の各要素を変換し、新しい配列を返す"
+      ],
+      "correctAnswer": 0,
+      "explanation": "選択肢1：正解。includes は値そのものが含まれるかを判定\n選択肢2：some の説明。条件判定\n選択肢3：find の説明。最初の1要素を返す\n選択肢4：map の説明。配列を変換する",
+      "difficulty": "easy",
+      "tags": ["配列関数", "includes"],
+      "function": "includes"
+    },
+    {
+      "id": "q57",
+      "question": "sort 関数の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列を昇順または降順に並び替え、新しい配列を返す",
+        "配列をその場で並び替える（元の配列を変更する）",
+        "配列の要素を条件で絞り込み、新しい配列を返す",
+        "配列の各要素を変換し、新しい配列を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：sort は 新しい配列を返さず、元の配列を変更する\n選択肢2：正解。sort は配列を破壊的に並び替える\n選択肢3：filter の説明\n選択肢4：map の説明",
+      "difficulty": "easy",
+      "tags": ["配列関数", "sort"],
+      "function": "sort"
+    },
+    {
+      "id": "q58",
+      "question": "Object.keys の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "オブジェクトの値だけを配列として返す",
+        "オブジェクトのキーを文字列の配列として返す",
+        "オブジェクトのキーと値の組を配列として返す",
+        "オブジェクトを配列に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：Object.values の説明。値のみを配列で返す\n選択肢2：正解。Object.keys はキーを string[] として返す\n選択肢3：Object.entries の説明。[key, value] の配列\n選択肢4：そのような関数は存在しない",
+      "difficulty": "easy",
+      "tags": ["オブジェクト操作関数", "Object.keys"],
+      "function": "Object.keys"
+    },
+    {
+      "id": "q59",
+      "question": "Object.values の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "オブジェクトのキーを文字列の配列として返す",
+        "オブジェクトの値だけを配列として返す",
+        "オブジェクトのキーと値の組を配列として返す",
+        "オブジェクトを配列に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：Object.keys の説明。キーのみを返す\n選択肢2：正解。Object.values は値だけを配列で返す\n選択肢3：Object.entries の説明。[key, value] の配列\n選択肢4：そのような関数は存在しない",
+      "difficulty": "easy",
+      "tags": ["オブジェクト操作関数", "Object.values"],
+      "function": "Object.values"
+    },
+    {
+      "id": "q60",
+      "question": "Object.entries の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "オブジェクトのキーを文字列の配列として返す",
+        "オブジェクトの値だけを配列として返す",
+        "オブジェクトのキーと値の組を配列として返す",
+        "オブジェクトを配列に変換する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：Object.keys の説明。キーのみを返す\n選択肢2：Object.values の説明。値のみを返す\n選択肢3：正解。Object.entries は [key, value] の配列を返す\n選択肢4：そのような関数は存在しない",
+      "difficulty": "easy",
+      "tags": ["オブジェクト操作関数", "Object.entries"],
+      "function": "Object.entries"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

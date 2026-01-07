@@ -1,0 +1,173 @@
+{
+  "categoryId": "utility-types-class",
+  "categoryName": "TypeScriptの型一覧 - ユーティリティ型（頻出）・クラス関連",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q31",
+      "question": "問題（TypeScript：Readonly<T>）\n\n次のうち、Readonly<T> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Readonly<T> はオブジェクトのすべてのプロパティを変更不可にする",
+        "Readonly<T> を使うと、オブジェクト自体の再代入も禁止される",
+        "Readonly<T> は実行時にオブジェクトを凍結（freeze）する",
+        "Readonly<T> は配列には使用できない"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nReadonly<T> は すべてのプロパティに readonly を付与します。\n\nB：誤り\n再代入の可否は const の役割であり、Readonly<T> とは別です。\n\nC：誤り\nReadonly<T> は 型レベルのみの仕組みで、実行時には何もしません。\n\nD：誤り\n配列にも使えます（ReadonlyArray<T> という専用型もあります）。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Readonly<T>"],
+      "function": "Readonly<T>"
+    },
+    {
+      "id": "q32",
+      "question": "問題（TypeScript：Pick<T, K>）\n\n次のうち、TypeScript のユーティリティ型 Pick<T, K> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Pick<T, K> は、型 T から指定したキー K を除外した型を作る",
+        "Pick<T, K> は、型 T のすべてのプロパティを必須にする",
+        "Pick<T, K> は、型 T から指定したキー K だけを取り出した型を作る",
+        "Pick<T, K> は、実行時にオブジェクトのプロパティを削除する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\nキーを除外するのは Omit<T, K> です。\n\nB：誤り\n必須化するのは Required<T> です。\n\nC：正しい\nPick<T, K> は 指定したプロパティだけを持つ新しい型を作ります。\n\nD：誤り\nPick は 型レベルの操作で、実行時の変更は行いません。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Pick<T, K>"],
+      "function": "Pick<T, K>"
+    },
+    {
+      "id": "q33",
+      "question": "問題（TypeScript：Omit<T, K>）\n\n次のうち、TypeScript のユーティリティ型 Omit<T, K> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Omit<T, K> は、型 T から指定したキー K を除外した型を作る",
+        "Omit<T, K> は、型 T から指定したキー K だけを取り出した型を作る",
+        "Omit<T, K> は、型 T のすべてのプロパティを省略可能にする",
+        "Omit<T, K> は、実行時にオブジェクトからプロパティを削除する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nOmit<T, K> は 指定したプロパティを除いた新しい型を作ります。\n\nB：誤り\nそれは Pick<T, K> です。\n\nC：誤り\n省略可能にするのは Partial<T> です。\n\nD：誤り\nOmit は 型レベルの操作で、実行時の削除はしません。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Omit<T, K>"],
+      "function": "Omit<T, K>"
+    },
+    {
+      "id": "q34",
+      "question": "問題（TypeScript：ReturnType<T>）\n\n次のうち、TypeScript のユーティリティ型 ReturnType<T> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ReturnType<T> は、関数 T の引数の型を取得する",
+        "ReturnType<T> は、関数 T が返す値の型を取得する",
+        "ReturnType<T> は、実行時に関数の戻り値を検査する",
+        "ReturnType<T> は、クラスのインスタンス型を取得する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n引数の型を取得するのは Parameters<T> です。\n\nB：正しい\nReturnType<T> は 関数型 T の戻り値の型を取り出します。\n\nC：誤り\nユーティリティ型は 型レベルのみで、実行時処理は行いません。\n\nD：誤り\nクラスの型取得には使いません。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "ReturnType<T>"],
+      "function": "ReturnType<T>"
+    },
+    {
+      "id": "q35",
+      "question": "問題（TypeScript：Parameters<T>）\n\n次のうち、TypeScript のユーティリティ型 Parameters<T> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Parameters<T> は、関数 T の戻り値の型を取得する",
+        "Parameters<T> は、関数 T の引数の型をタプルとして取得する",
+        "Parameters<T> は、関数の引数をすべて any 型に変換する",
+        "Parameters<T> は、実行時に関数の引数を検査する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n戻り値の型取得は ReturnType<T> です。\n\nB：正しい\nParameters<T> は 関数型 T の引数型をタプルとして取り出します。\n\nC：誤り\n型変換は行いません。\n\nD：誤り\nユーティリティ型は 型レベルの仕組みです。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Parameters<T>"],
+      "function": "Parameters<T>"
+    },
+    {
+      "id": "q36",
+      "question": "問題（TypeScript：class）\n\n次のうち、TypeScript における class について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "class は型定義専用で、実行時には存在しない",
+        "class はオブジェクトの構造だけを表し、実体は作れない",
+        "class は型としても値（コンストラクタ）としても利用できる",
+        "class は interface と同じ役割を持つ"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\nclass は 実行時にも存在します。\n\nB：誤り\nclass からは インスタンスを生成できます。\n\nC：正しい\nclass は\n\n型（インスタンスの型）\n\n値（コンストラクタ関数）\nの 両方として扱えるのが特徴です。\n\nD：誤り\ninterface は型のみ、class は実体を持ちます。",
+      "difficulty": "medium",
+      "tags": ["クラス関連", "class"],
+      "function": "class"
+    },
+    {
+      "id": "q37",
+      "question": "問題（TypeScript：implements）\n\n次のうち、implements について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "implements はクラスに継承関係を持たせるために使う",
+        "implements を使うと、実行時にもインターフェースのチェックが行われる",
+        "implements はクラスが特定のインターフェースの構造を満たしているかを型レベルで保証する",
+        "implements はクラスではなくオブジェクトに対して使用する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\n継承は extends を使います。implements は継承ではありません。\n\nB：誤り\nimplements は 型チェックのみで、実行時の検証は行いません。\n\nC：正しい\nimplements は、クラスが 指定されたインターフェースの構造を満たしているかを\nコンパイル時にチェックします。\n\nD：誤り\nimplements は クラス宣言でのみ使用します。",
+      "difficulty": "medium",
+      "tags": ["クラス関連", "implements"],
+      "function": "implements"
+    },
+    {
+      "id": "q38",
+      "question": "問題（TypeScript：extends）\n\n次のうち、TypeScript の extends について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "extends はクラスがインターフェースを実装するために使う",
+        "extends を使うと、親クラスのプロパティやメソッドを引き継げる",
+        "extends は型チェック専用で、実行時の挙動には影響しない",
+        "extends は1つのクラスで複数回使用できる（多重継承）"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nインターフェースを満たす場合は implements を使います。\n\nB：正しい\nextends を使うと、親クラスのプロパティやメソッドを継承できます。\n\nC：誤り\nextends は 実行時の継承構造にも影響します（JavaScriptのクラス継承）。\n\nD：誤り\nクラスの多重継承はできません（extends は1つのみ）。",
+      "difficulty": "medium",
+      "tags": ["クラス関連", "extends"],
+      "function": "extends"
+    },
+    {
+      "id": "q39",
+      "question": "問題（TypeScript：public）\n\n次のうち、TypeScript の public 修飾子について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "public を付けたプロパティは、クラスの外部からアクセスできる",
+        "public を付けないプロパティは、常に private として扱われる",
+        "public は実行時にアクセス制御を行う仕組みである",
+        "public は TypeScript 独自で、JavaScript には存在しない概念である"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\npublic なプロパティやメソッドは クラスの外部から自由にアクセス可能です。\n\nB：誤り\n修飾子を省略した場合、デフォルトは public です。\n\nC：誤り\npublic / private / protected は 型チェック用で、\n実行時のアクセス制御は行いません。\n\nD：誤り\nJavaScript（ES2022以降）にも #private などの可視性概念があります。",
+      "difficulty": "easy",
+      "tags": ["クラス関連", "public"],
+      "function": "public"
+    },
+    {
+      "id": "q40",
+      "question": "問題（TypeScript：private）\n\n次のうち、TypeScript の private 修飾子について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "private なプロパティは、サブクラスからもアクセスできる",
+        "private なプロパティは、そのクラスの内部からのみアクセスできる",
+        "private は実行時にアクセス違反を検知してエラーを投げる",
+        "private を付けたプロパティは、readonly と同じ意味になる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nprivate は 継承先（サブクラス）からもアクセス不可です。\n\nB：正しい\nprivate は 定義したクラス自身の中だけで使用できます。\n\nC：誤り\nアクセス制御は 型レベルのみで、実行時チェックは行われません。\n\nD：誤り\nreadonly は再代入禁止、private はアクセス範囲制限で、役割が異なります。",
+      "difficulty": "easy",
+      "tags": ["クラス関連", "private"],
+      "function": "private"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

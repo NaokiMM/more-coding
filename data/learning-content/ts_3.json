@@ -1,0 +1,173 @@
+{
+  "categoryId": "union-intersection-literal-type-alias-interface-generics-utility",
+  "categoryName": "TypeScriptの型一覧 - ユニオン・交差・リテラル型・型エイリアス・インターフェース・ジェネリクス・ユーティリティ型",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q21",
+      "question": "問題（TypeScript：交差型 A & B）\n\n次のうち、TypeScript の交差型 A & B について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "交差型は、A または B のどちらか一方を満たせばよい",
+        "交差型は、A と B の両方の条件を同時に満たす型である",
+        "交差型は、実行時に自動的に型を合成する仕組みである",
+        "交差型は、ユニオン型と同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nそれはユニオン型（A | B）の説明です。\n\nB：正しい\n交差型は 複数の型を合成し、すべての条件を満たすことを要求します。\n\nC：誤り\n型合成は 型レベルのみで行われます。\n\nD：誤り\nユニオン型とは意味が正反対です。",
+      "difficulty": "medium",
+      "tags": ["ユニオン", "交差", "A & B（intersection）"],
+      "function": "A & B（intersection）"
+    },
+    {
+      "id": "q22",
+      "question": "問題（TypeScript：リテラル型 'a' | 'b'）\n\n次のうち、TypeScript の文字列リテラル型 'a' | 'b' について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "'a' | 'b' は、任意の文字列を表す型である",
+        "'a' | 'b' は、値として 'a' または 'b' のどちらかのみを許可する",
+        "'a' | 'b' は、実行時に文字列の値を制限する仕組みである",
+        "'a' | 'b' は、string 型と完全に同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n任意の文字列を表すのは string 型です。\n\nB：正しい\nリテラル型は 特定の値そのものを型として扱い、選択肢を限定します。\n\nC：誤り\n制限は 型レベルのみで、実行時には強制されません。\n\nD：誤り\n'a' | 'b' は string より はるかに制約が強い型です。",
+      "difficulty": "medium",
+      "tags": ["リテラル型", "'a' | 'b'"],
+      "function": "'a' | 'b'"
+    },
+    {
+      "id": "q23",
+      "question": "問題（TypeScript：リテラル型 1 | 2 | 3）\n\n次のうち、TypeScript の数値リテラル型 1 | 2 | 3 について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "1 | 2 | 3 は、すべての数値を表す型である",
+        "1 | 2 | 3 は、値として 1・2・3 のいずれかのみを許可する",
+        "1 | 2 | 3 は、実行時に数値の範囲チェックを行う",
+        "1 | 2 | 3 は、number 型と完全に同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n任意の数値を表すのは number 型です。\n\nB：正しい\n数値リテラル型は 特定の数値だけを許可します。\n\nC：誤り\n制約は 型レベルのみで、実行時チェックは行われません。\n\nD：誤り\n1 | 2 | 3 は number より はるかに制約の強い型です。",
+      "difficulty": "medium",
+      "tags": ["リテラル型", "1 | 2 | 3"],
+      "function": "1 | 2 | 3"
+    },
+    {
+      "id": "q24",
+      "question": "問題（TypeScript：リテラル型 true | false）\n\n次のうち、TypeScript の真偽値リテラル型 true | false について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "true | false は boolean 型よりも広い型である",
+        "true | false は boolean 型と同じ意味を持つ",
+        "true | false は実行時に真偽値を制限する仕組みである",
+        "true | false は TypeScript 独自で、JavaScript には存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\ntrue | false は boolean に 包含される型で、広くはありません。\n\nB：正しい\ntrue | false は boolean をリテラルで表現したもので、意味は同じです。\n\nC：誤り\n型制約は コンパイル時のみです。\n\nD：誤り\ntrue / false は JavaScript にも存在します。",
+      "difficulty": "easy",
+      "tags": ["リテラル型", "true | false"],
+      "function": "true | false"
+    },
+    {
+      "id": "q25",
+      "question": "問題（TypeScript：type）\n\n次のうち、TypeScript の type（型エイリアス）について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "type は実行時にもオブジェクトとして存在する",
+        "type はユニオン型や交差型を定義できる",
+        "type は同じ名前で複数回定義すると自動的にマージされる",
+        "type はクラスの継承にのみ使用できる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\ntype は 型情報のみで、実行時には存在しません。\n\nB：正しい\ntype は ユニオン型（A | B）や交差型（A & B）を定義可能です。\n\nC：誤り\n宣言マージができるのは interface で、type はできません。\n\nD：誤り\nクラス継承は extends を使います。",
+      "difficulty": "medium",
+      "tags": ["型エイリアス", "インターフェース", "type"],
+      "function": "type"
+    },
+    {
+      "id": "q26",
+      "question": "問題（TypeScript：interface）\n\n次のうち、TypeScript の interface について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "interface は実行時にもオブジェクトとして存在する",
+        "interface は同じ名前で複数回定義するとエラーになる",
+        "interface はオブジェクトの構造（shape）を定義するために使われる",
+        "interface は関数の型定義には使用できない"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\ninterface は 型情報のみで、実行時には存在しません（型消去）。\n\nB：誤り\ninterface は 宣言マージが可能で、同名定義を統合できます。\n\nC：正しい\ninterface は オブジェクトがどんなプロパティ構造を持つかを定義します。\n\nD：誤り\ninterface でも 関数の型定義は可能です。",
+      "difficulty": "medium",
+      "tags": ["型エイリアス", "インターフェース", "interface"],
+      "function": "interface"
+    },
+    {
+      "id": "q27",
+      "question": "問題（TypeScript：ジェネリクス T）\n\n次のうち、TypeScript におけるジェネリクス型パラメータ T について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "T は必ず string や number などの具体的な型でなければならない",
+        "T は、使用時に具体的な型が決まるプレースホルダ（型変数）である",
+        "T は実行時に型として扱われ、値のチェックに使われる",
+        "T は any と同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nT は 任意の型を表せるため、具体型に限られません。\n\nB：正しい\nT は 使用時に具体型が決まる型の変数です。\n\nC：誤り\nジェネリクスは 型レベルの仕組みです。\n\nD：誤り\nT は型安全を保つ点で any と大きく異なります。",
+      "difficulty": "medium",
+      "tags": ["ジェネリクス", "T"],
+      "function": "T"
+    },
+    {
+      "id": "q28",
+      "question": "問題（TypeScript：ジェネリクス制約 T extends U）\n\n次のうち、TypeScript における T extends U の意味として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "T は常に U と完全に同じ型でなければならない",
+        "T は U を継承したクラスでなければならない",
+        "T は U の型制約を満たす型であればよい",
+        "T extends U は実行時に型チェックを行う"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\n同じ型である必要はありません。\n\nB：誤り\nクラス継承に限らず、構造的に満たしていればOKです。\n\nC：正しい\nT extends U は T に対して U を上限とする制約を課します。\n\nD：誤り\n型制約は コンパイル時のみです。",
+      "difficulty": "medium",
+      "tags": ["ジェネリクス", "T extends U"],
+      "function": "T extends U"
+    },
+    {
+      "id": "q29",
+      "question": "問題（TypeScript：Partial<T>）\n\n次のうち、Partial<T> を使う主な目的として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T のプロパティをすべて削除するため",
+        "型 T の一部プロパティだけを必須にするため",
+        "型 T のすべてのプロパティを省略可能にするため",
+        "実行時に未指定プロパティへ自動で undefined を代入するため"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\nプロパティは削除されません。型だけが変わります。\n\nB：誤り\n必須化は Required<T> の役割です。\n\nC：正しい\nPartial<T> は 全プロパティに ? を付けるユーティリティ型です。\n\nD：誤り\n実行時の挙動には影響しません。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Partial<T>"],
+      "function": "Partial<T>"
+    },
+    {
+      "id": "q30",
+      "question": "問題（TypeScript：Required<T>）\n\n次のうち、TypeScript のユーティリティ型 Required<T> について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Required<T> は、型 T のすべてのプロパティを省略可能にする",
+        "Required<T> は、型 T のすべての省略可能プロパティを必須にする",
+        "Required<T> は、実行時に未指定プロパティを検知してエラーを出す",
+        "Required<T> は、型 T の一部プロパティだけを必須にする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n省略可能にするのは Partial<T> です。\n\nB：正しい\nRequired<T> は すべてのプロパティから ? を外し、必須化します。\n\nC：誤り\nユーティリティ型は 型レベルの仕組みです。\n\nD：誤り\n一部だけ必須にするには Pick や Omit と組み合わせます。",
+      "difficulty": "medium",
+      "tags": ["ユーティリティ型", "Required<T>"],
+      "function": "Required<T>"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

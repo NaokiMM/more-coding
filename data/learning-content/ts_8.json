@@ -1,0 +1,173 @@
+{
+  "categoryId": "function-utility-types",
+  "categoryName": "関数まわり・TypeScript固有の型ユーティリティ",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q71",
+      "question": "() => {}（アロー関数）の特徴として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数宣言であり、定義前でも呼び出すことができる",
+        "独自の this を持ち、呼び出し方によって this が変わる",
+        "this を定義時のスコープに固定する",
+        "必ず new を使って呼び出す必要がある"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：ホイスティングされるのは関数宣言のみ\n選択肢2：これは通常の関数の挙動\n選択肢3：正解。アロー関数は this をレキシカルに束縛する\n選択肢4：アロー関数は new できない",
+      "difficulty": "medium",
+      "tags": ["関数まわり", "() => {}"],
+      "function": "() => {}"
+    },
+    {
+      "id": "q72",
+      "question": "bind メソッドの説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数を即座に実行し、this を指定した値に固定する",
+        "新しい関数を返し、その関数の this を指定した値に固定する",
+        "関数の実行を一度だけに制限する",
+        "関数を非同期で実行するための仕組みである"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：即座に実行するのは call や apply\n選択肢2：正解。bind は this が固定された新しい関数を返す\n選択肢3：実行回数制限の機能ではない\n選択肢4：非同期処理とは無関係",
+      "difficulty": "medium",
+      "tags": ["関数まわり", "bind"],
+      "function": "bind"
+    },
+    {
+      "id": "q73",
+      "question": "call メソッドの説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "新しい関数を返し、その関数の this を固定する",
+        "関数を即座に実行し、this と引数をカンマ区切りで指定する",
+        "関数を非同期で実行する",
+        "関数の実行回数を制限する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：新しい関数を返すのは bind\n選択肢2：正解。call は this を指定し、引数を個別に渡して即座に実行する\n選択肢3：非同期処理とは関係ない\n選択肢4：実行回数制限の機能ではない",
+      "difficulty": "medium",
+      "tags": ["関数まわり", "call"],
+      "function": "call"
+    },
+    {
+      "id": "q74",
+      "question": "apply メソッドの説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "新しい関数を返し、その関数の this を固定する",
+        "関数を即座に実行し、this と引数を配列で指定する",
+        "関数を非同期で実行する",
+        "関数の実行回数を制限する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：新しい関数を返すのは bind\n選択肢2：正解。apply は this を指定し、引数を配列として渡して即座に実行する\n選択肢3：非同期処理とは関係ない\n選択肢4：実行回数制限の機能ではない",
+      "difficulty": "medium",
+      "tags": ["関数まわり", "apply"],
+      "function": "apply"
+    },
+    {
+      "id": "q75",
+      "question": "Partial<T> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T のすべてのプロパティを必須にする",
+        "型 T のすべてのプロパティを任意にする",
+        "型 T から特定のプロパティだけを取り除く",
+        "型 T を配列型に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：必須にするのは Required<T>\n選択肢2：正解。Partial<T> は T のすべてのプロパティを optional にする\n選択肢3：プロパティ除外は Omit<T, K>\n選択肢4：配列化は型ユーティリティではない",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Partial<T>"],
+      "function": "Partial<T>"
+    },
+    {
+      "id": "q76",
+      "question": "Required<T> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T のすべてのプロパティを任意にする",
+        "型 T のすべてのプロパティを必須にする",
+        "型 T の特定のプロパティだけを必須にする",
+        "型 T を読み取り専用にする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：すべて任意にするのは Partial<T>\n選択肢2：正解。Required<T> は T のすべてのプロパティを必須にする\n選択肢3：特定のプロパティ指定は Pick<T, K> など\n選択肢4：読み取り専用は Readonly<T>",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Required<T>"],
+      "function": "Required<T>"
+    },
+    {
+      "id": "q77",
+      "question": "Readonly<T> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T のすべてのプロパティを任意にする",
+        "型 T のすべてのプロパティを読み取り専用にする",
+        "型 T の特定のプロパティだけを読み取り専用にする",
+        "型 T を配列型に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：任意にするのは Partial<T>\n選択肢2：正解。Readonly<T> はすべてのプロパティを再代入不可にする\n選択肢3：特定プロパティ指定は Pick<T, K> など\n選択肢4：配列化ではない",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Readonly<T>"],
+      "function": "Readonly<T>"
+    },
+    {
+      "id": "q78",
+      "question": "Pick<T, K> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T から指定したキー K のプロパティだけを抽出した型を作成する",
+        "型 T のすべてのプロパティを任意にする",
+        "型 T から指定したキー K のプロパティを除外した型を作成する",
+        "型 T を読み取り専用にする"
+      ],
+      "correctAnswer": 0,
+      "explanation": "選択肢1：正解。Pick<T, K> は T から必要なプロパティだけを取り出した型を作る\n選択肢2：すべて任意にするのは Partial<T>\n選択肢3：除外は Omit<T, K>\n選択肢4：読み取り専用は Readonly<T>",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Pick<T, K>"],
+      "function": "Pick<T, K>"
+    },
+    {
+      "id": "q79",
+      "question": "Omit<T, K> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T から指定したキー K のプロパティを除外した型を作成する",
+        "型 T のすべてのプロパティを任意にする",
+        "型 T の特定のプロパティだけを抽出する",
+        "型 T を読み取り専用にする"
+      ],
+      "correctAnswer": 0,
+      "explanation": "選択肢1：正解。Omit<T, K> は T から K で指定したプロパティを取り除いた型を作る\n選択肢2：すべて任意にするのは Partial<T>\n選択肢3：抽出は Pick<T, K>\n選択肢4：読み取り専用は Readonly<T>",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Omit<T, K>"],
+      "function": "Omit<T, K>"
+    },
+    {
+      "id": "q80",
+      "question": "Record<K, T> の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "型 T のすべてのプロパティを K 型に変換する",
+        "キーが K、値が T であるオブジェクト型を作成する",
+        "型 K と型 T を結合した union 型を作成する",
+        "オブジェクト型 T からキーを配列として取得する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：そのような変換は行わない\n選択肢2：正解。Record<K, T> は { [key in K]: T } と同等の型を作る\n選択肢3：union 型の作成ではない\n選択肢4：キー取得は keyof",
+      "difficulty": "medium",
+      "tags": ["TypeScript固有", "型ユーティリティ", "Record<K, T>"],
+      "function": "Record<K, T>"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

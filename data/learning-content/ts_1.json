@@ -1,0 +1,173 @@
+{
+  "categoryId": "basic-types",
+  "categoryName": "TypeScriptの型一覧 - 基本型（プリミティブ）・特殊型（重要）",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（TypeScript：string 型）\n\n次のコードについて、正しい説明はどれか。\n\nlet message: string = \"Hello\";",
+      "type": "multiple-choice",
+      "options": [
+        "string はオブジェクト型であり、String と同じ意味である",
+        "string はプリミティブ型であり、文字列のみを代入できる",
+        "string 型の変数には数値も自動変換されて代入できる",
+        "string 型は TypeScript 独自の型で、JavaScriptには存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A：誤り\nstring はプリミティブ型です。String（大文字）はオブジェクト型で、別物です。\nB：正しい\nstring は 文字列専用のプリミティブ型で、数値や真偽値は代入できません。\nC：誤り\nTypeScriptでは自動変換されません。\nlet s: string = 123; // エラー\nD：誤り\nstring は JavaScript にも存在する基本的な値の型です。",
+      "difficulty": "easy",
+      "tags": ["基本型", "プリミティブ", "string"],
+      "function": "string"
+    },
+    {
+      "id": "q2",
+      "question": "問題（TypeScript：number 型）\n\n次のうち、TypeScript の number 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "number 型は整数（int）専用の型である",
+        "number 型は整数と小数の両方を扱える",
+        "number 型は文字列の数値（\"123\"）も代入できる",
+        "number 型は Java の double と完全に同じ仕様である"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\nA：誤り\nTypeScriptには int / float の区別はありません。\nB：正しい\nnumber 型は 整数・小数・指数表現をすべて扱います。\nC：誤り\n\"123\" は文字列であり、number には代入できません。\nD：誤り\n実体は JavaScript の number（IEEE 754）であり、Javaとは別物です。",
+      "difficulty": "easy",
+      "tags": ["基本型", "プリミティブ", "number"],
+      "function": "number"
+    },
+    {
+      "id": "q3",
+      "question": "問題作成して問題（TypeScript：boolean 型）\n\n次のうち、TypeScript の boolean 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "boolean 型には \"true\" や \"false\" も代入できる",
+        "boolean 型には true または false のみが代入できる",
+        "boolean 型は数値の 0 と 1 を自動的に変換して扱う",
+        "boolean 型は TypeScript 独自の型で、JavaScriptには存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n\"true\" / \"false\" は文字列（string）です。\n\nB：正しい\nboolean 型は 真（true）か偽（false）の2値のみを扱います。\n\nC：誤り\nTypeScriptでは 0 / 1 の自動変換は行われません。\n\nD：誤り\nboolean は JavaScript にも存在する基本型です。",
+      "difficulty": "easy",
+      "tags": ["基本型", "プリミティブ", "boolean"],
+      "function": "boolean"
+    },
+    {
+      "id": "q4",
+      "question": "問題（TypeScript：bigint 型）\n\n次のうち、TypeScript の bigint 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "bigint 型は number 型と自由に混在して計算できる",
+        "bigint 型は非常に大きな整数を安全に扱うための型である",
+        "bigint 型は小数（浮動小数点）も扱える",
+        "bigint 型は JavaScript には存在せず、TypeScript 独自の型である"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nbigint と number は そのまま混在できません。明示的な変換が必要です。\n\nB：正しい\nbigint は Number の安全な整数範囲を超える値を正確に扱うための型です。\n\nC：誤り\nbigint は 整数専用で、小数は扱えません。\n\nD：誤り\nbigint は JavaScript（ES2020以降）にも存在する型です。",
+      "difficulty": "medium",
+      "tags": ["基本型", "プリミティブ", "bigint"],
+      "function": "bigint"
+    },
+    {
+      "id": "q5",
+      "question": "問題（TypeScript：symbol）\n\n次のうち、TypeScript の symbol 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "symbol 型の値は、同じ説明文（description）なら等しいと判定される",
+        "symbol 型は、一意な値を作るためのプリミティブ型である",
+        "symbol 型は文字列として自動的に比較される",
+        "symbol 型は TypeScript 独自で、JavaScript には存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\ndescription が同じでも、symbol は常に別の値です。\n\nB：正しい\nsymbol は 一意性が保証されたプリミティブ型で、キー衝突防止などに使われます。\n\nC：誤り\nsymbol は文字列とは別物で、自動変換もされません。\n\nD：誤り\nsymbol は JavaScript（ES2015以降）にも存在します。",
+      "difficulty": "medium",
+      "tags": ["基本型", "プリミティブ", "symbol"],
+      "function": "symbol"
+    },
+    {
+      "id": "q6",
+      "question": "問題（TypeScript：null）\n\n次のうち、TypeScript における null について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "null はすべての型に自由に代入できる",
+        "null は「値が存在しないこと」を表すプリミティブ型である",
+        "null はオブジェクト型の一種である",
+        "null は undefined と完全に同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nstrictNullChecks が有効な場合、\nnull は 明示的に許可された型にしか代入できません。\n\nB：正しい\nnull は 意図的に値が存在しないことを表します。\n\nC：誤り\nJavaScript では typeof null === \"object\" ですが、\n型としてはプリミティブです。\n\nD：誤り\nnull と undefined は意味が異なります。",
+      "difficulty": "easy",
+      "tags": ["基本型", "プリミティブ", "null"],
+      "function": "null"
+    },
+    {
+      "id": "q7",
+      "question": "問題（TypeScript：undefined）\n\n次のうち、TypeScript における undefined について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "undefined は明示的に「空」を代入するために使われる",
+        "undefined は値が未定義・未代入であることを表すプリミティブ型である",
+        "undefined は常に null と同じ意味で扱われる",
+        "undefined はオブジェクト型の一種である"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n明示的に「空」を表すのは一般に null です。\n\nB：正しい\nundefined は 値がまだ設定されていない状態を表します。\n\nC：誤り\nundefined と null は意味・用途が異なります。\n\nD：誤り\nundefined はプリミティブ型です。",
+      "difficulty": "easy",
+      "tags": ["基本型", "プリミティブ", "undefined"],
+      "function": "undefined"
+    },
+    {
+      "id": "q8",
+      "question": "問題（TypeScript：any）\n\n次のうち、TypeScript の any 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "any 型を使うと、型チェックが無効になり、どんな操作も許可される",
+        "any 型は unknown 型より安全である",
+        "any 型は一度代入すると、以後は自動的に型推論される",
+        "any 型は実行時のエラーを防ぐための型である"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nany は 型チェックを完全に回避し、TypeScriptの安全性を失わせます。\n\nB：誤り\nunknown の方が 安全です（使用前に型チェックが必要）。\n\nC：誤り\nany は型推論されず、ずっと any のままです。\n\nD：誤り\nany は 実行時エラーを防ぎません。むしろ増やす原因になります。",
+      "difficulty": "medium",
+      "tags": ["特殊型", "any"],
+      "function": "any"
+    },
+    {
+      "id": "q9",
+      "question": "問題（TypeScript：unknown）\n\n次のうち、TypeScript の unknown 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "unknown 型の値は、そのまま任意の型として使用できる",
+        "unknown 型は any より安全で、使用前に型チェックが必要である",
+        "unknown 型は自動的に型推論されて具体的な型になる",
+        "unknown 型は any と完全に同じ挙動をする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nunknown 型の値は、型チェックや型アサーションなしでは使えません。\n\nB：正しい\nunknown は 型安全を保ったまま「何でも入りうる」ことを表現します。\n\nC：誤り\nunknown は具体型に自動推論されません。\n\nD：誤り\nunknown と any は安全性が大きく異なります。",
+      "difficulty": "medium",
+      "tags": ["特殊型", "unknown"],
+      "function": "unknown"
+    },
+    {
+      "id": "q10",
+      "question": "問題（TypeScript：void）\n\n次のうち、TypeScript の void 型について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "void 型の関数は、必ず null を返さなければならない",
+        "void 型は「値を返さない」ことを表す型である",
+        "void 型の変数には、どんな値でも代入できる",
+        "void 型は undefined と完全に同じ意味を持つ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nvoid の関数は 何も返さない（または undefined を暗黙に返す）だけです。\n\nB：正しい\nvoid は 戻り値を使わない関数を表すために使われます。\n\nC：誤り\nvoid 型の変数には、通常 undefined 以外は代入できません。\n\nD：誤り\nvoid は **「使われない戻り値」**を意味し、undefined とは用途が異なります。",
+      "difficulty": "medium",
+      "tags": ["特殊型", "void"],
+      "function": "void"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

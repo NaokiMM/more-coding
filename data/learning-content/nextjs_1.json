@@ -1,0 +1,333 @@
+{
+  "categoryId": "nextjs-basics",
+  "categoryName": "Next.js基礎 - 基礎・ルーティング・App Router・データ取得・レンダリング・API・Middleware・スタイル",
+  "course": "associate",
+  "technology": "nextjs",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Next.jsは何をベースにしているか？",
+      "type": "multiple-choice",
+      "options": [
+        "React",
+        "Vue",
+        "Angular",
+        "Svelte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["基礎", "Next.js概要"],
+      "function": "Next.js概要"
+    },
+    {
+      "id": "q2",
+      "question": "Next.jsの特徴は？",
+      "type": "multiple-choice",
+      "options": [
+        "ファイルベースルーティング",
+        "手動ルーティング",
+        "SSR不可",
+        "API不可"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["基礎", "React基盤"],
+      "function": "React基盤"
+    },
+    {
+      "id": "q3",
+      "question": "index.tsxはどのURL？",
+      "type": "multiple-choice",
+      "options": [
+        "/",
+        "/index",
+        "/home",
+        "/top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["ルーティング", "Pages Router"],
+      "function": "Pages Router"
+    },
+    {
+      "id": "q4",
+      "question": "[id].tsxのURL例は？",
+      "type": "multiple-choice",
+      "options": [
+        "/posts/123",
+        "/posts/id",
+        "/id/posts",
+        "/posts"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["ルーティング", "Dynamic Routes"],
+      "function": "Dynamic Routes"
+    },
+    {
+      "id": "q5",
+      "question": "推奨遷移方法は？",
+      "type": "multiple-choice",
+      "options": [
+        "Link",
+        "aタグのみ",
+        "window.location",
+        "form"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["ルーティング", "Link"],
+      "function": "Link"
+    },
+    {
+      "id": "q6",
+      "question": "Next.jsは何をベースにしているか？",
+      "type": "multiple-choice",
+      "options": [
+        "React",
+        "Vue",
+        "Angular",
+        "Svelte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["App Router", "appディレクトリ"],
+      "function": "appディレクトリ"
+    },
+    {
+      "id": "q7",
+      "question": "Next.jsの特徴は？",
+      "type": "multiple-choice",
+      "options": [
+        "ファイルベースルーティング",
+        "手動ルーティング",
+        "SSR不可",
+        "API不可"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["App Router", "layout.tsx"],
+      "function": "layout.tsx"
+    },
+    {
+      "id": "q8",
+      "question": "index.tsxはどのURL？",
+      "type": "multiple-choice",
+      "options": [
+        "/",
+        "/index",
+        "/home",
+        "/top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["App Router", "page.tsx"],
+      "function": "page.tsx"
+    },
+    {
+      "id": "q9",
+      "question": "[id].tsxのURL例は？",
+      "type": "multiple-choice",
+      "options": [
+        "/posts/123",
+        "/posts/id",
+        "/id/posts",
+        "/posts"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["App Router", "Server Components"],
+      "function": "Server Components"
+    },
+    {
+      "id": "q10",
+      "question": "推奨遷移方法は？",
+      "type": "multiple-choice",
+      "options": [
+        "Link",
+        "aタグのみ",
+        "window.location",
+        "form"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["App Router", "use client"],
+      "function": "use client"
+    },
+    {
+      "id": "q11",
+      "question": "Next.jsは何をベースにしているか？",
+      "type": "multiple-choice",
+      "options": [
+        "React",
+        "Vue",
+        "Angular",
+        "Svelte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["データ取得", "fetch"],
+      "function": "fetch"
+    },
+    {
+      "id": "q12",
+      "question": "Next.jsの特徴は？",
+      "type": "multiple-choice",
+      "options": [
+        "ファイルベースルーティング",
+        "手動ルーティング",
+        "SSR不可",
+        "API不可"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["データ取得", "SSG"],
+      "function": "SSG"
+    },
+    {
+      "id": "q13",
+      "question": "index.tsxはどのURL？",
+      "type": "multiple-choice",
+      "options": [
+        "/",
+        "/index",
+        "/home",
+        "/top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["データ取得", "SSR"],
+      "function": "SSR"
+    },
+    {
+      "id": "q14",
+      "question": "[id].tsxのURL例は？",
+      "type": "multiple-choice",
+      "options": [
+        "/posts/123",
+        "/posts/id",
+        "/id/posts",
+        "/posts"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["レンダリング", "CSR"],
+      "function": "CSR"
+    },
+    {
+      "id": "q15",
+      "question": "推奨遷移方法は？",
+      "type": "multiple-choice",
+      "options": [
+        "Link",
+        "aタグのみ",
+        "window.location",
+        "form"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["レンダリング", "Streaming"],
+      "function": "Streaming"
+    },
+    {
+      "id": "q16",
+      "question": "Next.jsは何をベースにしているか？",
+      "type": "multiple-choice",
+      "options": [
+        "React",
+        "Vue",
+        "Angular",
+        "Svelte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["API", "API Routes"],
+      "function": "API Routes"
+    },
+    {
+      "id": "q17",
+      "question": "Next.jsの特徴は？",
+      "type": "multiple-choice",
+      "options": [
+        "ファイルベースルーティング",
+        "手動ルーティング",
+        "SSR不可",
+        "API不可"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["API", "req/res"],
+      "function": "req/res"
+    },
+    {
+      "id": "q18",
+      "question": "index.tsxはどのURL？",
+      "type": "multiple-choice",
+      "options": [
+        "/",
+        "/index",
+        "/home",
+        "/top"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["Middleware", "middleware"],
+      "function": "middleware"
+    },
+    {
+      "id": "q19",
+      "question": "[id].tsxのURL例は？",
+      "type": "multiple-choice",
+      "options": [
+        "/posts/123",
+        "/posts/id",
+        "/id/posts",
+        "/posts"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["Middleware", "Edge Runtime"],
+      "function": "Edge Runtime"
+    },
+    {
+      "id": "q20",
+      "question": "推奨遷移方法は？",
+      "type": "multiple-choice",
+      "options": [
+        "Link",
+        "aタグのみ",
+        "window.location",
+        "form"
+      ],
+      "correctAnswer": 0,
+      "explanation": "正解はA。Next.js Associateレベルで頻出の基本知識。",
+      "difficulty": "easy",
+      "tags": ["スタイル", "CSS Modules"],
+      "function": "CSS Modules"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 20
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "categoryId": "vue-basics",
+  "categoryName": "Vue基礎 - Vue基礎・テンプレート・ディレクティブ・リアクティビティ",
+  "course": "associate",
+  "technology": "vue",
+  "questions": [],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 0
+  }
+}

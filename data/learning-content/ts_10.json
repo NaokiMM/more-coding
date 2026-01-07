@@ -1,0 +1,173 @@
+{
+  "categoryId": "null-undefined-string-number-practical",
+  "categoryName": "null / undefined 対策・文字列・数値・実務でよく見る構文",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q91",
+      "question": "TypeScript における !（非 null アサーション演算子）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値を必ず真偽値に変換する",
+        "値が null や undefined ではないことをコンパイラに伝える",
+        "値が falsy の場合にエラーを投げる",
+        "実行時に null チェックを行う"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：これは論理否定演算子 !（JavaScript）の説明\n選択肢2：正解。非 null アサーションは型チェックのみで、実行時の安全性は保証しない\n選択肢3：エラーを投げる機能はない\n選択肢4：実行時チェックは行われない",
+      "difficulty": "medium",
+      "tags": ["null", "undefined", "対策", "!"],
+      "function": "!"
+    },
+    {
+      "id": "q92",
+      "question": "value?.prop の挙動として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "value が falsy の場合にエラーを投げる",
+        "value が null または undefined の場合、undefined を返す",
+        "prop が存在しない場合に例外を投げる",
+        "value が必ず存在することを保証する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：falsy 判定ではない\n選択肢2：正解。value が null / undefined のとき、エラーにならず undefined を返す\n選択肢3：例外は投げない\n選択肢4：存在保証は非 null アサーション !",
+      "difficulty": "easy",
+      "tags": ["null", "undefined", "対策", "value?.prop"],
+      "function": "value?.prop"
+    },
+    {
+      "id": "q93",
+      "question": "value ?? defaultValue の挙動として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "value が falsy（0、\"\"、false など）の場合に defaultValue を返す",
+        "value が null または undefined の場合に defaultValue を返す",
+        "value が undefined の場合のみ defaultValue を返す",
+        "常に defaultValue を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：これは ||（論理 OR）の挙動\n選択肢2：正解。?? は null と undefined のときだけデフォルト値を使う\n選択肢3：null も対象に含まれる\n選択肢4：条件付き演算子ではない",
+      "difficulty": "easy",
+      "tags": ["null", "undefined", "対策", "value ?? defaultValue"],
+      "function": "value ?? defaultValue"
+    },
+    {
+      "id": "q94",
+      "question": "String() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を判定して文字列で返す",
+        "値を文字列に変換して返す",
+        "文字列を数値に変換する",
+        "オブジェクトを JSON 形式の文字列に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：typeof の説明\n選択肢2：正解。String() は null や undefined を含むあらゆる値を文字列に変換できる\n選択肢3：数値変換は Number() や parseInt\n選択肢4：JSON.stringify の説明",
+      "difficulty": "easy",
+      "tags": ["文字列", "数値", "String()"],
+      "function": "String()"
+    },
+    {
+      "id": "q95",
+      "question": "Number() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を判定して文字列で返す",
+        "値を数値に変換して返す",
+        "数値を文字列に変換する",
+        "値を必ず整数に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：typeof の説明\n選択肢2：正解。Number() は文字列・真偽値などを数値に変換する（変換できない場合は NaN）\n選択肢3：文字列化は String() や toString()\n選択肢4：整数化は parseInt",
+      "difficulty": "easy",
+      "tags": ["文字列", "数値", "Number()"],
+      "function": "Number()"
+    },
+    {
+      "id": "q96",
+      "question": "parseInt() の説明として正しいものはどれか",
+      "type": "multiple-choice",
+      "options": [
+        "文字列を浮動小数点数に変換する",
+        "文字列を整数として解析し、数値に変換する",
+        "値を必ず数値に変換する",
+        "数値を文字列に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：浮動小数点数への変換は parseFloat()\n選択肢2：正解。parseInt() は文字列の先頭から整数として解釈できる部分を変換する（基数指定が可能）\n選択肢3：変換できない場合は NaN\n選択肢4：文字列化は String() や toString()",
+      "difficulty": "easy",
+      "tags": ["文字列", "数値", "parseInt()"],
+      "function": "parseInt()"
+    },
+    {
+      "id": "q97",
+      "question": "parseFloat() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "文字列を整数に変換する",
+        "文字列を浮動小数点数として解析し、数値に変換する",
+        "値を必ず数値に変換する",
+        "数値を文字列に変換する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：整数変換は parseInt()\n選択肢2：正解。parseFloat() は文字列の先頭から数値として解釈できる部分を浮動小数点数として変換する\n選択肢3：必ず数値になるわけではなく、変換できない場合は NaN\n選択肢4：文字列化は String() や toString()",
+      "difficulty": "easy",
+      "tags": ["文字列", "数値", "parseFloat()"],
+      "function": "parseFloat()"
+    },
+    {
+      "id": "q98",
+      "question": "toString() メソッドの説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "数値やオブジェクトを必ず JSON 形式の文字列に変換する",
+        "値を文字列に変換して返す",
+        "文字列を数値に変換する",
+        "値の型を文字列として返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：JSON 形式への変換は JSON.stringify\n選択肢2：正解。toString() は数値・真偽値・オブジェクトなどを文字列に変換する\n選択肢3：数値変換は Number() や parseInt\n選択肢4：これは typeof の説明",
+      "difficulty": "easy",
+      "tags": ["文字列", "数値", "toString()"],
+      "function": "toString()"
+    },
+    {
+      "id": "q99",
+      "question": "as の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "実行時に値の型を安全に変換するための構文である",
+        "コンパイラに対して、値の型を明示的に指定するための型アサーションである",
+        "変数のスコープを変更するための構文である",
+        "値が null や undefined でないことを保証する演算子である"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：as は実行時の型変換は行わない\n選択肢2：正解。as は TypeScript に「この値はこの型だ」と伝えるための型アサーション\n選択肢3：スコープ変更の機能はない\n選択肢4：これは非 null アサーション ! の説明",
+      "difficulty": "medium",
+      "tags": ["実務でよく見る構文", "as"],
+      "function": "as"
+    },
+    {
+      "id": "q100",
+      "question": "TypeScript における readonly の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "変数自体の再代入を禁止する",
+        "プロパティを読み取り専用にし、再代入を禁止する",
+        "値を実行時に凍結する",
+        "すべてのプロパティを任意にする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：変数の再代入禁止は const\n選択肢2：正解。readonly はプロパティへの再代入を防ぐ\n選択肢3：実行時の凍結は Object.freeze\n選択肢4：任意化は Partial<T>",
+      "difficulty": "easy",
+      "tags": ["実務でよく見る構文", "readonly"],
+      "function": "readonly"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

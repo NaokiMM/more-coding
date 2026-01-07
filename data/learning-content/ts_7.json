@@ -1,0 +1,173 @@
+{
+  "categoryId": "object-type-check-async-function",
+  "categoryName": "オブジェクト操作関数・型チェック・安全確認に使う関数・非同期処理・関数まわり",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q61",
+      "question": "Object.fromEntries の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "オブジェクトをキーと値の組の配列に変換する",
+        "キーと値の組の配列からオブジェクトを作成する",
+        "オブジェクトのキーだけを配列として返す",
+        "オブジェクトの値だけを配列として返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：Object.entries の説明。オブジェクト → 配列\n選択肢2：正解。Object.fromEntries は entries からオブジェクトを作る\n選択肢3：Object.keys の説明\n選択肢4：Object.values の説明",
+      "difficulty": "easy",
+      "tags": ["オブジェクト操作関数", "Object.fromEntries"],
+      "function": "Object.fromEntries"
+    },
+    {
+      "id": "q62",
+      "question": "typeof 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値が配列かどうかを判定する",
+        "値の型を文字列として返す",
+        "オブジェクトが特定の型を継承しているかを判定する",
+        "プロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：配列判定は Array.isArray を使う\n選択肢2：正解。typeof は型を \"string\", \"number\" などの文字列で返す\n選択肢3：instanceof の説明\n選択肢4：in の説明",
+      "difficulty": "easy",
+      "tags": ["型チェック", "安全確認", "typeof"],
+      "function": "typeof"
+    },
+    {
+      "id": "q63",
+      "question": "instanceof 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスやコンストラクタのインスタンスかどうかを判定する",
+        "値が配列かどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：typeof の説明\n選択肢2：正解。instanceof はプロトタイプチェーンを使って、指定したクラス（コンストラクタ）のインスタンスかを判定する\n選択肢3：配列判定は Array.isArray を使う\n選択肢4：in 演算子の説明",
+      "difficulty": "easy",
+      "tags": ["型チェック", "安全確認", "instanceof"],
+      "function": "instanceof"
+    },
+    {
+      "id": "q64",
+      "question": "in 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスのインスタンスかどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する",
+        "値が配列かどうかを判定する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：typeof の説明\n選択肢2：instanceof の説明\n選択肢3：正解。in はオブジェクト自身またはプロトタイプチェーン上に指定したプロパティが存在するかを判定する\n選択肢4：配列判定は Array.isArray を使う",
+      "difficulty": "easy",
+      "tags": ["型チェック", "安全確認", "in"],
+      "function": "in"
+    },
+    {
+      "id": "q65",
+      "question": "Array.isArray の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスのインスタンスかどうかを判定する",
+        "値が配列かどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：typeof の説明\n選択肢2：instanceof の説明\n選択肢3：正解。Array.isArray は値が配列の場合に true を返す\n選択肢4：in 演算子の説明",
+      "difficulty": "easy",
+      "tags": ["型チェック", "安全確認", "Array.isArray"],
+      "function": "Array.isArray"
+    },
+    {
+      "id": "q66",
+      "question": "Promise の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "非同期処理の結果を将来の値として表現するオブジェクトである",
+        "複数の非同期処理を直列に実行するための構文である",
+        "非同期処理を同期的に実行するための仕組みである",
+        "非同期処理の状態を即座に完了状態にするための関数である"
+      ],
+      "correctAnswer": 0,
+      "explanation": "選択肢1：正解。Promise は非同期処理の完了（fulfilled）や失敗（rejected）を将来の値として扱うためのオブジェクト\n選択肢2：async / await の説明\n選択肢3：非同期処理を同期的にする仕組みは存在しない\n選択肢4：Promise を即座に完了させるのは Promise.resolve などであり、Promise 自体の説明ではない",
+      "difficulty": "medium",
+      "tags": ["非同期処理", "Promise"],
+      "function": "Promise"
+    },
+    {
+      "id": "q67",
+      "question": "async / await の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "非同期処理を同期処理として実行する仕組みである",
+        "Promise をより読みやすく書くための構文糖である",
+        "非同期処理を並列実行するための API である",
+        "Promise を使用せずに非同期処理を実現する仕組みである"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：見た目は同期的だが、実際には非同期で実行される\n選択肢2：正解。async / await は Promise を扱いやすくするための構文糖\n選択肢3：並列実行は Promise.all などの説明\n選択肢4：async 関数は常に Promise を返す",
+      "difficulty": "medium",
+      "tags": ["非同期処理", "async", "await"],
+      "function": "async / await"
+    },
+    {
+      "id": "q68",
+      "question": "Promise.all の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "複数の Promise を順番に実行し、すべて完了した時点で結果を返す",
+        "複数の Promise を並列に実行し、すべてが成功した場合に結果を配列で返す",
+        "最初に完了した Promise の結果だけを返す",
+        "いずれかの Promise が失敗しても、成功した結果だけを返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：順番に実行するわけではなく、並列に実行される\n選択肢2：正解。すべての Promise が fulfilled になると、結果を配列で返す\n選択肢3：Promise.race の説明\n選択肢4：失敗した時点で全体が rejected される",
+      "difficulty": "medium",
+      "tags": ["非同期処理", "Promise.all"],
+      "function": "Promise.all"
+    },
+    {
+      "id": "q69",
+      "question": "Promise.race の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "複数の Promise を並列に実行し、すべてが成功した場合に結果を返す",
+        "複数の Promise を順番に実行し、最初の結果だけを返す",
+        "複数の Promise のうち、最初に完了（成功または失敗）したものの結果を返す",
+        "いずれかの Promise が失敗しても、すべての結果を配列で返す"
+      ],
+      "correctAnswer": 2,
+      "explanation": "選択肢1：Promise.all の説明\n選択肢2：Promise は順番に実行されない\n選択肢3：正解。最初に settled（fulfilled / rejected）した Promise の結果を返す\n選択肢4：Promise.allSettled の説明",
+      "difficulty": "medium",
+      "tags": ["非同期処理", "Promise.race"],
+      "function": "Promise.race"
+    },
+    {
+      "id": "q70",
+      "question": "function fn() {} の特徴として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "変数に代入できず、再代入もできない",
+        "関数宣言であり、定義前でも呼び出すことができる",
+        "常にアロー関数として扱われる",
+        "this を常に呼び出し元のスコープに固定する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "選択肢1：関数は変数に代入できる\n選択肢2：正解。関数宣言はホイスティングされ、定義前でも呼び出せる\n選択肢3：アロー関数ではない\n選択肢4：this を固定するのはアロー関数",
+      "difficulty": "easy",
+      "tags": ["関数まわり", "function fn() {}"],
+      "function": "function fn() {}"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}
