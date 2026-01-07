@@ -115,54 +115,6 @@
       "difficulty": "easy",
       "tags": ["基本型", "プリミティブ", "undefined"],
       "function": "undefined"
-    },
-    {
-      "id": "q8",
-      "question": "問題（TypeScript：any）\n\n次のうち、TypeScript の any 型について正しいものはどれか。",
-      "type": "multiple-choice",
-      "options": [
-        "any 型を使うと、型チェックが無効になり、どんな操作も許可される",
-        "any 型は unknown 型より安全である",
-        "any 型は一度代入すると、以後は自動的に型推論される",
-        "any 型は実行時のエラーを防ぐための型である"
-      ],
-      "correctAnswer": 0,
-      "explanation": "解説\n\nA：正しい\nany は 型チェックを完全に回避し、TypeScriptの安全性を失わせます。\n\nB：誤り\nunknown の方が 安全です（使用前に型チェックが必要）。\n\nC：誤り\nany は型推論されず、ずっと any のままです。\n\nD：誤り\nany は 実行時エラーを防ぎません。むしろ増やす原因になります。",
-      "difficulty": "medium",
-      "tags": ["特殊型", "any"],
-      "function": "any"
-    },
-    {
-      "id": "q9",
-      "question": "問題（TypeScript：unknown）\n\n次のうち、TypeScript の unknown 型について正しいものはどれか。",
-      "type": "multiple-choice",
-      "options": [
-        "unknown 型の値は、そのまま任意の型として使用できる",
-        "unknown 型は any より安全で、使用前に型チェックが必要である",
-        "unknown 型は自動的に型推論されて具体的な型になる",
-        "unknown 型は any と完全に同じ挙動をする"
-      ],
-      "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\nunknown 型の値は、型チェックや型アサーションなしでは使えません。\n\nB：正しい\nunknown は 型安全を保ったまま「何でも入りうる」ことを表現します。\n\nC：誤り\nunknown は具体型に自動推論されません。\n\nD：誤り\nunknown と any は安全性が大きく異なります。",
-      "difficulty": "medium",
-      "tags": ["特殊型", "unknown"],
-      "function": "unknown"
-    },
-    {
-      "id": "q10",
-      "question": "問題（TypeScript：void）\n\n次のうち、TypeScript の void 型について正しいものはどれか。",
-      "type": "multiple-choice",
-      "options": [
-        "void 型の関数は、必ず null を返さなければならない",
-        "void 型は「値を返さない」ことを表す型である",
-        "void 型の変数には、どんな値でも代入できる",
-        "void 型は undefined と完全に同じ意味を持つ"
-      ],
-      "correctAnswer": 1,
-      "explanation": "解説\n\nA：誤り\nvoid の関数は 何も返さない（または undefined を暗黙に返す）だけです。\n\nB：正しい\nvoid は 戻り値を使わない関数を表すために使われます。\n\nC：誤り\nvoid 型の変数には、通常 undefined 以外は代入できません。\n\nD：誤り\nvoid は **「使われない戻り値」**を意味し、undefined とは用途が異なります。",
-      "difficulty": "medium",
-      "tags": ["特殊型", "void"],
-      "function": "void"
     }
   ],
   "metadata": {
