@@ -1,0 +1,81 @@
+// TypeScript Associateコースのカテゴリデータ
+export const categoriesData = [
+  {
+    id: "basic-types",
+    name: "TypeScriptの型一覧 - 基本型（プリミティブ）・特殊型（重要）",
+    file: "ts_1.json",
+    icon: "🔤",
+    color: "from-blue-500 to-blue-600",
+  },
+  {
+    id: "advanced-types",
+    name: "TypeScriptの型一覧 - 特殊型（重要）・配列・タプル・オブジェクト系・関数型・ユニオン・交差",
+    file: "ts_2.json",
+    icon: "📦",
+    color: "from-green-500 to-green-600",
+  },
+  {
+    id: "union-intersection-literal-type-alias-interface-generics-utility",
+    name: "TypeScriptの型一覧 - ユニオン・交差・リテラル型・型エイリアス・インターフェース・ジェネリクス・ユーティリティ型",
+    file: "ts_3.json",
+    icon: "🔗",
+    color: "from-purple-500 to-purple-600",
+  },
+  {
+    id: "utility-types-class",
+    name: "TypeScriptの型一覧 - ユーティリティ型（頻出）・クラス関連",
+    file: "ts_4.json",
+    icon: "🛠️",
+    color: "from-orange-500 to-orange-600",
+  },
+  {
+    id: "class-type-guard-async-array",
+    name: "TypeScriptの型一覧 - クラス関連・型ガード関連・非同期・配列関数",
+    file: "ts_5.json",
+    icon: "⚡",
+    color: "from-pink-500 to-pink-600",
+  },
+  {
+    id: "array-object-functions",
+    name: "配列関数・オブジェクト操作関数",
+    file: "ts_6.json",
+    icon: "📊",
+    color: "from-indigo-500 to-indigo-600",
+  },
+  {
+    id: "object-type-check-async-function",
+    name: "オブジェクト操作関数・型チェック・安全確認に使う関数・非同期処理・関数まわり",
+    file: "ts_7.json",
+    icon: "🔍",
+    color: "from-teal-500 to-teal-600",
+  },
+  {
+    id: "function-utility-types",
+    name: "関数まわり・TypeScript固有の型ユーティリティ",
+    file: "ts_8.json",
+    icon: "⚙️",
+    color: "from-cyan-500 to-cyan-600",
+  },
+  {
+    id: "type-operations-generics-null-undefined",
+    name: "型演算・ジェネリクスで頻出・null / undefined 対策",
+    file: "ts_9.json",
+    icon: "🧩",
+    color: "from-emerald-500 to-emerald-600",
+  },
+  {
+    id: "null-undefined-string-number-practical",
+    name: "null / undefined 対策・文字列・数値・実務でよく見る構文",
+    file: "ts_10.json",
+    icon: "💡",
+    color: "from-amber-500 to-amber-600",
+  },
+  {
+    id: "practical-syntax-documentation",
+    name: "実務でよく見る構文・公式ドキュメントの閲覧方法に関する問題",
+    file: "ts_11.json",
+    icon: "📚",
+    color: "from-rose-500 to-rose-600",
+  },
+] as const;
+

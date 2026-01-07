@@ -1,55 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { categoriesData } from "@/lib/typescript-categories";
 
 export default function TypeScriptAssociatePage() {
-  const categories = [
-    {
-      id: "introduction",
-      name: "TypeScriptとは",
-      description: "TypeScriptの概要と特徴、JavaScriptとの違いを学びます。",
-      icon: "📘",
-      color: "from-blue-500 to-blue-600",
-      lessons: 3,
-      estimatedTime: "1時間",
-    },
-    {
-      id: "basic-types",
-      name: "型の基本（string, number, boolean）",
-      description: "基本的な型の使い方と型注釈の方法を学びます。",
-      icon: "🔤",
-      color: "from-green-500 to-green-600",
-      lessons: 4,
-      estimatedTime: "2時間",
-    },
-    {
-      id: "variables-functions",
-      name: "変数と関数の型定義",
-      description: "変数や関数に型を定義する方法を学びます。",
-      icon: "⚙️",
-      color: "from-purple-500 to-purple-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "interfaces-aliases",
-      name: "インターフェースと型エイリアス",
-      description: "オブジェクトの型を定義する方法を学びます。",
-      icon: "🔗",
-      color: "from-orange-500 to-orange-600",
-      lessons: 4,
-      estimatedTime: "2時間",
-    },
-    {
-      id: "type-inference",
-      name: "基本的な型推論",
-      description: "TypeScriptの型推論機能について学びます。",
-      icon: "🧠",
-      color: "from-pink-500 to-pink-600",
-      lessons: 3,
-      estimatedTime: "2時間",
-    },
-  ];
+  const categories = categoriesData.map((cat) => ({
+    ...cat,
+    description: `${cat.name}について学習します。`,
+    lessons: 10, // 各JSONファイルには10問ずつ含まれている想定
+    estimatedTime: "1-2時間",
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">

@@ -37,7 +37,7 @@ export default function SettingsPage() {
       });
       // プロフィール画像があれば設定
       if (user.picture || user["custom:picture"]) {
-        setProfileImage(user.picture || user["custom:picture"]);
+        setProfileImage((user.picture || user["custom:picture"]) ?? null);
       }
     }
   }, [user]);

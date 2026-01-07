@@ -10,6 +10,9 @@ npm run build
 node scripts/fix-static-paths.js
 aws s3 sync out/ s3://skillboost-bucket/ --delete --profile AdministratorAccess-077793792738
 
+# aws login
+aws sso login --profile AdministratorAccess-077793792738
+
 # cloudfrontのキャッシュを更新
 CloudFront > Distributions > ID > Invalidations > Create invalidations > 「/*」 > Save
 
