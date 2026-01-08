@@ -79,8 +79,9 @@ questions[0].question → 問題文
 questions[0].options → 選択肢
 問題数 → questions.length
 
-# 試験監視
-Microsoft intune
+# 試験監視（MDM）の候補
+・https://www.aspicjapan.org/asu/article/6636
+・Microsoft intune
 
 # stripe APIテストの実行方法
 1. テストモードに切り替え

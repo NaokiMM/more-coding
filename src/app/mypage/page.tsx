@@ -68,18 +68,6 @@ export default function MyPage() {
     },
   ]);
 
-  const [certifications] = useState([
-    {
-      name: "基本情報技術者",
-      status: "学習中",
-      targetDate: "2024年6月",
-    },
-    {
-      name: "応用情報技術者",
-      status: "計画中",
-      targetDate: "2024年12月",
-    },
-  ]);
 
   const handleLogout = () => {
     if (confirm("ログアウトしますか？")) {
@@ -205,99 +193,6 @@ export default function MyPage() {
                 </p>
               </Link>
             ))}
-          </div>
-        </div>
-
-        {/* Certifications Section */}
-        <div className="mb-8">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              資格取得目標
-            </h2>
-            <Link
-              href="/certifications"
-              className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-            >
-              すべて見る →
-            </Link>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {certifications.map((cert, index) => (
-              <div
-                key={index}
-                className="rounded-xl bg-white p-6 shadow-md transition-all hover:shadow-lg dark:bg-slate-800"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                    {cert.name}
-                  </h3>
-                  <span
-                    className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      cert.status === "学習中"
-                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-200"
-                    }`}
-                  >
-                    {cert.status}
-                  </span>
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  目標日: {cert.targetDate}
-                </p>
-                {cert.status === "学習中" && (
-                  <div className="mt-4">
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="text-slate-600 dark:text-slate-400">
-                        進捗
-                      </span>
-                      <span className="font-semibold text-slate-900 dark:text-white">
-                        40%
-                      </span>
-                    </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                      <div
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-500"
-                        style={{ width: "40%" }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-white">
-          <h2 className="mb-4 text-2xl font-bold">クイックアクション</h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            <Link
-              href="/learn"
-              className="rounded-lg bg-white/10 p-4 backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-              <h3 className="mb-2 font-semibold">学習を続ける</h3>
-              <p className="text-sm opacity-90">
-                中断した学習を再開します
-              </p>
-            </Link>
-            <Link
-              href="/certifications"
-              className="rounded-lg bg-white/10 p-4 backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-              <h3 className="mb-2 font-semibold">資格を探す</h3>
-              <p className="text-sm opacity-90">
-                新しい資格を探して目標を設定
-              </p>
-            </Link>
-            <Link
-              href="/mypage/settings"
-              className="rounded-lg bg-white/10 p-4 backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-              <h3 className="mb-2 font-semibold">設定</h3>
-              <p className="text-sm opacity-90">
-                アカウント設定を変更
-              </p>
-            </Link>
           </div>
         </div>
       </div>
