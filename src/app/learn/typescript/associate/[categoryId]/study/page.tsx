@@ -1,5 +1,3 @@
-import { readFile } from "fs/promises";
-import { join } from "path";
 import StudyClient from "./StudyClient";
 import { categoriesData } from "@/lib/typescript-categories";
 
@@ -46,11 +44,18 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
     return null;
   }
 
-  // public/questions/typescript/associate/{file}からJSONを取得
+  // public/questions/TypeScript/associate/{file}からJSONをHTTP fetchで取得
   try {
-    const filePath = join(process.cwd(), "public", "questions", "typescript", "associate", category.file);
-    const fileContents = await readFile(filePath, "utf8");
-    const data: CategoryData = JSON.parse(fileContents);
+    const jsonUrl = `/questions/TypeScript/associate/${category.file}`;
+    const response = await fetch(jsonUrl, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data: CategoryData = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch category data:", error);

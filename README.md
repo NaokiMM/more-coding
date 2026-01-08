@@ -40,9 +40,9 @@ params.categoryId === "basic-types"
 ※ ここまで S3は一切関係ない
 
 ③ アプリが「取りに行くURL」を組み立てる
-/questions/typescript/${categoryId}.json
+/questions/Typescript/${categoryId}.json
 ↓
-/questions/typescript/basic-types.json
+/questions/Typescript/basic-types.json
 これは 文字列結合してるだけ。
 
 ※注意事項
@@ -51,7 +51,7 @@ Amazon S3 >  Buckets >  skillboost-learning-content > questions > 言語名 > �
 一旦s3の内容を画面表示させることが優先。
 
 ④ ブラウザで fetch が実行される
-fetch("/questions/typescript/basic-types.json")
+fetch("/questions/Typescript/basic-types.json")
 rewrites があれば
 → CloudFront に転送される
 直URLなら
@@ -59,7 +59,7 @@ rewrites があれば
 
 ⑤ CloudFront → S3
 CloudFront:
-  「/questions/typescript/basic-types.json くれ」
+  「/questions/Typescript/basic-types.json くれ」
 
 S3:
   「はい、このJSONです」
