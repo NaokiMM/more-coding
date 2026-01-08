@@ -44,9 +44,9 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
     return null;
   }
 
-  // public/questions/TypeScript/associate/{file}からJSONをHTTP fetchで取得
+  // public/questions/typescript/associate/{file}からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `/questions/TypeScript/associate/${category.file}`;
+    const jsonUrl = `/questions/typescript/associate/${category.file}`;
     const response = await fetch(jsonUrl, {
       cache: "no-store",
     });

@@ -32,7 +32,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
   }
 
   // CloudFrontからJSONを取得
-  const cloudfrontUrl = `https://d1z9w64vvsvlia.cloudfront.net/questions/TypeScript/${category.file}`;
+  const cloudfrontUrl = `https://d1z9w64vvsvlia.cloudfront.net/questions/typescript/${category.file}`;
   
   try {
     const response = await fetch(cloudfrontUrl, {
