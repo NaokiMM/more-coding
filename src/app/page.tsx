@@ -10,6 +10,13 @@ export default function Home() {
       icon: "TS",
     },
     {
+      id: "javascript",
+      name: "JavaScript",
+      description: "Web開発の基本となるプログラミング言語。動的なウェブサイトとアプリケーションを構築できます。",
+      color: "from-yellow-500 to-orange-600",
+      icon: "JS",
+    },
+    {
       id: "react",
       name: "React",
       description: "ユーザーインターフェース構築のためのJavaScriptライブラリ。コンポーネントベースの開発が可能です。",
@@ -36,6 +43,27 @@ export default function Home() {
       description: "Vue.jsベースのフルスタックフレームワーク。SSR、静的サイト生成、モジュールシステムを提供します。",
       color: "from-green-600 to-emerald-700",
       icon: "ν",
+    },
+    {
+      id: "devtool",
+      name: "DevTool",
+      description: "ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。",
+      color: "from-indigo-500 to-purple-600",
+      icon: "🔧",
+    },
+    {
+      id: "interview",
+      name: "面接対策",
+      description: "ITエンジニアの転職・就職面接でよく聞かれる質問と回答を練習。実践的な面接スキルを身につけます。",
+      color: "from-pink-500 to-rose-600",
+      icon: "💼",
+    },
+    {
+      id: "seo",
+      name: "SEO",
+      description: "検索エンジン最適化の基礎から実践まで。ウェブサイトの検索順位向上とアクセス数増加のスキルを身につけます。",
+      color: "from-emerald-500 to-teal-600",
+      icon: "🔍",
     },
   ];
 
@@ -89,9 +117,10 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-5xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
-            IT資格学習で
+            ITエンジニアリング学習を用いて
+            <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              スキルアップ
+              年収・人間関係・スキルアップ
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
