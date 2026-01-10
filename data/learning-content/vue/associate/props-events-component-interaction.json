@@ -1,0 +1,234 @@
+{
+  "categoryId": "props-events-component-interaction",
+  "categoryName": "Vue.js - Props・Events・コンポーネント連携",
+  "course": "associate",
+  "technology": "vue",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（Vue：v-model の仕組み）\n\n子コンポーネントで v-model を実現する基本仕様（Vue 3）として正しい組み合わせはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "props: value / emits: input",
+        "props: modelValue / emits: update:modelValue",
+        "props: model / emits: change:model",
+        "props: vModel / emits: vModelChanged"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。これは Vue 2 の代表形（ただし互換あり）。\n\nB：正しい。Vue 3 のデフォルトは modelValue と update:modelValue。\n\nC/D：誤り。標準ではない。\n\nポイント：v-model は『親→子: modelValue』『子→親: update:modelValue』で同期する。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（Vue：props の扱い）\n\n子コンポーネント内で props を直接書き換えることについて、最も適切な説明はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "推奨される。親子の状態同期が簡単になるため。",
+        "非推奨。props は親からの入力として扱い、変更したい場合は emit で親に通知するかローカル状態にコピーする。",
+        "必ず可能で、Vue は自動的に親へ反映する。",
+        "props はリアクティブではないため、書き換えても UI は更新されない。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。データフローが壊れやすい。\n\nB：正しい。基本は one-way data flow。\n\nC：誤り。親へ勝手に反映する設計ではない。\n\nD：誤り。props 自体はリアクティブに扱えるが、直接変更は避ける。\n\nポイント：『親が持つ状態』を子が勝手に変えない。変更はイベントで依頼する。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（Vue：emit の基本）\n\n子から親へイベントを通知する最も基本的な方法として正しいものはどれか（Composition API）。",
+      "type": "multiple-choice",
+      "options": [
+        "this.$emit('save')",
+        "emit('save')（defineEmits で定義した emit を使う）",
+        "props.emit('save')",
+        "dispatchEvent('save')"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。これは Options API の書き方（this がある前提）。\n\nB：正しい。`const emit = defineEmits([...])` で emit 関数を得る。\n\nC：誤り。emit は props ではない。\n\nD：誤り。DOM のイベントとは別。\n\nポイント：Composition API（script setup）なら defineEmits。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（Vue：provide/inject）\n\nprovide/inject の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "親から子へ props を渡す仕組みと完全に同じで、階層が深くなると自動的に provide に変換される。",
+        "任意の祖先が provide した値を、子孫が inject で受け取れる。props のバケツリレーを避けられる。",
+        "Vue Router のみで使える API で、通常のコンポーネントでは使えない。",
+        "inject した値は常に deep clone され、元の値とは独立になる。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。props と違い中間コンポーネントを経由せず渡せるが、用途は限定的。\n\nB：正しい。設計上の依存（テーマ、i18n、DI など）に使われる。\n\nC：誤り。一般のコンポーネントで使える。\n\nD：誤り。通常は参照が共有される（リアクティブならそのまま反映される）。\n\nポイント：乱用すると依存が見えにくくなるので、『横断的な設定』などに限定するとよい。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（Vue：イベント修飾子 .stop）\n\n`@click.stop` の意味として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "イベントの伝播（バブリング）を停止する",
+        "クリックした要素に自動で class を付与する。",
+        "v-model の同期方法を変更する。",
+        "watch の監視を一時停止する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。`.stop` は イベントの伝播（バブリング）を停止する ためのイベント修飾子。\n\nB/C/D：誤り。イベント修飾子の役割ではない。\n\nポイント：修飾子は複数つなげられる（例：`@submit.prevent`）。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（Vue：v-model 修飾子 .trim）\n\nv-model の修飾子 `.trim` の効果として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "入力値の前後の空白を自動で取り除いて同期する。",
+        "数値に自動変換する。",
+        "更新を change イベント時に限定する。",
+        "双方向バインディングを無効化する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。文字列の前後空白をトリムして同期する。\n\nB：誤り。数値変換は `.number`。\n\nC：誤り。`.lazy` の説明。\n\nD：誤り。v-model は引き続き動作する。\n\nポイント：`.trim` / `.number` / `.lazy` はフォーム入力でよく使う。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（Vue：v-model .number）\n\nv-model の修飾子 `.number` の効果として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "入力値を Number に変換して同期しようとする（変換できない場合はそのまま）。",
+        "入力値を常に整数に丸める。",
+        "入力値を必ず 0 以上にする。",
+        "小数点以下を常に保持するように変換する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。数値変換を試みる。\n\nB/C/D：誤り。Vue の標準機能ではない。\n\nポイント：型を揃えたいときに有用。バリデーションは別途実装する。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（Vue：v-model .lazy）\n\nv-model の修飾子 `.lazy` の効果として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "input イベントではなく change イベントで同期する（更新タイミングが遅くなる）。",
+        "非同期に同期される。",
+        "入力を常に debounce する。",
+        "入力をすべて大文字に変換する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。即時同期ではなく、変更確定時に同期する。\n\nB/C/D：誤り。標準の挙動ではない。\n\nポイント：大量入力やIMEなど、更新タイミングを調整したいときに使う。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（Vue：defineExpose）\n\n子コンポーネントのメソッド等を親の template ref から呼べるようにするための API はどれか（script setup）。",
+      "type": "multiple-choice",
+      "options": [
+        "defineExpose",
+        "defineExport",
+        "exposeToParent",
+        "publicMethods"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。明示的に公開メンバーを指定できる。\n\nB/C/D：誤り。\n\nポイント：必要最小限だけ expose し、コンポーネント境界を壊しすぎない。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（Vue：provide のキー）\n\nprovide/inject でキー衝突を避けたい。一般的な対策として適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Symbol をキーに使う（例：const key = Symbol()）。",
+        "常に 'data' という固定文字列を使う。",
+        "キーは数値のみ使用できる。",
+        "キーは自動で namespacing されるため何もしなくてよい。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。衝突しにくい。\n\nB/C：誤り。\n\nD：誤り。明示的に設計する必要がある。\n\nポイント：キーは export して共有するのが定番。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（Vue：emits の宣言）\n\ndefineEmits で emits を宣言する主な目的として適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "イベント名の型安全/ドキュメント化、不要なイベントの検知（開発時）などに役立つ。",
+        "イベントを必ずサーバーへ送信するため。",
+        "props を自動生成するため。",
+        "CSS を自動生成するため。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB/C/D：誤り。\n\nポイント：大規模化するほど emits/props の明示が効いてくる。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（Vue：複数 v-model）\n\nVue 3 で複数の v-model を同一コンポーネントに対して使う方法として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "<MyComp v-model:title=\"title\" v-model:content=\"content\" />",
+        "<MyComp v-model=\"title, content\" />",
+        "<MyComp v-model:title:content=\"...\" />",
+        "<MyComp v-model=\"{ title, content }\" />（常に推奨）"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。引数付き v-model を複数指定できる。\n\nB/C：誤り。構文として不正。\n\nD：誤り。オブジェクト1つにまとめる設計もあるが、『常に推奨』ではない。\n\nポイント：子側は `defineProps({ title, content })` と `update:title` 等を実装する。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（Vue：defineProps の型）\n\nscript setup で props に型を付ける例として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "const props = defineProps<{ title: string; count?: number }>()",
+        "const props = defineProps('title: string')",
+        "const props = defineProps(title: string)",
+        "const props: { title: string } = props()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。ジェネリクスで型指定できる。\n\nB/C/D：誤り。\n\nポイント：型と runtime バリデーション（required 等）を両立させたい場合はオブジェクト形式も検討。"
+    },
+    {
+      "id": "q14",
+      "question": "問題（Vue：props のバリデーション）\n\nOptions API で props に型や必須を指定する書き方として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "props: { title: { type: String, required: true } }",
+        "props: ['title: String!']",
+        "props: { title: String! }",
+        "props: { title: required(String) }"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。type/required/default などを指定できる。\n\nB/C/D：誤り。標準構文ではない。\n\nポイント：TypeScript だけでなく runtime バリデーションも必要ならこの形式が有効。"
+    },
+    {
+      "id": "q15",
+      "question": "問題（Vue：emits のバリデーション）\n\nOptions API で emits のバリデーション関数を設定する例として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "emits: { save: (payload) => typeof payload === 'string' }",
+        "emits: { save: 'string' }",
+        "emits: ['save:string']",
+        "emits: validate(save, String)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。true/false を返して検証できる。\n\nB/C/D：誤り。\n\nポイント：誤った payload を早期に検知でき、API の自己文書化にもなる。"
+    },
+    {
+      "id": "q16",
+      "question": "問題（Vue：computed と methods）\n\nテンプレートで同じ計算結果を複数回使う場合、computed を使う利点として適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "依存が変わらなければキャッシュされ、無駄な再計算を減らせる。",
+        "必ず非同期で実行される。",
+        "DOM 更新を強制できる。",
+        "ルート遷移を自動化できる。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。methods は呼ばれるたびに実行される。\n\nB/C/D：誤り。\n\nポイント：『派生値』は computed、『都度処理』は methods（または関数）。"
+    },
+    {
+      "id": "q17",
+      "question": "問題（Vue：inject のデフォルト値）\n\ninject で提供が無い場合に備えてデフォルト値を指定する方法として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "inject(key, defaultValue)",
+        "inject(key).default(defaultValue)",
+        "provideDefault(key, defaultValue)",
+        "injectDefault(key, defaultValue)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。第2引数でデフォルト指定できる。\n\nB/C/D：誤り。\n\nポイント：必須依存ならデフォルトを置かず、見つからない場合にエラーにする設計もある。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 17
+  }
+}

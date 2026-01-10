@@ -1,0 +1,312 @@
+{
+  "categoryId": "components-jsx-rendering",
+  "categoryName": "React - コンポーネント・JSX・描画",
+  "course": "associate",
+  "technology": "react",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（React：style属性）\n\nReact の style 属性の指定として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "style='color: red; font-size: 12px;'",
+        "style={{ color: 'red', fontSize: 12 }}",
+        "style={color: 'red'}",
+        "style={{ 'font-size': '12px' }}"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。文字列ではなくオブジェクト。\n\nB：正しい。二重波括弧（JSX式の中にオブジェクト）になる。\n\nC：誤り。オブジェクトは波括弧で囲む必要がある。\n\nD：誤り。'font-size' のようなケバブケースは基本使わない。\n\nポイント：style はオブジェクトで指定し、プロパティ名は camelCase。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（React：Fragment）\n\n余計な DOM 要素を増やさずに複数要素を返す方法として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "<div> で必ず包む",
+        "配列をそのまま return する（key不要）",
+        "<React.Fragment> または <> を使う",
+        "<span> で必ず包む"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り。div は不要な DOM を増やす。\n\nB：誤り。配列返却は可能だが key が必要になりがちで扱いが難しい。\n\nC：正しい。\n\nD：誤り。span でも DOM が増える。\n\nポイント：Fragment を使うと DOM を汚さずに兄弟要素をまとめられる。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（React：null を返す）\n\n条件によって何も表示しない場合の実装として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "undefined を return する",
+        "null を return する",
+        "空文字 '' を return する",
+        "0 を return する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。undefined は意図しない挙動になり得る。\n\nB：正しい。\n\nC：誤り。空文字はテキストノード扱いになり得る。\n\nD：誤り。0 は表示される。\n\nポイント：何も描画しない場合は null を返すのが基本。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（React：JSXの役割）\n\nJSX について正しい説明はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ブラウザがそのまま解釈できる HTML の拡張仕様である。",
+        "JavaScript の構文拡張で、UI を宣言的に記述し、最終的には JavaScript に変換される。",
+        "CSS の記法で、コンポーネントごとにスコープを自動付与する。",
+        "React では JSX を必ず使わなければならない。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。JSX はそのままブラウザでは実行できず、変換が必要。\n\nB：正しい。JSX は JavaScript に変換されて実行される。\n\nC：誤り。CSS の仕様ではない。\n\nD：誤り。JSX なしでも createElement 等で書けるが、実務では JSX が一般的。\n\nポイント：JSX はビルド時に変換される（例：createElement 呼び出しや新JSX Transform）。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（React：関数コンポーネント）\n\n関数コンポーネントについて正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "必ず class を継承して作成する。",
+        "関数として定義し、props を受け取り JSX（または null）を返す。",
+        "state を使うには必ず this.state を使う。",
+        "副作用は componentDidMount でのみ書ける。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。class コンポーネントの説明。\n\nB：正しい。関数コンポーネントは関数で定義し UI を返す。\n\nC：誤り。関数では useState 等を使う。\n\nD：誤り。useEffect などで副作用を扱う。\n\nポイント：現在は関数コンポーネント＋Hooks が主流。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（React：コンポーネントの分割）\n\nコンポーネント分割の目的として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "HTTP リクエスト数を増やしてパフォーマンスを上げるため。",
+        "責務を小さくして可読性・再利用性・テスト容易性を高めるため。",
+        "必ずファイル数を 1 つにまとめるため。",
+        "CSS を使わないようにするため。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。分割はリクエスト数増加とは無関係（むしろバンドルでまとめることが多い）。\n\nB：正しい。責務分離と再利用性向上が主目的。\n\nC：誤り。分割はファイルを増やすことも多い。\n\nD：誤り。CSS の有無とは関係ない。\n\nポイント：UIを小さな部品に分けると変更に強くなる。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（React：再利用性）\n\n再利用性の高いコンポーネント設計として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "内部状態に強く依存し、外部からの入力を受け付けない。",
+        "表示だけを担当し、必要なデータやイベントを props で受け取れるようにする。",
+        "API 呼び出しと表示とルーティングを 1 コンポーネントに全て集約する。",
+        "グローバル変数を多用してどこからでも値を参照できるようにする。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。閉じすぎると他で使い回せない。\n\nB：正しい。外部から差し替え可能な設計が再利用に向く。\n\nC：誤り。責務が大きすぎて再利用しづらい。\n\nD：誤り。副作用や衝突が増え保守性が下がる。\n\nポイント：「コンテナ（ロジック）/プレゼンテーション（表示）」の分離は再利用に有効。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（React：if）\n\n条件に応じて別コンポーネントを返すための基本として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数コンポーネントの先頭で if を使い return を分ける。",
+        "JSX の中で if 文をそのまま書く（例：{ if (...) ... }）。",
+        "必ず switch 文しか使えない。",
+        "条件分岐は React では禁止されている。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。if で分岐して return するのが分かりやすい場合が多い。\n\nB：誤り。JSX の波括弧内は「式」なので if 文は書けない。\n\nC：誤り。用途に応じて自由。\n\nD：誤り。\n\nポイント：JSX 内では式が必要なので、if は外に出すか三項などを使う。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（React：三項演算子）\n\nJSX 内で条件によって2択の表示を切り替える方法として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "{condition ? <A/> : <B/>}",
+        "{if(condition) <A/> else <B/>}",
+        "{condition && <A/> : <B/>}",
+        "{condition ?? <A/> : <B/>}"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。三項は式なので JSX 内に書ける。\n\nB：誤り。if は文であり JSX 内では使えない。\n\nC：誤り。&& は右側だけを返すパターンで、: は使えない。\n\nD：誤り。?? は null/undefined 判定。\n\nポイント：JSX 内は式を書くため、三項演算子がよく使われる。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（React：論理AND（&&））\n\ncondition が true のときだけ <A/> を表示する JSX として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "{condition && <A/>}",
+        "{condition || <A/>}",
+        "{condition ? : <A/>}",
+        "{condition &&}"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。|| は左が false のとき右を返すが、意図せず表示される場合がある。\n\nC：誤り。構文が不正。\n\nD：誤り。\n\nポイント：&& は左が true のとき右を返すため、片側表示に便利。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（React：map()）\n\n配列 items を <li> のリストとして表示する基本として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "{items.map(item => <li>{item}</li>)}",
+        "{items.forEach(item => <li>{item}</li>)}",
+        "{items.map(item => { <li>{item}</li> })}",
+        "{map(items, item => <li>{item}</li>)}"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。map は配列を返すため JSX と相性がよい。\n\nB：誤り。forEach は値を返さないため描画できない。\n\nC：誤り。ブロック { } を使う場合は return が必要。\n\nD：誤り。標準関数ではない。\n\nポイント：JSX は配列（React要素の配列）をそのまま描画できる。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（React：key の役割）\n\nリスト描画時に key を付ける主な理由として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "key がないと JavaScript が実行できないため。",
+        "要素の同一性を React が追跡し、差分更新を正しく・効率的に行うため。",
+        "CSS のスタイル適用のため。",
+        "key は必ず index を使うべきだから。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。key があると追加/削除/並べ替えに強い。\n\nC：誤り。CSSとは無関係。\n\nD：誤り。index は並べ替えや挿入に弱く、最後の手段。\n\nポイント：安定した一意キー（IDなど）を使うのが基本。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（React：JSX内での式）\n\nJSX の { } 内に書けるものとして正しいのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "if 文",
+        "for 文",
+        "JavaScript の式（例：count + 1）",
+        "try/catch 文"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り。文は書けない。\n\nB：誤り。文は書けない。\n\nC：正しい。計算結果や関数呼び出しなどの式を書ける。\n\nD：誤り。文は書けない。\n\nポイント：JSX の波括弧内は「式」だけを書ける。"
+    },
+    {
+      "id": "q14",
+      "question": "問題（React：className）\n\nReact で CSS クラスを指定する属性として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "class",
+        "className",
+        "classname",
+        "cssClass"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。JSX では class ではなく className。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：JSX では class は予約語と衝突するため className を使う。"
+    },
+    {
+      "id": "q15",
+      "question": "問題（React：キーと再レンダリング）\n\nリストで index を key にすると問題になりやすいケースとして適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "配列が固定で追加・削除・並べ替えが起きない場合",
+        "先頭への挿入や並べ替えが起き、要素の同一性がずれて入力状態が移る場合",
+        "要素が 1 件だけの場合",
+        "key を付けない場合の方が常に高速な場合"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。固定なら index でも影響が小さいことがある。\n\nB：正しい。index key は同一性が崩れやすい。\n\nC：誤り。\n\nD：誤り。key は必要。\n\nポイント：安定したIDがあればそれを key にする。"
+    },
+    {
+      "id": "q16",
+      "question": "問題（React：key警告）\n\nリスト描画で key がない場合に起きることとして適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "必ず実行時エラーで停止する",
+        "開発時に警告が出て、差分更新の効率や正しさに影響する可能性がある",
+        "自動で key が生成されるので問題ない",
+        "key は CSS のみで使われるため影響しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：警告は無視せず、安定した key を付ける。"
+    },
+    {
+      "id": "q17",
+      "question": "問題（React：key とコンポーネント状態）\n\nkey を変えると起きることとして適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "同じコンポーネントが必ず再利用される",
+        "React が別要素とみなし、コンポーネントが作り直され state がリセットされることがある",
+        "CSS が消える",
+        "必ずエラーになる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：key は同一性のヒント。変えると「別物」扱いになり得る。"
+    },
+    {
+      "id": "q18",
+      "question": "問題（React：条件付きクラス）\n\n条件に応じて className を切り替える基本として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "className={isActive ? 'active' : 'inactive'}",
+        "className={if (isActive) 'active' else 'inactive'}",
+        "className='isActive ? active : inactive'",
+        "className={isActive && 'active' : 'inactive'}"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。if は文。\n\nC：誤り。文字列として評価されない。\n\nD：誤り。構文不正。\n\nポイント：JSX 内は式なので三項で切替が分かりやすい。"
+    },
+    {
+      "id": "q19",
+      "question": "問題（React：children）\n\nprops.children の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "必ず文字列が入る",
+        "コンポーネントの開始・終了タグの間に書いた要素が渡される",
+        "state の別名",
+        "ルーティング情報が入る"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。要素/配列など多様。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：レイアウト系コンポーネントでよく使う（<Card>...</Card>）。"
+    },
+    {
+      "id": "q20",
+      "question": "問題（React：コンポジション）\n\nReact が推奨する UI の再利用戦略として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "継承（inheritance）を多用する",
+        "コンポジション（composition）で部品を組み合わせる",
+        "グローバル変数で共有する",
+        "DOM を直接結合する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。継承よりコンポジションが基本方針。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：小さな部品を組み合わせて大きなUIを作る。"
+    },
+    {
+      "id": "q21",
+      "question": "問題（React：早期return）\n\nローディング中に 'Loading...' を表示し、完了後に本体を表示する実装として分かりやすいのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "if (loading) return <p>Loading...</p>; return <Main/>;",
+        "<p>{loading && 'Loading...'}</p><Main/>",
+        "return loading ? <Main/> : <p>Loading...</p>",
+        "return <Main/>; // ローディングは無視"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。Main が常に表示される。\n\nC：誤り。条件が逆。\n\nD：誤り。\n\nポイント：早期 return は条件が単純なときに読みやすい。"
+    },
+    {
+      "id": "q22",
+      "question": "問題（React：Portal）\n\nモーダルなどを親の DOM 階層外（例：body直下）に描画したい場合に使うのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Portal",
+        "Fragment",
+        "Suspense",
+        "Reducer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。\n\nC：誤り。\n\nD：誤り。\n\nポイント：Portal は DOM の配置だけを変え、React のツリー上の親子関係は保つ。"
+    },
+    {
+      "id": "q23",
+      "question": "問題（React：Error Boundary）\n\nError Boundary について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数コンポーネントの try/catch だけで同等に実現できる",
+        "レンダリング中のエラーを捕捉しフォールバック UI を表示できる仕組み（主にクラスで実装）",
+        "useEffect のエラーを自動で全て捕捉する",
+        "ネットワークエラーを必ず捕捉する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。非同期エラーは別途対応が必要なことが多い。\n\nD：誤り。\n\nポイント：UI の崩壊を防ぐために重要（ただし捕捉範囲は限定的）。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 23
+  }
+}

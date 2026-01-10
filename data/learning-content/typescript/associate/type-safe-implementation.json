@@ -1,0 +1,208 @@
+{
+  "categoryId": "type-safe-implementation",
+  "categoryName": "TypeScript - 型安全の実装",
+  "course": "associate",
+  "technology": "typescript",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（TypeScript：typeof）\n\ntypeof 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値が配列かどうかを判定する",
+        "値の型を文字列として返す",
+        "オブジェクトが特定の型を継承しているかを判定する",
+        "プロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：配列判定は Array.isArray を使う\n\n選択肢2：正解。typeof は型を \"string\", \"number\" などの文字列で返す\n\n選択肢3：instanceof の説明\n\n選択肢4：in の説明"
+    },
+    {
+      "id": "q2",
+      "question": "問題（TypeScript：instanceof）\n\ninstanceof 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスやコンストラクタのインスタンスかどうかを判定する",
+        "値が配列かどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：typeof の説明\n\n選択肢2：正解。instanceof はプロトタイプチェーンを使って、指定したクラス（コンストラクタ）のインスタンスかを判定する\n\n選択肢3：配列判定は Array.isArray を使う\n\n選択肢4：in 演算子の説明"
+    },
+    {
+      "id": "q3",
+      "question": "問題（TypeScript：in）\n\nin 演算子の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスのインスタンスかどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する",
+        "値が配列かどうかを判定する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\n選択肢1：typeof の説明\n\n選択肢2：instanceof の説明\n\n選択肢3：正解。in はオブジェクト自身またはプロトタイプチェーン上に指定したプロパティが存在するかを判定する\n\n選択肢4：配列判定は Array.isArray を使う"
+    },
+    {
+      "id": "q4",
+      "question": "問題（TypeScript：Array.isArray）\n\nArray.isArray の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値の型を文字列として返す",
+        "オブジェクトが特定のクラスのインスタンスかどうかを判定する",
+        "値が配列かどうかを判定する",
+        "オブジェクトに指定したプロパティが存在するかどうかを判定する"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\n選択肢1：typeof の説明\n\n選択肢2：instanceof の説明\n\n選択肢3：正解。Array.isArray は値が配列の場合に true を返す\n\n選択肢4：in 演算子の説明"
+    },
+    {
+      "id": "q5",
+      "question": "問題（TypeScript：オプショナルチェイニング ?.）\n\n?.（オプショナルチェイニング）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値が falsy の場合に処理を中断する",
+        "対象が null または undefined の場合、エラーを出さずに undefined を返す",
+        "値が必ず存在することをコンパイラに保証する",
+        "実行時に必ず例外を投げる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：これは && の挙動\n\n選択肢2：正解。?. は途中で null / undefined に遭遇すると評価を止め、undefined を返す\n\n選択肢3：存在保証は非 null アサーション !\n\n選択肢4：例外は投げない"
+    },
+    {
+      "id": "q6",
+      "question": "問題（TypeScript：Null 合体演算子 ??）\n\n??（Null 合体演算子）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "左辺が falsy な場合に右辺を返す",
+        "左辺が null または undefined の場合に右辺を返す",
+        "左辺が undefined の場合のみ右辺を返す",
+        "左辺と右辺を論理 OR で評価する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：これは || の挙動\n\n選択肢2：正解。?? は null / undefined のときだけ右辺を使う\n\n選択肢3：null も対象に含まれる\n\n選択肢4：論理演算子ではない"
+    },
+    {
+      "id": "q7",
+      "question": "問題（TypeScript：非 null アサーション !）\n\nTypeScript における !（非 null アサーション演算子）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値を必ず真偽値に変換する",
+        "値が null や undefined ではないことをコンパイラに伝える",
+        "値が falsy の場合にエラーを投げる",
+        "実行時に null チェックを行う"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：これは論理否定演算子 !（JavaScript）の説明\n\n選択肢2：正解。非 null アサーションは型チェックのみで、実行時の安全性は保証しない\n\n選択肢3：エラーを投げる機能はない\n\n選択肢4：実行時チェックは行われない"
+    },
+    {
+      "id": "q8",
+      "question": "問題（TypeScript：オプショナルチェイニング）\n\nvalue?.prop の挙動として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "value が falsy の場合にエラーを投げる",
+        "value が null または undefined の場合、undefined を返す",
+        "prop が存在しない場合に例外を投げる",
+        "value が必ず存在することを保証する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：falsy 判定ではない\n\n選択肢2：正解。value が null / undefined のとき、エラーにならず undefined を返す\n\n選択肢3：例外は投げない\n\n選択肢4：存在保証は非 null アサーション !"
+    },
+    {
+      "id": "q9",
+      "question": "問題（TypeScript：Null 合体演算子）\n\nvalue ?? defaultValue の挙動として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "value が falsy（0、\"\"、false など）の場合に defaultValue を返す",
+        "value が null または undefined の場合に defaultValue を返す",
+        "value が undefined の場合のみ defaultValue を返す",
+        "常に defaultValue を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：これは ||（論理 OR）の挙動\n\n選択肢2：正解。?? は null と undefined のときだけデフォルト値を使う\n\n選択肢3：null も対象に含まれる\n\n選択肢4：条件付き演算子ではない"
+    },
+    {
+      "id": "q10",
+      "question": "問題（TypeScript：型アサーション as）\n\nas の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "実行時に値の型を安全に変換するための構文である",
+        "コンパイラに対して、値の型を明示的に指定するための型アサーションである",
+        "変数のスコープを変更するための構文である",
+        "値が null や undefined でないことを保証する演算子である"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：as は実行時の型変換は行わない\n\n選択肢2：正解。as は TypeScript に「この値はこの型だ」と伝えるための型アサーション\n\n選択肢3：スコープ変更の機能はない\n\n選択肢4：これは非 null アサーション ! の説明"
+    },
+    {
+      "id": "q11",
+      "question": "問題（TypeScript：typeof）\n\n次のうち、TypeScript における typeof を使った型ガードとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "typeof はクラスや interface の判定にも使える",
+        "typeof は実行時の値をもとに型を絞り込むために使われる",
+        "typeof は number や string 以外のすべての型を判定できる",
+        "typeof は TypeScript 専用の構文で、JavaScript には存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\ntypeof では class や interface の判定はできません。\nクラス判定には instanceof を使います。\n\nB：正しい\ntypeof は 実行時の値の型（プリミティブ）を確認し、型を絞り込むために使われます。\n\nC：誤り\n判定できるのは主に string / number / boolean / bigint / symbol / undefined / function / object です。\n\nD：誤り\ntypeof は JavaScript にも存在する演算子です。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（TypeScript：instanceof）\n\n次のうち、TypeScript における instanceof を使った型ガードとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "instanceof は interface の判定に使用できる",
+        "instanceof はプリミティブ型（string や number）の判定に使う",
+        "instanceof は、オブジェクトが特定のクラスのインスタンスかどうかを判定する",
+        "instanceof は TypeScript 専用で、JavaScript には存在しない"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\ninterface は実行時に存在しないため、instanceof では判定できません。\n\nB：誤り\nプリミティブ型の判定には typeof を使います。\n\nC：正しい\ninstanceof は クラスを基準にインスタンスかどうかを判定し、型を絞り込みます。\n\nD：誤り\ninstanceof は JavaScript にも存在する演算子です。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（TypeScript：keyof）\n\n次のうち、TypeScript における keyof について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "keyof は、オブジェクトの値の型を取得する",
+        "keyof は、型 T のプロパティ名をユニオン型として取得する",
+        "keyof は、実行時にオブジェクトのキー一覧を返す",
+        "keyof は、配列の要素型を取得するために使う"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n値の型を取得するのは T[K]（インデックスアクセス型）です。\n\nB：正しい\nkeyof T は 型 T が持つプロパティ名をユニオン型として表します。\n\nC：誤り\nkeyof は 型レベルの仕組みで、実行時の処理は行いません。\n\nD：誤り\n配列の要素型取得は T[number] などを使います。"
+    },
+    {
+      "id": "q14",
+      "question": "問題（TypeScript：in）\n\n次のうち、TypeScript における in を使った型ガードとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "in は変数が配列かどうかを判定するために使う",
+        "in はオブジェクトが特定のプロパティを持つかどうかを判定する",
+        "in はプリミティブ型（string や number）の判定に使う",
+        "in は TypeScript 専用で、JavaScript には存在しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n配列判定には Array.isArray() を使います。\n\nB：正しい\nin は 指定したプロパティがオブジェクトに存在するかを確認し、\nその結果をもとに型を絞り込みます。\n\nC：誤り\nin はオブジェクト向けで、プリミティブ型の判定には使えません。\n\nD：誤り\nin は JavaScript にも存在する演算子です。"
+    },
+    {
+      "id": "q15",
+      "question": "問題（TypeScript：ユーザー定義型ガード is）\n\n次のうち、ユーザー定義型ガード（is）について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "is は実行時にオブジェクトの型を自動判定する構文である",
+        "is を使った関数は、戻り値として必ずオブジェクトを返す",
+        "is を使うことで、関数の戻り値が true の場合に型を絞り込める",
+        "is は typeof や instanceof と同じ用途で、常に置き換えられる"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\n実行時の判定ロジックは 自分で実装する必要があります。\n\nB：誤り\n戻り値は boolean です。\n\nC：正しい\nis を使うと、true の場合に型が特定の型として扱われます。\n\nD：誤り\nis は 複雑な条件の型判定に使われ、完全な置き換えではありません。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 15
+  }
+}

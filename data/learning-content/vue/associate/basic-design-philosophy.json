@@ -1,0 +1,182 @@
+{
+  "categoryId": "basic-design-philosophy",
+  "categoryName": "Vue.js - 基礎・設計思想",
+  "course": "associate",
+  "technology": "vue",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（Vue：Vueとは何か）\n\nVue の説明として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "サーバーサイドのフルスタックフレームワークで、DBアクセスまで標準で提供する。",
+        "UI を構築するための JavaScript フレームワーク（プログレッシブフレームワーク）で、コンポーネントで画面を組み立てる。",
+        "CSS のプリプロセッサで、スタイルをコンポーネント単位で管理するための仕組みである。",
+        "ブラウザ拡張の開発専用フレームワークで、DOM 操作 API を抽象化する。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。Vue はサーバー/DBまで一括提供するフルスタックではない（SSRは Nuxt 等）。\n\nB：正しい。Vue は UI をコンポーネントで構築するためのフレームワークで、段階的に導入できる点を「プログレッシブ」と呼ぶ。\n\nC：誤り。Vue は CSS プリプロセッサではない（Sass などが該当）。\n\nD：誤り。用途は Web UI 全般で、ブラウザ拡張専用ではない。\n\nポイント：Vue は「テンプレート + リアクティブ状態 + コンポーネント」で UI を組み立てる。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（Vue：SFC（単一ファイルコンポーネント））\n\nVue の SFC（Single File Component）に関する説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "1 ファイルに template / script / style をまとめて書ける。",
+        "SFC は必ず class ベースコンポーネントで実装する必要がある。",
+        "SFC はブラウザがそのまま解釈できるためビルド不要である。",
+        "SFC では CSS を書けないため、必ず Tailwind のみを使う。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。`.vue` にテンプレート・ロジック・スタイルを集約できる。\n\nB：誤り。Vue 3 では Composition API / Options API などで実装できる。\n\nC：誤り。通常はビルド（Vite 等）で変換される。\n\nD：誤り。SFC でも通常の CSS を書ける。\n\nポイント：SFC は「関心のまとまり（コンポーネント）」単位でファイルを完結させる開発体験を提供する。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（Vue：マウント）\n\nVue アプリを DOM に関連付ける操作として正しいものはどれか（Vue 3）。",
+      "type": "multiple-choice",
+      "options": [
+        "createApp(App).mount('#app')",
+        "new Vue(App).render('#app')",
+        "Vue.mount(App, '#app')",
+        "createApp('#app').mount(App)"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。Vue 3 の基本形。\n\nB：誤り。`new Vue()` は Vue 2 の代表的な書き方であり、Vue 3 では `createApp` を使う。\n\nC：誤り。そのような API は標準ではない。\n\nD：誤り。引数の順序が逆。\n\nポイント：Vue 3 はアプリインスタンスを作ってから mount する。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（Vue：リアクティブ更新）\n\nVue のリアクティブシステムがもたらす効果として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "状態が変化しても DOM は自動更新されないため、毎回手動で再描画する。",
+        "状態の変化を追跡し、依存しているテンプレートや computed が自動的に更新される。",
+        "状態を変更するとページ全体がリロードされる。",
+        "状態は immutable（不変）でなければならず、直接代入は常に禁止される。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。Vue は状態変化に応じて必要部分を更新する。\n\nB：正しい。依存追跡（tracking）とトリガー（triggering）で UI を同期する。\n\nC：誤り。SPA では通常リロードしない。\n\nD：誤り。Vue は mutable な更新も扱える（ただし参照の置き換えが必要なケースはある）。\n\nポイント：Vue は「状態→UI」の同期を自動化する。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（Vue：Suspense）\n\nSuspense の用途として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "非同期コンポーネント等の読み込み中に fallback を表示できる。",
+        "ルート遷移をブロックする。",
+        "watch を一時停止する。",
+        "TypeScript の型推論を強化する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。async setup や async component で使える。\n\nB/C/D：誤り。\n\nポイント：ローディング UI をコンポーネント境界で扱える。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（Vue：data の役割）\n\nOptions API における data の正しい説明はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "コンポーネントのローカル状態を返す関数（オブジェクト）を定義する。",
+        "props を定義する場所である。",
+        "ルート定義を行う場所である。",
+        "非同期コンポーネントを登録する場所である。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。`data(){ return { count: 0 } }` のように書く。\n\nB/C/D：誤り。\n\nポイント：data はコンポーネントごとに独立した状態を持つため、関数で返す形が基本。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（Vue：methods）\n\nOptions API の methods に書く内容として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "イベントハンドラなど、状態を変更する関数（メソッド）",
+        "HTML テンプレート文字列",
+        "CSS の定義",
+        "ルート遷移の履歴"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB/C/D：誤り。\n\nポイント：派生値は computed、監視は watch、処理は methods のように役割分担する。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（Vue：computed（Options））\n\nOptions API の computed の特徴として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "依存が変わらない限りキャッシュされる派生値を定義できる。",
+        "必ず Promise を返さなければならない。",
+        "DOM を直接操作するための API である。",
+        "props のバリデーションを定義する場所である。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB/C/D：誤り。\n\nポイント：Composition API の computed と考え方は同じ。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（Vue：errorCaptured）\n\n子孫コンポーネントのエラーを捕捉する Options API のフックとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "errorCaptured",
+        "onError",
+        "catchError",
+        "beforeError"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。エラー境界的に扱える。\n\nB/C/D：誤り。標準ではない。\n\nポイント：グローバルには app.config.errorHandler もある。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（Vue：v-html）\n\nv-html の注意点として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "XSS の危険があるため、信頼できない HTML をそのまま描画しない。",
+        "CSS が無効になる。",
+        "Vue Router が使えなくなる。",
+        "watch が動かなくなる。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。ユーザー入力などをそのまま入れるのは危険。\n\nB/C/D：誤り。\n\nポイント：可能ならプレーンテキストで表示し、HTML が必要ならサニタイズする。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（Vue：v-once）\n\nv-once の効果として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "初回レンダリング後、その部分は更新されなくなる。",
+        "一度だけクリックできるようになる。",
+        "watch が一度だけ実行される。",
+        "コンポーネントが一度だけマウントされる。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。静的コンテンツに使うと更新コストを減らせる場合がある。\n\nB：誤り。クリック制御はイベント修飾子。\n\nC：誤り。\n\nD：誤り。\n\nポイント：頻繁に変わらない領域に限定して使う。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（Vue：v-memo）\n\nv-memo の説明として正しいものはどれか（Vue 3.2+）。",
+      "type": "multiple-choice",
+      "options": [
+        "依存配列が変わらない限り、そのサブツリーの更新をスキップできる。",
+        "メモ帳アプリを生成する。",
+        "watch の結果を永続化する。",
+        "computed を自動生成する。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。パフォーマンス最適化用途。\n\nB/C/D：誤り。\n\nポイント：最適化はまずボトルネックを測定してから。乱用は可読性を下げる。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（Vue：key に index を使うリスク）\n\nv-for の key に index（配列の添字）を使うことのリスクとして適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "並び替えや挿入/削除で要素の同一性がずれ、入力値や状態が意図せず別要素に紐づくことがある。",
+        "コンパイルエラーになる。",
+        "必ずパフォーマンスが最悪になる。",
+        "CSS が効かなくなる。"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。安定しない key は不具合の原因になりやすい。\n\nB：誤り。\n\nC：誤り。ケースによるが、主問題は同一性の破綻。\n\nD：誤り。\n\nポイント：可能なら id を key にする。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 13
+  }
+}

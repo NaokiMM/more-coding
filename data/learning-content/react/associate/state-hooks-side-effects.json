@@ -1,0 +1,338 @@
+{
+  "categoryId": "state-hooks-side-effects",
+  "categoryName": "React - State・Hooks・副作用",
+  "course": "associate",
+  "technology": "react",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（React：オブジェクトstate更新）\n\nオブジェクト state を更新する際の基本として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "state.user.name = 'a' のように直接書き換える",
+        "スプレッド構文などでコピーしてから一部を上書きする",
+        "Object.freeze を必ず使う",
+        "必ず JSON.stringify して保存する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。直接変更は再レンダリングや差分検知で問題になりやすい。\n\nB：正しい。例：setUser(prev => ({...prev, name:'a'}))\n\nC：誤り。必須ではない。\n\nD：誤り。\n\nポイント：不変更新（immutable update）で差分検知しやすくする。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（React：配列state更新）\n\n配列 state に要素を追加する実装として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "items.push(newItem); setItems(items);",
+        "setItems(prev => [...prev, newItem]);",
+        "setItems(items + newItem);",
+        "setItems(prev => prev.push(newItem));"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。push は元配列を変更する。\n\nB：正しい。\n\nC：誤り。配列同士の加算は意図通りにならない。\n\nD：誤り。push の返り値は length。\n\nポイント：push は破壊的なので避け、コピーして追加する。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（React：バッチ更新）\n\n同じイベント内で state 更新がまとめて処理される（バッチされる）理由として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "必ず同期的に state が反映されるため。",
+        "不要な再レンダリングを減らしパフォーマンスを上げるため。",
+        "バッチ更新は React では存在しない。",
+        "バッチ更新は class コンポーネントでしか起きない。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。即時反映されない場合がある。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：連続した更新はまとめられることがあるため、前の値依存なら関数形式が安全。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（React：前の値に依存する更新）\n\ncount を 2 回増やしたいときの安全な実装として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "setCount(count + 1); setCount(count + 1);",
+        "setCount(prev => prev + 1); setCount(prev => prev + 1);",
+        "count++; count++;",
+        "setCount(() => count + 2);"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。同じ count を参照して 1 しか増えないことがある。\n\nB：正しい。\n\nC：誤り。state 直接変更。\n\nD：誤り。関数形式でも外側の count を参照すると危険。\n\nポイント：バッチ更新でも確実に 2 回増えるよう、関数形式を使う。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（React：useEffectの基本）\n\nuseEffect の役割として最も適切なものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "JSX を返す",
+        "副作用（データ取得、購読、手動DOM操作など）を扱う",
+        "state を宣言する",
+        "コンポーネントを定義する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。state は useState。\n\nD：誤り。\n\nポイント：レンダリングと副作用を分離するための Hook。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（React：依存配列の意味）\n\nuseEffect(() => {...}, [a, b]) の依存配列の意味として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "a,b が変わっても effect は一度だけ実行される",
+        "a または b が変わったときに effect が再実行される",
+        "毎レンダリング必ず実行される",
+        "配列の順序は関係ないのでソートされる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。依存配列なしが毎回実行。\n\nD：誤り。\n\nポイント：依存配列は「再実行条件」。不足すると古い値を参照しやすい。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（React：cleanupの実行タイミング）\n\nuseEffect の cleanup が実行されるタイミングとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "effect の直前（依存が変わる直前）と、アンマウント時",
+        "レンダリング中",
+        "初回マウントの直後のみ",
+        "props が変わらない限り実行されない"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。\n\nC：誤り。\n\nD：誤り。\n\nポイント：依存が変わると「前回の後片付け→新しい effect」。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（React：controlled component）\n\n制御コンポーネント（controlled component）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "input の値を DOM のみで保持し、React state は使わない",
+        "input の value を state で管理し、onChange で state を更新する",
+        "form タグを使わないこと",
+        "必ず ref のみで制御する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。これは uncontrolled に近い。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：フォーム状態を React に集約すると検証や送信が扱いやすい。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（React：uncontrolled component）\n\nuncontrolled component の特徴として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "入力値は主に DOM が保持し、必要なときに ref などで取得する",
+        "入力値は常に state で保持する",
+        "入力値は props でしか渡せない",
+        "React では使用不可"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。\n\nC：誤り。\n\nD：誤り。\n\nポイント：簡単なフォームでは uncontrolled も選択肢（ただし検証や同期は難しくなりやすい）。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（React：依存配列なし）\n\nuseEffect(() => {...}) のように第2引数を省略した場合の挙動として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "初回だけ実行される",
+        "毎レンダリング後に実行される",
+        "実行されない",
+        "コンパイルエラーになる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：第2引数なしは「毎回」。必要なら依存配列を指定する。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（React：空配列）\n\nuseEffect(() => {...}, []) の挙動として最も適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "a が変わるたびに実行される",
+        "初回マウント時（実質1回）に実行される",
+        "毎回実行される",
+        "アンマウント時にだけ実行される"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：初回のみ実行したい初期化処理に使う（ただし StrictMode では開発時に二重実行があり得る）。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（React：クリーンアップ）\n\nuseEffect のクリーンアップ関数の主な用途として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "state を宣言する",
+        "タイマー解除や購読解除など、後片付けを行う",
+        "JSX を返す",
+        "key を付ける"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。例：clearTimeout / removeEventListener / unsubscribe\n\nC：誤り。\n\nD：誤り。\n\nポイント：return () => {...} でクリーンアップを返す。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（React：Hooksのルール）\n\nHooks のルールとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "条件分岐の中で useState を呼んでもよい",
+        "ループの中で useEffect を呼んでもよい",
+        "コンポーネントのトップレベルでのみ Hook を呼ぶ",
+        "クラスコンポーネント内で Hook を呼ぶ"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り。条件分岐すると呼び出し順が崩れる。\n\nB：誤り。ループも同様。\n\nC：正しい。\n\nD：誤り。Hook は関数コンポーネント/カスタムHookで使用。\n\nポイント：Hook の呼び出し順序を安定させるため、トップレベルで呼ぶ。"
+    },
+    {
+      "id": "q14",
+      "question": "問題（React：カスタムHook）\n\nカスタム Hook（例：useSomething）の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "必ず UI を返すコンポーネントである",
+        "複数の Hook ロジックを関数として再利用できるようにまとめたもの",
+        "class のメソッドである",
+        "CSS のユーティリティである"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：Hook はロジックの再利用単位。UI ではなく処理を共有する。"
+    },
+    {
+      "id": "q15",
+      "question": "問題（React：useStateの基本）\n\nuseState の戻り値として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "state と state を直接変更する関数",
+        "現在の state と、state を更新する setter 関数の配列（2要素）",
+        "state のみ",
+        "setter のみ"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。state を直接変更するのではなく setter を使う。\n\nB：正しい。2要素配列で返される。\n\nC：誤り。\n\nD：誤り。\n\nポイント：const [count, setCount] = useState(0) の形で使う。"
+    },
+    {
+      "id": "q16",
+      "question": "問題（React：state更新のルール）\n\nstate 更新の基本ルールとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "state は直接代入で書き換える（例：count = 1）。",
+        "setter 関数を使って更新し、必要に応じて前の値から計算する。",
+        "更新しても再レンダリングは起きない。",
+        "複数の state は必ず 1 つのオブジェクトにまとめる。"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。直接代入は再レンダリングに反映されない/意図しない挙動になりやすい。\n\nB：正しい。setCount(prev => prev + 1) のように書くと安全。\n\nC：誤り。更新で再レンダリングが起きるのが基本（条件により最適化あり）。\n\nD：誤り。まとめる/分けるはケース次第。\n\nポイント：React の state は不変（immutable）として扱うとバグが減る。"
+    },
+    {
+      "id": "q17",
+      "question": "問題（React：遅延初期化）\n\nuseState の遅延初期化として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "useState(expensiveFn())",
+        "useState(() => expensiveFn())",
+        "useState(expensiveFn)",
+        "useState({ expensiveFn })"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。毎レンダリングで expensiveFn() が評価され得る。\n\nB：正しい。初回だけ呼ばれる。\n\nC：誤り。関数そのものを state にしたい場合は意図が異なる。\n\nD：誤り。\n\nポイント：初回のみ重い計算をしたい場合は関数を渡す。"
+    },
+    {
+      "id": "q18",
+      "question": "問題（React：useReducer）\n\nuseReducer が向いているケースとして適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "単純な boolean の切り替えのみ",
+        "複雑な state 遷移や、更新ロジックを 1 か所に集約したい場合",
+        "CSS を切り替えたい場合のみ",
+        "ルーティングをしたい場合"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。useState で十分な場合が多い。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：複数の更新パターンがある state を整理しやすい。"
+    },
+    {
+      "id": "q19",
+      "question": "問題（React：forwardRef）\n\n親から子の DOM を参照したいときに使う仕組みとして適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "useMemo",
+        "React.forwardRef",
+        "React.memo",
+        "useReducer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：ref を子に受け渡す必要がある場合に forwardRef を使う。"
+    },
+    {
+      "id": "q20",
+      "question": "問題（React：依存配列に関数）\n\nuseEffect の依存配列に関数を入れる必要があるのはどんなときか（一般論）。",
+      "type": "multiple-choice",
+      "options": [
+        "関数が毎回新しく生成され、effect 内でその関数を参照している場合",
+        "関数は依存に入れられない",
+        "関数は常にグローバルなので入れなくてよい",
+        "依存配列は空に固定すべき"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。入れられる。\n\nC：誤り。\n\nD：誤り。\n\nポイント：参照が変わるものを参照しているなら依存に入れる（必要なら useCallback で安定化）。"
+    },
+    {
+      "id": "q21",
+      "question": "問題（React：state更新は非同期的）\n\nsetState（useState の setter）について最も適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "呼び出した直後に必ず state が同期的に更新される",
+        "更新はまとめて処理されることがあり、直後に読んでも古い値の可能性がある",
+        "setter は props を更新する",
+        "setter は副作用を禁止する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：更新直後に値が必要なら useEffect や関数形式を検討する。"
+    },
+    {
+      "id": "q22",
+      "question": "問題（React：useEffectと無限ループ）\n\nuseEffect 内で state を更新するときに無限ループになりやすい原因として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "依存配列に必要な値を入れず、毎回 effect が走る設計になっている",
+        "useEffect は state 更新ができないため",
+        "setState は常に同期で1回だけ実行されるため",
+        "依存配列を [] にすると必ず無限ループになるため"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい。\n\nB：誤り。\n\nC：誤り。\n\nD：誤り。\n\nポイント：依存の設計を見直し、必要なら条件分岐や依存配列を適切に指定する。"
+    },
+    {
+      "id": "q23",
+      "question": "問題（React：stale closure）\n\nuseEffect の依存配列が不足すると起きやすい問題として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "常にビルドが失敗する",
+        "古い state/props を参照したまま処理が走る（stale closure）",
+        "CSS が当たらなくなる",
+        "ルーティングが壊れる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：依存配列は「使っている値」を基本として漏れなく入れる。"
+    },
+    {
+      "id": "q24",
+      "question": "問題（React：イベントリスナー）\n\nwindow のイベントリスナーを useEffect で登録する際に必要な配慮として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "登録だけして解除しない",
+        "cleanup で removeEventListener して解除する",
+        "レンダリング中に addEventListener する",
+        "ref を使うと解除は不要"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。メモリリークや二重登録の原因。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：登録したら解除（cleanup）までセットで考える。"
+    },
+    {
+      "id": "q25",
+      "question": "問題（React：fetch と effect）\n\nuseEffect でデータ取得を行うときの基本として適切なのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "レンダリング中に fetch する",
+        "useEffect 内で非同期処理を行い、必要ならキャンセル/無視の仕組みを入れる",
+        "setState を禁止する",
+        "必ず同期 XHR を使う"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り。\n\nB：正しい。\n\nC：誤り。\n\nD：誤り。\n\nポイント：アンマウント後の setState を避ける配慮（AbortController等）も重要。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 25
+  }
+}
