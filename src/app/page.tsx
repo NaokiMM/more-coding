@@ -3,18 +3,18 @@ import Link from "next/link";
 export default function Home() {
   const technologies = [
     {
-      id: "typescript",
-      name: "TypeScript",
-      description: "型安全性を持つJavaScriptのスーパーセット。大規模なアプリケーション開発に最適です。",
-      color: "from-blue-500 to-blue-700",
-      icon: "TS",
-    },
-    {
       id: "javascript",
       name: "JavaScript",
       description: "Web開発の基本となるプログラミング言語。動的なウェブサイトとアプリケーションを構築できます。",
       color: "from-yellow-500 to-orange-600",
       icon: "JS",
+    },
+    {
+      id: "typescript",
+      name: "TypeScript",
+      description: "型安全性を持つJavaScriptのスーパーセット。大規模なアプリケーション開発に最適です。",
+      color: "from-blue-500 to-blue-700",
+      icon: "TS",
     },
     {
       id: "react",

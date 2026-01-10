@@ -2,14 +2,14 @@
 export const categoriesData = [
   {
     id: "basic-types",
-    name: "TypeScriptの型一覧 - 基本型・特殊型",
+    name: "TypeScriptの型 - 基本型",
     file: "basic-types.json",
     icon: "🔤",
     color: "from-blue-500 to-blue-600",
   },
   {
     id: "advanced-types",
-    name: "TypeScriptの型一覧 - 特殊型（重要）・配列・タプル・オブジェクト系・関数型・ユニオン・交差",
+    name: "TypeScriptの型一覧 - 特殊型・配列・タプル・オブジェクト系・関数型・ユニオン・交差",
     file: "advanced-types.json",
     icon: "📦",
     color: "from-green-500 to-green-600",

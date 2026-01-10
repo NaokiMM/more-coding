@@ -1,6 +1,6 @@
 {
   "categoryId": "basic-types",
-  "categoryName": "TypeScriptの型一覧 - 基本型・特殊型（重要）",
+  "categoryName": "TypeScriptの型 - 基本型",
   "course": "associate",
   "technology": "typescript",
   "questions": [
