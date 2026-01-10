@@ -1,3 +1,12 @@
+# site domain
+https://engineer-skill-boost.com
+
+# github domain
+https://github.com/NaokiMM/skillboost
+
+# IT資格アプリ教材（AI入力禁止/AI補助許可）
+https://docs.google.com/spreadsheets/d/1M5k-YMU-nnv23_59H_eXhxl989TsWCPErkhwoJ39B1s/edit?gid=1587324847#gid=1587324847
+
 # 環境変数の扱い
 設定値（URL など）はコードに直接書かず、環境変数として管理する。
 ・.env.local：環境ごとの値を定義する場所
