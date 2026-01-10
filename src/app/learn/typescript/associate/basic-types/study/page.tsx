@@ -1,4 +1,4 @@
-import { categoriesData } from "@/lib/typescript-associate-categories";
+import { categoriesData } from "@/lib/categories/typescript/associate-categories";
 import StudyClient from "../../[categoryId]/study/StudyClient";
 
 interface Question {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { categoriesData } from "@/lib/typescript-professional-categories";
+import { categoriesData } from "@/lib/categories/typescript/professional-categories";
 
 export default function TypeScriptProfessionalPage() {
   const categories = categoriesData.map((category) => ({

@@ -3,7 +3,7 @@
 "use client";
 
 import Link from "next/link";
-import { categoriesData } from "@/lib/typescript-associate-categories";
+import { categoriesData } from "@/lib/categories/typescript/associate-categories";
 
 export default function TypeScriptAssociatePage() {
   const categories = categoriesData.map((cat) => ({
