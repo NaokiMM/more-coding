@@ -1,7 +1,7 @@
 // カテゴリページから学習ページへリダイレクト
 
 import { redirect } from "next/navigation";
-import { categoriesData } from "@/lib/typescript-categories";
+import { categoriesData } from "@/lib/typescript-associate-categories";
 
 interface PageProps {
   params: Promise<{

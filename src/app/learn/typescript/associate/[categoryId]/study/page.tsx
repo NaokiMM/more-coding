@@ -1,5 +1,5 @@
 import StudyClient from "./StudyClient";
-import { categoriesData } from "@/lib/typescript-categories";
+import { categoriesData } from "@/lib/typescript-associate-categories";
 
 interface Question {
   id: string;

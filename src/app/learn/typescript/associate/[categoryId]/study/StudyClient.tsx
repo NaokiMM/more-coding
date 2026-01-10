@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { categoriesData } from "@/lib/typescript-categories";
+import { categoriesData } from "@/lib/typescript-associate-categories";
 
 interface Question {
   id: string;

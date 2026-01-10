@@ -1,64 +1,51 @@
 "use client";
 
 import Link from "next/link";
+import { categoriesData } from "@/lib/typescript-professional-categories";
 
 export default function TypeScriptProfessionalPage() {
-  const categories = [
-    {
-      id: "generics",
-      name: "ジェネリクス",
-      description: "型パラメータを使った汎用的なコードの書き方を学びます。",
-      icon: "🔷",
-      color: "from-blue-500 to-cyan-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "union-intersection",
-      name: "ユニオン型とインターセクション型",
-      description: "複数の型を組み合わせる方法を学びます。",
-      icon: "🔀",
-      color: "from-indigo-500 to-indigo-600",
-      lessons: 4,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "type-guards",
-      name: "型ガードと型アサーション",
-      description: "実行時に型を絞り込む方法を学びます。",
-      icon: "🛡️",
-      color: "from-teal-500 to-teal-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "modules-namespaces",
-      name: "モジュールと名前空間",
-      description: "コードを整理し、再利用可能にする方法を学びます。",
-      icon: "📦",
-      color: "from-cyan-500 to-cyan-600",
-      lessons: 5,
-      estimatedTime: "3時間",
-    },
-    {
-      id: "decorators",
-      name: "デコレータ",
-      description: "クラスやメソッドに機能を追加するデコレータを学びます。",
-      icon: "✨",
-      color: "from-violet-500 to-violet-600",
-      lessons: 6,
-      estimatedTime: "4時間",
-    },
-    {
-      id: "classes-inheritance",
-      name: "クラスと継承",
-      description: "オブジェクト指向プログラミングの概念を学びます。",
-      icon: "🏗️",
-      color: "from-blue-600 to-blue-700",
-      lessons: 5,
-      estimatedTime: "4時間",
-    },
-  ];
+  const categories = categoriesData.map((category) => ({
+    ...category,
+    description: getCategoryDescription(category.id),
+    lessons: getCategoryLessons(category.id),
+    estimatedTime: getCategoryEstimatedTime(category.id),
+  }));
+
+  function getCategoryDescription(id: string): string {
+    const descriptions: Record<string, string> = {
+      "generics": "型パラメータを使った汎用的なコードの書き方を学びます。",
+      "union-intersection": "複数の型を組み合わせる方法を学びます。",
+      "type-guards": "実行時に型を絞り込む方法を学びます。",
+      "modules-namespaces": "コードを整理し、再利用可能にする方法を学びます。",
+      "decorators": "クラスやメソッドに機能を追加するデコレータを学びます。",
+      "classes-inheritance": "オブジェクト指向プログラミングの概念を学びます。",
+    };
+    return descriptions[id] || "";
+  }
+
+  function getCategoryLessons(id: string): number {
+    const lessons: Record<string, number> = {
+      "generics": 5,
+      "union-intersection": 4,
+      "type-guards": 5,
+      "modules-namespaces": 5,
+      "decorators": 6,
+      "classes-inheritance": 5,
+    };
+    return lessons[id] || 0;
+  }
+
+  function getCategoryEstimatedTime(id: string): string {
+    const times: Record<string, string> = {
+      "generics": "3時間",
+      "union-intersection": "3時間",
+      "type-guards": "3時間",
+      "modules-namespaces": "3時間",
+      "decorators": "4時間",
+      "classes-inheritance": "4時間",
+    };
+    return times[id] || "";
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">

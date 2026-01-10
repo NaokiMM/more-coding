@@ -39,4 +39,3 @@ export const categoriesData = [
     color: "from-pink-500 to-pink-600",
   },
 ] as const;
-
