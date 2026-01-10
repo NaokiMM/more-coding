@@ -1,0 +1,143 @@
+{
+  "categoryId": "console-log-usage",
+  "categoryName": "DevTool - Console 操作・ログ活用",
+  "course": "associate",
+  "technology": "devtool",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（DevTool：直前の評価結果）\nConsoleで直前に評価した式の結果（最後の値）を参照する特殊変数はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "$0",
+        "$_",
+        "$$",
+        "$x"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。$0はElementsで選択中の要素。\n\n選択肢2：正解。Consoleでは$_が直前の評価結果を指す。\n\n選択肢3：誤り。$$はquerySelectorAllのショートカット。\n\n選択肢4：誤り。$xはXPath検索用。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（DevTool：要素取得）\nConsoleでDOM要素をCSSセレクタで複数取得し配列風に扱えるヘルパーはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "$",
+        "$$",
+        "$_",
+        "$x"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。$はquerySelectorのショートカット（単一要素）。\n\n選択肢2：正解。$$はdocument.querySelectorAllのショートカット。\n\n選択肢3：誤り。$_は直前の評価結果。\n\n選択肢4：誤り。$xはXPath検索用。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（DevTool：XPath検索）\nConsoleでXPathで要素を取得するヘルパーはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "$x",
+        "$$",
+        "$0",
+        "$1"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。$xはXPathで検索して要素配列を返す。\n\n選択肢2：誤り。$$はCSSセレクタ用。\n\n選択肢3：誤り。$0は選択中の要素。\n\n選択肢4：誤り。$1は以前の選択要素。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（DevTool：ロググループ化）\nConsoleでログを見やすくグループ化するAPIはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "console.group()",
+        "console.trace()",
+        "console.timeStamp()",
+        "console.profile()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。console.group()/groupEnd()でログをネスト表示できる。\n\n選択肢2：誤り。console.trace()はスタックトレース出力。\n\n選択肢3：誤り。console.timeStamp()はタイムスタンプ記録。\n\n選択肢4：誤り。console.profile()はプロファイリング開始。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（DevTool：スタックトレース）\nConsoleにスタックトレース付きでメッセージを出すAPIはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "console.dir()",
+        "console.trace()",
+        "console.table()",
+        "console.count()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。console.dir()はオブジェクトのプロパティ表示。\n\n選択肢2：正解。console.trace()は現在のスタックトレースを出力する。\n\n選択肢3：誤り。console.table()は表形式表示。\n\n選択肢4：誤り。console.count()は呼び出し回数カウント。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（DevTool：処理時間計測）\nConsoleで処理時間を計測する基本的な組み合わせはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "console.time() と console.timeEnd()",
+        "console.count() と console.countReset()",
+        "console.group() と console.groupEnd()",
+        "console.profile() と console.profileEnd()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。time/ timeEndに同じラベルを渡すと経過時間が出る。\n\n選択肢2：誤り。count/countResetは呼び出し回数のリセット。\n\n選択肢3：誤り。group/groupEndはログのグループ化。\n\n選択肢4：誤り。profile/profileEndはプロファイリング。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（DevTool：表形式表示）\nConsoleでオブジェクトを表形式で見やすく表示するAPIはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "console.table()",
+        "console.dirxml()",
+        "console.warn()",
+        "console.error()"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。console.tableは配列/オブジェクトをテーブル表示する。\n\n選択肢2：誤り。console.dirxml()はXML表示。\n\n選択肢3：誤り。console.warn()は警告表示。\n\n選択肢4：誤り。console.error()はエラー表示。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（DevTool：例外停止設定）\nSourcesで例外が発生したときだけ停止したい。どの設定が近いか。",
+      "type": "multiple-choice",
+      "options": [
+        "Pause on caught exceptions",
+        "Disable JavaScript",
+        "Preserve log",
+        "Group similar messages"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。例外停止はPause on exceptions（caught/uncaught）で制御する。\n\n選択肢2：誤り。Disable JavaScriptはJS無効化。\n\n選択肢3：誤り。Preserve logはログ保持設定。\n\n選択肢4：誤り。Group similar messagesはログ表示設定。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（DevTool：ログ保持設定）\nConsoleのログをページ遷移後も保持したい。一般的な設定はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Preserve log",
+        "Disable cache",
+        "Show timestamps",
+        "Autocomplete from history"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。Preserve logでナビゲーション後もログを残せる。\n\n選択肢2：誤り。Disable cacheはキャッシュ無効化。\n\n選択肢3：誤り。Show timestampsは時刻表示。\n\n選択肢4：誤り。Autocomplete from historyは入力補完。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（DevTool：ログフィルタ）\nコンソールでログ量が多いとき、特定文字列だけを表示したい。一般的にどの操作をするか。",
+      "type": "multiple-choice",
+      "options": [
+        "Consoleのフィルタ欄で絞り込む",
+        "NetworkのThrottlingを変える",
+        "ApplicationのStorageを消す",
+        "Performanceで録画する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。Consoleにはフィルタ入力があり、文字列やレベルで絞れる。\n\n選択肢2：誤り。Throttlingは通信速度制限。\n\n選択肢3：誤り。Storage削除は無関係。\n\n選択肢4：誤り。Performance録画は無関係。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 10
+  }
+}

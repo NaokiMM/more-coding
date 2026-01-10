@@ -1,0 +1,52 @@
+{
+  "categoryId": "meta-information-crawl-control",
+  "categoryName": "SEO - メタ情報・クロール制御",
+  "course": "associate",
+  "technology": "seo",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（SEO：meta description）\nmeta descriptionの主な役割として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "検索順位を直接決める",
+        "検索結果での説明文として表示されやすい",
+        "JSの実行速度を上げる",
+        "被リンク数を増やす"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。順位要因ではない。\n\n選択肢2：正解。順位要因ではないが、CTRに影響する。\n\n選択肢3：誤り。JS実行速度とは無関係。\n\n選択肢4：誤り。被リンク数とは無関係。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（SEO：重複コンテンツ対策）\n重複コンテンツ対策として一般的に使用されるタグはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "canonical",
+        "viewport",
+        "robots",
+        "charset"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。canonicalで正規URLを指定する。\n\n選択肢2：誤り。viewportはモバイル表示用。\n\n選択肢3：誤り。robotsはクロール制御用だが、重複対策はcanonical。\n\n選択肢4：誤り。charsetは文字コード指定用。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（SEO：インデックス制御）\n検索エンジンにインデックスさせたくないページに対して使う設定はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "noindex",
+        "nofollow",
+        "noopener",
+        "noreferrer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。noindexは検索結果への登録を防ぐ。\n\n選択肢2：誤り。nofollowはリンク評価の制御。\n\n選択肢3：誤り。noopenerはセキュリティ関連。\n\n選択肢4：誤り。noreferrerはリファラー情報の制御。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 3
+  }
+}

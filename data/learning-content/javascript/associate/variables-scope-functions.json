@@ -1,0 +1,325 @@
+{
+  "categoryId": "variables-scope-functions",
+  "categoryName": "JavaScript - 変数・スコープ・関数",
+  "course": "associate",
+  "technology": "javascript",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（JavaScript：var / let / const）\n次のうち、var と let の違いとして正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "var はブロックスコープ、let は関数スコープである",
+        "var は関数スコープ、let はブロックスコープである",
+        "var は再代入不可、let は再代入可能である",
+        "var は厳格モードでのみ使用できる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n逆。\n\nB：正しい\nvar は関数スコープ、let はブロックスコープ。\n\nC：誤り\n再代入可否は const と比較するべき。\n\nD：誤り\nvar は通常モードでも使える。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（JavaScript：const）\n次のうち、const の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "const は値の変更（ミューテーション）を完全に禁止する",
+        "const は変数の再代入を禁止する（オブジェクトの中身は変更可能な場合がある）",
+        "const はブロックスコープではなくグローバル専用である",
+        "const は必ず undefined で初期化される"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nconst は参照の再代入を禁止するだけで、オブジェクトの中身は変更できる。\n\nB：正しい\n再代入禁止がポイント。\n\nC：誤り\nブロックスコープ。\n\nD：誤り\n宣言時に初期化が必要。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（JavaScript：ホイスティング）\n次のうち、関数宣言のホイスティングについて正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数宣言はホイスティングされず、宣言より前で呼ぶと必ずエラーになる",
+        "関数宣言はホイスティングされるため、宣言より前でも呼び出せる",
+        "関数式（const f = () => {}）も同じように必ず呼び出せる",
+        "クラス宣言だけがホイスティングされる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n関数宣言はホイスティングされる。\n\nB：正しい\nfunction f() {} は宣言前に呼べる。\n\nC：誤り\n関数式は変数の初期化前だと呼べない。\n\nD：誤り\nクラスは TDZ があり宣言前に使えない。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（JavaScript：TDZ）\n次のうち、Temporal Dead Zone（TDZ）に該当するものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "var で宣言した変数を宣言前に参照する",
+        "let/const で宣言した変数を宣言前に参照する",
+        "関数宣言を宣言前に呼び出す",
+        "オブジェクトのプロパティを参照する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nvar は undefined になる（エラーではないことが多い）。\n\nB：正しい\nlet/const は初期化前参照で ReferenceError。\n\nC：誤り\n関数宣言は呼べる。\n\nD：誤り\nTDZ とは無関係。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（JavaScript：スコープ）\n次のコードの出力として正しいものはどれか。\nfor (let i = 0; i < 3; i++) {}\nconsole.log(typeof i);",
+      "type": "multiple-choice",
+      "options": [
+        "\"number\"",
+        "\"undefined\"",
+        "ReferenceError になる",
+        "\"object\""
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\ni はブロックスコープで for の外に出ない。\n\nB：誤り\n参照時にエラーになる。\n\nC：正しい\ni はスコープ外なので ReferenceError（typeof でも参照自体が必要）。\n\nD：誤り\n該当しない。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（JavaScript：クロージャ）\n次の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "クロージャとは、関数が外側スコープの変数を保持して参照できる仕組みである",
+        "クロージャとは、クラスの継承の仕組みである",
+        "クロージャとは、非同期処理を同期的にする仕組みである",
+        "クロージャとは、配列を高速化するための最適化である"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n内側の関数が外側の変数を「覚える」。\n\nB：誤り\nそれは継承。\n\nC：誤り\nそれは async/await など。\n\nD：誤り\n無関係。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（JavaScript：ループとクロージャ）\n次のコードの出力として正しいものはどれか。\nconst fns = [];\nfor (var i = 0; i < 3; i++) {\n  fns.push(() => i);\n}\nconsole.log(fns[0](), fns[1](), fns[2]());",
+      "type": "multiple-choice",
+      "options": [
+        "0 1 2",
+        "3 3 3",
+        "undefined undefined undefined",
+        "ReferenceError"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nvar は関数スコープで i が共有される。\n\nB：正しい\nループ後に i は 3 になっており、全て 3 を返す。\n\nC：誤り\ni は存在する。\n\nD：誤り\n参照は可能。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（JavaScript：アロー関数と this）\n次のうち、アロー関数の this について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "アロー関数は呼び出し方に応じて動的に this が変わる",
+        "アロー関数の this は外側のスコープの this をレキシカルに捕捉する",
+        "アロー関数は常に this が undefined になる",
+        "アロー関数は new でコンストラクタとして使える"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nそれは通常の関数の特徴。\n\nB：正しい\nアローは this を束縛しない。\n\nC：誤り\n外側が何かによる。\n\nD：誤り\nアローはコンストラクタ不可。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（JavaScript：call/apply/bind）\n次のうち、Function.prototype.bind の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数を即時実行し、戻り値を返す",
+        "this と一部引数を束縛した新しい関数を返す",
+        "配列を関数引数へ自動展開する",
+        "例外を捕捉して null を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n即時実行は call/apply。\n\nB：正しい\nbind は新しい関数を作る。\n\nC：誤り\nそれはスプレッドや apply の用途。\n\nD：誤り\n例外処理とは無関係。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（JavaScript：デフォルト引数）\n次のコードの出力として正しいものはどれか。\nfunction f(x = 10) { return x; }\nconsole.log(f(undefined), f(null));",
+      "type": "multiple-choice",
+      "options": [
+        "10 10",
+        "10 null",
+        "undefined null",
+        "null 10"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nnull は undefined ではない。\n\nB：正しい\nundefined のときだけデフォルトが使われ、null はそのまま渡る。\n\nC：誤り\nf(undefined) は 10。\n\nD：誤り\n順が違う。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（JavaScript：rest parameters）\n次のうち、rest parameters の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "関数の引数を配列として受け取るための構文である（...args）",
+        "オブジェクトのプロパティを列挙するための構文である",
+        "非同期処理の待機を表す構文である",
+        "例外を投げるための構文である"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n残りの引数を配列で受け取れる。\n\nB：誤り\n列挙は for...in など。\n\nC：誤り\n待機は await。\n\nD：誤り\nthrow。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（JavaScript：arguments）\n次のうち、arguments オブジェクトについて正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "アロー関数には独自の arguments が存在しない",
+        "arguments は常に本物の Array である",
+        "arguments は strict mode では使えない",
+        "arguments は Promise の引数だけを保持する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nアロー関数では外側の arguments を参照するか、rest を使う。\n\nB：誤り\nArray ではなく配列風オブジェクト。\n\nC：誤り\n使える（ただし挙動差はある）。\n\nD：誤り\n関数引数一般。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（JavaScript：即時関数 IIFE）\n次のうち、IIFE の目的として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "非同期処理を必ず同期化するため",
+        "スコープを作って変数を閉じ込めるため",
+        "クラス継承を簡単にするため",
+        "配列の要素数を固定するため"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n同期化はしない。\n\nB：正しい\n(function(){ ... })() でローカルスコープを作る用途がある。\n\nC：誤り\n継承とは無関係。\n\nD：誤り\n配列長固定ではない。"
+    },
+    {
+      "id": "q14",
+      "question": "問題（JavaScript：例外処理）\n次のうち、try/catch の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "try/catch は文法ではなく関数である",
+        "try ブロック内で発生した例外を catch で捕捉できる",
+        "catch は同期処理の例外のみ捕捉でき、throw はできない",
+        "finally は必ず return を上書きする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n構文（文）。\n\nB：正しい\n例外が投げられたときに catch が動く。\n\nC：誤り\nthrow できるし、非同期の例外は別途扱いが必要（Promise の catch 等）。\n\nD：誤り\nfinally でも return できるが「必ず上書き」ではない。"
+    },
+    {
+      "id": "q15",
+      "question": "問題（JavaScript：this の値）\n次のコードの出力として正しいものはどれか。（非 strict を想定）\nfunction f() { return this; }\nconsole.log(f() === globalThis);",
+      "type": "multiple-choice",
+      "options": [
+        "true",
+        "false",
+        "TypeError",
+        "undefined"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n通常モードでの単純呼び出しは this がグローバル（環境により window/globalThis）。\n\nB：誤り\nstrict なら undefined になるが、設問は非 strict。\n\nC：誤り\n例外ではない。\n\nD：誤り\nstrict の場合。"
+    },
+    {
+      "id": "q16",
+      "question": "問題（JavaScript：strict mode の this）\n次のコードの出力として正しいものはどれか。\nfunction f() { 'use strict'; return this; }\nconsole.log(f());",
+      "type": "multiple-choice",
+      "options": [
+        "globalThis が表示される",
+        "undefined が表示される",
+        "null が表示される",
+        "TypeError になる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nstrict では this は自動的にグローバルにならない。\n\nB：正しい\n単純呼び出しの this は undefined。\n\nC：誤り\nnull ではない。\n\nD：誤り\nconsole.log は undefined を表示できる。"
+    },
+    {
+      "id": "q17",
+      "question": "問題（JavaScript：関数の戻り値）\n次のうち、return を書かない関数の戻り値として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "null",
+        "undefined",
+        "0",
+        "false"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n既定は null ではない。\n\nB：正しい\nreturn なしは undefined を返す。\n\nC：誤り\n0 ではない。\n\nD：誤り\nfalse ではない。"
+    },
+    {
+      "id": "q18",
+      "question": "問題（JavaScript：短絡評価）\n次のコードの出力として正しいものはどれか。\nconsole.log(\"\" && 123);",
+      "type": "multiple-choice",
+      "options": [
+        "\"\"",
+        "123",
+        "false",
+        "undefined"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n&& は左が falsy なら左の値を返す。\n\nB：誤り\n左が truthy のときだけ右が返る。\n\nC：誤り\nboolean に変換して返すわけではない。\n\nD：誤り\nundefined ではない。"
+    },
+    {
+      "id": "q19",
+      "question": "問題（JavaScript：for...of と for...in）\n次のうち、for...of の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "オブジェクトの列挙可能プロパティ名を回す",
+        "イテラブル（配列、文字列など）の要素を回す",
+        "必ずインデックス（数値）を回す",
+        "Promise の解決結果を回す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nそれは for...in の用途。\n\nB：正しい\nfor...of は値（要素）を取り出す。\n\nC：誤り\nインデックスではなく要素。\n\nD：誤り\nPromise とは無関係。"
+    },
+    {
+      "id": "q20",
+      "question": "問題（JavaScript：break と continue）\n次のうち、continue の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ループを即座に終了する",
+        "現在の反復をスキップして次の反復へ進む",
+        "関数から戻る",
+        "例外を投げる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nループ終了は break。\n\nB：正しい\ncontinue は次の反復へ。\n\nC：誤り\nそれは return。\n\nD：誤り\nそれは throw。"
+    },
+    {
+      "id": "q21",
+      "question": "問題（JavaScript：switch）\n次のうち、switch 文の比較として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "case の比較は ==（抽象等価）で行われる",
+        "case の比較は ===（厳密等価）で行われる",
+        "case は正規表現で比較される",
+        "switch は常に文字列でしか比較できない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nswitch は厳密比較に近い挙動（===）。\n\nB：正しい\n型が違うと一致しない。\n\nC：誤り\n正規表現比較ではない。\n\nD：誤り\n任意の式を使える。"
+    },
+    {
+      "id": "q22",
+      "question": "問題（JavaScript：再帰）\n次のうち、再帰関数について正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "再帰は必ず無限ループになる",
+        "再帰は終了条件（ベースケース）が必要である",
+        "再帰は JavaScript では書けない",
+        "再帰は必ず while 文にコンパイルされる"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n終了条件があれば止まる。\n\nB：正しい\nベースケースがないと無限再帰になる。\n\nC：誤り\n普通に書ける。\n\nD：誤り\n変換される保証はない。"
+    },
+    {
+      "id": "q23",
+      "question": "問題（JavaScript：例外の種類）\n次のうち、未定義変数を参照した場合に一般的に発生するエラーはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "TypeError",
+        "ReferenceError",
+        "SyntaxError",
+        "RangeError"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nTypeError は型が不適切な操作で起きることが多い。\n\nB：正しい\n未宣言/未定義の変数参照は ReferenceError。\n\nC：誤り\n構文の誤りではない。\n\nD：誤り\n範囲エラーではない。"
+    },
+    {
+      "id": "q24",
+      "question": "問題（JavaScript：ガベージコレクション）\n次の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "JavaScript は参照がなくなったオブジェクトを自動的に回収する仕組み（GC）を持つ",
+        "JavaScript は必ず手動でメモリ解放しなければならない",
+        "GC は const を使うと無効になる",
+        "GC は Promise を使うと必ず停止する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n不要になったオブジェクトは実装依存で回収される。\n\nB：誤り\n手動 free はしない。\n\nC：誤り\nconst とは無関係。\n\nD：誤り\nPromise と無関係。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 24
+  }
+}

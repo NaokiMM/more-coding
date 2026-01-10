@@ -1,0 +1,26 @@
+{
+  "categoryId": "accessibility-auxiliary-information",
+  "categoryName": "SEO - アクセシビリティ・補助情報",
+  "course": "associate",
+  "technology": "seo",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（SEO：alt属性）\nalt属性の主な役割として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "画像サイズを指定する",
+        "画像の内容をテキストで説明する",
+        "画像を遅延読み込みする",
+        "画像を非表示にする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。画像サイズはwidth/heightで指定。\n\n選択肢2：正解。画像SEOとアクセシビリティに重要。\n\n選択肢3：誤り。遅延読み込みはloading属性など。\n\n選択肢4：誤り。非表示はCSSで制御。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 1
+  }
+}

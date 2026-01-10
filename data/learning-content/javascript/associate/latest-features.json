@@ -1,0 +1,182 @@
+{
+  "categoryId": "latest-features",
+  "categoryName": "JavaScript - 最新機能・実務パターン",
+  "course": "associate",
+  "technology": "javascript",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（JavaScript：default export）\n次のうち、default export の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "default は1つのモジュールで複数定義できる",
+        "default export は名前付き export と同時に使えない",
+        "default export は 1 つのモジュールにつき 1 つまで定義できる",
+        "default export は必ずクラスでなければならない"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\nA：誤り\ndefault は1つだけ。\n\nB：誤り\ndefault と named は併用できる。\n\nC：正しい\ndefault は単一。\n\nD：誤り\n関数/値/オブジェクトなど何でも可能。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（JavaScript：動的 import）\n次のうち、import() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "import() は構文で Promise を返さない",
+        "import() は Promise を返し、必要なときにモジュールを読み込める",
+        "import() は CommonJS の require と同じで同期的に動く",
+        "import() はブラウザでのみ使え、Node では使えない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\nimport() は関数呼び出しの形で Promise を返す。\n\nB：正しい\n遅延ロードや条件分岐に使える。\n\nC：誤り\nimport() は非同期。\n\nD：誤り\n環境次第で両方で使える。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（JavaScript：CommonJS）\n次のうち、CommonJS の特徴として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "require は一般に同期的にモジュールを読み込む",
+        "module.exports は ES Modules の構文である",
+        "CommonJS はブラウザ標準の唯一のモジュール方式である",
+        "require は Promise を返す"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nNode.js で広く使われた方式で、読み込みは基本同期。\n\nB：誤り\nmodule.exports は CommonJS。\n\nC：誤り\nブラウザ標準は ESM。\n\nD：誤り\nPromise は返さない（通常）。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（JavaScript：strict mode とモジュール）\n次のうち、ES Modules の特性として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "モジュール内は自動的に strict mode になる",
+        "モジュール内では strict mode が使えない",
+        "モジュールは常に globalThis に変数を公開する",
+        "モジュールは class を禁止する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nESM は常に strict 扱い。\n\nB：誤り\n使える（むしろ常に strict）。\n\nC：誤り\nモジュールスコープになる。\n\nD：誤り\n禁止しない。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（DOM：querySelector）\n次のうち、document.querySelector の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "CSS セレクタに一致する要素をすべて配列で返す",
+        "CSS セレクタに一致する最初の要素（または null）を返す",
+        "ID だけしか検索できない",
+        "必ず NodeList を返す"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n全件は querySelectorAll。\n\nB：正しい\n最初の1件または null。\n\nC：誤り\nCSS セレクタ全般。\n\nD：誤り\nquerySelector は単一要素。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（DOM：イベント伝播）\n次のうち、イベント伝播（イベントフロー）の順序として一般的に正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "バブリング → ターゲット → キャプチャリング",
+        "キャプチャリング → ターゲット → バブリング",
+        "ターゲット → キャプチャリング → バブリング",
+        "常に伝播しない"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n順が逆。\n\nB：正しい\ncapture → target → bubble。\n\nC：誤り\ntarget は途中。\n\nD：誤り\n通常は伝播する（止めることもできる）。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（DOM：preventDefault）\n次のうち、event.preventDefault() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "イベント伝播（バブリング）を止める",
+        "ブラウザのデフォルト動作（例：リンク遷移）を抑止する",
+        "イベントリスナーを削除する",
+        "イベントを必ず非同期にする"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n伝播停止は stopPropagation。\n\nB：正しい\n既定動作の抑止。\n\nC：誤り\nremoveEventListener。\n\nD：誤り\n無関係。"
+    },
+    {
+      "id": "q8",
+      "question": "問題（Web API：fetch）\n次のうち、fetch の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "fetch は失敗した HTTP ステータス（404 など）でもネットワーク自体が成功なら Promise は fulfilled になり得る",
+        "fetch は常に 404 で reject される",
+        "fetch は同期関数である",
+        "fetch は JSON しか取得できない"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\n通信成功なら fulfilled で、response.ok などで判定する。\n\nB：誤り\n404 でも fulfilled のことが多い。\n\nC：誤り\nPromise を返す非同期 API。\n\nD：誤り\nテキスト/Blob なども扱える。"
+    },
+    {
+      "id": "q9",
+      "question": "問題（Web API：Response.json）\n次のうち、response.json() の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "JSON 文字列を同期的にパースして即座に値を返す",
+        "本文を JSON として読み取り、Promise で結果を返す",
+        "本文が JSON でないと自動的に空オブジェクトを返す",
+        "response.json() は一度呼ぶと何度でも同じように読める"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n非同期で Promise。\n\nB：正しい\nボディストリームを読むので Promise。\n\nC：誤り\nパースに失敗すると reject になり得る。\n\nD：誤り\nボディは一度読むと消費される（通常）。"
+    },
+    {
+      "id": "q10",
+      "question": "問題（Web Storage：localStorage）\n次のうち、localStorage の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "値は number として保存される",
+        "値は文字列として保存される（必要なら JSON で変換する）",
+        "タブを閉じると必ず消える",
+        "サーバーに自動同期される"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n基本は文字列。\n\nB：正しい\n保存は文字列なので JSON.stringify/parse を併用する。\n\nC：誤り\n消えるのは主に sessionStorage のイメージ。\n\nD：誤り\n自動同期はしない。"
+    },
+    {
+      "id": "q11",
+      "question": "問題（Web Storage：sessionStorage）\n次のうち、sessionStorage の説明として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ブラウザを閉じても永続する",
+        "同一タブ（セッション）単位で保持され、タブを閉じると消えることが多い",
+        "サーバーに保存される",
+        "キーにオブジェクトを使える"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\nA：誤り\n永続は localStorage のイメージ。\n\nB：正しい\nセッション単位で保持。\n\nC：誤り\nクライアント側の保存。\n\nD：誤り\nキーは文字列。"
+    },
+    {
+      "id": "q12",
+      "question": "問題（実務：デバッグ）\n次のうち、console.log 以外のデバッグ方法として一般的に正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ブラウザ開発者ツールのブレークポイントを使う",
+        "JavaScript ではデバッガが使えない",
+        "console.log は本番でも必ず安全なので削除不要",
+        "例外は捕捉できないので必ず落ちる"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nDevTools でステップ実行・ウォッチなどが可能。\n\nB：誤り\nデバッガは広く使える。\n\nC：誤り\n本番ログの扱いは注意が必要（情報漏えい等）。\n\nD：誤り\ntry/catch や Promise.catch で扱える。"
+    },
+    {
+      "id": "q13",
+      "question": "問題（実務：lint/format）\n次のうち、ESLint / Prettier の役割として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "ESLint は主にコードの問題（潜在バグや規約違反）を検出し、Prettier は主に整形を担当する",
+        "ESLint はビルドツールであり、Prettier はテストツールである",
+        "ESLint は実行時の型チェックを行う",
+        "Prettier は HTTP 通信を最適化する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\nA：正しい\nlint と format は役割が異なる。\n\nB：誤り\nそれぞれ別用途。\n\nC：誤り\n実行時型チェックではない。\n\nD：誤り\n無関係。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 13
+  }
+}

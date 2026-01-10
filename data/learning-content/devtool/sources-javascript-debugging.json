@@ -1,0 +1,104 @@
+{
+  "categoryId": "sources-javascript-debugging",
+  "categoryName": "DevTool - Sources・JavaScript デバッグ",
+  "course": "associate",
+  "technology": "devtool",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（DevTool：ブレークポイント）\nChrome DevToolsでJavaScriptの実行を一時停止したい。最も一般的な方法はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Sourcesパネルでブレークポイントを設定する",
+        "Networkパネルでリクエストを停止する",
+        "ElementsパネルでDOMを固定する",
+        "Performanceパネルで記録を開始する"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。実行の停止はSourcesパネルでブレークポイントを置くのが基本。\n\n選択肢2：誤り。Networkは通信制御用。\n\n選択肢3：誤り。DOM固定とは無関係。\n\n選択肢4：誤り。Performanceは記録用で停止とは無関係。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（DevTool：Local Overrides）\nSourcesパネルでコードの一部を一時的に無効化したい。最も手軽な方法はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "行コメントアウトして保存する",
+        "Local Overridesで上書きする",
+        "Breakpointsを消す",
+        "Pretty printを使う"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。サーバー側の変更が必要になる。\n\n選択肢2：正解。Local Overridesを使うとローカルでリソースを上書きし、サーバーを触らず挙動を試せる。\n\n選択肢3：誤り。Breakpointsを消してもコードは実行される。\n\n選択肢4：誤り。Pretty printは整形用。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（DevTool：Step over）\nDebuggerで次の行に進む（関数内には入らない）操作はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Step into",
+        "Step over",
+        "Step out",
+        "Resume"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。Step intoは関数の中に入る。\n\n選択肢2：正解。Step overは関数呼び出しを1ステップとして次へ進む。\n\n選択肢3：誤り。Step outは関数から抜ける。\n\n選択肢4：誤り。Resumeは実行再開。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（DevTool：Step out）\nDebuggerで現在の関数の呼び出し元へ戻る（関数から抜ける）操作はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Step into",
+        "Step over",
+        "Step out",
+        "Pause"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\n選択肢1：誤り。Step intoは関数の中に入る。\n\n選択肢2：誤り。Step overは次へ進む。\n\n選択肢3：正解。Step outは現在の関数を最後まで実行して呼び出し元へ戻る。\n\n選択肢4：誤り。Pauseは実行停止。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（DevTool：ブレークポイント設定）\nブレークポイントをソースコードを変更せずに設定したい。最も基本の方法はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "console.logを追加する",
+        "行番号をクリックしてブレークポイントを置く",
+        "Networkをオフにする",
+        "ElementsでDOMを編集する"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。コード変更が必要。\n\n選択肢2：正解。Sourcesで行番号クリックが基本。\n\n選択肢3：誤り。Networkとは無関係。\n\n選択肢4：誤り。DOM編集とは無関係。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（DevTool：要素履歴参照）\nConsoleで直前に選択していた要素（$0の前）を参照するのはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "$1",
+        "$_",
+        "$$",
+        "$x"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。$1は以前の選択要素（履歴）を指す。$2〜$4も同様。\n\n選択肢2：誤り。$_は直前の評価結果。\n\n選択肢3：誤り。$$はquerySelectorAllのショートカット。\n\n選択肢4：誤り。$xはXPath検索用。"
+    },
+    {
+      "id": "q7",
+      "question": "問題（DevTool：Watch）\nデバッグ中に変数の値を監視したい。Sourcesのどの機能が適切か。",
+      "type": "multiple-choice",
+      "options": [
+        "Watch（監視式）",
+        "Coverage",
+        "Snippets",
+        "Workspace"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。Watchに式を追加するとステップ実行中に値を追える。\n\n選択肢2：誤り。Coverageはコードカバレッジ確認用。\n\n選択肢3：誤り。Snippetsはコードスニペット実行用。\n\n選択肢4：誤り。Workspaceはローカルファイル連携用。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 7
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "categoryId": "link-site-structure-optimization",
+  "categoryName": "SEO - リンク・サイト構造最適化",
+  "course": "associate",
+  "technology": "seo",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（SEO：内部リンク）\n内部リンクを最適化する主な目的として正しいものはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "広告収益を増やすため",
+        "検索エンジンとユーザーの回遊性を高めるため",
+        "JSを減らすため",
+        "画像を軽量化するため"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。広告収益とは直接関係ない。\n\n選択肢2：正解。クロール性とUXの改善につながる。\n\n選択肢3：誤り。JSの削減とは無関係。\n\n選択肢4：誤り。画像の軽量化とは無関係。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 1
+  }
+}

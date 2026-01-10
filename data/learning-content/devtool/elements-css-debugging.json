@@ -1,0 +1,52 @@
+{
+  "categoryId": "elements-css-debugging",
+  "categoryName": "DevTool - Elements・CSS デバッグ",
+  "course": "associate",
+  "technology": "devtool",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（DevTool：Elements参照）\nElementsパネルで現在選択している要素をConsoleから参照する記法はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "$0",
+        "$_",
+        "$$",
+        "window.selected"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。$0はElementsで選択中の要素を指す。\n\n選択肢2：誤り。$_は直前の評価結果。\n\n選択肢3：誤り。$$はquerySelectorAllのショートカット。\n\n選択肢4：誤り。そのようなプロパティはない。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（DevTool：CSS編集）\nElementsで要素のCSSを一時的に変更して見た目を確認したい。正しい説明はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "変更は必ずサーバーに保存される",
+        "変更はその場で反映されるが、通常リロードで戻る",
+        "変更するとJSが無効化される",
+        "変更するとDOMが固定される"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。サーバーには保存されない。\n\n選択肢2：正解。DevTools上のCSS編集は一時的で、通常リロードで戻る。\n\n選択肢3：誤り。JSは無効化されない。\n\n選択肢4：誤り。DOMは固定されない。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（DevTool：CSS優先順位確認）\n要素がどのCSSルールにより適用されているか（優先順位含む）を確認するのに適した場所はどこか。",
+      "type": "multiple-choice",
+      "options": [
+        "ElementsのStyles/Computed",
+        "NetworkのHeaders",
+        "SourcesのCall stack",
+        "PerformanceのSummary"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。ElementsのStylesやComputedで適用ルールと優先順位を確認できる。\n\n選択肢2：誤り。HeadersはHTTPヘッダー確認用。\n\n選択肢3：誤り。Call stackは実行スタック確認用。\n\n選択肢4：誤り。Summaryはパフォーマンス概要用。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 3
+  }
+}

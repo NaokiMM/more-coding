@@ -1,0 +1,91 @@
+{
+  "categoryId": "network-communication-analysis",
+  "categoryName": "DevTool - Network・通信解析",
+  "course": "associate",
+  "technology": "devtool",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "問題（DevTool：キャッシュ無効化）\nNetworkパネルでキャッシュを無効化して再読み込み検証したい。一般的にどれが必要か。",
+      "type": "multiple-choice",
+      "options": [
+        "DevToolsを開いた状態で「Disable cache」を有効にする",
+        "ApplicationパネルでStorageをClearする",
+        "PerformanceパネルでRecordする",
+        "Consoleをクリアする"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。Disable cacheはDevToolsを開いている間、キャッシュを使わない挙動にできる。\n\n選択肢2：誤り。Storageのクリアはキャッシュとは別。\n\n選択肢3：誤り。Performanceは記録用。\n\n選択肢4：誤り。Consoleクリアは無関係。"
+    },
+    {
+      "id": "q2",
+      "question": "問題（DevTool：レスポンス本文確認）\nNetworkパネルで特定のリクエストのレスポンス本文を確認したい。通常どのタブを見るか。",
+      "type": "multiple-choice",
+      "options": [
+        "Headers",
+        "Preview/Response",
+        "Initiator",
+        "Timing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。Headersはヘッダー情報確認用。\n\n選択肢2：正解。本文はResponse（生データ）やPreview（整形表示）で確認する。\n\n選択肢3：誤り。Initiatorは呼び出し元確認用。\n\n選択肢4：誤り。Timingは時間情報確認用。"
+    },
+    {
+      "id": "q3",
+      "question": "問題（DevTool：リクエスト発生元確認）\nNetworkパネルでリクエストがどのコードから発生したか確認するのに適した項目はどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Size",
+        "Initiator",
+        "Domain",
+        "Protocol"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。Sizeはサイズ情報。\n\n選択肢2：正解。Initiatorで呼び出し元（スタック/スクリプト）を追える。\n\n選択肢3：誤り。Domainはドメイン情報。\n\n選択肢4：誤り。Protocolはプロトコル情報。"
+    },
+    {
+      "id": "q4",
+      "question": "問題（DevTool：XHRフィルタ）\nXHR/fetchの通信だけをNetworkパネルで絞り込みたい。一般的なフィルタはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Doc",
+        "JS",
+        "XHR",
+        "Img"
+      ],
+      "correctAnswer": 2,
+      "explanation": "解説\n\n選択肢1：誤り。DocはHTML文書用。\n\n選択肢2：誤り。JSはJavaScriptファイル用。\n\n選択肢3：正解。XHRフィルタでAjax系通信に絞れる。\n\n選択肢4：誤り。Imgは画像用。"
+    },
+    {
+      "id": "q5",
+      "question": "問題（DevTool：回線速度シミュレート）\nNetworkで「遅い3G」など回線速度を模擬する設定はどこで行うのが一般的か。",
+      "type": "multiple-choice",
+      "options": [
+        "Consoleの設定",
+        "NetworkのThrottling",
+        "SourcesのBreakpoints",
+        "ElementsのStyles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "解説\n\n選択肢1：誤り。Consoleの設定ではない。\n\n選択肢2：正解。NetworkパネルのThrottlingで回線をシミュレートできる。\n\n選択肢3：誤り。Breakpointsは停止設定。\n\n選択肢4：誤り。StylesはCSS確認用。"
+    },
+    {
+      "id": "q6",
+      "question": "問題（DevTool：ヘッダー確認）\nNetworkでリクエスト/レスポンスヘッダーを確認するタブはどれか。",
+      "type": "multiple-choice",
+      "options": [
+        "Headers",
+        "Timing",
+        "Initiator",
+        "Cookies"
+      ],
+      "correctAnswer": 0,
+      "explanation": "解説\n\n選択肢1：正解。Headersタブで一般/リクエスト/レスポンスヘッダーを確認できる。\n\n選択肢2：誤り。Timingは時間情報。\n\n選択肢3：誤り。Initiatorは呼び出し元。\n\n選択肢4：誤り。CookiesはCookie情報（Headers内の一部）。"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalQuestions": 6
+  }
+}
