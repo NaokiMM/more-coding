@@ -44,9 +44,16 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
     return null;
   }
 
-  // public/questions/typescript/associate/{file}からJSONをHTTP fetchで取得
+  // 環境変数のチェック
+  const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
+  if (!baseUrl) {
+    console.error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
+    return null;
+  }
+
+  // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `/questions/typescript/associate/${category.file}`;
+    const jsonUrl = `${baseUrl}/questions/typescript/associate/${category.file}`;
     const response = await fetch(jsonUrl, {
       cache: "no-store",
     });
