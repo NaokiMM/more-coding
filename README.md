@@ -59,32 +59,3 @@ URL一致したファイルを返すだけ
 questions[0].question → 問題文
 questions[0].options → 選択肢
 問題数 → questions.length
-
-# 試験監視（MDM）の候補
-・https://www.aspicjapan.org/asu/article/6636
-・Microsoft intune
-
-# stripe APIテストの実行方法
-1. テストモードに切り替え
-Stripeダッシュボード右上の テストモード を ON にする。
-
-2. 環境変数を設定
-.env などに テスト用の秘密鍵を設定する（Git管理しない）。
-STRIPE_SECRET_KEY=sk_test_xxx
-
-3. API疎通確認（curl）
-curl https://api.stripe.com/v1/balance \
-  -u "$STRIPE_SECRET_KEY:"
-
-JSONが返ればAPI接続成功。
-
-4. 決済APIの簡易テスト（任意）
-curl https://api.stripe.com/v1/payment_intents \
-  -u "$STRIPE_SECRET_KEY:" \
-  -d amount=100 \
-  -d currency=jpy \
-  -d "payment_method_types[]=card"
-
-5. ダッシュボード確認
-テストモードの イベント に
-payment_intent.created が表示されていればOK。
