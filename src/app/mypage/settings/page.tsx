@@ -1,3 +1,4 @@
+// マイページの設定画面
 "use client";
 
 import Link from "next/link";

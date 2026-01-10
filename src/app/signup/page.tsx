@@ -1,3 +1,4 @@
+// 会員登録ページ
 "use client";
 
 import Link from "next/link";
