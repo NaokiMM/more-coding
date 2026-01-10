@@ -1,3 +1,4 @@
+// 会社概要ページ
 import Link from "next/link";
 
 export default function CompanyPage() {

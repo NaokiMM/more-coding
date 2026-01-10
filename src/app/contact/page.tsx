@@ -1,3 +1,4 @@
+// 問い合わせページ
 "use client";
 
 import Link from "next/link";
