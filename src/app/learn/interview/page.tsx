@@ -1,3 +1,4 @@
+// 面接対策 コース　のページ
 "use client";
 
 import Link from "next/link";

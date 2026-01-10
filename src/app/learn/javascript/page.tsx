@@ -1,3 +1,4 @@
+// JavaScript 学習コース　のページ
 "use client";
 
 import Link from "next/link";
