@@ -269,10 +269,10 @@ export default function NextJSLearnPage() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
-              className="mr-2 h-4 w-4"
+              className="mr-2 h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -281,7 +281,7 @@ export default function NextJSLearnPage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
             ホームに戻る
