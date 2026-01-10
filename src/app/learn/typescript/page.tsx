@@ -235,13 +235,40 @@ export default function TypeScriptLearnPage() {
                 )}
 
                 {/* Action Button */}
-                <Link
-                  href={`/learn/typescript/${level.id}`}
-                  className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  学習を始める
-                </Link>
+                {level.id === "associate" ? (
+                  <Link
+                    href={`/learn/typescript/${level.id}`}
+                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    学習を始める
+                  </Link>
+                ) : (
+                  <>
+                    <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`}>
+                      学習を始める
+                    </div>
+                    {/* 現在利用不可能 UI */}
+                    <div className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-red-50 px-4 py-2 dark:bg-red-900/20">
+                      <svg
+                        className="h-4 w-4 text-red-600 dark:text-red-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span className="text-sm font-semibold text-red-600 dark:text-red-400">
+                        現在利用不可能
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}

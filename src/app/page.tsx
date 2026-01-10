@@ -89,13 +89,31 @@ export default function Home() {
                 学習できる技術・資格
               </Link>
               <Link
-                href="#about"
+                href="/company"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
               >
-                について
+                会社概要
+              </Link>
+              <Link
+                href="/pricing"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                料金一覧
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                問い合わせ
               </Link>
             </nav>
             <div className="flex items-center gap-4">
+              <Link
+                href="/corporate-login"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                法人ログイン
+              </Link>
               <Link
                 href="/login"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
@@ -117,10 +135,10 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-5xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
-            ITエンジニアリング学習を用いて
+            エンジニアリング学習を用いて
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              年収・人間関係・スキルアップ
+              スキルアップ
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
@@ -146,7 +164,7 @@ export default function Home() {
             学習できる技術・資格
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            最新のフロントエンド技術を体系的に学べます
+            最新のフロントエンド・バックエンド技術を体系的に学べます
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -206,16 +224,73 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-4 flex items-center justify-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
-                SB
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="text-center md:text-left">
+              <div className="mb-4 flex items-center justify-center md:justify-start gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
+                  SB
+                </div>
+                <span className="text-lg font-bold text-slate-900 dark:text-white">
+                  SkillBoost
+                </span>
               </div>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">
-                SkillBoost
-              </span>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                IT資格の取得を目指す方のための学習プラットフォーム
+              </p>
             </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">サービス</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#technologies" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    学習できる技術・資格
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pricing" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    料金一覧
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    問い合わせ
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">会社情報</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/company" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    会社概要
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/corporate-login" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    法人ログイン
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">アカウント</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/login" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    ログイン
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/signup" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    会員登録
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
+            <p className="text-center text-sm text-slate-600 dark:text-slate-400">
               © 2024 SkillBoost. All rights reserved.
             </p>
           </div>
