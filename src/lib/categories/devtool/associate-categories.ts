@@ -2,39 +2,39 @@
 export const categoriesData = [
   {
     // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "devtool-basics",
+    id: "console-log-usage",
     // 画面表示用の名前
-    name: "DevTool - 基礎知識",
+    name: "DevTool - Console 操作・ログ活用",
     // aws-s3にアップロードしたファイル名
-    file: "devtool-basics.json",
+    file: "console-log-usage.json",
     icon: "🔤",
     color: "from-teal-500 to-cyan-600",
   },
   {
-    id: "browser-devtools",
-    name: "DevTool - ブラウザ開発者ツール",
-    file: "browser-devtools.json",
+    id: "elements-css-debugging",
+    name: "DevTool - Elements・CSS デバッグ",
+    file: "elements-css-debugging.json",
     icon: "📦",
     color: "from-cyan-500 to-teal-600",
   },
   {
-    id: "debugging-techniques",
-    name: "DevTool - デバッグ技法",
-    file: "debugging-techniques.json",
-    icon: "🔗",
-    color: "from-teal-600 to-cyan-700",
-  },
-  {
-    id: "performance-profiling",
-    name: "DevTool - パフォーマンス計測",
-    file: "performance-profiling.json",
+    id: "sources-javascript-debugging",
+    name: "DevTool - Sources・JavaScript デバッグ",
+    file: "sources-javascript-debugging.json",
     icon: "🛠️",
     color: "from-cyan-600 to-teal-700",
   },
   {
-    id: "network-analysis",
-    name: "DevTool - ネットワーク分析",
-    file: "network-analysis.json",
+    id: "network-communication-analysis",
+    name: "DevTool - Network・通信解析",
+    file: "network-communication-analysis.json",
+    icon: "⚡",
+    color: "from-teal-600 to-emerald-600",
+  },
+  {
+    id: "performance-application-quality-evaluation",
+    name: "DevTool - Performance・Application・品質評価",
+    file: "performance-application-quality-evaluation.json",
     icon: "⚡",
     color: "from-teal-600 to-emerald-600",
   },
