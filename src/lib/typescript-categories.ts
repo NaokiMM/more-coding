@@ -2,7 +2,7 @@
 export const categoriesData = [
   {
     id: "basic-types",
-    name: "TypeScriptの型一覧 - 基本型（プリミティブ）・特殊型（重要）",
+    name: "TypeScriptの型一覧 - 基本型・特殊型",
     file: "basic-types.json",
     icon: "🔤",
     color: "from-blue-500 to-blue-600",

@@ -1,12 +1,12 @@
 {
   "categoryId": "basic-types",
-  "categoryName": "TypeScriptの型一覧 - 基本型（プリミティブ）・特殊型（重要）",
+  "categoryName": "TypeScriptの型一覧 - 基本型・特殊型（重要）",
   "course": "associate",
   "technology": "typescript",
   "questions": [
     {
       "id": "q1",
-      "question": "問題（TypeScript：string 型）\n\n次のコードについて、正しい説明はどれか。\n\nlet message: string = \"Hello\";",
+      "question": "問題（TypeScript：string 型）\n次のコードについて、正しい説明はどれか。\n\nlet message: string = \"Hello\";",
       "type": "multiple-choice",
       "options": [
         "string はオブジェクト型であり、String と同じ意味である",
