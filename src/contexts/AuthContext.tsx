@@ -1,13 +1,9 @@
+// useState/useEffect/useContext を使うため（Client Component）
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { CognitoUser } from "amazon-cognito-identity-js";
-import {
-  getCurrentUser,
-  getUserAttributes,
-  getSession,
-  signOut as cognitoSignOut,
-} from "@/lib/cognito";
+import { getCurrentUser, getUserAttributes, getSession, signOut as cognitoSignOut } from "@/lib/cognito";
 
 interface User {
   email: string;
@@ -25,6 +21,7 @@ interface AuthContextType {
   refreshUser: () => Promise<void>;
 }
 
+// createContext<型（どちらか）>(初期値)
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -74,10 +71,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null);
         setCognitoUser(null);
       }
+    // try catch でエラーを処理
     } catch (error) {
       console.error("Error loading user:", error);
       setUser(null);
       setCognitoUser(null);
+    // 最終時にloadingをfalseにする
     } finally {
       setLoading(false);
     }
@@ -113,10 +112,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+// 認証情報（ユーザー・ログイン状態・操作）を取得するカスタムフック
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    // 認証エラー
+    throw new Error(
+      "useAuth must be used within an AuthProvider / useAuthはAuthProvider内で使用する必要があります"
+    );
   }
   return context;
 }
