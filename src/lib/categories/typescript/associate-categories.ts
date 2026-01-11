@@ -7,7 +7,9 @@ export const categoriesData = [
     name: "TypeScript - 基礎表現",
     // aws-s3にアップロードしたファイル名
     file: "basic-types.json",
+    // 画面表示用のアイコン
     icon: "🔤",
+    // 画面表示用の色
     color: "from-blue-500 to-blue-600",
   },
   {
