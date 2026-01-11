@@ -1,5 +1,3 @@
-// 何のページ??
-
 "use client";
 
 import { useState } from "react";
