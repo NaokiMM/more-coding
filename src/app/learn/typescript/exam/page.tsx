@@ -1,3 +1,12 @@
+/**
+ * TypeScript 試験・模擬試験 トップページ
+ * 
+ * ルート: /learn/typescript/exam
+ * 
+ * このページは、TypeScript技術者認定試験の模擬試験や過去問題演習を選択するページです。
+ * 模擬試験（第1回、第2回、第3回）、過去問題演習、試験対策ポイントなどを表示します。
+ */
+
 "use client";
 
 import Link from "next/link";

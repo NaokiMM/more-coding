@@ -1,4 +1,12 @@
-// 🔤型の基本（string, number, boolean）ページ
+/**
+ * TypeScript Associate 「型の基本」カテゴリ 詳細ページ
+ * 
+ * ルート: /learn/typescript/associate/basic-types
+ * 
+ * このページは、「型の基本（string, number, boolean）」カテゴリの詳細情報を表示します。
+ * 各レッスン（string型、number型、boolean型など）の一覧と説明を表示します。
+ * 注: このファイルは現在使用されていない可能性があります（[categoryId]/study/page.tsx が実際の学習ページです）。
+ */
 
 "use client";
 

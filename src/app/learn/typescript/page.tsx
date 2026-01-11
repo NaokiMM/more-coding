@@ -1,3 +1,12 @@
+/**
+ * TypeScriptコース トップページ
+ * 
+ * ルート: /learn/typescript
+ * 
+ * このページは、TypeScript技術者認定試験のレベル（Associate、Professional、Specialty、本番試験）
+ * を選択するページです。各レベルの概要、学習内容、予想時間などを表示します。
+ */
+
 "use client";
 
 import Link from "next/link";

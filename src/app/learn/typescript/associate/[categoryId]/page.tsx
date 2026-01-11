@@ -1,4 +1,11 @@
-// カテゴリページから学習ページへリダイレクト
+/**
+ * TypeScript Associate カテゴリ リダイレクトページ
+ * 
+ * ルート: /learn/typescript/associate/[categoryId]
+ * 
+ * このページは、カテゴリIDを受け取り、そのカテゴリの学習ページ（/study）にリダイレクトします。
+ * 例: /learn/typescript/associate/basic-types → /learn/typescript/associate/basic-types/study
+ */
 
 import { redirect } from "next/navigation";
 import { categoriesData } from "@/lib/categories/typescript/associate-categories";

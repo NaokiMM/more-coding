@@ -1,3 +1,14 @@
+/**
+ * TypeScript Associate 「型の基本」カテゴリ 学習ページ（静的ルート用）
+ * 
+ * ルート: /learn/typescript/associate/basic-types/study
+ * 
+ * このページは、「型の基本（basic-types）」カテゴリの学習データを取得し、
+ * StudyClientコンポーネントに渡すサーバーコンポーネントです。
+ * 注: このファイルは静的ルート（/basic-types/study）用で、
+ * 動的ルート（/[categoryId]/study）の代替として存在している可能性があります。
+ */
+
 import { categoriesData } from "@/lib/categories/typescript/associate-categories";
 import StudyClient from "../../[categoryId]/study/StudyClient";
 

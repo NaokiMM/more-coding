@@ -1,8 +1,16 @@
+/**
+ * TypeScript Associate カテゴリ 学習ページ（サーバーコンポーネント）
+ * 
+ * ルート: /learn/typescript/associate/[categoryId]/study
+ * 
+ * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
+ * StudyClientコンポーネントに渡すサーバーコンポーネントです。
+ * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
+ */
+
 import StudyClient from "./StudyClient";
 import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/typescript/associate-categories";
 
-// メイン処理
-// Next.jsのページ関数なので戻り値を指定無
 export default async function StudyPage({ params }: PageProps) {
   const { categoryId } = await params;
   const categoryData = await getCategoryData(categoryId);

@@ -1,4 +1,11 @@
-// TypeScript技術者認定 Associate コースページ
+/**
+ * TypeScript Associate コース カテゴリ一覧ページ
+ * 
+ * ルート: /learn/typescript/associate
+ * 
+ * このページは、TypeScript技術者認定 Associateレベルの学習カテゴリ一覧を表示します。
+ * 各カテゴリ（例：基本的な型、変数と関数など）をクリックすると、そのカテゴリの学習ページに遷移します。
+ */
 
 "use client";
 
