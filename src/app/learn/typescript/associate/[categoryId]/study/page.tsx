@@ -2,6 +2,7 @@ import StudyClient from "./StudyClient";
 import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/typescript/associate-categories";
 
 // メイン処理
+// Next.jsのページ関数なので戻り値を指定無
 export default async function StudyPage({ params }: PageProps) {
   const { categoryId } = await params;
   const categoryData = await getCategoryData(categoryId);
