@@ -47,6 +47,13 @@ export default function MyPage() {
 
   const [learningProgress] = useState([
     {
+      id: "javascript",
+      name: "JavaScript",
+      progress: 65,
+      color: "from-blue-500 to-blue-700",
+      icon: "JS",
+    },
+    {
       id: "typescript",
       name: "TypeScript",
       progress: 65,
