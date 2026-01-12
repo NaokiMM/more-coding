@@ -11,30 +11,13 @@
 import StudyClient from "./StudyClient";
 import { categoriesData as tsAssociateCategoriesData } from "@/lib/categories/typescript/associate-categories";
 
+// 静的生成を強制
+export const dynamic = "force-static";
+
 // URL パラメータから categoryId を取得
-export default async function StudyPage({ params }: PageProps) {
-
-  const categoryId = (await params).categoryId;
+export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
+  const { categoryId } = await Promise.resolve(params);
   const categoryData = await getCategoryData(categoryId);
-
-  console.log(
-    "StudyPage: before return, categoryData =",
-    !!categoryData,
-    "(StudyPage 戻り値直前：カテゴリデータ取得結果)"
-  );
-  
-  // カテゴリデータが取得できなかった場合
-  if (!categoryData) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-            データの取得に失敗しました
-          </h1>
-        </div>
-      </div>
-    );
-  }
 
   // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
@@ -48,38 +31,40 @@ export function generateStaticParams() {
 }
 
 // categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+async function getCategoryData(categoryId: string): Promise<CategoryData> {
   
   // tsAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = tsAssociateCategoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
-    return null;
+    throw new Error(`Category not found: ${categoryId}`);
   }
 
   // 環境変数のチェック
   const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
   if (!baseUrl) {
-    console.error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
-    return null;
+    throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
   }
 
   // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
     const jsonUrl = `${baseUrl}/questions/typescript/associate/${category.file}`;
     const response = await fetch(jsonUrl, {
-      cache: "no-store",
+      // 静的生成のため、force-cache を明示的に指定
+      cache: "force-cache",
     });
 
     if (!response.ok) {
-      return null;
+      throw new Error(`Failed to fetch category data: ${response.status} ${response.statusText} (${jsonUrl})`);
     }
 
     const data: CategoryData = await response.json();
     return data;
   } catch (error) {
-    console.error("Failed to fetch category data (カテゴリデータの取得に失敗しました):", error);
-    return null;
+    if (error instanceof Error) {
+      throw new Error(`Failed to fetch category data for ${categoryId}: ${error.message}`);
+    }
+    throw new Error(`Failed to fetch category data for ${categoryId}: Unknown error`);
   }
 }
 
@@ -105,10 +90,4 @@ interface CategoryData {
     lastUpdated: string;
     totalQuestions: number;
   };
-}
-
-interface PageProps {
-  params: Promise<{ // 非同期でデータを取得
-    categoryId: string;
-  }>;
 }
