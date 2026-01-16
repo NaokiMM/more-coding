@@ -83,6 +83,12 @@ export default function Home() {
                 学習できる技術・資格
               </Link>
               <Link
+                href="/blog"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                ブログ
+              </Link>
+              <Link
                 href="/company"
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
               >
@@ -238,6 +244,11 @@ export default function Home() {
                 <li>
                   <Link href="#technologies" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                     学習できる技術・資格
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                    ブログ
                   </Link>
                 </li>
                 <li>
