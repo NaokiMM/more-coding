@@ -13,12 +13,17 @@ const postsDirectory = path.join(process.cwd(), "content/posts");
 
 /**
  * 最初のh1要素を削除するrehypeプラグイン
+ * 
+ * 注意: Markdown側でh1を書かない運用に切り替えることで、
+ * このプラグインは不要になります。その場合はこの関数を削除して
+ * remark().use(remarkRehype)の後に.use(rehypeRemoveFirstHeading)を
+ * 呼び出している行も削除してください。
  */
 function rehypeRemoveFirstHeading() {
   return (tree: Root) => {
     let firstHeadingRemoved = false;
-    visit(tree, "element", (node: Element, index: number | null, parent: Element | Root | null) => {
-      if (!firstHeadingRemoved && node.tagName === "h1" && parent && typeof index === "number") {
+    visit(tree, "element", (node, index, parent) => {
+      if (!firstHeadingRemoved && node.tagName === "h1" && parent !== undefined && index !== undefined) {
         // 最初のh1を削除
         if ("children" in parent && Array.isArray(parent.children)) {
           parent.children.splice(index, 1);
