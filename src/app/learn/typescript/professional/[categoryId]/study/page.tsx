@@ -8,6 +8,7 @@
  * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
  */
 
+import { notFound } from "next/navigation";
 import StudyClient from "./StudyClient";
 import { categoriesData as tsProfessionalCategoriesData } from "@/lib/categories/typescript/professional-categories";
 
@@ -18,6 +19,11 @@ export const dynamic = "force-static";
 export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
   const { categoryId } = await Promise.resolve(params);
   const categoryData = await getCategoryData(categoryId);
+
+  // データが取得できない場合は404を返す
+  if (!categoryData) {
+    notFound();
+  }
 
   // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
@@ -31,19 +37,19 @@ export function generateStaticParams() {
 }
 
 // categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
   
   // tsProfessionalCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = tsProfessionalCategoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
-    throw new Error(`Category not found: ${categoryId}`);
+    return null;
   }
 
   // 環境変数のチェック
   const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
   if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
+    return null;
   }
 
   // CloudFront経由のS3からJSONをHTTP fetchで取得
@@ -55,16 +61,20 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch category data: ${response.status} ${response.statusText} (${jsonUrl})`);
+      return null;
+    }
+
+    // Content-Typeをチェック
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      return null;
     }
 
     const data: CategoryData = await response.json();
     return data;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`Failed to fetch category data for ${categoryId}: ${error.message}`);
-    }
-    throw new Error(`Failed to fetch category data for ${categoryId}: Unknown error`);
+    // エラーが発生した場合はnullを返す（404ページを表示）
+    return null;
   }
 }
 

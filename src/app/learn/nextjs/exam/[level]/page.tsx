@@ -21,10 +21,11 @@ export function generateStaticParams() {
   ];
 }
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: { level: "associate" | "professional" | "expert" };
+  params: { level: "associate" | "professional" | "expert" } | Promise<{ level: "associate" | "professional" | "expert" }>;
 }) {
-  return <NextJSExamLevelClient level={params.level} />;
+  const { level } = await Promise.resolve(params);
+  return <NextJSExamLevelClient level={level} />;
 }
