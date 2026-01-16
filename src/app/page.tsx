@@ -296,7 +296,7 @@ export default function Home() {
           </div>
           <div className="border-t border-slate-200 dark:border-slate-700 pt-8">
             <p className="text-center text-sm text-slate-600 dark:text-slate-400">
-              © 2024 SkillBoost. All rights reserved.
+              © 2026 SkillBoost. All rights reserved.
             </p>
           </div>
         </div>

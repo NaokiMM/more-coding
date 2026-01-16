@@ -441,7 +441,7 @@ export default function ContactPage() {
               </span>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              © 2024 SkillBoost. All rights reserved.
+              © 2026 SkillBoost. All rights reserved.
             </p>
           </div>
         </div>
