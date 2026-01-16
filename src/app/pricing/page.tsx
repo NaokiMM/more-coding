@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 export default function PricingPage() {
-  const monthlyPlans = [
+  const allPlans = [
     {
       id: "free",
       name: "無料プラン",
@@ -25,6 +25,26 @@ export default function PricingPage() {
       price: 980,
       period: "月",
       description: "本格的に学習を始めたい方向け",
+      features: [
+        "全問題へのアクセス",
+        "無制限の解答可能",
+        "詳細な進捗分析",
+        "学習レポートの生成",
+        "優先サポート",
+      ],
+      color: "from-blue-500 to-blue-700",
+      buttonText: "今すぐ始める",
+      buttonLink: "/signup",
+      popular: false,
+    },
+    {
+      id: "basic-yearly",
+      name: "ベーシックプラン（年額）",
+      price: 9800,
+      period: "年",
+      originalPrice: 11760,
+      discount: "17% OFF",
+      description: "年間契約でさらにお得に",
       features: [
         "全問題へのアクセス",
         "無制限の解答可能",
@@ -89,21 +109,21 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Monthly Plans */}
+      {/* Monthly/Yearly Plans */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-            月額プラン
+            月額/年額プラン
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            月単位で契約できる柔軟なプラン
+            あなたの学習スタイルに合わせたプランをご用意しています
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {monthlyPlans.map((plan) => (
+          {allPlans.map((plan) => (
             <div
               key={plan.id}
-              className={`relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 ${
+              className={`relative flex flex-col overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 ${
                 plan.popular ? "ring-2 ring-purple-500" : ""
               }`}
             >
@@ -112,8 +132,13 @@ export default function PricingPage() {
                   おすすめ
                 </div>
               )}
+              {plan.discount && (
+                <div className="absolute top-0 left-0 bg-red-500 px-4 py-1 text-xs font-semibold text-white rounded-br-lg">
+                  {plan.discount}
+                </div>
+              )}
               <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 transition-opacity hover:opacity-5`} />
-              <div className="relative">
+              <div className="relative flex flex-col flex-1">
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                   {plan.name}
                 </h3>
@@ -121,6 +146,13 @@ export default function PricingPage() {
                   {plan.description}
                 </p>
                 <div className="mb-6">
+                  {plan.originalPrice && (
+                    <div className="mb-2">
+                      <span className="text-lg text-slate-400 line-through">
+                        ¥{plan.originalPrice.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
                   <div className="flex items-baseline">
                     <span className="text-4xl font-bold text-slate-900 dark:text-white">
                       ¥{plan.price.toLocaleString()}
@@ -129,6 +161,11 @@ export default function PricingPage() {
                       /{plan.period}
                     </span>
                   </div>
+                  {plan.originalPrice && (
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      月額換算: ¥{Math.round(plan.price / 12).toLocaleString()}/月
+                    </p>
+                  )}
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, index) => (
@@ -152,16 +189,18 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={plan.buttonLink}
-                  className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg ${
-                    plan.id === "free"
-                      ? "bg-slate-200 text-slate-900 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-                      : `bg-gradient-to-r ${plan.color} text-white`
-                  }`}
-                >
-                  {plan.buttonText}
-                </Link>
+                <div className="mt-auto">
+                  <Link
+                    href={plan.buttonLink}
+                    className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg ${
+                      plan.id === "free"
+                        ? "bg-slate-200 text-slate-900 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                        : `bg-gradient-to-r ${plan.color} text-white`
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
