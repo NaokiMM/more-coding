@@ -1,41 +1,41 @@
-// Next.js Associateコースのカテゴリデータ
+// JavaScript Associateコースのカテゴリデータ
 export const categoriesData = [
   {
     // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "getting-started",
+    id: "api-middleware",
     // 画面表示用の名前
-    name: "Next.js - はじめに",
+    name: "Next.js - API・ミドルウェア",
     // aws-s3にアップロードしたファイル名
-    file: "getting-started.json",
+    file: "api-middleware.json",
     icon: "🔤",
-    color: "from-gray-700 to-gray-900",
+    color: "from-yellow-500 to-orange-600",
   },
   {
-    id: "pages-routing",
-    name: "Next.js - ページとルーティング",
-    file: "pages-routing.json",
+    id: "components-rsc",
+    name: "Next.js - コンポーネント（RSC/Client）",
+    file: "components-rsc.json",
     icon: "📦",
-    color: "from-gray-800 to-black",
+    color: "from-orange-500 to-red-600",
   },
   {
-    id: "data-fetching",
-    name: "Next.js - データフェッチング",
-    file: "data-fetching.json",
+    id: "routing-navigation",
+    name: "Next.js - ルーティング・ナビゲーション",
+    file: "routing-navigation.json",
     icon: "🔗",
-    color: "from-slate-700 to-gray-800",
+    color: "from-red-500 to-pink-600",
   },
   {
-    id: "api-routes",
-    name: "Next.js - APIルート",
-    file: "api-routes.json",
+    id: "rendering-data",
+    name: "Next.js - レンダリング・データ取得",
+    file: "rendering-data.json",
     icon: "🛠️",
-    color: "from-gray-900 to-slate-900",
+    color: "from-pink-500 to-rose-600",
   },
   {
-    id: "layouts-components",
-    name: "Next.js - レイアウトとコンポーネント",
-    file: "layouts-components.json",
+    id: "assets-config-performance",
+    name: "Next.js - 画像・設定・パフォーマンス",
+    file: "assets-config-performance.json",
     icon: "⚡",
-    color: "from-slate-800 to-gray-900",
+    color: "from-rose-500 to-red-600",
   },
 ] as const;
