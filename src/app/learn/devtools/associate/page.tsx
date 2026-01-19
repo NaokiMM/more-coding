@@ -206,7 +206,7 @@ export default function DevToolsAssociatePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            DevTool 学習コースに戻る
+            DevTools 学習コースに戻る
           </Link>
         </div>
       </div>

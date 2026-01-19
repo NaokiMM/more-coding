@@ -1,5 +1,5 @@
 /**
- * DevTool Associate カテゴリ リダイレクトページ
+ * DevTools Associate カテゴリ リダイレクトページ
  * 
  * ルート: /learn/devtools/associate/[categoryId]
  * 
