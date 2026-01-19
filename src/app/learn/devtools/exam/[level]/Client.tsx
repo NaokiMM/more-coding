@@ -4,26 +4,26 @@ import Link from "next/link";
 
 type Level = "associate" | "professional" | "expert";
 
-export default function DevToolExamLevelClient({ level }: { level: Level }) {
+export default function DevToolsExamLevelClient({ level }: { level: Level }) {
   const levelInfo = {
     associate: {
       name: "Associate",
       description:
-        "DevTool基礎レベルの本番試験。Elements、Consoleの基本操作など基本的な概念を試験形式で確認します。",
+        "DevTools基礎レベルの本番試験。Elements、Consoleの基本操作など基本的な概念を試験形式で確認します。",
       color: "from-indigo-500 to-purple-600",
       icon: "🌱",
     },
     professional: {
       name: "Professional",
       description:
-        "より高度なDevToolの機能を試験形式で確認。ネットワーク監視、パフォーマンス分析などのスキルを試します。",
+        "より高度なDevToolsの機能を試験形式で確認。ネットワーク監視、パフォーマンス分析などのスキルを試します。",
       color: "from-purple-500 to-indigo-600",
       icon: "📚",
     },
     expert: {
       name: "Expert",
       description:
-        "高度なDevToolパターンとベストプラクティスを試験形式で確認。効率的な開発ワークフローのスキルを試します。",
+        "高度なDevToolsパターンとベストプラクティスを試験形式で確認。効率的な開発ワークフローのスキルを試します。",
       color: "from-purple-600 to-pink-600",
       icon: "🚀",
     },
@@ -147,7 +147,7 @@ export default function DevToolExamLevelClient({ level }: { level: Level }) {
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTool 学習コース
+            DevTools 学習コース
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function DevToolExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            DevTool 学習コースに戻る
+            DevTools 学習コースに戻る
           </button>
         </div>
       </div>

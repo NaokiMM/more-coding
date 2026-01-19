@@ -1,4 +1,4 @@
-// DevTool 本番試験 トップページ
+// DevTools 本番試験 トップページ
 
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
@@ -6,20 +6,20 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function DevToolExamPage() {
+export default function DevToolsExamPage() {
   const levels = [
     {
       id: "associate",
       name: "本番試験 Associate",
-      description: "DevTool基礎レベルの本番試験。Elements、Consoleの基本操作など基本的な概念を試験形式で確認します。",
+      description: "DevTools基礎レベルの本番試験。Elements、Consoleの基本操作など基本的な概念を試験形式で確認します。",
       color: "from-indigo-500 to-purple-600",
       icon: "🌱",
       topics: [
-        "DevTool - Console 操作・ログ活用",
-        "DevTool - Elements・CSS デバッグ",
-        "DevTool - Sources・JavaScript デバッグ",
-        "DevTool - Network・通信解析",
-        "DevTool - Performance・Application・品質評価",
+        "DevTools - Console 操作・ログ活用",
+        "DevTools - Elements・CSS デバッグ",
+        "DevTools - Sources・JavaScript デバッグ",
+        "DevTools - Network・通信解析",
+        "DevTools - Performance・Application・品質評価",
       ],
       estimatedTime: "90分",
       questions: 50,
@@ -27,7 +27,7 @@ export default function DevToolExamPage() {
     {
       id: "professional",
       name: "本番試験 Professional",
-      description: "より高度なDevToolの機能を試験形式で確認。ネットワーク監視、パフォーマンス分析などのスキルを試します。",
+      description: "より高度なDevToolsの機能を試験形式で確認。ネットワーク監視、パフォーマンス分析などのスキルを試します。",
       color: "from-purple-500 to-indigo-600",
       icon: "📚",
       topics: [
@@ -44,7 +44,7 @@ export default function DevToolExamPage() {
     {
       id: "expert",
       name: "本番試験 Expert",
-      description: "高度なDevToolパターンとベストプラクティスを試験形式で確認。効率的な開発ワークフローのスキルを試します。",
+      description: "高度なDevToolsパターンとベストプラクティスを試験形式で確認。効率的な開発ワークフローのスキルを試します。",
       color: "from-purple-600 to-pink-600",
       icon: "🚀",
       topics: [
@@ -106,7 +106,7 @@ export default function DevToolExamPage() {
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTool 学習コース
+            DevTools 学習コース
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">本番試験</span>
@@ -279,7 +279,7 @@ export default function DevToolExamPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            DevTool 学習コースに戻る
+            DevTools 学習コースに戻る
           </button>
         </div>
       </div>

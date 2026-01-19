@@ -6,7 +6,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function DevToolLearnPage() {
+export default function DevToolsLearnPage() {
   const levels = [
     {
       id: "associate",

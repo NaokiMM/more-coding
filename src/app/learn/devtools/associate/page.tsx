@@ -68,7 +68,7 @@ export default function DevToolsAssociatePage() {
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTool 学習コース
+            DevTools 学習コース
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">Associate</span>

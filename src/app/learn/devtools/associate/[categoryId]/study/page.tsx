@@ -1,5 +1,5 @@
 /**
- * DevTool Associate カテゴリ 学習ページ（サーバーコンポーネント）
+ * DevTools Associate カテゴリ 学習ページ（サーバーコンポーネント）
  * 
  * ルート: /learn/devtools/associate/[categoryId]/study
  * 
@@ -9,7 +9,7 @@
  */
 
 import StudyClient from "./StudyClient";
-import { categoriesData as devtoolAssociateCategoriesData } from "@/lib/categories/devtools/associate-categories";
+import { categoriesData as devToolsAssociateCategoriesData } from "@/lib/categories/devtools/associate-categories";
 
 // 静的生成を強制
 export const dynamic = "force-static";
@@ -25,7 +25,7 @@ export default async function StudyPage({ params }: { params: { categoryId: stri
 
 // 静的エクスポート用: 生成するページのURL一覧を定義
 export function generateStaticParams() {
-  return devtoolAssociateCategoriesData.map((category) => ({
+  return devToolsAssociateCategoriesData.map((category) => ({
     categoryId: category.id,
   }));
 }
@@ -33,8 +33,8 @@ export function generateStaticParams() {
 // categoryId に対応する学習データ(JSON)を S3 から取得する
 async function getCategoryData(categoryId: string): Promise<CategoryData> {
   
-  // devtoolAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
-  const category = devtoolAssociateCategoriesData.find((cat) => cat.id === categoryId);
+  // devToolsAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
+  const category = devToolsAssociateCategoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);

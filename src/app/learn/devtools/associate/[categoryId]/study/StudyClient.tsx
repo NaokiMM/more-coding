@@ -134,7 +134,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTool 学習コース
+            DevTools 学習コース
           </Link>
           <span>/</span>
           <Link
