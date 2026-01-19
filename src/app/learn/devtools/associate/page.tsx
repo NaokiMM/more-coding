@@ -3,7 +3,7 @@
  * 
  * ルート: /learn/devtools/associate
  * 
- * このページは、DevTool Associateレベルの学習カテゴリ一覧を表示します。
+ * このページは、DevTools Associateレベルの学習カテゴリ一覧を表示します。
  * 各カテゴリ（例：Console 操作・ログ活用、Elements・CSS デバッグなど）をクリックすると、そのカテゴリの学習ページに遷移します。
  */
 

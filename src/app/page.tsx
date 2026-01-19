@@ -47,7 +47,7 @@ export default function Home() {
     },
     {
       id: "devtools",
-      name: "DevTool",
+      name: "DevTools",
       description: "ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。",
       color: "from-indigo-500 to-purple-600",
       icon: "🔧",
