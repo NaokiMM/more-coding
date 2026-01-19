@@ -144,14 +144,14 @@ export default function DevToolExamLevelClient({ level }: { level: Level }) {
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool"
+            href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             DevTool 学習コース
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool/exam"
+            href="/learn/devtools/exam"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             本番試験

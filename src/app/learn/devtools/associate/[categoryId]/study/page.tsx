@@ -1,7 +1,7 @@
 /**
  * DevTool Associate カテゴリ 学習ページ（サーバーコンポーネント）
  * 
- * ルート: /learn/devtool/associate/[categoryId]/study
+ * ルート: /learn/devtools/associate/[categoryId]/study
  * 
  * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
  * StudyClientコンポーネントに渡すサーバーコンポーネントです。
@@ -9,7 +9,7 @@
  */
 
 import StudyClient from "./StudyClient";
-import { categoriesData as devtoolAssociateCategoriesData } from "@/lib/categories/devtool/associate-categories";
+import { categoriesData as devtoolAssociateCategoriesData } from "@/lib/categories/devtools/associate-categories";
 
 // 静的生成を強制
 export const dynamic = "force-static";
@@ -48,7 +48,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
 
   // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `${baseUrl}/questions/devtool/associate/${category.file}`;
+    const jsonUrl = `${baseUrl}/questions/devtools/associate/${category.file}`;
     const response = await fetch(jsonUrl, {
       // 静的生成のため、force-cache を明示的に指定
       cache: "force-cache",

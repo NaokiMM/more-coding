@@ -1,14 +1,14 @@
 /**
  * DevTool Associate カテゴリ リダイレクトページ
  * 
- * ルート: /learn/devtool/associate/[categoryId]
+ * ルート: /learn/devtools/associate/[categoryId]
  * 
  * このページは、カテゴリIDを受け取り、そのカテゴリの学習ページ（/study）にリダイレクトします。
- * 例: /learn/devtool/associate/console-log-usage → /learn/devtool/associate/console-log-usage/study
+ * 例: /learn/devtools/associate/console-log-usage → /learn/devtools/associate/console-log-usage/study
  */
 
 import { redirect } from "next/navigation";
-import { categoriesData } from "@/lib/categories/devtool/associate-categories";
+import { categoriesData } from "@/lib/categories/devtools/associate-categories";
 
 interface PageProps {
   params: Promise<{
@@ -30,9 +30,9 @@ export default async function CategoryPage({ params }: PageProps) {
   const category = categoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
-    redirect("/learn/devtool/associate");
+    redirect("/learn/devtools/associate");
   }
 
   // 学習ページにリダイレクト
-  redirect(`/learn/devtool/associate/${categoryId}/study`);
+  redirect(`/learn/devtools/associate/${categoryId}/study`);
 }

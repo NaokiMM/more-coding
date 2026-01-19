@@ -1,7 +1,7 @@
 /**
  * DevTool Associate コース カテゴリ一覧ページ
  * 
- * ルート: /learn/devtool/associate
+ * ルート: /learn/devtools/associate
  * 
  * このページは、DevTool Associateレベルの学習カテゴリ一覧を表示します。
  * 各カテゴリ（例：Console 操作・ログ活用、Elements・CSS デバッグなど）をクリックすると、そのカテゴリの学習ページに遷移します。
@@ -11,7 +11,7 @@
 "use client";
 
 import Link from "next/link";
-import { categoriesData } from "@/lib/categories/devtool/associate-categories";
+import { categoriesData } from "@/lib/categories/devtools/associate-categories";
 
 export default function DevToolAssociatePage() {
   const categories = categoriesData.map((cat) => ({
@@ -65,7 +65,7 @@ export default function DevToolAssociatePage() {
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool"
+            href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             DevTool 学習コース
@@ -105,7 +105,7 @@ export default function DevToolAssociatePage() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/learn/devtool/associate/${category.id}/study`}
+              href={`/learn/devtools/associate/${category.id}/study`}
               className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
             >
               <div
@@ -190,7 +190,7 @@ export default function DevToolAssociatePage() {
         {/* Back Link */}
         <div className="mt-12 text-center">
           <Link
-            href="/learn/devtool"
+            href="/learn/devtools"
             className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
             <svg

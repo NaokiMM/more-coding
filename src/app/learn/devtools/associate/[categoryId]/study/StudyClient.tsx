@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { categoriesData } from "@/lib/categories/devtool/associate-categories";
+import { categoriesData } from "@/lib/categories/devtools/associate-categories";
 
 interface Question {
   id: string;
@@ -131,14 +131,14 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool"
+            href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             DevTool 学習コース
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool/associate"
+            href="/learn/devtools/associate"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             Associate
@@ -337,7 +337,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
         {/* Navigation */}
         <div className="mt-8 flex items-center justify-between">
           <Link
-            href="/learn/devtool/associate"
+            href="/learn/devtools/associate"
             className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
             <svg

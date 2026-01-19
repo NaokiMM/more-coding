@@ -260,14 +260,14 @@ export default function DevToolLearnPage() {
                 {/* Action Button */}
                 {level.id === "associate" ? (
                   <Link
-                    href="/learn/devtool/associate"
+                    href="/learn/devtools/associate"
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                   >
                     学習を始める
                   </Link>
                 ) : level.id === "exam" ? (
                   <Link
-                    href="/learn/devtool/exam"
+                    href="/learn/devtools/exam"
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                   >
                     学習を始める

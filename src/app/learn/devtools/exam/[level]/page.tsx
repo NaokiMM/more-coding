@@ -1,13 +1,13 @@
 /**
  * DevTool 本番試験 レベル別ページ
  * 
- * ルート: /learn/devtool/exam/[level]
+ * ルート: /learn/devtools/exam/[level]
  * 
  * このページは、DevTool本番試験の各レベル（associate, professional, expert）の
  * 模擬試験や過去問題演習を選択するページです。
  */
 
-// src/app/learn/devtool/exam/[level]/page.tsx
+// src/app/learn/devtools/exam/[level]/page.tsx
 
 import DevToolExamLevelClient from "./Client";
 

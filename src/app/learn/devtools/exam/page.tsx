@@ -103,7 +103,7 @@ export default function DevToolExamPage() {
           </Link>
           <span>/</span>
           <Link
-            href="/learn/devtool"
+            href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             DevTool 学習コース
