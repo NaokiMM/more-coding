@@ -1,5 +1,5 @@
 /**
- * DevTool Associate コース カテゴリ一覧ページ
+ * DevTools Associate コース カテゴリ一覧ページ
  * 
  * ルート: /learn/devtools/associate
  * 
@@ -13,7 +13,7 @@
 import Link from "next/link";
 import { categoriesData } from "@/lib/categories/devtools/associate-categories";
 
-export default function DevToolAssociatePage() {
+export default function DevToolsAssociatePage() {
   const categories = categoriesData.map((cat) => ({
     ...cat,
     description: `${cat.name}について学習します。`,

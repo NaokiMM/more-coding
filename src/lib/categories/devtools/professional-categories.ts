@@ -1,4 +1,4 @@
-// DevTool Professionalコースのカテゴリデータ
+// DevTools Professionalコースのカテゴリデータ
 export const categoriesData = [
   {
     // 画面表示用のID且つaws-s3にアップロードしたファイル名
@@ -19,7 +19,7 @@ export const categoriesData = [
   },
   {
     id: "custom-devtools",
-    name: "カスタムDevToolの開発",
+    name: "カスタムDevToolsの開発",
     file: "custom-devtools.json",
     icon: "🛡️",
     color: "from-teal-700 to-cyan-800",
