@@ -1,26 +1,28 @@
 // CloudFront Function: Viewer Request (高度版)
 // 拡張子なしのパスに /index.html を付与する
 // より詳細な処理を含む
-
 function handler(event) {
-  var request = event.request;
-  var uri = request.uri;
+  var req = event.request;
+  var uri = req.uri;
 
-  // 1. 既に拡張子がある場合はそのまま（.html, .js, .css, .png など）
-  if (uri.match(/\.[a-zA-Z0-9]+$/)) {
-    return request;
-  }
+  // APIは触らない（必要なら増やす）
+  if (uri.startsWith('/api')) return req;
 
-  // 2. 末尾が / の場合は index.html を追加
+  // 拡張子ありは触らない
+  if (uri.match(/\.[a-zA-Z0-9]+$/)) return req;
+
+  // /xxx/ → /xxx/index.html（内部リライト）
   if (uri.endsWith('/')) {
-    request.uri = uri + 'index.html';
-  } 
-  // 3. 末尾が / でない場合は /index.html を追加
-  else {
-    request.uri = uri + '/index.html';
+    req.uri = uri + 'index.html';
+    return req;
   }
 
-  return request;
+  // /xxx → /xxx/（301）
+  return {
+    statusCode: 301,
+    statusDescription: 'Moved Permanently',
+    headers: {
+      location: { value: uri + '/' }
+    }
+  };
 }
-
-
