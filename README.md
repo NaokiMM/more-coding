@@ -35,7 +35,14 @@ Top-Down Readability（トップダウン設計）
 1 push = 1 機能追加 を原則とし、変更するファイル数は問わない。また各 push は「何をしたのか」を第三者に説明できる、理解しやすい単位にまとめる。commit メッセージには「何に」「何を」（可能であれば「どのように」も）したのかを記載する
 
 ## AWSクラウドの主な使用サービス
-DB: DynamoDB/認証: Cognito/サーバー: Lambda/API: API Gateway/オブジェクトストレージ: S3/CDN: CloudFront/アカウン制御: IAM
+##### DB: DynamoDB
+##### 認証: Cognito
+##### サーバー: Lambda・Amplify
+##### API: API Gateway
+##### オブジェクトストレージ: S3
+##### CDN: CloudFront
+##### アカウン制御: IAM
+##### Container: Docker
 
 ## Contribution / コントリビューション
 本リポジトリは OSSに近い運用 をしています。

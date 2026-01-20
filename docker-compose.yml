@@ -1,0 +1,9 @@
+services:
+  dynamodb:
+  # 常時最新バージョンを使用するためにlatestを指定
+    image: amazon/dynamodb-local:latest
+  # Java の jar ファイルでDynamoDB Local を起動
+  # 使い捨てDBを使うためのオプション
+    command: "-jar DynamoDBLocal.jar -sharedDb -inMemory"
+    ports:
+      - "8000:8000"
