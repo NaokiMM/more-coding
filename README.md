@@ -44,6 +44,10 @@ Top-Down Readability（トップダウン設計）
 ##### アカウン制御: IAM
 ##### Container: Docker
 
+## 試験実施ツール
+### Safe Exam Browser
+https://safeexambrowser.org/download_en.html
+
 ## Contribution / コントリビューション
 本リポジトリは OSSに近い運用 をしています。
 
