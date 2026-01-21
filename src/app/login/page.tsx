@@ -71,6 +71,25 @@ export default function LoginPage() {
     }
   };
 
+  const devLogin = () => {
+    // 開発環境での仮ユーザー情報を設定
+    if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+      const devUser = {
+        email: "dev@example.com",
+        name: "開発ユーザー",
+        subscriptionType: "free",
+        "custom:joinDate": new Date().toISOString().split("T")[0],
+      };
+      localStorage.setItem("devUser", JSON.stringify(devUser));
+      // ユーザー情報を更新してから遷移
+      refreshUser().then(() => {
+        router.push("/mypage");
+      });
+    } else {
+      router.push("/mypage");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
@@ -211,6 +230,18 @@ export default function LoginPage() {
                 {isSubmitting ? "ログイン中..." : "ログイン"}
               </button>
             </form>
+
+            {/* Development Login Button */}
+            {process.env.NODE_ENV === "development" && (
+              <div className="mt-4">
+                <button
+                  onClick={devLogin}
+                  className="w-full rounded-lg bg-gray-500 px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                >
+                  開発ログイン（仮）
+                </button>
+              </div>
+            )}
 
             {/* Signup Link */}
             <div className="mt-6 text-center">
