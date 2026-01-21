@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import ScrollToBottomButton from "@/components/ScrollToBottomButton";
 
 const geistSans = Geist({
@@ -55,10 +56,12 @@ export default function RootLayout({
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <AuthProvider>
-          {children}
-          <ScrollToBottomButton />
-        </AuthProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            {children}
+            <ScrollToBottomButton />
+          </AuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
