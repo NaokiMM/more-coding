@@ -4,7 +4,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -47,36 +47,62 @@ export default function MyPage() {
     user["custom:picture"] ||
     (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
 
-  const [learningProgress] = useState([
+  const learningMaterials = [
     {
       id: "javascript",
       name: "JavaScript",
-      progress: 65,
       color: "from-blue-500 to-blue-700",
       icon: "JS",
     },
     {
       id: "typescript",
       name: "TypeScript",
-      progress: 65,
       color: "from-blue-500 to-blue-700",
       icon: "TS",
     },
     {
       id: "react",
       name: "React",
-      progress: 45,
       color: "from-cyan-500 to-blue-600",
       icon: "⚛️",
     },
     {
       id: "vue",
       name: "Vue.js",
-      progress: 30,
       color: "from-green-500 to-emerald-600",
       icon: "Vue",
     },
-  ]);
+    {
+      id: "nextjs",
+      name: "Next.js",
+      color: "from-slate-600 to-slate-800",
+      icon: "N",
+    },
+    {
+      id: "nuxtjs",
+      name: "Nuxt.js",
+      color: "from-green-600 to-emerald-700",
+      icon: "N",
+    },
+    {
+      id: "devtools",
+      name: "DevTools",
+      color: "from-purple-500 to-purple-700",
+      icon: "🔧",
+    },
+    {
+      id: "seo",
+      name: "SEO",
+      color: "from-orange-500 to-red-600",
+      icon: "🔍",
+    },
+    {
+      id: "aws",
+      name: "AWS",
+      color: "from-orange-400 to-orange-600",
+      icon: "☁️",
+    },
+  ];
 
 
   const handleLogout = () => {
@@ -194,39 +220,30 @@ export default function MyPage() {
           </div>
         )}
 
-        {/* Learning Progress Section */}
+        {/* Learning Materials Section */}
         <div className="mb-8">
           <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
-            学習進捗
+            教材一覧
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {learningProgress.map((tech) => (
+            {learningMaterials.map((material) => (
               <Link
-                key={tech.id}
-                href={`/learn/${tech.id}`}
+                key={material.id}
+                href={`/learn/${material.id}`}
                 className="group rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
               >
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex items-center">
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${tech.color} text-white text-lg font-bold shadow-lg`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${material.color} text-white text-lg font-bold shadow-lg`}
                   >
-                    {tech.icon}
+                    {material.icon}
                   </div>
-                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
-                    {tech.progress}%
-                  </span>
                 </div>
-                <h3 className="mb-4 text-xl font-bold text-slate-900 dark:text-white">
-                  {tech.name}
+                <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                  {material.name}
                 </h3>
-                <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                  <div
-                    className={`h-full bg-gradient-to-r ${tech.color} transition-all duration-500`}
-                    style={{ width: `${tech.progress}%` }}
-                  />
-                </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  続きを学習する →
+                  学習を開始する →
                 </p>
               </Link>
             ))}
