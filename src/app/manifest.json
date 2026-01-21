@@ -1,0 +1,21 @@
+{
+  "name": "SkillBoost - IT資格学習プラットフォーム",
+  "short_name": "SkillBoost",
+  "description": "IT資格の紹介と学習ができるプラットフォーム。TypeScript、React、Vueなどの技術を学べます。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

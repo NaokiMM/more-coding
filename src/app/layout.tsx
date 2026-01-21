@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/", // ★追加：トップの正規URL
   },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
