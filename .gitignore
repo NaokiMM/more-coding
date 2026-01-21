@@ -47,3 +47,4 @@ README.local.md
 **/.terraform/*
 **/*.tfstate
 **/*.tfstate.*
+/s3-assets/
