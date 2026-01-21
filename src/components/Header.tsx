@@ -1,0 +1,58 @@
+"use client";
+
+import Link from "next/link";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/lib/translations";
+
+interface HeaderProps {
+  showLanguageToggle?: boolean;
+  rightContent?: React.ReactNode;
+}
+
+export default function Header({ showLanguageToggle = true, rightContent }: HeaderProps) {
+  const { language } = useLanguage();
+  const t = useTranslation(language);
+
+  return (
+    <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              SB
+            </div>
+            <span className="text-xl font-bold text-slate-900 dark:text-white">
+              SkillBoost
+            </span>
+          </Link>
+          <div className="flex items-center gap-4">
+            {showLanguageToggle && <LanguageToggle />}
+            {rightContent || (
+              <nav className="hidden md:flex items-center gap-6">
+                <Link
+                  href="/"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                >
+                  {t("nav.home")}
+                </Link>
+                <Link
+                  href="/login"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                >
+                  {t("nav.login")}
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
+                >
+                  {t("nav.signup")}
+                </Link>
+              </nav>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

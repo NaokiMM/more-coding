@@ -1,5 +1,6 @@
 export type TranslationKey = 
   // Navigation
+  | "nav.home"
   | "nav.technologies"
   | "nav.blog"
   | "nav.company"
@@ -53,6 +54,7 @@ export type TranslationKey =
 export const translations = {
   ja: {
     // Navigation
+    "nav.home": "ホーム",
     "nav.technologies": "学習できる技術・資格",
     "nav.blog": "ブログ",
     "nav.company": "会社概要",
@@ -105,6 +107,7 @@ export const translations = {
   },
   en: {
     // Navigation
+    "nav.home": "Home",
     "nav.technologies": "Technologies & Certifications",
     "nav.blog": "Blog",
     "nav.company": "Company",

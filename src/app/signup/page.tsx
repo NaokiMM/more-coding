@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signUp, signIn } from "@/lib/cognito";
 import { useAuth } from "@/contexts/AuthContext";
+import Header from "@/components/Header";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -118,34 +119,24 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
-                SB
-              </div>
-              <span className="text-xl font-bold text-slate-900 dark:text-white">
-                SkillBoost
-              </span>
+      <Header
+        rightContent={
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login/corporate"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            >
+              法人ログイン
             </Link>
-            <div className="flex items-center gap-4">
-              <Link
-                href="/login/corporate"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                法人ログイン
-              </Link>
-              <Link
-                href="/login"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                ログイン
-              </Link>
-            </div>
+            <Link
+              href="/login"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            >
+              ログイン
+            </Link>
           </div>
-        </div>
-      </header>
+        }
+      />
 
       {/* Signup Form */}
       <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
