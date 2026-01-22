@@ -1,9 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function ScrollToBottomButton() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  // トップページの場合は戻るボタンを表示しない
+  if (pathname === "/") {
+    return null;
+  }
 
   const handleGoBack = () => {
     router.back();
