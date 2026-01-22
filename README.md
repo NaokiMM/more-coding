@@ -37,7 +37,7 @@ Top-Down Readability（トップダウン設計）
 ## AWSクラウドの主な使用サービス
 ##### DB: DynamoDB
 ##### 認証: Cognito
-##### サーバー: Lambda・Amplify
+##### サーバー: Lambda・Amplify（環境変数含む）
 ##### API: API Gateway
 ##### オブジェクトストレージ: S3
 ##### CDN: CloudFront
