@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { categoriesData } from "@/lib/categories/vue/associate-categories";
+import EndStudyButton from "@/components/EndStudyButton";
 
 interface Question {
   id: string;
@@ -178,6 +179,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               問題 {currentQuestionIndex + 1} / {total}
             </h2>
+            <EndStudyButton categoryId={categoryId} technology="vue" courseType="associate" />
           </div>
 
           {/* Question Text */}

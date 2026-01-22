@@ -3,7 +3,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { categoriesData } from "@/lib/categories/javascript/associate-categories";
+import EndStudyButton from "@/components/EndStudyButton";
 
 interface Question {
   id: string;
@@ -33,6 +35,7 @@ interface StudyClientProps {
 }
 
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
+  const router = useRouter();
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -178,6 +181,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               問題 {currentQuestionIndex + 1} / {total}
             </h2>
+            <EndStudyButton categoryId={categoryId} technology="javascript" courseType="associate" />
           </div>
 
           {/* Question Text */}
