@@ -199,25 +199,6 @@ export default function PricingPage() {
           </Link>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-4 flex items-center justify-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
-                MC
-              </div>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">
-                More Coding
-              </span>
-            </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
-              © 2026 More Coding. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

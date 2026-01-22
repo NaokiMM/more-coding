@@ -15,7 +15,7 @@ export default function LanguageToggle() {
       <span className="text-base font-semibold">
         {language === "ja" ? "🇯🇵" : "🇺🇸"}
       </span>
-      <span>{language === "ja" ? "日本語" : "English"}</span>
+      <span>{language === "ja" ? "JP" : "EN"}</span>
       <svg
         className="h-4 w-4"
         fill="none"

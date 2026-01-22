@@ -6,6 +6,7 @@ import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import ScrollToBottomButton from "@/components/ScrollToBottomButton";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({
         <LanguageProvider>
           <AuthProvider>
             {children}
+            <Footer />
             <ScrollToBottomButton />
           </AuthProvider>
         </LanguageProvider>
