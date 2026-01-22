@@ -1,4 +1,4 @@
-// JavaScript Associateコースのカテゴリデータ
+// JavaScript Associateのカテゴリデータ
 export const categoriesData = [
     {
         id: "basics_rendering",

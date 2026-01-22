@@ -1,5 +1,5 @@
 /**
- * SEO Associate コース カテゴリ一覧ページ
+ * SEO Associate カテゴリ一覧ページ
  * 
  * ルート: /learn/seo/associate
  * 
@@ -68,7 +68,7 @@ export default function SEOAssociatePage() {
             href="/learn/seo"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            SEO 学習コース
+            SEO
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">Associate</span>
@@ -80,7 +80,7 @@ export default function SEOAssociatePage() {
             🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Associate コース
+            Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             SEOの基本概念と重要用語、検索エンジンの仕組みを学びます。
@@ -206,7 +206,7 @@ export default function SEOAssociatePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            SEO 学習コースに戻る
+            SEOに戻る
           </Link>
         </div>
       </div>

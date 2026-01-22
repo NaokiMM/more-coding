@@ -135,7 +135,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/nextjs"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Next.js 学習コース
+            Next.js
           </Link>
           <span>/</span>
           <Link

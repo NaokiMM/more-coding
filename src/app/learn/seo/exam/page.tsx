@@ -106,7 +106,7 @@ export default function SEOExamPage() {
             href="/learn/seo"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            SEO 学習コース
+            SEO
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">本番試験</span>
@@ -279,7 +279,7 @@ export default function SEOExamPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            SEO 学習コースに戻る
+            SEOに戻る
           </button>
         </div>
       </div>

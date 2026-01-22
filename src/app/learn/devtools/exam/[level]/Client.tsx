@@ -147,7 +147,7 @@ export default function DevToolsExamLevelClient({ level }: { level: Level }) {
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTools 学習コース
+            DevTools
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function DevToolsExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            DevTools 学習コースに戻る
+            DevToolsに戻る
           </button>
         </div>
       </div>

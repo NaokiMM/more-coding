@@ -1,5 +1,5 @@
 /**
- * TypeScript Associate コース カテゴリ一覧ページ
+ * TypeScript Associate カテゴリ一覧ページ
  * 
  * ルート: /learn/typescript/associate
  * 
@@ -80,7 +80,7 @@ export default function TypeScriptAssociatePage() {
             🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Associate コース
+            Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             TypeScriptの基礎を学びます。型の基本から始めて、基本的な構文をマスターしましょう。

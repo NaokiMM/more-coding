@@ -147,7 +147,7 @@ export default function SEOExamLevelClient({ level }: { level: Level }) {
             href="/learn/seo"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            SEO 学習コース
+            SEO
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function SEOExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            SEO 学習コースに戻る
+            SEOに戻る
           </button>
         </div>
       </div>

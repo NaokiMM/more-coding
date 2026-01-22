@@ -135,7 +135,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/seo"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            SEO 学習コース
+            SEO
           </Link>
           <span>/</span>
           <Link

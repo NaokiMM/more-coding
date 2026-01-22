@@ -1,4 +1,4 @@
-// DevTools 学習コース　のページ
+// DevTools Associate・Professional・Expertのページ
 
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
@@ -16,11 +16,11 @@ export default function DevToolsLearnPage() {
       color: "from-indigo-500 to-purple-600",
       icon: "🌱",
       topics: [
-        "DevTools - Console 操作・ログ活用",
-        "DevTools - Elements・CSS デバッグ",
-        "DevTools - Sources・JavaScript デバッグ",
-        "DevTools - Network・通信解析",
-        "DevTools - Performance・Application・品質評価",
+        "Console 操作・ログ活用",
+        "Elements・CSS デバッグ",
+        "Sources・JavaScript デバッグ",
+        "Network・通信解析",
+        "Performance・Application・品質評価",
       ],
       estimatedTime: "15時間",
       lessons: 20,
@@ -110,7 +110,7 @@ export default function DevToolsLearnPage() {
             🔧
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            DevTools 学習コース
+            DevTools
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。
@@ -154,7 +154,7 @@ export default function DevToolsLearnPage() {
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.id === "exam" ? level.name : `${level.name}コース`}
+                  {level.id === "exam" ? level.name : `${level.name}`}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
                   {level.description}

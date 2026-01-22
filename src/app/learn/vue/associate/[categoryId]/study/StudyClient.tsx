@@ -135,7 +135,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/vue"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Vue.js 学習コース
+            Vue.js
           </Link>
           <span>/</span>
           <Link

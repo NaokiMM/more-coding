@@ -108,7 +108,7 @@ export default function VueLearnPage() {
             Vue
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Vue.js 学習コース
+            Vue.js
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             プログレッシブなJavaScriptフレームワーク。段階的に採用できる柔軟性を活かして学びます。
@@ -152,7 +152,7 @@ export default function VueLearnPage() {
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.id === "exam" ? level.name : `${level.name}コース`}
+                  {level.id === "exam" ? level.name : `${level.name}`}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
                   {level.description}

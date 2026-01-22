@@ -106,7 +106,7 @@ export default function VueExamPage() {
             href="/learn/vue"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Vue.js 学習コース
+            Vue.js
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">本番試験</span>
@@ -279,7 +279,7 @@ export default function VueExamPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Vue.js 学習コースに戻る
+            Vue.jsに戻る
           </button>
         </div>
       </div>

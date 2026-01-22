@@ -1,4 +1,4 @@
-// Next.js 学習コース　のページ
+// Next.js Associate・Professional・Expertのページ
 
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
@@ -110,7 +110,7 @@ export default function NextJSLearnPage() {
             ▲
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Next.js 学習コース
+            Next.js
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             Reactベースのフルスタックフレームワーク。SSR、SSG、APIルートなどの機能を学びます。
@@ -154,7 +154,7 @@ export default function NextJSLearnPage() {
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.id === "exam" ? level.name : `${level.name}コース`}
+                  {level.id === "exam" ? level.name : `${level.name}`}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
                   {level.description}

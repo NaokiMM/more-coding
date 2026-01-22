@@ -1,5 +1,5 @@
 /**
- * Vue Associate コース カテゴリ一覧ページ
+ * Vue Associate カテゴリ一覧ページ
  * 
  * ルート: /learn/vue/associate
  * 
@@ -68,7 +68,7 @@ export default function VueAssociatePage() {
             href="/learn/vue"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Vue.js 学習コース
+            Vue.js
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">Associate</span>
@@ -80,7 +80,7 @@ export default function VueAssociatePage() {
             🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Associate コース
+            Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             Vue.jsの基礎を学びます。テンプレート構文から始めて、基本的な概念をマスターしましょう。
@@ -206,7 +206,7 @@ export default function VueAssociatePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Vue.js 学習コースに戻る
+            Vue.jsに戻る
           </Link>
         </div>
       </div>

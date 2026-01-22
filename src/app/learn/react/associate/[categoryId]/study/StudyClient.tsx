@@ -135,7 +135,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/react"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            React 学習コース
+            React
           </Link>
           <span>/</span>
           <Link

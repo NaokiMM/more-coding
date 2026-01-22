@@ -1,4 +1,4 @@
-// Vue.js Professionalコースのカテゴリデータ
+// Vue.js Professionalのカテゴリデータ
 export const categoriesData = [
   {
     // 画面表示用のID且つaws-s3にアップロードしたファイル名

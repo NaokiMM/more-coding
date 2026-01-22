@@ -106,7 +106,7 @@ export default function JavaScriptExamPage() {
             href="/learn/javascript"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            JavaScript 学習コース
+            JavaScript
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">本番試験</span>
@@ -279,7 +279,7 @@ export default function JavaScriptExamPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            JavaScript 学習コースに戻る
+            JavaScriptに戻る
           </button>
         </div>
       </div>

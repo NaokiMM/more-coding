@@ -107,7 +107,7 @@ export default function NuxtJSExamPage() {
             href="/learn/nuxtjs"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Nuxt.js 学習コース
+            Nuxt.js
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">本番試験</span>
@@ -280,7 +280,7 @@ export default function NuxtJSExamPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Nuxt.js 学習コースに戻る
+            Nuxt.jsに戻る
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 /**
- * TypeScript Professional コース カテゴリ一覧ページ
+ * TypeScript Professional カテゴリ一覧ページ
  * 
  * ルート: /learn/typescript/professional
  * 
@@ -80,7 +80,7 @@ export default function TypeScriptProfessionalPage() {
             📚
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Professional コース
+            Professional
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             より高度な型システムを学びます。実践的なTypeScript開発スキルをマスターしましょう。

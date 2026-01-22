@@ -137,7 +137,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             href="/learn/javascript"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            JavaScript 学習コース
+            JavaScript
           </Link>
           <span>/</span>
           <Link

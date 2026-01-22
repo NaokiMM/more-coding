@@ -1,7 +1,7 @@
 import { categoriesData } from "./associate-categories";
 
 // categoriesData に対するテスト一式
-// 「TypeScript Associate コースのカテゴリ定義が壊れていないか」を確認する
+// 「TypeScript Associateのカテゴリ定義が壊れていないか」を確認する
 describe("categoriesData (TypeScript Associate)", () => {
 
   // テスト①

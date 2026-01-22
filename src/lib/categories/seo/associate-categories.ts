@@ -1,4 +1,4 @@
-// SEO Associateコースのカテゴリデータ
+// SEO Associateのカテゴリデータ
 export const categoriesData = [
   {
     // 画面表示用のID且つaws-s3にアップロードしたファイル名

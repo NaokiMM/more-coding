@@ -1,5 +1,5 @@
 /**
- * TypeScriptコース トップページ
+ * TypeScript Associate・Professional・Specialty・本番試験のページ
  * 
  * ルート: /learn/typescript
  * 
@@ -117,7 +117,7 @@ export default function TypeScriptLearnPage() {
             TS
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            TypeScriptコース
+            TypeScript
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             型安全性を持つJavaScriptのスーパーセット。初級から上級まで、段階的に学習でき、資格を取得することができます。

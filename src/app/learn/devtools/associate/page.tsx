@@ -1,5 +1,5 @@
 /**
- * DevTools Associate コース カテゴリ一覧ページ
+ * DevTools Associate カテゴリ一覧ページ
  * 
  * ルート: /learn/devtools/associate
  * 
@@ -68,7 +68,7 @@ export default function DevToolsAssociatePage() {
             href="/learn/devtools"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            DevTools 学習コース
+            DevTools
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">Associate</span>
@@ -80,7 +80,7 @@ export default function DevToolsAssociatePage() {
             🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Associate コース
+            Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             ブラウザの開発者ツールの基本的な使い方を学びます。Elements、Consoleの基本操作から始めましょう。
@@ -206,7 +206,7 @@ export default function DevToolsAssociatePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            DevTools 学習コースに戻る
+            DevToolsに戻る
           </Link>
         </div>
       </div>

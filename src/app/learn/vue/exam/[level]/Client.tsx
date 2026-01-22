@@ -147,7 +147,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
             href="/learn/vue"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Vue.js 学習コース
+            Vue.js
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Vue.js 学習コースに戻る
+            Vue.jsに戻る
           </button>
         </div>
       </div>

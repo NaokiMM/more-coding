@@ -1,4 +1,4 @@
-// JavaScript 学習コース　のページ
+// JavaScript Associate・Professional・Expertのページ
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
@@ -109,7 +109,7 @@ export default function JavaScriptLearnPage() {
             JS
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            JavaScript 学習コース
+            JavaScript
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             Web開発の基本となるプログラミング言語。動的なウェブサイトとアプリケーションを構築する力を身につけます。
@@ -153,7 +153,7 @@ export default function JavaScriptLearnPage() {
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.id === "exam" ? level.name : `${level.name}コース`}
+                  {level.id === "exam" ? level.name : `${level.name}`}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
                   {level.description}

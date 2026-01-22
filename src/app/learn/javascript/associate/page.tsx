@@ -1,5 +1,5 @@
 /**
- * JavaScript Associate コース カテゴリ一覧ページ
+ * JavaScript Associate カテゴリ一覧ページ
  * 
  * ルート: /learn/javascript/associate
  * 
@@ -68,7 +68,7 @@ export default function JavaScriptAssociatePage() {
             href="/learn/javascript"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            JavaScript 学習コース
+            JavaScript
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">Associate</span>
@@ -80,7 +80,7 @@ export default function JavaScriptAssociatePage() {
             🌱
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Associate コース
+            Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
             JavaScriptの基礎を学びます。変数、関数、オブジェクトなど基本的な概念から始めましょう。
@@ -206,7 +206,7 @@ export default function JavaScriptAssociatePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            JavaScript 学習コースに戻る
+            JavaScriptに戻る
           </Link>
         </div>
       </div>

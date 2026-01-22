@@ -147,7 +147,7 @@ export default function NextJSExamLevelClient({ level }: { level: Level }) {
             href="/learn/nextjs"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Next.js 学習コース
+            Next.js
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function NextJSExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Next.js 学習コースに戻る
+            Next.jsに戻る
           </button>
         </div>
       </div>

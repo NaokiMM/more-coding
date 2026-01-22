@@ -147,7 +147,7 @@ export default function ReactExamLevelClient({ level }: { level: Level }) {
             href="/learn/react"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            React 学習コース
+            React
           </Link>
           <span>/</span>
           <Link
@@ -295,7 +295,7 @@ export default function ReactExamLevelClient({ level }: { level: Level }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            React 学習コースに戻る
+            Reactに戻る
           </button>
         </div>
       </div>
