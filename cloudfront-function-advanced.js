@@ -1,6 +1,5 @@
 // CloudFront Function: Viewer Request (高度版)
 // 拡張子なしのパスに /index.html を付与する
-// より詳細な処理を含む
 function handler(event) {
   var req = event.request;
   var uri = req.uri;
