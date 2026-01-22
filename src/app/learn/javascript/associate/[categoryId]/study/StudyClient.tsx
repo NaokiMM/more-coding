@@ -335,26 +335,34 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
         </div>
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-between">
-          <Link
-            href="/learn/javascript/associate"
-            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-          >
-            <svg
-              className="mr-2 h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <div className="mt-8 flex items-center justify-center gap-48">
+          {currentQuestionIndex > 0 && (
+            <button
+              onClick={() => {
+                if (currentQuestionIndex > 0) {
+                  setCurrentQuestionIndex(currentQuestionIndex - 1);
+                  setSelectedAnswer(null);
+                  setShowAnswer(false);
+                }
+              }}
+              className="inline-flex items-center rounded-lg bg-gradient-to-r from-slate-500 to-slate-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            カテゴリに戻る
-          </Link>
+              <svg
+                className="mr-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              前の問題へ
+            </button>
+          )}
           <button
             onClick={() => {
               if (currentQuestionIndex < categoryData.questions.length - 1) {
@@ -364,11 +372,28 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
               }
             }}
             disabled={currentQuestionIndex >= categoryData.questions.length - 1}
-            className="rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {currentQuestionIndex < categoryData.questions.length - 1
-              ? "次の問題へ"
-              : "最後の問題"}
+            {currentQuestionIndex < categoryData.questions.length - 1 ? (
+              <>
+                次の問題へ
+                <svg
+                  className="ml-2 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </>
+            ) : (
+              "最後の問題"
+            )}
           </button>
         </div>
       </div>
