@@ -15,7 +15,7 @@ export default function JavaScriptExamPage() {
       color: "from-yellow-500 to-orange-600",
       icon: "🌱",
       topics: [
-        "JavaScript - 基礎表現",
+        "基礎表現",
         "変数・スコープ・関数",
         "オブジェクト・配列・プロトタイプ",
         "非同期・イベントループ",

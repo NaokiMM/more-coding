@@ -4,7 +4,7 @@ export const categoriesData = [
     // 画面表示用のID且つaws-s3にアップロードしたファイル名
     id: "basic-expression",
     // 画面表示用の名前
-    name: "JavaScript - 基礎表現",
+    name: "基礎表現",
     // aws-s3にアップロードしたファイル名
     file: "basic-expression.json",
     icon: "🔤",
@@ -12,28 +12,28 @@ export const categoriesData = [
   },
   {
     id: "variables-scope-functions",
-    name: "JavaScript - 変数・スコープ・関数",
+    name: "変数・スコープ・関数",
     file: "variables-scope-functions.json",
     icon: "📦",
     color: "from-orange-500 to-red-600",
   },
   {
     id: "objects-arrays-prototype",
-    name: "JavaScript - オブジェクト・配列・プロトタイプ",
+    name: "オブジェクト・配列・プロトタイプ",
     file: "objects-arrays-prototype.json",
     icon: "🔗",
     color: "from-red-500 to-pink-600",
   },
   {
     id: "async-event-loop",
-    name: "JavaScript - 非同期・イベントループ",
+    name: "非同期・イベントループ",
     file: "async-event-loop.json",
     icon: "🛠️",
     color: "from-pink-500 to-rose-600",
   },
   {
     id: "latest-features",
-    name: "JavaScript - 最新の機能",
+    name: "最新の機能",
     file: "latest-features.json",
     icon: "⚡",
     color: "from-rose-500 to-red-600",
