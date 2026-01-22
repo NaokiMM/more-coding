@@ -4,7 +4,7 @@ export const categoriesData = [
     // 画面表示用のID且つaws-s3にアップロードしたファイル名
     id: "api-middleware",
     // 画面表示用の名前
-    name: "Next.js - API・ミドルウェア",
+    name: "API・ミドルウェア",
     // aws-s3にアップロードしたファイル名
     file: "api-middleware.json",
     icon: "🔤",
@@ -12,28 +12,28 @@ export const categoriesData = [
   },
   {
     id: "components-rsc",
-    name: "Next.js - コンポーネント（RSC/Client）",
+    name: "コンポーネント（RSC/Client）",
     file: "components-rsc.json",
     icon: "📦",
     color: "from-orange-500 to-red-600",
   },
   {
     id: "routing-navigation",
-    name: "Next.js - ルーティング・ナビゲーション",
+    name: "ルーティング・ナビゲーション",
     file: "routing-navigation.json",
     icon: "🔗",
     color: "from-red-500 to-pink-600",
   },
   {
     id: "rendering-data",
-    name: "Next.js - レンダリング・データ取得",
+    name: "レンダリング・データ取得",
     file: "rendering-data.json",
     icon: "🛠️",
     color: "from-pink-500 to-rose-600",
   },
   {
     id: "assets-config-performance",
-    name: "Next.js - 画像・設定・パフォーマンス",
+    name: "画像・設定・パフォーマンス",
     file: "assets-config-performance.json",
     icon: "⚡",
     color: "from-rose-500 to-red-600",
