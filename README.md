@@ -1,6 +1,6 @@
 # 事業構成要素
 ## サイトdomain
-https://engineer-skill-boost.com
+https://more-coding.com/
 
 ## GitHub
 https://github.com/NaokiMM/skillboost
