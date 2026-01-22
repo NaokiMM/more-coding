@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"), // ★追加：本番ドメイン
-  title: "SkillBoost - IT資格学習プラットフォーム",
+  title: "More Coding - IT資格学習プラットフォーム",
   description:
     "IT資格の紹介と学習ができるプラットフォーム。TypeScript、React、Vueなどの技術を学べます。",
   alternates: {

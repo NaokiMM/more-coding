@@ -393,14 +393,14 @@ export default function ContactPage() {
           <div className="text-center">
             <div className="mb-4 flex items-center justify-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
-                SB
+                MC
               </div>
               <span className="text-lg font-bold text-slate-900 dark:text-white">
-                SkillBoost
+                More Coding
               </span>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              © 2026 SkillBoost. All rights reserved.
+              © 2026 More Coding. All rights reserved.
             </p>
           </div>
         </div>

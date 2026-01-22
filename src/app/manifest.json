@@ -1,6 +1,6 @@
 {
-  "name": "SkillBoost - IT資格学習プラットフォーム",
-  "short_name": "SkillBoost",
+  "name": "More Coding - IT資格学習プラットフォーム",
+  "short_name": "More Coding",
   "description": "IT資格の紹介と学習ができるプラットフォーム。TypeScript、React、Vueなどの技術を学べます。",
   "start_url": "/",
   "display": "standalone",

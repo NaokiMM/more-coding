@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 
 export default function CompanyPage() {
   const companyInfo = {
-    name: "SkillBoost株式会社",
-    nameEn: "SkillBoost Inc.",
+    name: "モアコーディング株式会社",
+    nameEn: "More Coding Inc.",
     established: "2024年4月",
     capital: "1,000万円",
     address: "〒100-0001 東京都千代田区千代田1-1-1",
@@ -178,7 +178,7 @@ export default function CompanyPage() {
             私たちの価値観
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            SkillBoostが大切にする4つの価値観
+            モアコーディングが大切にする4つの価値観
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -257,14 +257,14 @@ export default function CompanyPage() {
           <div className="text-center">
             <div className="mb-4 flex items-center justify-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
-                SB
+                MC
               </div>
               <span className="text-lg font-bold text-slate-900 dark:text-white">
-                SkillBoost
+                More Coding
               </span>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              © 2026 SkillBoost. All rights reserved.
+              © 2026 More Coding. All rights reserved.
             </p>
           </div>
         </div>

@@ -19,10 +19,10 @@ export const handler = async (event) => {
       throw new Error("FROM_EMAIL / TO_EMAIL が設定されていません");
     }
 
-    const subject = `【SkillBoost】${subjectFromUser}`.slice(0, 200);
+    const subject = `【More Coding】${subjectFromUser}`.slice(0, 200);
 
     const text = [
-      "SkillBoost お問い合わせフォームから新しいメッセージが届きました。",
+      "More Coding（モアコーディング）お問い合わせフォームから新しいメッセージが届きました。",
       "",
       "■ お問い合わせ内容",
       `お名前：${name || "（未入力）"}`,

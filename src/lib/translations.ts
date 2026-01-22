@@ -72,7 +72,7 @@ export const translations = {
     "home.technologies.title": "学習できる技術・資格",
     "home.technologies.description": "最新のフロントエンド・バックエンド技術を体系的に学べます",
     "home.technologies.getStarted": "学習を始める",
-    "home.about.title": "SkillBoostについて",
+    "home.about.title": "モアコーディングについて",
     "home.about.description": "IT資格の取得を目指す方のための学習プラットフォームです。\n実践的な技術を学びながら、資格取得に必要な知識を身につけられます。",
     
     // Technologies
@@ -98,7 +98,7 @@ export const translations = {
     "footer.services.title": "サービス",
     "footer.company.title": "会社情報",
     "footer.account.title": "アカウント",
-    "footer.copyright": "© 2026 SkillBoost. All rights reserved.",
+    "footer.copyright": "© 2026 More Coding. All rights reserved.",
     
     // Common
     "common.loading": "読み込み中...",
@@ -125,7 +125,7 @@ export const translations = {
     "home.technologies.title": "Technologies & Certifications You Can Learn",
     "home.technologies.description": "Systematically learn the latest frontend and backend technologies",
     "home.technologies.getStarted": "Get Started",
-    "home.about.title": "About SkillBoost",
+    "home.about.title": "About More Coding",
     "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
     
     // Technologies
@@ -151,7 +151,7 @@ export const translations = {
     "footer.services.title": "Services",
     "footer.company.title": "Company",
     "footer.account.title": "Account",
-    "footer.copyright": "© 2026 SkillBoost. All rights reserved.",
+    "footer.copyright": "© 2026 More Coding. All rights reserved.",
     
     // Common
     "common.loading": "Loading...",

@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "ブログ - SkillBoost",
-  description: "SkillBoostの技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。",
+  title: "ブログ - More Coding",
+  description: "More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。",
 };
 
 export default async function BlogPage() {
@@ -22,7 +22,7 @@ export default async function BlogPage() {
             ブログ
           </h1>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            SkillBoostの技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。
+            More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。
           </p>
         </header>
         

@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: "記事が見つかりません - SkillBoost",
+      title: "記事が見つかりません - More Coding",
     };
   }
 
   return {
-    title: `${post.title} - SkillBoost ブログ`,
+    title: `${post.title} - More Coding ブログ`,
     description: post.excerpt || post.title,
     openGraph: {
       title: post.title,
