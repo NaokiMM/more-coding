@@ -25,10 +25,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/", // ★追加：トップの正規URL
   },
+  // apple-icon.pngを追加
   manifest: "/manifest.json",
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
+    icon: "/pwa-icon.png",
+    apple: "/apple-pwa-icon.png",
   },
 };
 
