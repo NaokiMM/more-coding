@@ -66,8 +66,41 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
       return null;
     }
 
-    const data: CategoryData = await response.json();
-    return data;
+    const jsonData: JsonQuestion[] = await response.json();
+    
+    // JSON配列をCategoryData形式に変換
+    const questions: Question[] = jsonData.map((q) => {
+      // correctAnswer文字列（"正解：A"など）をインデックスに変換
+      const answerMatch = q.correctAnswer.match(/正解：([A-Z])/);
+      const correctIndex = answerMatch 
+        ? answerMatch[1].charCodeAt(0) - 65 // A=0, B=1, C=2, D=3
+        : 0;
+      
+      return {
+        id: q.id,
+        question: q.question,
+        choices: q.choices,
+        correctAnswer: correctIndex,
+        explanation: q.explanation,
+        category: q.category,
+        filename: q.filename,
+      };
+    });
+    
+    const categoryData: CategoryData = {
+      categoryId: categoryId,
+      categoryName: category.name,
+      course: "associate",
+      technology: "nextjs",
+      questions: questions,
+      metadata: {
+        version: "1.0.0",
+        lastUpdated: new Date().toISOString(),
+        totalQuestions: questions.length,
+      },
+    };
+    
+    return categoryData;
   } catch (error) {
     // エラーが発生した場合はnullを返す（404ページを表示）
     return null;
@@ -76,13 +109,25 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
 
 // ---- 型定義（types） ----
 
+// JSON教材の形式に合わせた型定義
+interface JsonQuestion {
+  id: number;
+  question: string;
+  correctAnswer: string; // "正解：A", "正解：B" などの形式
+  explanation: string;
+  choices: string[];
+  category: string;
+  filename: string;
+}
+
 interface Question {
-  id: string; // 問題ID
+  id: number; // 問題ID
   question: string; // 問題文
-  type: string; // 問題の種類（選択肢、記述式、など）
-  options: string[]; // 選択肢
-  correctAnswer: number; // 正解の番号
+  choices: string[]; // 選択肢
+  correctAnswer: number; // 正解のインデックス（0, 1, 2, 3...）
   explanation: string; // 解説
+  category: string;
+  filename: string;
 }
 
 interface CategoryData {

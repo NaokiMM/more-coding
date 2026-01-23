@@ -7,12 +7,13 @@ import { categoriesData } from "@/lib/categories/devtools/associate-categories";
 import EndStudyButton from "@/components/EndStudyButton";
 
 interface Question {
-  id: string;
+  id: number;
   question: string;
-  type: string;
-  options: string[];
+  choices: string[];
   correctAnswer: number;
   explanation: string;
+  category: string;
+  filename: string;
 }
 
 interface CategoryData {
@@ -199,7 +200,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <label className="mb-4 block text-sm font-medium text-slate-700 dark:text-slate-300">
               選択肢
             </label>
-            {currentQuestion.options.map((option, index) => {
+            {currentQuestion.choices.map((choice, index) => {
               const optionLabel = String.fromCharCode(65 + index); // A, B, C, D
               const isCorrect = index === currentQuestion.correctAnswer;
               const isSelected = selectedAnswer === index;
@@ -245,7 +246,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   </div>
                   <div className="flex-1 rounded border border-slate-300 bg-white p-3 dark:border-slate-600 dark:bg-slate-800">
                     <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {option}
+                      {choice}
                     </p>
                   </div>
                   {showResult && isCorrect && (
@@ -345,6 +346,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   setCurrentQuestionIndex(currentQuestionIndex - 1);
                   setSelectedAnswer(null);
                   setShowAnswer(false);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}
               className="inline-flex items-center rounded-lg bg-gradient-to-r from-slate-500 to-slate-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
@@ -371,6 +373,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSelectedAnswer(null);
                 setShowAnswer(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
             disabled={currentQuestionIndex >= categoryData.questions.length - 1}

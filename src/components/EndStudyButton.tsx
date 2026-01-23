@@ -13,7 +13,7 @@ export default function EndStudyButton({ categoryId, technology, courseType }: E
 
   const handleEndStudy = () => {
     if (confirm("学習を終了しますか？")) {
-      router.push(`/learn/${technology}/${courseType}/${categoryId}`);
+      router.push("/");
     }
   };
 
