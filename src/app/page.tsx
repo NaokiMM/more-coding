@@ -67,6 +67,34 @@ export default function Home() {
       color: "from-emerald-500 to-teal-600",
       icon: "🔍",
     },
+    {
+      id: "nodejs",
+      nameKey: "tech.nodejs.name" as const,
+      descriptionKey: "tech.nodejs.description" as const,
+      color: "from-green-600 to-green-800",
+      icon: "🟢",
+    },
+    {
+      id: "nestjs",
+      nameKey: "tech.nestjs.name" as const,
+      descriptionKey: "tech.nestjs.description" as const,
+      color: "from-red-600 to-red-800",
+      icon: "🔴",
+    },
+    {
+      id: "express",
+      nameKey: "tech.express.name" as const,
+      descriptionKey: "tech.express.description" as const,
+      color: "from-gray-600 to-gray-800",
+      icon: "⚡",
+    },
+    {
+      id: "laravel",
+      nameKey: "tech.laravel.name" as const,
+      descriptionKey: "tech.laravel.description" as const,
+      color: "from-red-500 to-red-700",
+      icon: "🔴",
+    },
   ];
 
   return (

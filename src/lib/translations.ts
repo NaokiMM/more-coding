@@ -38,6 +38,14 @@ export type TranslationKey =
   | "tech.devtools.description"
   | "tech.seo.name"
   | "tech.seo.description"
+  | "tech.nodejs.name"
+  | "tech.nodejs.description"
+  | "tech.nestjs.name"
+  | "tech.nestjs.description"
+  | "tech.express.name"
+  | "tech.express.description"
+  | "tech.laravel.name"
+  | "tech.laravel.description"
   
   // Footer
   | "footer.tagline"
@@ -92,6 +100,14 @@ export const translations = {
     "tech.devtools.description": "ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。",
     "tech.seo.name": "SEO",
     "tech.seo.description": "検索エンジン最適化の基礎から実践まで。ウェブサイトの検索順位向上とアクセス数増加のスキルを身につけます。",
+    "tech.nodejs.name": "Node.js",
+    "tech.nodejs.description": "サーバーサイドJavaScriptランタイム。非同期処理、ファイルシステム操作、HTTPサーバー構築などのスキルを身につけます。",
+    "tech.nestjs.name": "NestJS",
+    "tech.nestjs.description": "TypeScriptベースのNode.jsフレームワーク。モジュール、コントローラー、サービス、依存性注入などのエンタープライズレベルのアプリケーション開発を学びます。",
+    "tech.express.name": "Express",
+    "tech.express.description": "Node.jsの軽量で柔軟なWebアプリケーションフレームワーク。ルーティング、ミドルウェア、テンプレートエンジンなどのスキルを身につけます。",
+    "tech.laravel.name": "Laravel",
+    "tech.laravel.description": "PHPのモダンなWebアプリケーションフレームワーク。Eloquent ORM、ルーティング、ミドルウェア、認証などのスキルを身につけます。",
     
     // Footer
     "footer.tagline": "IT資格の取得を目指す方のための学習プラットフォーム",
@@ -145,6 +161,14 @@ export const translations = {
     "tech.devtools.description": "Master skills such as debugging, performance analysis, and network monitoring by utilizing browser developer tools.",
     "tech.seo.name": "SEO",
     "tech.seo.description": "From basics to practice of search engine optimization. Master skills to improve website search rankings and increase traffic.",
+    "tech.nodejs.name": "Node.js",
+    "tech.nodejs.description": "Server-side JavaScript runtime. Master skills such as asynchronous processing, file system operations, and HTTP server construction.",
+    "tech.nestjs.name": "NestJS",
+    "tech.nestjs.description": "TypeScript-based Node.js framework. Learn enterprise-level application development with modules, controllers, services, and dependency injection.",
+    "tech.express.name": "Express",
+    "tech.express.description": "Lightweight and flexible web application framework for Node.js. Master skills such as routing, middleware, and template engines.",
+    "tech.laravel.name": "Laravel",
+    "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
     
     // Footer
     "footer.tagline": "A learning platform for those aiming to obtain IT certifications",
