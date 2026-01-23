@@ -1,8 +1,33 @@
 // 料金ページ
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 export default function PricingPage() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
+  const handlePlanClick = (planId: string) => {
+    if (planId === "basic") {
+      // 月額ベーシックプランの場合、ログイン済みなら詳細ページ、未ログインならサインアップ
+      if (isAuthenticated) {
+        router.push("/pricing/basic");
+      } else {
+        router.push("/signup");
+      }
+    } else if (planId === "basic-yearly") {
+      // 年額ベーシックプランの場合、ログイン済みなら詳細ページ、未ログインならサインアップ
+      if (isAuthenticated) {
+        router.push("/pricing/basic-yearly");
+      } else {
+        router.push("/signup");
+      }
+    }
+  };
+
   const allPlans = [
     {
       id: "free",
@@ -18,7 +43,7 @@ export default function PricingPage() {
       ],
       color: "from-slate-500 to-slate-600",
       buttonText: "無料で始める",
-      buttonLink: "/signup",
+      buttonLink: "/#technologies",
     },
     {
       id: "basic",
@@ -158,16 +183,25 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 <div className="mt-auto">
-                  <Link
-                    href={plan.buttonLink}
-                    className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg ${
-                      plan.id === "free"
-                        ? "bg-slate-200 text-slate-900 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-                        : `bg-gradient-to-r ${plan.color} text-white`
-                    }`}
-                  >
-                    {plan.buttonText}
-                  </Link>
+                  {plan.id === "basic" || plan.id === "basic-yearly" ? (
+                    <button
+                      onClick={() => handlePlanClick(plan.id)}
+                      className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg bg-gradient-to-r ${plan.color} text-white`}
+                    >
+                      {plan.buttonText}
+                    </button>
+                  ) : (
+                    <Link
+                      href={plan.buttonLink}
+                      className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg ${
+                        plan.id === "free"
+                          ? "bg-slate-200 text-slate-900 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                          : `bg-gradient-to-r ${plan.color} text-white`
+                      }`}
+                    >
+                      {plan.buttonText}
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
