@@ -11,9 +11,6 @@
 import StudyClient from "./StudyClient";
 import { categoriesData as seoAssociateCategoriesData } from "@/lib/categories/seo/associate-categories";
 
-// 静的生成を強制
-export const dynamic = "force-static";
-
 // URL パラメータから categoryId を取得
 export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
   const { categoryId } = await Promise.resolve(params);
@@ -50,8 +47,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
   try {
     const jsonUrl = `${baseUrl}/questions/seo/associate/${category.file}`;
     const response = await fetch(jsonUrl, {
-      // 静的生成のため、force-cache を明示的に指定
-      cache: "force-cache",
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
