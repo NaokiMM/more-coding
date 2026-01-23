@@ -5,8 +5,8 @@ https://more-coding.com/
 ## GitHub
 https://github.com/NaokiMM/more-coding
 
-## IT資格アプリ教材（AI入力禁止/AI補助許可）
-https://docs.google.com/spreadsheets/d/1M5k-YMU-nnv23_59H_eXhxl989TsWCPErkhwoJ39B1s/edit?gid=1587324847#gid=1587324847
+## 事業内ドキュメント/教材
+https://drive.google.com/drive/u/0/folders/12MTCsc9PduvNM-P7HixS1Ve5Kz-vwIAL
 
 # 開発構成要素
 ## 環境変数の扱い
