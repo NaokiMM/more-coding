@@ -183,11 +183,11 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           </div>
 
           {/* Question Text */}
-          <div className="mb-8">
+          <div className="mb-6">
             <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
               問題文
             </label>
-            <div className="min-h-[120px] rounded-lg border-2 border-slate-300 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-900">
+            <div className="rounded-lg border border-slate-300 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-900">
               <p className="whitespace-pre-wrap text-base leading-relaxed text-slate-700 dark:text-slate-300">
                 {currentQuestion.question}
               </p>
