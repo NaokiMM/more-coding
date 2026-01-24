@@ -2,25 +2,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 export default function BasicPlanPage() {
-  const router = useRouter();
-  const { user, loading, isAuthenticated } = useAuth();
+  const { loading } = useAuth();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  // 認証チェック
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      router.push("/login");
-    }
-  }, [loading, isAuthenticated, router]);
-
-  // ローディング中または未認証の場合は何も表示しない
-  if (loading || !isAuthenticated || !user) {
+  // ローディング中の場合はローディング表示
+  if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">

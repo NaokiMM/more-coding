@@ -4,12 +4,10 @@ import Header from "@/components/Header";
 
 export default function LegalPage() {
   const companyInfo = {
-    businessName: "モアコーディング株式会社",
-    representative: "代表取締役 CEO 山田 太郎",
-    address: "〒100-0001 東京都千代田区千代田1-1-1",
-    phone: "03-1234-5678",
-    email: "info@more-coding.com",
-    businessHours: "平日 10:00〜18:00",
+    businessName: "松本尚輝",
+    representative: "松本尚輝",
+    address: "開示請求があった場合は、遅滞なく開示いたします。",
+    phone: "開示請求があった場合は、遅滞なく開示いたします。",
   };
 
   const transactionInfo = {
@@ -19,7 +17,7 @@ export default function LegalPage() {
     serviceDelivery: "お支払い完了後、即座にサービスをご利用いただけます。",
     cancellationPolicy: "サービス開始後、ご利用期間に応じて返金いたします。詳細は利用規約をご確認ください。",
     returnPolicy: "デジタルコンテンツの性質上、原則として返品・返金はお受けできません。ただし、サービスに重大な不具合がある場合は、返金対応をいたします。",
-    complaintHandling: "お客様からのご意見・ご要望は、お問い合わせフォームまたは上記メールアドレスまでご連絡ください。",
+    complaintHandling: "お客様からのご意見・ご要望は、お問い合わせフォームよりご連絡ください。",
   };
 
   return (
@@ -80,24 +78,6 @@ export default function LegalPage() {
               </dt>
               <dd className="text-base text-slate-900 dark:text-white">
                 {companyInfo.phone}
-              </dd>
-              <dd className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                受付時間: {companyInfo.businessHours}
-              </dd>
-            </div>
-
-            {/* メールアドレス */}
-            <div>
-              <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-2">
-                メールアドレス
-              </dt>
-              <dd className="text-base text-slate-900 dark:text-white">
-                <a
-                  href={`mailto:${companyInfo.email}`}
-                  className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline"
-                >
-                  {companyInfo.email}
-                </a>
               </dd>
             </div>
 

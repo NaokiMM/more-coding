@@ -3,28 +3,18 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 export default function PricingPage() {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
 
   const handlePlanClick = (planId: string) => {
     if (planId === "basic") {
-      // 月額ベーシックプランの場合、ログイン済みなら詳細ページ、未ログインならサインアップ
-      if (isAuthenticated) {
-        router.push("/pricing/basic");
-      } else {
-        router.push("/signup");
-      }
+      // 月額ベーシックプランの詳細ページに遷移
+      router.push("/pricing/basic");
     } else if (planId === "basic-yearly") {
-      // 年額ベーシックプランの場合、ログイン済みなら詳細ページ、未ログインならサインアップ
-      if (isAuthenticated) {
-        router.push("/pricing/basic-yearly");
-      } else {
-        router.push("/signup");
-      }
+      // 年額ベーシックプランの詳細ページに遷移
+      router.push("/pricing/basic-yearly");
     }
   };
 
