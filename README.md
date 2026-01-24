@@ -37,12 +37,14 @@ Top-Down Readability（トップダウン設計）
 ## AWSクラウドの主な使用サービス
 ##### DB: DynamoDB
 ##### 認証: Cognito
+##### メール配信：Amazon SES
 ##### サーバー: Lambda・Amplify（環境変数含む）
 ##### API: API Gateway
 ##### オブジェクトストレージ: S3
 ##### CDN: CloudFront
 ##### アカウン制御: IAM
-##### Container: Docker
+##### コンテナサービス: Docker
+##### 監視・ログ：CloudWatch
 
 ## 試験実施ツール
 ### Safe Exam Browser
