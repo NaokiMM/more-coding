@@ -59,6 +59,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/legal" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                  特定商取引法に基づく表記
+                </Link>
+              </li>
+              <li>
                 <Link href="/login/corporate" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                   {t("nav.corporateLogin")}
                 </Link>
