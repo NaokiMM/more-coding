@@ -82,7 +82,6 @@ export default function ContactPage() {
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL;
-      console.log("apiUrl=", apiUrl);
       
       if (!apiUrl) {
         throw new Error("API URLが設定されていません。");
