@@ -4,13 +4,12 @@ import Header from "@/components/Header";
 
 export default function CompanyPage() {
   const companyInfo = {
-    name: "モアコーディング株式会社",
-    nameEn: "More Coding Inc.",
-    established: "2024年4月",
-    capital: "1,000万円",
-    address: "〒100-0001 東京都千代田区千代田1-1-1",
-    representative: "代表取締役 CEO 山田 太郎",
-    employees: "10名",
+    name: "松本尚輝",
+    nameEn: "Naoki Matsumoto",
+    established: "2026年1月",
+    address: "開示請求があった場合は、遅滞なく開示いたします。",
+    phone: "開示請求があった場合は、遅滞なく開示いたします。",
+    representative: "松本尚輝",
     business: "IT資格学習プラットフォームの運営・開発",
   };
 
@@ -36,11 +35,6 @@ export default function CompanyPage() {
       icon: "🚀",
     },
     {
-      title: "コミュニティ重視",
-      description: "学習者同士が支え合い、成長できるコミュニティを育成します。",
-      icon: "🤝",
-    },
-    {
       title: "技術の民主化",
       description: "誰もが技術を学び、エンジニアリングスキルを身につけられる環境を作ります。",
       icon: "🌍",
@@ -60,10 +54,6 @@ export default function CompanyPage() {
       title: "学習進捗管理システム",
       description: "個人の学習進捗を可視化し、効率的な学習をサポート",
     },
-    {
-      title: "エンジニアコミュニティ運営",
-      description: "学習者同士の交流と知識共有を促進するコミュニティの運営",
-    },
   ];
 
   return (
@@ -78,7 +68,7 @@ export default function CompanyPage() {
             事業概要
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            ITエンジニアのスキルアップとキャリア成長を支援する学習プラットフォーム
+            ITエンジニアのスキルアップと<br />キャリア成長を支援する学習プラットフォーム
           </p>
         </div>
       </section>
@@ -92,7 +82,7 @@ export default function CompanyPage() {
           <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
-                会社名
+                事業者名
               </dt>
               <dd className="text-base text-slate-900 dark:text-white">
                 {companyInfo.name}
@@ -109,22 +99,6 @@ export default function CompanyPage() {
                 {companyInfo.established}
               </dd>
             </div>
-            <div>
-              <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
-                資本金
-              </dt>
-              <dd className="text-base text-slate-900 dark:text-white">
-                {companyInfo.capital}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
-                従業員数
-              </dt>
-              <dd className="text-base text-slate-900 dark:text-white">
-                {companyInfo.employees}
-              </dd>
-            </div>
             <div className="sm:col-span-2">
               <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 代表者
@@ -139,6 +113,28 @@ export default function CompanyPage() {
               </dt>
               <dd className="text-base text-slate-900 dark:text-white">
                 {companyInfo.address}
+              </dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                電話番号
+              </dt>
+              <dd className="text-base text-slate-900 dark:text-white">
+                {companyInfo.phone}
+              </dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                お問い合わせ
+              </dt>
+              <dd className="text-base text-slate-900 dark:text-white">
+                お問い合わせフォームより
+                <Link
+                  href="/contact"
+                  className="text-blue-600 hover:text-blue-800 underline dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  ご連絡ください。
+                </Link>
               </dd>
             </div>
             <div className="sm:col-span-2">
@@ -178,7 +174,7 @@ export default function CompanyPage() {
             私たちの価値観
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            モアコーディングが大切にする4つの価値観
+            モアコーディングが大切にする3つの価値観
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
