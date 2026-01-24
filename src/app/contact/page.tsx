@@ -101,7 +101,24 @@ export default function ContactPage() {
         }),
       });
 
-      const data = await response.json();
+      // レスポンスボディが空でないことを確認
+      const responseText = await response.text();
+      let data;
+      
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText);
+        } catch (parseError) {
+          throw new Error("サーバーからの応答の解析に失敗しました。");
+        }
+      } else {
+        throw new Error("サーバーからの応答が空です。");
+      }
+
+      // ステータスコードをチェック
+      if (!response.ok) {
+        throw new Error(data.message || `送信に失敗しました（ステータス: ${response.status}）。もう一度お試しください。`);
+      }
 
       if (data.ok === true) {
         setIsSubmitted(true);
