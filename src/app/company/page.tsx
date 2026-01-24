@@ -1,4 +1,4 @@
-// 会社概要ページ
+// 事業概要ページ
 import Link from "next/link";
 import Header from "@/components/Header";
 
@@ -75,7 +75,7 @@ export default function CompanyPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
-            会社概要
+            事業概要
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
             ITエンジニアのスキルアップとキャリア成長を支援する学習プラットフォーム
@@ -87,7 +87,7 @@ export default function CompanyPage() {
       <section className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-            会社情報
+            事業情報
           </h2>
           <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>

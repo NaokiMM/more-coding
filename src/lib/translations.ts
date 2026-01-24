@@ -65,7 +65,7 @@ export const translations = {
     "nav.home": "ホーム",
     "nav.technologies": "学習できる技術・資格",
     "nav.blog": "ブログ",
-    "nav.company": "会社概要",
+    "nav.company": "事業概要",
     "nav.pricing": "料金一覧",
     "nav.contact": "問い合わせ",
     "nav.corporateLogin": "法人ログイン",
@@ -112,7 +112,7 @@ export const translations = {
     // Footer
     "footer.tagline": "IT資格の取得を目指す方のための学習プラットフォーム",
     "footer.services.title": "サービス",
-    "footer.company.title": "会社情報",
+    "footer.company.title": "事業情報",
     "footer.account.title": "アカウント",
     "footer.copyright": "© 2026 More Coding. All rights reserved.",
     
