@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     }
 
     // サーバー側の環境変数を使用（NEXT_PUBLIC_ なし）
-    const apiBaseUrl = process.env.FRANKFURTER_API_BASE_URL;
+    const apiBaseUrl = process.env.FRANKFURTER_API_BASE_URL || "https://api.frankfurter.dev";
     const url = `${apiBaseUrl}/latest?from=${from}&symbols=${to}`;
 
     const response = await fetch(url, {
