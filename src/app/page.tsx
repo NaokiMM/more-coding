@@ -95,6 +95,20 @@ export default function Home() {
       color: "from-red-500 to-red-700",
       icon: "🔴",
     },
+    {
+      id: "django",
+      nameKey: "tech.django.name" as const,
+      descriptionKey: "tech.django.description" as const,
+      color: "from-green-600 to-emerald-700",
+      icon: "🐍",
+    },
+    {
+      id: "ai-interview",
+      nameKey: "tech.ai-interview.name" as const,
+      descriptionKey: "tech.ai-interview.description" as const,
+      color: "from-purple-500 to-pink-600",
+      icon: "🤖",
+    },
   ];
 
   return (

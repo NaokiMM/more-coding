@@ -46,6 +46,10 @@ export type TranslationKey =
   | "tech.express.description"
   | "tech.laravel.name"
   | "tech.laravel.description"
+  | "tech.ai-interview.name"
+  | "tech.ai-interview.description"
+  | "tech.django.name"
+  | "tech.django.description"
   
   // Footer
   | "footer.tagline"
@@ -108,6 +112,10 @@ export const translations = {
     "tech.express.description": "Node.jsの軽量で柔軟なWebアプリケーションフレームワーク。ルーティング、ミドルウェア、テンプレートエンジンなどのスキルを身につけます。",
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "PHPのモダンなWebアプリケーションフレームワーク。Eloquent ORM、ルーティング、ミドルウェア、認証などのスキルを身につけます。",
+    "tech.ai-interview.name": "AI面接",
+    "tech.ai-interview.description": "AIを活用した面接練習プラットフォーム。実践的な面接スキルを身につけ、就職・転職活動を成功させます。",
+    "tech.django.name": "Django",
+    "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
     "footer.tagline": "IT資格の取得を目指す方のための学習プラットフォーム",
@@ -169,6 +177,10 @@ export const translations = {
     "tech.express.description": "Lightweight and flexible web application framework for Node.js. Master skills such as routing, middleware, and template engines.",
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
+    "tech.ai-interview.name": "AI Interview",
+    "tech.ai-interview.description": "AI-powered interview practice platform. Master practical interview skills and succeed in job hunting and career change activities.",
+    "tech.django.name": "Django",
+    "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
     
     // Footer
     "footer.tagline": "A learning platform for those aiming to obtain IT certifications",
