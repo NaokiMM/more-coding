@@ -74,24 +74,37 @@ export function convertJpyToUsd(
  * @param jpyAmount JPY金額
  * @returns USD金額
  */
-export async function calculateUsdFromJpy(
-  jpyAmount: number
-): Promise<number> {
+export async function calculateUsdFromJpy(jpy: number): Promise<number> {
   try {
-    const rateData = await getExchangeRate("JPY", "USD");
-    const rate = rateData.rates?.USD;
+    const response = await fetch(
+      `/api/exchange?from=JPY&to=USD&amount=${jpy}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
 
-    if (!rate || typeof rate !== "number") {
-      throw new Error("為替レートが取得できませんでした");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.error || `HTTP error! status: ${response.status}`
+      );
     }
 
-    return convertJpyToUsd(jpyAmount, rate);
+    const data = await response.json();
+
+    if (typeof data.converted !== "number") {
+      throw new Error("無効なAPIレスポンスです");
+    }
+
+    return data.converted;
   } catch (error) {
-    console.error("為替レートの取得に失敗しました:", error);
-    // エラーメッセージをより分かりやすくする
+    console.error("為替換算に失敗しました:", error);
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw error;
     }
-    throw new Error("為替レートの取得に失敗しました。もう一度お試しください。");
+    throw new Error("為替換算に失敗しました。もう一度お試しください。");
   }
 }
