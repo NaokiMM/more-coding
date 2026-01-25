@@ -1,12 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/lib/translations";
 
 export default function Footer() {
   const { language } = useLanguage();
   const t = useTranslation(language);
+  const pathname = usePathname();
+
+  const handlePricingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/pricing") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <footer className="border-t border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
@@ -39,7 +48,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+                <Link 
+                  href="/pricing" 
+                  onClick={handlePricingClick}
+                  className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                >
                   {t("nav.pricing")}
                 </Link>
               </li>
