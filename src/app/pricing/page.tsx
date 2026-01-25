@@ -3,10 +3,15 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Header from "@/components/Header";
 
 export default function PricingPage() {
   const router = useRouter();
+  const [exchangeRate, setExchangeRate] = useState<string>("");
+  const [calculatedUsd, setCalculatedUsd] = useState<number | null>(null);
+  const [exchangeRateYearly, setExchangeRateYearly] = useState<string>("");
+  const [calculatedUsdYearly, setCalculatedUsdYearly] = useState<number | null>(null);
 
   const handlePlanClick = (planId: string) => {
     if (planId === "basic") {
@@ -15,6 +20,22 @@ export default function PricingPage() {
     } else if (planId === "basic-yearly") {
       // 年額ベーシックプランの詳細ページに遷移
       router.push("/pricing/basic-yearly");
+    }
+  };
+
+  const handleCalculateUsd = () => {
+    const rate = parseFloat(exchangeRate);
+    if (!isNaN(rate) && rate > 0) {
+      const usdPrice = 980 / rate;
+      setCalculatedUsd(usdPrice);
+    }
+  };
+
+  const handleCalculateUsdYearly = () => {
+    const rate = parseFloat(exchangeRateYearly);
+    if (!isNaN(rate) && rate > 0) {
+      const usdPrice = 9800 / rate;
+      setCalculatedUsdYearly(usdPrice);
     }
   };
 
@@ -123,28 +144,131 @@ export default function PricingPage() {
               <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 transition-opacity hover:opacity-5`} />
               <div className="relative flex flex-col flex-1">
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                  {plan.name}
+                  {plan.id === "basic" ? (
+                    <>
+                      ベーシックプラン
+                      <br />
+                      （月額）
+                    </>
+                  ) : plan.id === "basic-yearly" ? (
+                    <>
+                      ベーシックプラン
+                      <br />
+                      （年額）
+                    </>
+                  ) : (
+                    plan.name
+                  )}
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
                   {plan.description}
                 </p>
                 <div className="mb-6">
-                  {plan.originalPrice && (
+                  {plan.originalPrice && plan.id !== "basic-yearly" && (
                     <div className="mb-2">
                       <span className="text-lg text-slate-400 line-through">
                         ¥{plan.originalPrice.toLocaleString()}
                       </span>
                     </div>
                   )}
-                  <div className="flex items-baseline">
-                    <span className="text-4xl font-bold text-slate-900 dark:text-white">
-                      ¥{plan.price.toLocaleString()}
-                    </span>
-                    <span className="text-lg text-slate-600 dark:text-slate-400 ml-2">
-                      /{plan.period}
-                    </span>
-                  </div>
-                  {plan.originalPrice && (
+                  {plan.id === "free" ? (
+                    <div className="flex items-baseline">
+                      <span className="text-4xl font-bold text-slate-900 dark:text-white">
+                        ¥{plan.price.toLocaleString()} / $0
+                      </span>
+                      <span className="text-lg text-slate-600 dark:text-slate-400 ml-2">
+                        /{plan.period}
+                      </span>
+                    </div>
+                  ) : plan.id === "basic" ? (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-sm text-slate-600 dark:text-slate-400">¥円: </span>
+                        <span className="text-4xl font-bold text-slate-900 dark:text-white">
+                          {plan.price.toLocaleString()}
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">
+                          /{plan.period}
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">$USD: </span>
+                          <input
+                            type="number"
+                            value={exchangeRate}
+                            onChange={(e) => setExchangeRate(e.target.value)}
+                            placeholder="為替レート"
+                            className="w-24 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+                          />
+                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Month</span>
+                        </div>
+                        <button
+                          onClick={handleCalculateUsd}
+                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700"
+                        >
+                          Calculate
+                        </button>
+                        {calculatedUsd !== null && (
+                          <div className="text-center">
+                            <span className="text-lg font-semibold text-slate-900 dark:text-white">
+                              ${calculatedUsd.toFixed(2)}
+                            </span>
+                            <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">/Month</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : plan.id === "basic-yearly" ? (
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-sm text-slate-600 dark:text-slate-400">¥円: </span>
+                        <span className="text-4xl font-bold text-slate-900 dark:text-white">
+                          {plan.price.toLocaleString()}
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">
+                          /{plan.period}
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">$USD: </span>
+                          <input
+                            type="number"
+                            value={exchangeRateYearly}
+                            onChange={(e) => setExchangeRateYearly(e.target.value)}
+                            placeholder="為替レート"
+                            className="w-24 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+                          />
+                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Year</span>
+                        </div>
+                        <button
+                          onClick={handleCalculateUsdYearly}
+                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700"
+                        >
+                          Calculate
+                        </button>
+                        {calculatedUsdYearly !== null && (
+                          <div className="text-center">
+                            <span className="text-lg font-semibold text-slate-900 dark:text-white">
+                              ${calculatedUsdYearly.toFixed(2)}
+                            </span>
+                            <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">/Year</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-baseline">
+                      <span className="text-4xl font-bold text-slate-900 dark:text-white">
+                        ¥{plan.price.toLocaleString()}
+                      </span>
+                      <span className="text-lg text-slate-600 dark:text-slate-400 ml-2">
+                        /{plan.period}
+                      </span>
+                    </div>
+                  )}
+                  {plan.originalPrice && plan.id !== "basic-yearly" && (
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       月額換算: ¥{Math.round(plan.price / 12).toLocaleString()}/月
                     </p>
