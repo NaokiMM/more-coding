@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Header from "@/components/Header";
+import { calculateUsdFromJpy } from "@/lib/currency";
 
 export default function PricingPage() {
   const router = useRouter();
-  const [exchangeRate, setExchangeRate] = useState<string>("");
   const [calculatedUsd, setCalculatedUsd] = useState<number | null>(null);
-  const [exchangeRateYearly, setExchangeRateYearly] = useState<string>("");
   const [calculatedUsdYearly, setCalculatedUsdYearly] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingYearly, setLoadingYearly] = useState<boolean>(false);
 
   const handlePlanClick = (planId: string) => {
     if (planId === "basic") {
@@ -23,19 +24,37 @@ export default function PricingPage() {
     }
   };
 
-  const handleCalculateUsd = () => {
-    const rate = parseFloat(exchangeRate);
-    if (!isNaN(rate) && rate > 0) {
-      const usdPrice = 980 / rate;
+  const handleCalculateUsd = async () => {
+    setLoading(true);
+    try {
+      const usdPrice = await calculateUsdFromJpy(980);
       setCalculatedUsd(usdPrice);
+    } catch (error) {
+      console.error("為替レートの取得に失敗しました:", error);
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "為替レートの取得に失敗しました。もう一度お試しください。";
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleCalculateUsdYearly = () => {
-    const rate = parseFloat(exchangeRateYearly);
-    if (!isNaN(rate) && rate > 0) {
-      const usdPrice = 9800 / rate;
+  const handleCalculateUsdYearly = async () => {
+    setLoadingYearly(true);
+    try {
+      const usdPrice = await calculateUsdFromJpy(9800);
       setCalculatedUsdYearly(usdPrice);
+    } catch (error) {
+      console.error("為替レートの取得に失敗しました:", error);
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "為替レートの取得に失敗しました。もう一度お試しください。";
+      alert(errorMessage);
+    } finally {
+      setLoadingYearly(false);
     }
   };
 
@@ -193,30 +212,29 @@ export default function PricingPage() {
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">$USD: </span>
-                          <input
-                            type="number"
-                            value={exchangeRate}
-                            onChange={(e) => setExchangeRate(e.target.value)}
-                            placeholder="為替レート"
-                            className="w-24 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
-                          />
-                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Month</span>
+                          <label htmlFor="usd-monthly" className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                            $USD:
+                          </label>
+                          <div className="flex-1 flex items-center gap-2">
+                            <span className="text-slate-600 dark:text-slate-400">$</span>
+                            <input
+                              id="usd-monthly"
+                              type="text"
+                              value={calculatedUsd !== null ? calculatedUsd.toFixed(2) : ""}
+                              readOnly
+                              placeholder="Calculateをクリック"
+                              className="flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-500"
+                            />
+                            <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Month</span>
+                          </div>
                         </div>
                         <button
                           onClick={handleCalculateUsd}
-                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700"
+                          disabled={loading}
+                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Calculate
+                          {loading ? "計算中..." : "Calculate"}
                         </button>
-                        {calculatedUsd !== null && (
-                          <div className="text-center">
-                            <span className="text-lg font-semibold text-slate-900 dark:text-white">
-                              ${calculatedUsd.toFixed(2)}
-                            </span>
-                            <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">/Month</span>
-                          </div>
-                        )}
                       </div>
                     </div>
                   ) : plan.id === "basic-yearly" ? (
@@ -232,30 +250,29 @@ export default function PricingPage() {
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">$USD: </span>
-                          <input
-                            type="number"
-                            value={exchangeRateYearly}
-                            onChange={(e) => setExchangeRateYearly(e.target.value)}
-                            placeholder="為替レート"
-                            className="w-24 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
-                          />
-                          <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Year</span>
+                          <label htmlFor="usd-yearly" className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                            $USD:
+                          </label>
+                          <div className="flex-1 flex items-center gap-2">
+                            <span className="text-slate-600 dark:text-slate-400">$</span>
+                            <input
+                              id="usd-yearly"
+                              type="text"
+                              value={calculatedUsdYearly !== null ? calculatedUsdYearly.toFixed(2) : ""}
+                              readOnly
+                              placeholder="Calculateをクリック"
+                              className="flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-500"
+                            />
+                            <span className="text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">/Year</span>
+                          </div>
                         </div>
                         <button
                           onClick={handleCalculateUsdYearly}
-                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700"
+                          disabled={loadingYearly}
+                          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Calculate
+                          {loadingYearly ? "計算中..." : "Calculate"}
                         </button>
-                        {calculatedUsdYearly !== null && (
-                          <div className="text-center">
-                            <span className="text-lg font-semibold text-slate-900 dark:text-white">
-                              ${calculatedUsdYearly.toFixed(2)}
-                            </span>
-                            <span className="text-sm text-slate-600 dark:text-slate-400 ml-1">/Year</span>
-                          </div>
-                        )}
                       </div>
                     </div>
                   ) : (
