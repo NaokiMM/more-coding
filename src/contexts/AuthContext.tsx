@@ -33,23 +33,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const loadUser = async () => {
     try {
-      // 開発環境での仮ログインチェック
-      if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
-        const devUserStr = localStorage.getItem("devUser");
-        if (devUserStr) {
-          try {
-            const devUser = JSON.parse(devUserStr) as User;
-            setUser(devUser);
-            setCognitoUser(null);
-            setLoading(false);
-            return;
-          } catch (e) {
-            console.error("Error parsing dev user:", e);
-            localStorage.removeItem("devUser");
-          }
-        }
-      }
-
       const currentUser = await getCurrentUser();
       if (currentUser) {
         setCognitoUser(currentUser);
@@ -106,10 +89,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = () => {
-    // 開発環境の仮ユーザー情報もクリア
-    if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
-      localStorage.removeItem("devUser");
-    }
     cognitoSignOut();
     setUser(null);
     setCognitoUser(null);
