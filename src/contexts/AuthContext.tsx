@@ -7,11 +7,33 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { getCurrentUser, getUserAttributes, getSession, signOut as cognitoSignOut } from "@/lib/cognito";
 
+// /me エンドポイントのレスポンス型
+interface MeResponse {
+  ok: boolean;
+  created: boolean;
+  auth: {
+    sub: string;
+    name: string | null;
+    email: string | null;
+  };
+  item: {
+    pk: string;
+    sk: string;
+    createdAt?: string;
+    [key: string]: any;
+  };
+}
+
 interface User {
   email: string;
   name: string;
   subscriptionType?: string;
-  [key: string]: string | undefined;
+  auth?: {
+    sub: string;
+    name: string | null;
+    email: string | null;
+  };
+  [key: string]: any;
 }
 
 interface AuthContextType {
@@ -51,8 +73,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             );
             
             if (response.ok) {
-              const data = await response.json();
-              setUser(data as User);
+              const data: MeResponse = await response.json();
+              // auth と item をマージして User 型に変換
+              const userData: User = {
+                ...data.item,
+                email: data.auth.email || data.item.email || "",
+                name: data.auth.name || data.item.name || "",
+                auth: data.auth,
+              };
+              setUser(userData);
             } else {
               // APIから取得できない場合はCognitoから取得
               const attributes = await getUserAttributes(currentUser);

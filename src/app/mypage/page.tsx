@@ -32,8 +32,8 @@ export default function MyPage() {
     );
   }
 
-  // ユーザー情報をフォーマット
-  const userDisplayName = user.name || user.email || "ユーザー";
+  // ユーザー情報をフォーマット（auth.name を優先）
+  const userDisplayName = user.auth?.name || user.name || user.email || "ユーザー";
   const userEmail = user.email || "";
   const joinDate = user["custom:joinDate"] || "不明";
   // 会員種別（デフォルトは無料会員）
