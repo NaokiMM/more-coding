@@ -90,6 +90,24 @@ export default function BasicPlanPage() {
                     </span>
                   </li>
                 ))}
+                <li className="flex items-start">
+                  <svg
+                    className="h-6 w-6 text-red-500 mr-3 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <span className="text-lg text-slate-700 dark:text-slate-300">
+                    AI面接は含まれません。
+                  </span>
+                </li>
               </ul>
             </div>
           </div>

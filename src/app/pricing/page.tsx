@@ -312,6 +312,26 @@ export default function PricingPage() {
                       </span>
                     </li>
                   ))}
+                  {(plan.id === "basic" || plan.id === "basic-yearly") && (
+                    <li className="flex items-start">
+                      <svg
+                        className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                      <span className="text-sm text-slate-600 dark:text-slate-300">
+                        AI面接は含まれません。
+                      </span>
+                    </li>
+                  )}
                 </ul>
                 <div className="mt-auto">
                   {plan.id === "basic" || plan.id === "basic-yearly" ? (
