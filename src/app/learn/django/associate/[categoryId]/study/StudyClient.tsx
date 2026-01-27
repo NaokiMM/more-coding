@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { categoriesData } from "@/lib/categories/django/associate-categories";
 import EndStudyButton from "@/components/EndStudyButton";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Question {
   id: number;
@@ -35,6 +36,7 @@ interface StudyClientProps {
 }
 
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
+  const { isAuthenticated } = useAuth();
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -95,28 +97,24 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
                 More Coding
               </span>
-            </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link
-                href="/"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                ホーム
-              </Link>
-              <Link
-                href="/mypage"
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                マイページ
-              </Link>
-            </nav>
+            </div>
+            {isAuthenticated && (
+              <nav className="hidden md:flex items-center gap-6">
+                <Link
+                  href="/mypage"
+                  className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                >
+                  マイページ
+                </Link>
+              </nav>
+            )}
           </div>
         </div>
       </header>

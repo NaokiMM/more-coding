@@ -90,24 +90,7 @@ export default function TypeScriptLearnPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
-      <Header
-        rightContent={
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="/"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              ホーム
-            </Link>
-            <Link
-              href="/mypage"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              マイページ
-            </Link>
-          </nav>
-        }
-      />
+      <Header />
 
       {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
