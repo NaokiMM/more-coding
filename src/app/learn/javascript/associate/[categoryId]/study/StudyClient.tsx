@@ -1,7 +1,7 @@
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { categoriesData } from "@/lib/categories/javascript/associate-categories";
@@ -38,11 +38,42 @@ interface StudyClientProps {
 
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user, loading: authLoading } = useAuth();
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [showStartDialog, setShowStartDialog] = useState(false);
+
+  // ログイン状態とユーザーIDを確認
+  useEffect(() => {
+    if (authLoading) return; // 認証情報の読み込み中は何もしない
+
+    if (!isAuthenticated || !user) {
+      // ログインしていない場合は開始確認ダイアログを表示しない
+      setShowStartDialog(false);
+      return;
+    }
+
+    // ログインしている場合、学習を開始していなければ確認ダイアログを表示
+    if (!hasStarted) {
+      setShowStartDialog(true);
+    }
+  }, [isAuthenticated, user, authLoading, hasStarted]);
+
+  // 学習開始のハンドラー
+  const handleStartStudy = () => {
+    if (isAuthenticated && user) {
+      setHasStarted(true);
+      setShowStartDialog(false);
+    }
+  };
+
+  // ログインページへリダイレクト
+  const handleGoToLogin = () => {
+    router.push("/login");
+  };
 
   // データ形式の検証
   if (!categoryData || !categoryData.questions || !Array.isArray(categoryData.questions) || categoryData.questions.length === 0) {
@@ -88,6 +119,132 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           <p className="mt-2 text-slate-600 dark:text-slate-400">
             コンソールを確認して原因を追跡してください。
           </p>
+        </div>
+      </div>
+    );
+  }
+
+  // 認証情報の読み込み中
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center">
+            <div className="text-lg text-slate-600 dark:text-slate-400">読み込み中...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ログインしていない場合の表示
+  if (!isAuthenticated || !user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+                  MC
+                </div>
+                <span className="text-xl font-bold text-slate-900 dark:text-white">
+                  More Coding
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
+            <div className="text-center">
+              <div className="mb-6 flex justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-4xl">
+                  🔒
+                </div>
+              </div>
+              <h1 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                ログインが必要です
+              </h1>
+              <p className="mb-8 text-lg text-slate-600 dark:text-slate-400">
+                問題学習を開始するには、ログインが必要です。
+              </p>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleGoToLogin}
+                  className="rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                >
+                  ログインする
+                </button>
+                <Link
+                  href="/learn/javascript/associate"
+                  className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                >
+                  戻る
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 学習開始確認ダイアログ
+  if (showStartDialog && !hasStarted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+                  MC
+                </div>
+                <span className="text-xl font-bold text-slate-900 dark:text-white">
+                  More Coding
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
+            <div className="text-center">
+              <div className="mb-6 flex justify-center">
+                <div
+                  className={`flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br ${category?.color || "from-blue-500 to-purple-600"} text-4xl shadow-lg`}
+                >
+                  {category?.icon || "📚"}
+                </div>
+              </div>
+              <h1 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
+                {category?.name || "学習"}
+              </h1>
+              <p className="mb-2 text-lg font-semibold text-slate-700 dark:text-slate-300">
+                学習を始めますか？
+              </p>
+              <p className="mb-8 text-slate-600 dark:text-slate-400">
+                全{total}問の問題に取り組みます。
+              </p>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleStartStudy}
+                  className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                >
+                  学習を開始する
+                </button>
+                <Link
+                  href="/learn/javascript/associate"
+                  className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                >
+                  戻る
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

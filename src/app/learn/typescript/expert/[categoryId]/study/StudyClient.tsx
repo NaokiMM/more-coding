@@ -4,18 +4,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { categoriesData } from "@/lib/categories/vue/associate-categories";
+import { categoriesData } from "@/lib/categories/typescript/expert-categories";
 import EndStudyButton from "@/components/EndStudyButton";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface Question {
-  id: number;
+  id: string;
   question: string;
-  choices: string[];
+  type: string;
+  options: string[];
   correctAnswer: number;
   explanation: string;
-  category: string;
-  filename: string;
 }
 
 interface CategoryData {
@@ -178,7 +177,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   ログインする
                 </button>
                 <Link
-                  href="/learn/vue/associate"
+                  href="/learn/typescript/expert"
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -237,7 +236,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   学習を開始する
                 </button>
                 <Link
-                  href="/learn/vue/associate"
+                  href="/learn/typescript/expert"
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -290,17 +289,17 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           </Link>
           <span>/</span>
           <Link
-            href="/learn/vue"
+            href="/learn/typescript"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Vue.js
+            TypeScript技術者認定
           </Link>
           <span>/</span>
           <Link
-            href="/learn/vue/associate"
+            href="/learn/typescript/expert"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Associate
+            Expert
           </Link>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">{category.name}</span>
@@ -337,7 +336,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               問題 {currentQuestionIndex + 1} / {total}
             </h2>
-            <EndStudyButton categoryId={categoryId} technology="vue" courseType="associate" />
+            <EndStudyButton categoryId={categoryId} technology="typescript" courseType="expert" />
           </div>
 
           {/* Question Text */}
@@ -357,7 +356,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <label className="mb-4 block text-sm font-medium text-slate-700 dark:text-slate-300">
               選択肢
             </label>
-            {currentQuestion.choices.map((choice, index) => {
+            {currentQuestion.options.map((option, index) => {
               const optionLabel = String.fromCharCode(65 + index); // A, B, C, D
               const isCorrect = index === currentQuestion.correctAnswer;
               const isSelected = selectedAnswer === index;
@@ -403,7 +402,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   </div>
                   <div className="flex-1 rounded border border-slate-300 bg-white p-3 dark:border-slate-600 dark:bg-slate-800">
                     <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {choice}
+                      {option}
                     </p>
                   </div>
                   {showResult && isCorrect && (
@@ -495,67 +494,40 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
         </div>
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-center gap-48">
-          {currentQuestionIndex > 0 && (
-            <button
-              onClick={() => {
-                if (currentQuestionIndex > 0) {
-                  setCurrentQuestionIndex(currentQuestionIndex - 1);
-                  setSelectedAnswer(null);
-                  setShowAnswer(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
-              }}
-              className="inline-flex items-center rounded-lg bg-gradient-to-r from-slate-500 to-slate-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+        <div className="mt-8 flex items-center justify-between">
+          <Link
+            href="/learn/typescript/expert"
+            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
+            <svg
+              className="mr-2 h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="mr-2 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              前の問題へ
-            </button>
-          )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            カテゴリに戻る
+          </Link>
           <button
             onClick={() => {
               if (currentQuestionIndex < categoryData.questions.length - 1) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSelectedAnswer(null);
                 setShowAnswer(false);
-                window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
             disabled={currentQuestionIndex >= categoryData.questions.length - 1}
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            className="rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {currentQuestionIndex < categoryData.questions.length - 1 ? (
-              <>
-                次の問題へ
-                <svg
-                  className="ml-2 h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </>
-            ) : (
-              "最後の問題"
-            )}
+            {currentQuestionIndex < categoryData.questions.length - 1
+              ? "次の問題へ"
+              : "最後の問題"}
           </button>
         </div>
       </div>

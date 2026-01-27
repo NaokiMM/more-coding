@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 interface EndStudyButtonProps {
   categoryId: string;
   technology: string;
-  courseType: "associate" | "professional";
+  courseType: "associate" | "professional" | "expert";
 }
 
 export default function EndStudyButton({ categoryId, technology, courseType }: EndStudyButtonProps) {
