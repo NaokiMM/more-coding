@@ -2,19 +2,13 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import LanguageToggle from "./LanguageToggle";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslation } from "@/lib/translations";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface HeaderProps {
-  showLanguageToggle?: boolean;
   rightContent?: React.ReactNode;
 }
 
-export default function Header({ showLanguageToggle = true, rightContent }: HeaderProps) {
-  const { language } = useLanguage();
-  const t = useTranslation(language);
+export default function Header({ rightContent }: HeaderProps) {
   const { isAuthenticated, loading, signOut } = useAuth();
   const router = useRouter();
 
@@ -40,7 +34,6 @@ export default function Header({ showLanguageToggle = true, rightContent }: Head
               </span>
             </Link>
             <div className="flex items-center gap-4">
-              {showLanguageToggle && <LanguageToggle />}
               {rightContent}
             </div>
           </div>
@@ -64,7 +57,6 @@ export default function Header({ showLanguageToggle = true, rightContent }: Head
               </span>
             </Link>
             <div className="flex items-center gap-4">
-              {showLanguageToggle && <LanguageToggle />}
             </div>
           </div>
         </div>
@@ -85,7 +77,6 @@ export default function Header({ showLanguageToggle = true, rightContent }: Head
             </span>
           </Link>
           <div className="flex items-center gap-4">
-            {showLanguageToggle && <LanguageToggle />}
             {isAuthenticated ? (
               <nav className="hidden md:flex items-center gap-6">
                 <Link
@@ -107,13 +98,13 @@ export default function Header({ showLanguageToggle = true, rightContent }: Head
                   href="/login"
                   className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
                 >
-                  {t("nav.login")}
+                  ログイン
                 </Link>
                 <Link
                   href="/signup"
                   className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
                 >
-                  {t("nav.signup")}
+                  会員登録
                 </Link>
               </nav>
             )}
