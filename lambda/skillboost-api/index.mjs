@@ -127,9 +127,9 @@ export const handler = async (event) => {
 
       return json(200, {
         ok: true,
-        created: false,
+        created: true,
         auth: { sub, name, email },
-        item: got.Item,
+        item,
       });
     }
 
