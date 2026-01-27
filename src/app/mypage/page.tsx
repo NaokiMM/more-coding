@@ -4,14 +4,25 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
+import { getProgressItems } from "@/lib/progressApi";
+
+interface ProgressItem {
+  problemId: string;
+  status: string;
+  attempts: number;
+  lastAnsweredAt?: string;
+}
 
 export default function MyPage() {
   const router = useRouter();
   const { user, loading, isAuthenticated, signOut } = useAuth();
+  const [progressItems, setProgressItems] = useState<ProgressItem[]>([]);
+  const [progressLoading, setProgressLoading] = useState(true);
+  const [progressError, setProgressError] = useState<string | null>(null);
 
   // 認証チェック
   useEffect(() => {
@@ -19,6 +30,30 @@ export default function MyPage() {
       router.push("/login");
     }
   }, [loading, isAuthenticated, router]);
+
+  // 学習進捗を取得
+  useEffect(() => {
+    if (!isAuthenticated || loading) return;
+
+    const fetchProgress = async () => {
+      try {
+        setProgressLoading(true);
+        setProgressError(null);
+        const response = await getProgressItems("basic-01");
+        setProgressItems(response.items || []);
+      } catch (error: any) {
+        if (error.message?.includes("認証が切れています")) {
+          setProgressError("認証が切れています。再ログインしてください。");
+        } else {
+          setProgressError(error.message || "進捗の取得に失敗しました");
+        }
+      } finally {
+        setProgressLoading(false);
+      }
+    };
+
+    fetchProgress();
+  }, [isAuthenticated, loading]);
 
   // ローディング中または未認証の場合は何も表示しない
   if (loading || !isAuthenticated || !user) {
@@ -54,6 +89,22 @@ export default function MyPage() {
     if (confirm("ログアウトしますか？")) {
       signOut();
       router.push("/login");
+    }
+  };
+
+  // 日付を日本時間でフォーマット
+  const formatDate = (dateString?: string): string => {
+    if (!dateString) return "-";
+    try {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      return `${year}/${month}/${day} ${hours}:${minutes}`;
+    } catch {
+      return "-";
     }
   };
 
@@ -163,9 +214,62 @@ export default function MyPage() {
             学習進捗
           </h2>
           <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
-            <p className="text-center text-slate-600 dark:text-slate-400">
-              まだ学習進捗がありません。
-            </p>
+            {progressLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="mr-3 h-5 w-5 animate-spin rounded-full border-2 border-blue-600 border-t-transparent"></div>
+                <p className="text-slate-600 dark:text-slate-400">読み込み中…</p>
+              </div>
+            ) : progressError ? (
+              <div className="rounded-lg bg-red-50 p-4 text-red-600 dark:bg-red-900/20 dark:text-red-400">
+                <p className="text-center">{progressError}</p>
+              </div>
+            ) : progressItems.length === 0 ? (
+              <p className="text-center text-slate-600 dark:text-slate-400">
+                まだ学習進捗がありません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-200 dark:border-slate-700">
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
+                        問題ID
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
+                        ステータス
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
+                        試行回数
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
+                        最終回答日時
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {progressItems.map((item, index) => (
+                      <tr
+                        key={item.problemId || index}
+                        className="border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                      >
+                        <td className="px-4 py-3 text-sm text-slate-900 dark:text-white">
+                          {item.problemId}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
+                          {item.status}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
+                          {item.attempts}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
+                          {formatDate(item.lastAnsweredAt)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
 
