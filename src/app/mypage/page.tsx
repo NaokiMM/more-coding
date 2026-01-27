@@ -48,62 +48,6 @@ export default function MyPage() {
     user["custom:picture"] ||
     (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
 
-  const learningMaterials = [
-    {
-      id: "javascript",
-      name: "JavaScript",
-      color: "from-blue-500 to-blue-700",
-      icon: "JS",
-    },
-    {
-      id: "typescript",
-      name: "TypeScript",
-      color: "from-blue-500 to-blue-700",
-      icon: "TS",
-    },
-    {
-      id: "react",
-      name: "React",
-      color: "from-cyan-500 to-blue-600",
-      icon: "⚛️",
-    },
-    {
-      id: "vue",
-      name: "Vue.js",
-      color: "from-green-500 to-emerald-600",
-      icon: "Vue",
-    },
-    {
-      id: "nextjs",
-      name: "Next.js",
-      color: "from-slate-600 to-slate-800",
-      icon: "N",
-    },
-    {
-      id: "nuxtjs",
-      name: "Nuxt.js",
-      color: "from-green-600 to-emerald-700",
-      icon: "N",
-    },
-    {
-      id: "devtools",
-      name: "DevTools",
-      color: "from-purple-500 to-purple-700",
-      icon: "🔧",
-    },
-    {
-      id: "seo",
-      name: "SEO",
-      color: "from-orange-500 to-red-600",
-      icon: "🔍",
-    },
-    {
-      id: "aws",
-      name: "AWS",
-      color: "from-orange-400 to-orange-600",
-      icon: "☁️",
-    },
-  ];
 
 
   const handleLogout = () => {
@@ -175,12 +119,20 @@ export default function MyPage() {
                 </p>
               </div>
             </div>
-            <Link
-              href="/mypage/settings"
-              className="mt-4 md:mt-0 rounded-lg border-2 border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-            >
-              設定を編集
-            </Link>
+            <div className="mt-4 md:mt-0 flex flex-row gap-3">
+              <Link
+                href="/mypage/settings"
+                className="rounded-lg border-2 border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+              >
+                設定を編集
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="rounded-lg border-2 border-red-300 bg-white px-6 py-2 text-sm font-semibold text-red-600 transition-all hover:bg-red-50 dark:border-red-600 dark:bg-slate-700 dark:text-red-400 dark:hover:bg-red-900/20"
+              >
+                ログアウト
+              </button>
+            </div>
           </div>
         </div>
 
@@ -211,35 +163,42 @@ export default function MyPage() {
           </div>
         )}
 
-        {/* Learning Materials Section */}
+        {/* Learning Progress Section */}
         <div className="mb-8">
           <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
-            教材一覧
+            学習進捗
           </h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {learningMaterials.map((material) => (
-              <Link
-                key={material.id}
-                href={`/learn/${material.id}`}
-                className="group rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
-              >
-                <div className="mb-4 flex items-center">
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${material.color} text-white text-lg font-bold shadow-lg`}
-                  >
-                    {material.icon}
-                  </div>
-                </div>
-                <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
-                  {material.name}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  学習を開始する →
-                </p>
-              </Link>
-            ))}
+          <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
+            <p className="text-center text-slate-600 dark:text-slate-400">
+              まだ学習進捗がありません。
+            </p>
           </div>
         </div>
+
+        {/* Back to Home Section */}
+        <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            >
+              <svg
+                className="mr-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              ホームに戻る
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );
