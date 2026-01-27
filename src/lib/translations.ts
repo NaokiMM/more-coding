@@ -77,7 +77,7 @@ export const translations = {
     "nav.signup": "会員登録",
     
     // Home Page
-    "home.hero.title1": "エンジニアリング学習を用いて",
+    "home.hero.title1": "エンジニアリング学習で",
     "home.hero.title2": "スキルアップ",
     "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nIT資格の取得を目指すプラットフォームです。",
     "home.hero.getStarted": "学習を始める",
