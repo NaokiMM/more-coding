@@ -4,17 +4,14 @@
 import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { confirmSignUp, resendConfirmationCode, signIn } from "@/lib/cognito";
-import { useAuth } from "@/contexts/AuthContext";
+import { confirmSignUp, resendConfirmationCode } from "@/lib/cognito";
 
 function VerifyEmailForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { refreshUser } = useAuth();
   const email = searchParams.get("email") || "";
 
   const [code, setCode] = useState("");
-  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResending, setIsResending] = useState(false);
@@ -29,8 +26,6 @@ function VerifyEmailForm() {
     const { name, value } = e.target;
     if (name === "code") {
       setCode(value);
-    } else if (name === "password") {
-      setPassword(value);
     }
     // エラーをクリア
     if (errors[name]) {
@@ -53,36 +48,8 @@ function VerifyEmailForm() {
       const result = await confirmSignUp(email, code);
 
       if (result.success) {
-        // 確認成功後、パスワードを使って自動ログイン
-        if (password) {
-          try {
-            const loginResult = await signIn(email, password);
-            if (loginResult.success) {
-              await refreshUser();
-              router.push("/mypage");
-            } else {
-              // ログインに失敗した場合は、ログイン画面へ
-              setErrors({
-                submit: "確認が完了しました。ログイン画面からログインしてください。",
-              });
-              setIsSubmitting(false);
-            }
-          } catch (loginError) {
-            setErrors({
-              submit: "確認が完了しました。ログイン画面からログインしてください。",
-            });
-            setIsSubmitting(false);
-          }
-        } else {
-          // パスワードがない場合は、ログイン画面へ
-          setErrors({
-            submit: "確認が完了しました。ログイン画面からログインしてください。",
-          });
-          setIsSubmitting(false);
-          setTimeout(() => {
-            router.push("/login");
-          }, 2000);
-        }
+        // 確認成功後、ログイン画面へ遷移（email を引き継ぐ）
+        router.push(`/login?email=${encodeURIComponent(email)}`);
       } else {
         setErrors({ submit: result.error || "確認コードの検証に失敗しました" });
         setIsSubmitting(false);
@@ -181,28 +148,6 @@ function VerifyEmailForm() {
                 {errors.code && (
                   <p className="mt-1 text-sm text-red-600">{errors.code}</p>
                 )}
-              </div>
-
-              {/* Password (optional, for auto-login after confirmation) */}
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >
-                  パスワード（確認後、自動ログインする場合）
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white dark:border-slate-600"
-                  placeholder="パスワードを入力（任意）"
-                />
-                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                  パスワードを入力すると、確認後に自動的にログインします
-                </p>
               </div>
 
               {/* Success Message */}
