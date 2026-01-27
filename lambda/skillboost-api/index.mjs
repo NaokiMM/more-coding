@@ -42,6 +42,8 @@ export const handler = async (event) => {
   const path = event?.rawPath ?? "/";
   const claims = event?.requestContext?.authorizer?.jwt?.claims ?? {};
   const sub = claims?.sub ?? null;
+  const email = claims?.email ?? null;
+  const name = claims?.name ?? null;
 
   // 未認証で呼ばれた場合（authorizer想定なら保険）
   if (!sub) {
@@ -123,10 +125,20 @@ export const handler = async (event) => {
         })
       );
 
-      return json(200, { ok: true, created: true, item });
+      return json(200, {
+        ok: true,
+        created: false,
+        auth: { sub, name, email },
+        item: got.Item,
+      });
     }
 
-    return json(200, { ok: true, created: false, item: got.Item });
+    return json(200, {
+      ok: true,
+      created: false,
+      auth: { sub, name, email },
+      item: got.Item,
+    });
   }
 
   // その他
