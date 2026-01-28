@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://more-coding.com
+
+# Sitemaps
+Sitemap: https://more-coding.com/sitemap.xml

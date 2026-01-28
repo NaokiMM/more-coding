@@ -4,7 +4,7 @@
  * ルート: /learn/express/associate/[categoryId]/study
  *
  * 指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientに渡します。s3-assets/expressjs/associate/jp/*.json に対応。
+ * StudyClientに渡します。s3-assets/express/associate/*.json に対応。
  */
 
 import StudyClient from "./StudyClient";
@@ -38,7 +38,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/expressjs/associate/${category.file}`;
+    const jsonUrl = `${baseUrl}/questions/express/associate/${category.file}`;
     const response = await fetch(jsonUrl, { next: { revalidate: 60 } });
 
     if (!response.ok) {

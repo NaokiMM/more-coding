@@ -30,7 +30,7 @@ export const categoriesData = [
   },
   {
     id: "crud_api",
-    name: "CRUD API",
+    name: "Express.js - CRUD API",
     file: "crud_api.json",
     icon: "📦",
     color: "from-green-500 to-emerald-600",
