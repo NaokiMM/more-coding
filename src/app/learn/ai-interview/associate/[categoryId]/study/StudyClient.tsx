@@ -41,8 +41,11 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
   const { isAuthenticated, user, loading: authLoading } = useAuth();
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [answerText, setAnswerText] = useState("");
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+  const [isTimeUp, setIsTimeUp] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [evaluationResult, setEvaluationResult] = useState<any>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [showStartDialog, setShowStartDialog] = useState(false);
 
@@ -73,6 +76,79 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
   // ログインページへリダイレクト
   const handleGoToLogin = () => {
     router.push("/login");
+  };
+
+  // タイマーの開始（問題が表示された時）
+  useEffect(() => {
+    // hasStarted が true になり、表示中の問題インデックスが変わったタイミングでのみ初期化
+    if (hasStarted) {
+      setTimeRemaining(120); // 2分 = 120秒
+      setIsTimeUp(false);
+      setAnswerText("");
+      setEvaluationResult(null);
+    }
+  }, [currentQuestionIndex, hasStarted]);
+
+  // タイマーのカウントダウン
+  useEffect(() => {
+    if (timeRemaining === null || timeRemaining <= 0) {
+      if (timeRemaining === 0) {
+        setIsTimeUp(true);
+      }
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev === null || prev <= 1) {
+          setIsTimeUp(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeRemaining]);
+
+  // 時間を分:秒形式に変換
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // 回答を送信
+  const handleSubmitAnswer = async () => {
+    if (!answerText.trim() || isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/ai-interview/evaluate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: currentQuestion.question,
+          answer: answerText,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("評価の取得に失敗しました");
+      }
+
+      const data = await response.json();
+      setEvaluationResult(data.evaluation);
+    } catch (error) {
+      console.error("Error submitting answer:", error);
+      alert("回答の評価中にエラーが発生しました。もう一度お試しください。");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // データ形式の検証
@@ -337,6 +413,23 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               問題 {currentQuestionIndex + 1} / {total}
             </h2>
+            {/* タイムリミット表示 */}
+            {timeRemaining !== null && (
+              <div className={`ml-auto flex items-center gap-2 rounded-full px-4 py-2 ${
+                timeRemaining <= 30
+                  ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                  : timeRemaining <= 60
+                  ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+                  : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+              }`}>
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="font-bold">
+                  {formatTime(timeRemaining)}
+                </span>
+              </div>
+            )}
             <EndStudyButton categoryId={categoryId} technology="ai-interview" courseType="associate" />
           </div>
 
@@ -352,144 +445,146 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             </div>
           </div>
 
-          {/* Options */}
-          <div className="mb-8 space-y-4">
-            <label className="mb-4 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              選択肢
-            </label>
-            {currentQuestion.choices.map((choice, index) => {
-              const optionLabel = String.fromCharCode(65 + index); // A, B, C, D
-              const isCorrect = index === currentQuestion.correctAnswer;
-              const isSelected = selectedAnswer === index;
-              const showResult = showAnswer && selectedAnswer !== null;
-              
-              // 答えを確認した後のスタイル
-              let borderColor = "border-slate-200";
-              let bgColor = "bg-slate-50";
-              let badgeColor = "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";
-              
-              if (showResult) {
-                if (isCorrect) {
-                  borderColor = "border-green-500";
-                  bgColor = "bg-green-50 dark:bg-green-900/20";
-                  badgeColor = "bg-green-500 text-white";
-                } else if (isSelected && !isCorrect) {
-                  borderColor = "border-red-500";
-                  bgColor = "bg-red-50 dark:bg-red-900/20";
-                  badgeColor = "bg-red-500 text-white";
-                }
-              } else if (isSelected) {
-                borderColor = "border-blue-500";
-                bgColor = "bg-blue-50 dark:bg-blue-900/20";
-                badgeColor = "bg-blue-500 text-white";
-              }
-              
-              return (
-                <div
-                  key={index}
-                  className={`flex items-start gap-4 rounded-lg border-2 p-4 transition-all ${
-                    !showResult ? "cursor-pointer hover:border-slate-300 dark:hover:border-slate-600" : ""
-                  } ${borderColor} ${bgColor} dark:border-slate-700 dark:bg-slate-900`}
-                  onClick={() => {
-                    if (!showResult) {
-                      setSelectedAnswer(index);
+          {/* Answer Input Form */}
+          {!evaluationResult && (
+            <>
+              <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  回答（最大1000文字）
+                </label>
+                <textarea
+                  value={answerText}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 1000) {
+                      setAnswerText(e.target.value);
                     }
                   }}
-                >
-                  <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-semibold ${badgeColor}`}
-                  >
-                    {optionLabel}
-                  </div>
-                  <div className="flex-1 rounded border border-slate-300 bg-white p-3 dark:border-slate-600 dark:bg-slate-800">
-                    <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {choice}
-                    </p>
-                  </div>
-                  {showResult && isCorrect && (
-                    <div className="flex items-center text-green-600 dark:text-green-400">
-                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                  )}
-                  {showResult && isSelected && !isCorrect && (
-                    <div className="flex items-center text-red-600 dark:text-red-400">
-                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </div>
+                  disabled={isTimeUp || isSubmitting}
+                  placeholder="ここに回答を入力してください..."
+                  rows={10}
+                  className={`w-full rounded-lg border-2 p-4 text-base leading-relaxed transition-all ${
+                    isTimeUp
+                      ? "border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/20"
+                      : "border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-900"
+                  } text-slate-700 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:text-slate-300 dark:placeholder-slate-500 disabled:cursor-not-allowed`}
+                />
+                <div className="mt-2 flex justify-between text-sm">
+                  <span className={`text-slate-600 dark:text-slate-400 ${
+                    answerText.length >= 1000 ? "text-red-600 dark:text-red-400" : ""
+                  }`}>
+                    {answerText.length} / 1000 文字
+                  </span>
+                  {isTimeUp && (
+                    <span className="font-semibold text-red-600 dark:text-red-400">
+                      時間切れです
+                    </span>
                   )}
                 </div>
-              );
-            })}
-          </div>
+              </div>
 
-          {/* Answer Button */}
-          <div className="mb-6 flex justify-center">
-            <button
-              onClick={() => {
-                if (selectedAnswer === null) return;
-                setShowAnswer(true);
-              }}
-              disabled={selectedAnswer === null}
-              className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-            >
-              答えを確認する
-            </button>
-          </div>
+              {/* Submit Button */}
+              <div className="mb-6 flex justify-center">
+                <button
+                  onClick={handleSubmitAnswer}
+                  disabled={!answerText.trim() || isTimeUp || isSubmitting}
+                  className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      評価中...
+                    </span>
+                  ) : (
+                    "回答する"
+                  )}
+                </button>
+              </div>
+            </>
+          )}
 
-          {/* Answer and Explanation */}
-          {showAnswer && selectedAnswer !== null && (
-            <div className={`rounded-lg p-6 ${
-              selectedAnswer === currentQuestion.correctAnswer
-                ? "bg-green-50 dark:bg-green-900/20"
-                : "bg-red-50 dark:bg-red-900/20"
-            }`}>
-              {/* Result */}
+          {/* Evaluation Result */}
+          {evaluationResult && (
+            <div className="rounded-lg border-2 border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-900/20">
               <div className="mb-4 flex items-center gap-3">
-                {selectedAnswer === currentQuestion.correctAnswer ? (
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xl font-bold">
+                  {evaluationResult.score}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                    評価結果
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    100点満点
+                  </p>
+                </div>
+              </div>
+
+              {/* Evaluation Details */}
+              <div className="mb-6 space-y-4">
+                {evaluationResult.evaluation && (
                   <>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 text-white font-bold">
-                      ✓
-                    </span>
-                    <span className="text-lg font-semibold text-green-800 dark:text-green-300">
-                      正解です！
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white font-bold">
-                      ✗
-                    </span>
-                    <span className="text-lg font-semibold text-red-800 dark:text-red-300">
-                      不正解です
-                    </span>
+                    <div>
+                      <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        内容の適切性
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {evaluationResult.evaluation.appropriateness}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        論理性
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {evaluationResult.evaluation.logic}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        具体性
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {evaluationResult.evaluation.specificity}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        簡潔性
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {evaluationResult.evaluation.conciseness}
+                      </p>
+                    </div>
                   </>
                 )}
               </div>
 
-              {/* Correct Answer */}
-              <div className="mb-4 flex items-center gap-2">
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  正解:
-                </span>
-                <span className="rounded-full bg-green-200 px-3 py-1 text-sm font-bold text-green-800 dark:bg-green-800 dark:text-green-200">
-                  {String.fromCharCode(65 + currentQuestion.correctAnswer)}
-                </span>
-              </div>
-
-              {/* Explanation */}
-              <div>
-                <p className="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  解説:
-                </p>
-                <div className="rounded border border-slate-300 bg-white p-4 dark:border-slate-600 dark:bg-slate-800">
+              {/* Feedback */}
+              {evaluationResult.feedback && (
+                <div className="mb-4 rounded-lg border border-blue-200 bg-white p-4 dark:border-blue-800 dark:bg-slate-800">
+                  <p className="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    総合フィードバック
+                  </p>
                   <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                    {currentQuestion.explanation}
+                    {evaluationResult.feedback}
                   </p>
                 </div>
-              </div>
+              )}
+
+              {/* Improvements */}
+              {evaluationResult.improvements && (
+                <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
+                  <p className="mb-2 text-sm font-semibold text-green-800 dark:text-green-300">
+                    改善点・アドバイス
+                  </p>
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-green-700 dark:text-green-400">
+                    {evaluationResult.improvements}
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -501,8 +596,10 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
               onClick={() => {
                 if (currentQuestionIndex > 0) {
                   setCurrentQuestionIndex(currentQuestionIndex - 1);
-                  setSelectedAnswer(null);
-                  setShowAnswer(false);
+                  setAnswerText("");
+                  setEvaluationResult(null);
+                  setTimeRemaining(null);
+                  setIsTimeUp(false);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}
@@ -528,8 +625,10 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
             onClick={() => {
               if (currentQuestionIndex < categoryData.questions.length - 1) {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedAnswer(null);
-                setShowAnswer(false);
+                setAnswerText("");
+                setEvaluationResult(null);
+                setTimeRemaining(null);
+                setIsTimeUp(false);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
