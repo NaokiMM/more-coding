@@ -50,6 +50,9 @@ Top-Down Readability（トップダウン設計）
 ### Safe Exam Browser
 https://safeexambrowser.org/download_en.html
 
+## AI面接
+https://aistudio.google.com　にて、Gemini APIを使用する。
+
 ## Contribution / コントリビューション
 本リポジトリは OSSに近い運用 をしています。
 
