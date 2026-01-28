@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google/genai": "^1.38.0",
     "amazon-cognito-identity-js": "^6.3.16",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
