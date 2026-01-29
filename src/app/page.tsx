@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/lib/translations";
 import Header from "@/components/Header";
+import AdBanner from "@/components/AdBanner";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -188,6 +189,11 @@ export default function Home() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Ad Banner */}
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <AdBanner />
       </section>
 
       {/* About Section */}

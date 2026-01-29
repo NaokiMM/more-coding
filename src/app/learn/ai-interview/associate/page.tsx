@@ -12,6 +12,7 @@
 
 import Link from "next/link";
 import { categoriesData } from "@/lib/categories/ai-interview/associate-categories";
+import AdBanner from "@/components/AdBanner";
 
 export default function AIInterviewAssociatePage() {
   const categories = categoriesData.map((cat) => ({
