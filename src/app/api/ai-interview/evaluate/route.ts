@@ -60,6 +60,13 @@ JSON形式のみを返してください。`;
       contents: [{ role: "user", parts: [{ text: prompt }] }],
     });
 
+    if (!res.text) {
+      return NextResponse.json(
+        { error: "AI response is empty" },
+        { status: 500 }
+      );
+    }
+
     const responseText = res.text.trim();
     
     // JSONを抽出（```json で囲まれている場合がある）
