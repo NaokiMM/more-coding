@@ -1,48 +1,38 @@
-// JavaScript Professionalのカテゴリデータ
+// JavaScript Professionalのカテゴリデータ（s3-assets/javascript/professional/jp/*.json に対応）
 export const categoriesData = [
   {
-    // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "basics",
-    // 画面表示用の名前
-    name: "基礎（Node/モジュール/型/React/DOM/テスト）",
-    // aws-s3にアップロードしたファイル名
-    file: "basics.json",
+    id: "execution-context-and-closure-practical",
+    name: "実行コンテキストとクロージャ（実践）",
+    file: "execution-context-and-closure-practical.json",
     icon: "🔷",
     color: "from-yellow-600 to-orange-700",
   },
   {
-    id: "builtins",
-    name: "組み込み（グローバル値/関数/プリミティブ）",
-    file: "builtins.json",
+    id: "async-patterns-and-promise-design",
+    name: "非同期パターンとPromise設計",
+    file: "async-patterns-and-promise-design.json",
     icon: "🔀",
     color: "from-orange-600 to-red-700",
   },
   {
-    id: "modules-bundling",
-    name: "モジュールシステムとバンドリング",
-    file: "modules-bundling.json",
+    id: "module-system-and-build-boundaries",
+    name: "モジュールシステムとビルド境界",
+    file: "module-system-and-build-boundaries.json",
     icon: "🛡️",
     color: "from-red-600 to-pink-700",
   },
   {
-    id: "errors",
-    name: "エラー処理（Error系）",
-    file: "errors.json",
+    id: "error-handling-and-runtime-safety",
+    name: "エラーハンドリングとランタイム安全性",
+    file: "error-handling-and-runtime-safety.json",
     icon: "📦",
     color: "from-pink-600 to-rose-700",
   },
   {
-    id: "collections",
-    name: "コレクション/バイナリ",
-    file: "collections.json",
+    id: "immutability-and-data-structure-design",
+    name: "イミュータビリティとデータ構造設計",
+    file: "immutability-and-data-structure-design.json",
     icon: "✨",
     color: "from-rose-600 to-red-700",
-  },
-  {
-    id: "advanced",
-    name: "高度（Promise/Iterator/Proxy/Intl など）",
-    file: "advanced.json",
-    icon: "🏗️",
-    color: "from-yellow-700 to-orange-800",
   },
 ] as const;

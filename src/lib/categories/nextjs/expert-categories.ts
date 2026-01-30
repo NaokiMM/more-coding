@@ -1,49 +1,45 @@
-// DevTools Professionalのカテゴリデータ
+// Next.js Expertのカテゴリデータ（s3-assets/nextjs/expert/jp/*.json に対応）
 export const categoriesData = [
-    {
-      // 画面表示用のID且つaws-s3にアップロードしたファイル名
-      id: "advanced-debugging",
-      // 画面表示用の名前
-      name: "高度なデバッグ技術",
-      // aws-s3にアップロードしたファイル名
-      file: "advanced-debugging.json",
-      icon: "🔷",
-      color: "from-teal-600 to-cyan-700",
-    },
-    {
-      id: "memory-profiling",
-      name: "メモリプロファイリング",
-      file: "memory-profiling.json",
-      icon: "🔀",
-      color: "from-cyan-600 to-teal-700",
-    },
-    {
-      id: "custom-devtools",
-      name: "カスタムDevToolsの開発",
-      file: "custom-devtools.json",
-      icon: "🛡️",
-      color: "from-teal-700 to-cyan-800",
-    },
-    {
-      id: "automation-testing",
-      name: "自動化とテストツール",
-      file: "automation-testing.json",
-      icon: "📦",
-      color: "from-cyan-700 to-teal-800",
-    },
-    {
-      id: "security-analysis",
-      name: "セキュリティ分析ツール",
-      file: "security-analysis.json",
-      icon: "✨",
-      color: "from-teal-700 to-emerald-800",
-    },
-    {
-      id: "production-monitoring",
-      name: "本番環境監視ツール",
-      file: "production-monitoring.json",
-      icon: "🏗️",
-      color: "from-cyan-800 to-teal-900",
-    },
-  ] as const;
-  
+  {
+    id: "app-router-advanced",
+    name: "App Routerの高度な機能",
+    file: "app-router-advanced.json",
+    icon: "🔄",
+    color: "from-purple-500 to-pink-600",
+  },
+  {
+    id: "server-actions-and-forms",
+    name: "サーバーアクションとフォーム",
+    file: "server-actions-and-forms.json",
+    icon: "📝",
+    color: "from-pink-500 to-rose-600",
+  },
+  {
+    id: "streaming-and-suspense",
+    name: "ストリーミングとSuspense",
+    file: "streaming-and-suspense.json",
+    icon: "⚡",
+    color: "from-rose-500 to-red-600",
+  },
+  {
+    id: "performance-and-caching",
+    name: "パフォーマンスとキャッシュ",
+    file: "performance-and-caching.json",
+    icon: "🏗️",
+    color: "from-red-500 to-pink-600",
+  },
+  {
+    id: "deployment-and-runtime",
+    name: "デプロイとランタイム",
+    file: "deployment-and-runtime.json",
+    icon: "🚀",
+    color: "from-indigo-500 to-purple-600",
+  },
+  {
+    id: "monitoring-and-observability",
+    name: "モニタリングと観測",
+    file: "monitoring-and-observability.json",
+    icon: "📊",
+    color: "from-violet-500 to-purple-600",
+  },
+] as const;

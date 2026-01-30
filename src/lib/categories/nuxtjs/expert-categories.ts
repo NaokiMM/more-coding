@@ -1,49 +1,38 @@
-// DevTools Professionalのカテゴリデータ
+// Nuxt.js Expertのカテゴリデータ（s3-assets/nuxtjs/expert/jp/*.json に対応）
 export const categoriesData = [
-    {
-      // 画面表示用のID且つaws-s3にアップロードしたファイル名
-      id: "advanced-debugging",
-      // 画面表示用の名前
-      name: "高度なデバッグ技術",
-      // aws-s3にアップロードしたファイル名
-      file: "advanced-debugging.json",
-      icon: "🔷",
-      color: "from-teal-600 to-cyan-700",
-    },
-    {
-      id: "memory-profiling",
-      name: "メモリプロファイリング",
-      file: "memory-profiling.json",
-      icon: "🔀",
-      color: "from-cyan-600 to-teal-700",
-    },
-    {
-      id: "custom-devtools",
-      name: "カスタムDevToolsの開発",
-      file: "custom-devtools.json",
-      icon: "🛡️",
-      color: "from-teal-700 to-cyan-800",
-    },
-    {
-      id: "automation-testing",
-      name: "自動化とテストツール",
-      file: "automation-testing.json",
-      icon: "📦",
-      color: "from-cyan-700 to-teal-800",
-    },
-    {
-      id: "security-analysis",
-      name: "セキュリティ分析ツール",
-      file: "security-analysis.json",
-      icon: "✨",
-      color: "from-teal-700 to-emerald-800",
-    },
-    {
-      id: "production-monitoring",
-      name: "本番環境監視ツール",
-      file: "production-monitoring.json",
-      icon: "🏗️",
-      color: "from-cyan-800 to-teal-900",
-    },
-  ] as const;
-  
+  {
+    id: "nitro-server-internals-and-deployment",
+    name: "Nitro サーバー内部とデプロイ",
+    file: "nitro-server-internals-and-deployment.json",
+    icon: "⚡",
+    color: "from-teal-500 to-cyan-600",
+  },
+  {
+    id: "vue-rendering-and-hydration-internals",
+    name: "Vue レンダリングとハイドレーション内部",
+    file: "vue-rendering-and-hydration-internals.json",
+    icon: "🖼️",
+    color: "from-cyan-500 to-sky-600",
+  },
+  {
+    id: "performance-and-optimization-patterns",
+    name: "パフォーマンスと最適化パターン",
+    file: "performance-and-optimization-patterns.json",
+    icon: "📈",
+    color: "from-sky-500 to-blue-600",
+  },
+  {
+    id: "advanced-composables-and-state-management",
+    name: "高度な Composables と状態管理",
+    file: "advanced-composables-and-state-management.json",
+    icon: "🧩",
+    color: "from-blue-500 to-indigo-600",
+  },
+  {
+    id: "security-and-authentication-patterns",
+    name: "セキュリティと認証パターン",
+    file: "security-and-authentication-patterns.json",
+    icon: "🛡️",
+    color: "from-indigo-500 to-violet-600",
+  },
+] as const;

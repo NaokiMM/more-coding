@@ -1,48 +1,38 @@
-// SEO Professionalのカテゴリデータ
+// SEO Professionalのカテゴリデータ（S3のjpファイル名に合わせる）
 export const categoriesData = [
   {
-    // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "technical-seo",
-    // 画面表示用の名前
-    name: "テクニカルSEO",
-    // aws-s3にアップロードしたファイル名
-    file: "technical-seo.json",
+    id: "content-strategy-and-topical-authority",
+    name: "コンテンツ戦略とトピックオーソリティ",
+    file: "content-strategy-and-topical-authority.json",
     icon: "🔷",
-    color: "from-indigo-600 to-purple-700",
+    color: "from-teal-600 to-emerald-700",
   },
   {
-    id: "off-page-seo",
-    name: "オフページSEOとリンク構築",
-    file: "off-page-seo.json",
+    id: "keyword-research-and-search-intent-design",
+    name: "キーワードリサーチと検索意図設計",
+    file: "keyword-research-and-search-intent-design.json",
     icon: "🔀",
-    color: "from-purple-600 to-violet-700",
+    color: "from-emerald-600 to-teal-700",
   },
   {
-    id: "schema-markup",
-    name: "スキーママークアップと構造化データ",
-    file: "schema-markup.json",
+    id: "measurement-analytics-and-seo-kpi",
+    name: "計測・アナリティクスとSEO KPI",
+    file: "measurement-analytics-and-seo-kpi.json",
     icon: "🛡️",
-    color: "from-violet-600 to-purple-800",
+    color: "from-teal-700 to-cyan-700",
   },
   {
-    id: "analytics-measurement",
-    name: "SEO分析と計測",
-    file: "analytics-measurement.json",
+    id: "performance-core-web-vitals-optimization",
+    name: "パフォーマンス・Core Web Vitals最適化",
+    file: "performance-core-web-vitals-optimization.json",
     icon: "📦",
-    color: "from-purple-700 to-indigo-800",
+    color: "from-cyan-600 to-teal-800",
   },
   {
-    id: "local-seo",
-    name: "ローカルSEO",
-    file: "local-seo.json",
+    id: "technical-seo-site-health-and-indexing",
+    name: "テクニカルSEO・サイトヘルスとインデックス",
+    file: "technical-seo-site-health-and-indexing.json",
     icon: "✨",
-    color: "from-indigo-700 to-purple-800",
-  },
-  {
-    id: "advanced-strategies",
-    name: "高度なSEO戦略",
-    file: "advanced-strategies.json",
-    icon: "🏗️",
-    color: "from-purple-800 to-violet-900",
+    color: "from-teal-700 to-emerald-800",
   },
 ] as const;

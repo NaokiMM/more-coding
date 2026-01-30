@@ -1,48 +1,38 @@
-// DevTools Professionalのカテゴリデータ
+// DevTools Professionalのカテゴリデータ（s3-assets/devtools/professional/jp/*.json に対応）
 export const categoriesData = [
   {
-    // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "advanced-debugging",
-    // 画面表示用の名前
-    name: "高度なデバッグ技術",
-    // aws-s3にアップロードしたファイル名
-    file: "advanced-debugging.json",
-    icon: "🔷",
+    id: "console-structured-logging-and-filtering",
+    name: "Console 構造化ログとフィルタリング",
+    file: "console-structured-logging-and-filtering.json",
+    icon: "🔤",
     color: "from-teal-600 to-cyan-700",
   },
   {
-    id: "memory-profiling",
-    name: "メモリプロファイリング",
-    file: "memory-profiling.json",
-    icon: "🔀",
+    id: "elements-responsive-and-computed-style-analysis",
+    name: "Elements レスポンシブと計算済みスタイル分析",
+    file: "elements-responsive-and-computed-style-analysis.json",
+    icon: "📦",
     color: "from-cyan-600 to-teal-700",
   },
   {
-    id: "custom-devtools",
-    name: "カスタムDevToolsの開発",
-    file: "custom-devtools.json",
-    icon: "🛡️",
+    id: "sources-async-debugging-and-call-stack-analysis",
+    name: "Sources 非同期デバッグとコールスタック分析",
+    file: "sources-async-debugging-and-call-stack-analysis.json",
+    icon: "🛠️",
     color: "from-teal-700 to-cyan-800",
   },
   {
-    id: "automation-testing",
-    name: "自動化とテストツール",
-    file: "automation-testing.json",
-    icon: "📦",
+    id: "network-request-lifecycle-and-error-diagnosis",
+    name: "Network リクエストライフサイクルとエラー診断",
+    file: "network-request-lifecycle-and-error-diagnosis.json",
+    icon: "⚡",
     color: "from-cyan-700 to-teal-800",
   },
   {
-    id: "security-analysis",
-    name: "セキュリティ分析ツール",
-    file: "security-analysis.json",
-    icon: "✨",
+    id: "performance-memory-and-runtime-investigation",
+    name: "Performance メモリとランタイム調査",
+    file: "performance-memory-and-runtime-investigation.json",
+    icon: "📈",
     color: "from-teal-700 to-emerald-800",
-  },
-  {
-    id: "production-monitoring",
-    name: "本番環境監視ツール",
-    file: "production-monitoring.json",
-    icon: "🏗️",
-    color: "from-cyan-800 to-teal-900",
   },
 ] as const;
