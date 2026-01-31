@@ -12,10 +12,12 @@ const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 const s3 = new S3Client({});
 
 // フロントのOrigin（CloudFront）
+// 直書き禁止
 const ORIGIN = "https://d1z9w64vvsvlia.cloudfront.net";
 
 // フロントエンド（CloudFront配信）からのAPI呼び出しを成立させるために
 // ブラウザからのクロスオリジンAPI呼び出しを許可するためのCORS設定
+// Methodsが不足している。
 const corsHeaders = {
   "Access-Control-Allow-Origin": ORIGIN,
   "Access-Control-Allow-Headers": "content-type,authorization",
@@ -50,6 +52,7 @@ export const handler = async (event) => {
     return json(401, { ok: false, message: "Unauthorized" });
   }
 
+  // 環境変数からDBテーブル名とS3バケット名を取得
   const membersTable = process.env.MEMBERS_TABLE;
   const profileImagesBucket = process.env.PROFILE_IMAGES_BUCKET;
 
@@ -102,6 +105,7 @@ export const handler = async (event) => {
   // 初回アクセス時は最小限の初期状態を作成して返す
   // =========================
 
+  // API Gatewayからのリクエストを受け取ったときの処理
   if (method === "GET" && path === "/me") {
     if (!membersTable) {
       return json(500, { ok: false, message: "MEMBERS_TABLE is missing" });
@@ -109,6 +113,8 @@ export const handler = async (event) => {
 
     const key = { pk: `USER#${sub}`, sk: "PROFILE" };
 
+    // ユーザーレコードを取得
+    // どこから？Cognito？
     const got = await ddb.send(
       new GetCommand({
         TableName: membersTable,
@@ -116,6 +122,7 @@ export const handler = async (event) => {
       })
     );
 
+    // 新規ユーザーの場合
     if (!got.Item) {
       const item = { ...key, createdAt: new Date().toISOString() };
       await ddb.send(
@@ -125,6 +132,7 @@ export const handler = async (event) => {
         })
       );
 
+      // 新規ユーザーの場合
       return json(200, {
         ok: true,
         created: true,
@@ -133,6 +141,7 @@ export const handler = async (event) => {
       });
     }
 
+    // 既存ユーザーの場合
     return json(200, {
       ok: true,
       created: false,
