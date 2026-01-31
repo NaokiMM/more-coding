@@ -600,7 +600,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   setEvaluationResult(null);
                   setTimeRemaining(null);
                   setIsTimeUp(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  window.scrollTo({ top: 0, behavior: "auto" });
                 }
               }}
               className="inline-flex items-center rounded-lg bg-gradient-to-r from-slate-500 to-slate-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
@@ -629,7 +629,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                 setEvaluationResult(null);
                 setTimeRemaining(null);
                 setIsTimeUp(false);
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: "auto" });
               }
             }}
             disabled={currentQuestionIndex >= categoryData.questions.length - 1}
