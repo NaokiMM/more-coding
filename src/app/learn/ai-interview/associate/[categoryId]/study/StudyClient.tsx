@@ -355,7 +355,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
       </header>
 
       {/* Main Content */}
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 pt-4 pb-12 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
           <Link
