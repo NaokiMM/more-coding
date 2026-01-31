@@ -3,10 +3,13 @@
  *
  * ルート: /learn/nodejs/associate/[categoryId]/study
  *
- * 指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
+ * 指定されたカテゴリIDの学習データ（問題集）を s3-assets から取得し、
  * StudyClientに渡します。s3-assets/nodejs/associate/jp/*.json に対応。
+ * ビルド時・SSR時はリポジトリ内の JSON を直接読み、fetch に依存しません。
  */
 
+import fs from "fs";
+import path from "path";
 import StudyClient from "./StudyClient";
 import { categoriesData as nodejsAssociateCategoriesData } from "@/lib/categories/nodejs/associate-categories";
 
@@ -32,22 +35,18 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
     throw new Error(`Category not found: ${categoryId}`);
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
-  }
-
   try {
-    const jsonUrl = `${baseUrl}/questions/nodejs/associate/jp/${category.file}`;
-    const response = await fetch(jsonUrl, { next: { revalidate: 60 } });
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch category data: ${response.status} ${response.statusText} (${jsonUrl})`
-      );
-    }
-
-    const jsonData: JsonQuestion[] = await response.json();
+    // ビルド・SSR時はリポジトリ内 s3-assets を直接読む（fetch はプリレンダー時に HTML が返り JSON パースで落ちるため使用しない）
+    const filePath = path.join(
+      process.cwd(),
+      "s3-assets",
+      "nodejs",
+      "associate",
+      "jp",
+      category.file
+    );
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const jsonData: JsonQuestion[] = JSON.parse(raw);
     const questions: Question[] = jsonData.map((q) => {
       const answerMatch = q.correctAnswer.match(/正解：([A-Z])/);
       const correctIndex = answerMatch ? answerMatch[1].charCodeAt(0) - 65 : 0;
