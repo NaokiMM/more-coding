@@ -11,7 +11,7 @@ export default function ExpressLearnPage() {
     {
       id: "associate",
       name: "Associate",
-      description: "Express.jsの基礎を学びます。ルーティング、ミドルウェア、基本的なAPI構築などから始めましょう。",
+      description: "Express.jsの基礎を学びます。<br />ルーティング、ミドルウェア、基本的なAPI構築などから始めましょう。",
       color: "from-gray-500 to-slate-600",
       icon: "🌱",
       topics: [
@@ -95,7 +95,7 @@ export default function ExpressLearnPage() {
             Express.js
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Node.jsのための高速で最小限のWebアプリケーションフレームワーク。API開発の基礎を学びます。
+            Node.jsのための高速で最小限のWebアプリケーションフレームワーク。<br />API開発の基礎を学びます。
           </p>
         </div>
 

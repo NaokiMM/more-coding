@@ -95,7 +95,7 @@ export default function NestJSLearnPage() {
             NestJS
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Node.jsのための強力なフレームワーク。スケーラブルなサーバーサイドアプリケーションを構築する力を身につけます。
+            Node.jsのための強力なフレームワーク。<br />スケーラブルなサーバーサイドアプリケーションを構築する力を身につけます。
           </p>
         </div>
 

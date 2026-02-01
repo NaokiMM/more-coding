@@ -11,7 +11,7 @@ export default function DjangoLearnPage() {
     {
       id: "associate",
       name: "Associate",
-      description: "Djangoの基礎を学びます。プロジェクトの作成、モデル、ビュー、テンプレートなど基本的な概念から始めましょう。",
+      description: "Djangoの基礎を学びます。<br />プロジェクトの作成、モデル、ビュー、テンプレートなど基本的な概念から始めましょう。",
       color: "from-green-500 to-emerald-600",
       icon: "🌱",
       topics: [
@@ -95,7 +95,7 @@ export default function DjangoLearnPage() {
             Django
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。
+            Pythonの高水準なWebアプリケーションフレームワーク。<br />MVCパターン、ORM、管理画面などのスキルを身につけます。
           </p>
         </div>
 

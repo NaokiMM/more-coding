@@ -55,20 +55,6 @@ export default function Home() {
       icon: "ν",
     },
     {
-      id: "devtools",
-      nameKey: "tech.devtools.name" as const,
-      descriptionKey: "tech.devtools.description" as const,
-      color: "from-indigo-500 to-purple-600",
-      icon: "🔧",
-    },
-    {
-      id: "seo",
-      nameKey: "tech.seo.name" as const,
-      descriptionKey: "tech.seo.description" as const,
-      color: "from-emerald-500 to-teal-600",
-      icon: "🔍",
-    },
-    {
       id: "nodejs",
       nameKey: "tech.nodejs.name" as const,
       descriptionKey: "tech.nodejs.description" as const,
@@ -102,6 +88,20 @@ export default function Home() {
       descriptionKey: "tech.django.description" as const,
       color: "from-green-600 to-emerald-700",
       icon: "🐍",
+    },
+    {
+      id: "devtools",
+      nameKey: "tech.devtools.name" as const,
+      descriptionKey: "tech.devtools.description" as const,
+      color: "from-indigo-500 to-purple-600",
+      icon: "🔧",
+    },
+    {
+      id: "seo",
+      nameKey: "tech.seo.name" as const,
+      descriptionKey: "tech.seo.description" as const,
+      color: "from-emerald-500 to-teal-600",
+      icon: "🔍",
     },
     {
       id: "ai-interview",

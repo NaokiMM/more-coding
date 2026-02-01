@@ -83,7 +83,7 @@ export default function DevToolsAssociatePage() {
             Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            ブラウザの開発者ツールの基本的な使い方を学びます。Elements、Consoleの基本操作から始めましょう。
+            ブラウザの開発者ツールの基本的な使い方を学びます。<br />Elements、Consoleの基本操作から始めましょう。
           </p>
           {/* Membership Badges */}
           <div className="mt-6 flex items-center justify-center gap-3">
@@ -191,10 +191,10 @@ export default function DevToolsAssociatePage() {
         <div className="mt-12 text-center">
           <Link
             href="/learn/devtools"
-            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
-              className="mr-2 h-4 w-4"
+              className="mr-2 h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -203,7 +203,7 @@ export default function DevToolsAssociatePage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
             DevToolsに戻る
