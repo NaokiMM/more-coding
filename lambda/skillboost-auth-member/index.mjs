@@ -9,7 +9,7 @@ const ORIGIN = "https://d1z9w64vvsvlia.cloudfront.net";
 const corsHeaders = {
   "Access-Control-Allow-Origin": ORIGIN,
   "Access-Control-Allow-Headers": "content-type,authorization",
-  "Access-Control-Allow-Methods": "GET,OPTIONS",
+  "Access-Control-Allow-Methods": "GET,POST,PUT,OPTIONS",
 };
 
 const json = (statusCode, bodyObj) => ({
