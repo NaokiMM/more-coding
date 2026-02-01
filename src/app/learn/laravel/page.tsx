@@ -95,7 +95,7 @@ export default function LaravelLearnPage() {
             Laravel
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            PHPのためのエレガントなWebアプリケーションフレームワーク。モダンな開発体験を学びます。
+            PHPのためのエレガントなWebアプリケーションフレームワーク。<br />モダンな開発体験を学びます。
           </p>
         </div>
 

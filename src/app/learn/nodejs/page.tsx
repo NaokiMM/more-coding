@@ -95,7 +95,7 @@ export default function NodeJSLearnPage() {
             Node.js
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            JavaScriptランタイム環境。サーバーサイドアプリケーション開発の基礎を学びます。
+            JavaScriptランタイム環境。<br />サーバーサイドアプリケーション開発の基礎を学びます。
           </p>
         </div>
 

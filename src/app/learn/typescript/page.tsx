@@ -103,7 +103,7 @@ export default function TypeScriptLearnPage() {
             TypeScript
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            型安全性を持つJavaScriptのスーパーセット。初級から上級まで、段階的に学習でき、資格を取得することができます。
+            型安全性を持つJavaScriptのスーパーセット。<br />初級から上級まで、段階的に学習でき、資格を取得することができます。
           </p>
         </div>
 

@@ -96,7 +96,7 @@ export default function ReactLearnPage() {
             React
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            ユーザーインターフェース構築のためのJavaScriptライブラリ。コンポーネントベースの開発を学びます。
+            ユーザーインターフェース構築のためのJavaScriptライブラリ。<br />コンポーネントベースの開発を学びます。
           </p>
         </div>
 
