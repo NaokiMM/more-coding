@@ -11,9 +11,6 @@ import { useAuth } from "@/contexts/AuthContext";
 interface Question {
   id: number;
   question: string;
-  choices: string[];
-  correctAnswer: number;
-  explanation: string;
   category: string;
   filename: string;
 }

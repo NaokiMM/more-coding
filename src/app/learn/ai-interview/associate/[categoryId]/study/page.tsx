@@ -56,24 +56,13 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
 
     const jsonData: JsonQuestion[] = await response.json();
     
-    // JSON配列をCategoryData形式に変換
-    const questions: Question[] = jsonData.map((q) => {
-      // correctAnswer文字列（"正解：A"など）をインデックスに変換
-      const answerMatch = q.correctAnswer.match(/正解：([A-Z])/);
-      const correctIndex = answerMatch 
-        ? answerMatch[1].charCodeAt(0) - 65 // A=0, B=1, C=2, D=3
-        : 0;
-      
-      return {
-        id: q.id,
-        question: q.question,
-        choices: q.choices,
-        correctAnswer: correctIndex,
-        explanation: q.explanation,
-        category: q.category,
-        filename: q.filename,
-      };
-    });
+    // JSON配列をCategoryData形式に変換（フォーム入力用のシンプルな形式）
+    const questions: Question[] = jsonData.map((q) => ({
+      id: q.id,
+      question: q.question,
+      category: q.category,
+      filename: q.filename,
+    }));
     
     const categoryData: CategoryData = {
       categoryId: categoryId,
@@ -99,23 +88,17 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
 
 // ---- 型定義（types） ----
 
-// JSON教材の形式に合わせた型定義
+// JSON教材の形式（フォーム入力・AI評価用のシンプルな形式）
 interface JsonQuestion {
   id: number;
   question: string;
-  correctAnswer: string; // "正解：A", "正解：B" などの形式
-  explanation: string;
-  choices: string[];
   category: string;
   filename: string;
 }
 
 interface Question {
-  id: number; // 問題ID
-  question: string; // 問題文
-  choices: string[]; // 選択肢
-  correctAnswer: number; // 正解のインデックス（0, 1, 2, 3...）
-  explanation: string; // 解説
+  id: number;
+  question: string;
   category: string;
   filename: string;
 }

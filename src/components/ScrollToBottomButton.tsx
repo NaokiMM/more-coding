@@ -11,6 +11,11 @@ export default function ScrollToBottomButton() {
     return null;
   }
 
+  // 学習中（study ページ）の場合は戻るボタンを表示しない
+  if (pathname.includes("/study")) {
+    return null;
+  }
+
   const handleGoBack = () => {
     router.back();
   };
