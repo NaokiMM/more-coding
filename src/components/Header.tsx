@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import ConfirmModal from "@/components/ConfirmModal";
 
 interface HeaderProps {
   rightContent?: React.ReactNode;
@@ -11,12 +13,12 @@ interface HeaderProps {
 export default function Header({ rightContent }: HeaderProps) {
   const { isAuthenticated, loading, signOut } = useAuth();
   const router = useRouter();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const handleLogout = () => {
-    if (confirm("ログアウトしますか？")) {
-      signOut();
-      router.push("/");
-    }
+  const handleLogoutClick = () => setShowLogoutModal(true);
+  const handleLogoutConfirm = () => {
+    signOut();
+    router.push("/");
   };
 
   // 共通の認証ナビ（ログイン時: マイページ+ログアウト、未ログイン: ログイン・新規登録）
@@ -31,7 +33,7 @@ export default function Header({ rightContent }: HeaderProps) {
             マイページ
           </Link>
           <button
-            onClick={handleLogout}
+            onClick={handleLogoutClick}
             className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
             ログアウト
@@ -86,13 +88,23 @@ export default function Header({ rightContent }: HeaderProps) {
   // カスタムrightContentが指定されている場合は、スマホで共通ナビ・PCでrightContent
   if (rightContent) {
     return (
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            {headerInner}
+      <>
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              {headerInner}
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+        <ConfirmModal
+          open={showLogoutModal}
+          onClose={() => setShowLogoutModal(false)}
+          onConfirm={handleLogoutConfirm}
+          title="ログアウトしますか？"
+          confirmLabel="ログアウト"
+          cancelLabel="キャンセル"
+        />
+      </>
     );
   }
 
@@ -118,12 +130,22 @@ export default function Header({ rightContent }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {headerInner}
+    <>
+      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            {headerInner}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <ConfirmModal
+        open={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleLogoutConfirm}
+        title="ログアウトしますか？"
+        confirmLabel="ログアウト"
+        cancelLabel="キャンセル"
+      />
+    </>
   );
 }

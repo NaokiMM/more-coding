@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import ConfirmModal from "@/components/ConfirmModal";
 import { getSession } from "@/lib/cognito";
 
 export default function SettingsPage() {
@@ -31,6 +32,7 @@ export default function SettingsPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [uploadStatus, setUploadStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
   const [uploadedImageKey, setUploadedImageKey] = useState<string | null>(null);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -247,12 +249,7 @@ export default function SettingsPage() {
                 マイページ
               </Link>
               <button
-                onClick={() => {
-                  if (confirm("ログアウトしますか？")) {
-                    signOut();
-                    router.push("/login");
-                  }
-                }}
+                onClick={() => setShowLogoutModal(true)}
                 className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
               >
                 ログアウト
@@ -261,6 +258,18 @@ export default function SettingsPage() {
           </div>
         </div>
       </header>
+
+      <ConfirmModal
+        open={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={() => {
+          signOut();
+          router.push("/login");
+        }}
+        title="ログアウトしますか？"
+        confirmLabel="ログアウト"
+        cancelLabel="キャンセル"
+      />
 
       {/* Main Content */}
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">

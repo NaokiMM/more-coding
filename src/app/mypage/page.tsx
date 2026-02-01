@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
+import ConfirmModal from "@/components/ConfirmModal";
 import { getProgressItems } from "@/lib/progressApi";
 
 interface ProgressItem {
@@ -23,6 +24,7 @@ export default function MyPage() {
   const [progressItems, setProgressItems] = useState<ProgressItem[]>([]);
   const [progressLoading, setProgressLoading] = useState(true);
   const [progressError, setProgressError] = useState<string | null>(null);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   // 認証チェック
   useEffect(() => {
@@ -85,11 +87,10 @@ export default function MyPage() {
 
 
 
-  const handleLogout = () => {
-    if (confirm("ログアウトしますか？")) {
-      signOut();
-      router.push("/login");
-    }
+  const handleLogoutClick = () => setShowLogoutModal(true);
+  const handleLogoutConfirm = () => {
+    signOut();
+    router.push("/login");
   };
 
   // 日付を日本時間でフォーマット
@@ -121,13 +122,22 @@ export default function MyPage() {
               マイページ
             </Link>
             <button
-              onClick={handleLogout}
+              onClick={handleLogoutClick}
               className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
             >
               ログアウト
             </button>
           </nav>
         }
+      />
+
+      <ConfirmModal
+        open={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleLogoutConfirm}
+        title="ログアウトしますか？"
+        confirmLabel="ログアウト"
+        cancelLabel="キャンセル"
       />
 
       {/* Main Content */}
@@ -172,7 +182,7 @@ export default function MyPage() {
                 設定を編集
               </Link>
               <button
-                onClick={handleLogout}
+                onClick={handleLogoutClick}
                 className="rounded-lg border-2 border-red-300 bg-white px-6 py-2 text-sm font-semibold text-red-600 transition-all hover:bg-red-50 dark:border-red-600 dark:bg-slate-700 dark:text-red-400 dark:hover:bg-red-900/20"
               >
                 ログアウト
