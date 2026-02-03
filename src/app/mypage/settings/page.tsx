@@ -416,7 +416,7 @@ export default function SettingsPage() {
           )}
 
           {/* Actions */}
-          <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-4 pt-2">
+          <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-center gap-4 pt-2">
             <div className="flex gap-3">
               <Link
                 href="/mypage"
