@@ -197,15 +197,29 @@ export default function ProfileImageSettingsPage() {
     }
   };
 
+  /**
+  * プロフィール画像がない場合の代替表示用文字
+  *
+  * 設定画面のプロフィール画像エリアで、
+  * 画像が未設定のときにユーザー名の頭文字を表示するために使用する
+  */
   const displayName = user?.name || "";
   const initialLetter = displayName.charAt(0).toUpperCase() || "?";
 
+  /**
+  * プロフィール画像設定ページの表示部分
+  *
+  * - SettingsLayout：設定画面共通レイアウト
+  * - 画像プレビュー、アップロードUIを内包
+  */
   return (
     <SettingsLayout
       breadcrumbTail="プロフィール画像"
       title="プロフィール画像"
     >
       <div className="space-y-6">
+
+        {/* プロフィール画像エリア */}
         <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="flex flex-col sm:flex-row sm:items-center gap-6">
             <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-2xl font-semibold text-white ring-2 ring-slate-200 dark:ring-slate-600">
@@ -279,12 +293,14 @@ export default function ProfileImageSettingsPage() {
           </div>
         </section>
 
+        {/* 成功メッセージエリア */}
         {successMessage && (
           <div className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
             {successMessage}
           </div>
         )}
 
+        {/* 設定に戻るボタンエリア */}
         <div className="flex justify-between pt-2">
           <Link
             href="/mypage/settings"
