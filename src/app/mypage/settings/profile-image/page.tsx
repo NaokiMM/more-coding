@@ -210,6 +210,8 @@ export default function ProfileImageSettingsPage() {
   */
   const displayName = user?.name || "";
   const initialLetter = displayName.charAt(0).toUpperCase() || "?";
+  // console.log("initialLetter:", initialLetter);
+  const [imgError, setImgError] = useState(false);
 
   /**
   * プロフィール画像設定ページの表示部分
@@ -231,13 +233,15 @@ export default function ProfileImageSettingsPage() {
               {profileImage ? (
                 <img
                   src={profileImage}
-                  alt="プロフィール"
+                  alt="プロフィール画像を配置"
                   className="h-full w-full object-cover"
                 />
               ) : (
                 <span>{initialLetter}</span>
               )}
             </div>
+
+            {/* 画像選択ボタンエリア */}
             <div className="min-w-0 flex-1">
               <label
                 htmlFor="image-upload"
@@ -266,6 +270,8 @@ export default function ProfileImageSettingsPage() {
                 disabled={uploadStatus === "uploading"}
                 className="hidden"
               />
+
+              {/* アップロード中のファイル名表示エリア */}
               {profileImageFile && (
                 <div className="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="truncate">{profileImageFile.name}</span>
@@ -274,11 +280,15 @@ export default function ProfileImageSettingsPage() {
                       アップロード中...
                     </span>
                   )}
+
+                  {/* アップロード成功時のメッセージ表示エリア */}
                   {uploadStatus === "success" && (
                     <span className="text-emerald-600 dark:text-emerald-400">
                       ✓ 完了
                     </span>
                   )}
+
+                  {/* アップロード失敗時のメッセージ表示エリア */}
                   {uploadStatus === "error" && (
                     <span className="text-red-600 dark:text-red-400">
                       ✗ 失敗
