@@ -40,9 +40,20 @@ export default function SettingsPage() {
         name: user.name || "",
         email: user.email || "",
       });
-      // プロフィール画像があれば設定
+      // プロフィール画像: まず Cognito の picture、なければ GET /profile-image で S3 の最新を取得
       if (user.picture || user["custom:picture"]) {
         setProfileImage((user.picture || user["custom:picture"]) ?? null);
+      } else {
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
+        getSession().then((session) => {
+          if (!session) return;
+          fetch(`${apiBaseUrl}/profile-image`, {
+            headers: { Authorization: `Bearer ${session.idToken}` },
+          })
+            .then((res) => (res.ok ? res.json() : null))
+            .then((data) => data?.url && setProfileImage(data.url))
+            .catch(() => {});
+        });
       }
     }
   }, [user]);
@@ -61,8 +72,8 @@ export default function SettingsPage() {
 
       const apiBaseUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
 
-      // 1. プリサインドURL取得
-      const presignResponse = await fetch(`${apiBaseUrl}/profile-image/presign`, {
+      // 1. 署名付きPUT URL取得（Lambda: POST /profile-image）
+      const presignResponse = await fetch(`${apiBaseUrl}/profile-image`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,6 +90,9 @@ export default function SettingsPage() {
       }
 
       const { key, uploadUrl } = await presignResponse.json();
+      if (!uploadUrl || !key) {
+        throw new Error("サーバーからの応答が不正です");
+      }
 
       // 2. S3に画像をアップロード
       const uploadResponse = await fetch(uploadUrl, {
@@ -93,8 +107,32 @@ export default function SettingsPage() {
         throw new Error("画像のアップロードに失敗しました");
       }
 
+      // 3. アップロード確定（Lambda: PUT /profile-image）
+      const commitResponse = await fetch(`${apiBaseUrl}/profile-image`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.idToken}`,
+        },
+        body: JSON.stringify({ key }),
+      });
+
+      if (!commitResponse.ok) {
+        const errData = await commitResponse.json().catch(() => ({}));
+        throw new Error(errData.message || "画像の確定に失敗しました");
+      }
+
       setUploadStatus("success");
       setUploadedImageKey(key);
+
+      // 表示用に最新のプロフィール画像URLを取得（Lambda: GET /profile-image）
+      const urlResponse = await fetch(`${apiBaseUrl}/profile-image`, {
+        headers: { Authorization: `Bearer ${session.idToken}` },
+      });
+      if (urlResponse.ok) {
+        const data = await urlResponse.json();
+        if (data.url) setProfileImage(data.url);
+      }
       return key;
     } catch (error) {
       setUploadStatus("error");
