@@ -18,6 +18,16 @@ export default function ProfileImageSettingsPage() {
   >("idle");
   const [successMessage, setSuccessMessage] = useState("");
 
+  /**
+  * プロフィール画像の初期表示処理
+  *
+  * - Cognito の user に picture があればそれを表示
+  * - なければ API Gateway (/profile-image) から取得
+  * - API 呼び出し時は JWT（Bearer）で認証する
+  *
+  * ※ ここで JWT が正しく送れないと
+  *    API Gateway の JWT Authorizer に弾かれて 404 になる
+  */
   useEffect(() => {
     if (user) {
       if (user.picture || user["custom:picture"]) {
@@ -28,6 +38,8 @@ export default function ProfileImageSettingsPage() {
         const apiBaseUrl =
           process.env.NEXT_PUBLIC_API_GATEWAY_URL ||
           "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
+          console.log("apiBaseUrl:", apiBaseUrl);
+
         getSession().then((session) => {
           if (!session) return;
           fetch(`${apiBaseUrl}/profile-image`, {
@@ -41,6 +53,21 @@ export default function ProfileImageSettingsPage() {
     }
   }, [user]);
 
+  /**
+  * プロフィール画像をアップロードする処理
+  *
+  * 処理の流れ：
+  * 1. Cognito セッションを取得（JWT 認証）
+  * 2. API Gateway (/profile-image) に POST して
+  *    S3 用のプリサインドURLを取得
+  * 3. 取得したURLへ直接 PUT で画像をアップロード（JWT不要）
+  * 4. アップロード完了後、API に PUT で確定通知（JWT必須）
+  * 5. GET /profile-image で最新の画像URLを再取得
+  *
+  * ※ API Gateway は JWT Authorizer を使用しているため、
+  *    Authorization ヘッダに正しい JWT を付けないと
+  *    404（認証エラー扱い）になる
+  */
   const uploadProfileImage = async (file: File): Promise<string | null> => {
     try {
       setUploadStatus("uploading");
@@ -115,6 +142,18 @@ export default function ProfileImageSettingsPage() {
     }
   };
 
+  /**
+  * ファイル選択時のイベントハンドラ
+  *
+  * 処理の流れ：
+  * 1. ファイルを取得（input[type="file"]）
+  * 2. ファイル形式・サイズのバリデーション
+  * 3. FileReader で即時プレビュー表示
+  * 4. uploadProfileImage() を呼び出して画像をアップロード
+  * 5. 成功したら /me API に PUT してユーザー情報を更新
+  *
+  * ※ 4,5 の API 呼び出しは JWT 認証必須
+  */
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
