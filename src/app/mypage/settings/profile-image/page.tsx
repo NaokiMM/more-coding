@@ -40,13 +40,18 @@ export default function ProfileImageSettingsPage() {
           "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
           console.log("apiBaseUrl:", apiBaseUrl);
 
+        // Cognito のログインセッションを取得する
         getSession().then((session) => {
           if (!session) return;
+          // API Gateway (/profile-image) から画像URLを取得する
           fetch(`${apiBaseUrl}/profile-image`, {
             headers: { Authorization: `Bearer ${session.idToken}` },
           })
+            // API Gateway からのレスポンスを処理する
             .then((res) => (res.ok ? res.json() : null))
+            // 画像URLを設定する
             .then((data) => data?.url && setProfileImage(data.url))
+            // エラーが発生した場合は空のオブジェクトを返す
             .catch(() => {});
         });
       }
