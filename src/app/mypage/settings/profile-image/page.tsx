@@ -12,10 +12,12 @@ export default function ProfileImageSettingsPage() {
   const { user, refreshUser } = useAuth();
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
+  const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [uploadStatus, setUploadStatus] = useState<
     "idle" | "uploading" | "success" | "error"
   >("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   /**
@@ -148,18 +150,9 @@ export default function ProfileImageSettingsPage() {
   };
 
   /**
-  * ファイル選択時のイベントハンドラ
-  *
-  * 処理の流れ：
-  * 1. ファイルを取得（input[type="file"]）
-  * 2. ファイル形式・サイズのバリデーション
-  * 3. FileReader で即時プレビュー表示
-  * 4. uploadProfileImage() を呼び出して画像をアップロード
-  * 5. 成功したら /me API に PUT してユーザー情報を更新
-  *
-  * ※ 4,5 の API 呼び出しは JWT 認証必須
-  */
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+   * ファイル選択時のイベントハンドラ（プレビュー表示のみ、保存は「変更を保存」で実行）
+   */
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -175,15 +168,30 @@ export default function ProfileImageSettingsPage() {
 
     setProfileImageFile(file);
     setErrors((prev) => ({ ...prev, image: "" }));
+    setSuccessMessage("");
 
     const reader = new FileReader();
-    reader.onloadend = () => setProfileImage(reader.result as string);
+    reader.onloadend = () => setPreviewDataUrl(reader.result as string);
     reader.readAsDataURL(file);
+    e.target.value = "";
+  };
 
-    const key = await uploadProfileImage(file);
-    if (key) {
+  /**
+   * 「変更を保存」クリック時：アップロード → /me 更新（アカウント情報と同じフロー）
+   */
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!profileImageFile) return;
+    setIsSubmitting(true);
+    setErrors({});
+    setSuccessMessage("");
+
+    try {
+      const key = await uploadProfileImage(profileImageFile);
+      if (!key) throw new Error("画像のアップロードに失敗しました");
+
       const session = await getSession();
-      if (!session) return;
+      if (!session) throw new Error("認証が必要です");
       const apiBaseUrl =
         process.env.NEXT_PUBLIC_API_GATEWAY_URL ||
         "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
@@ -195,10 +203,22 @@ export default function ProfileImageSettingsPage() {
         },
         body: JSON.stringify({ picture: key }),
       });
-      if (updateRes.ok) {
-        setSuccessMessage("プロフィール画像を更新しました");
-        await refreshUser();
+      if (!updateRes.ok) {
+        const errData = await updateRes.json().catch(() => ({}));
+        throw new Error(errData.message || "プロフィール画像の更新に失敗しました");
       }
+      setSuccessMessage("プロフィール画像を更新しました");
+      setProfileImageFile(null);
+      setPreviewDataUrl(null);
+      await refreshUser();
+    } catch (error) {
+      setErrors((prev) => ({
+        ...prev,
+        submit:
+          error instanceof Error ? error.message : "プロフィール画像の更新に失敗しました",
+      }));
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -224,15 +244,14 @@ export default function ProfileImageSettingsPage() {
       breadcrumbTail="プロフィール画像"
       title="プロフィール画像"
     >
-      <div className="space-y-6">
-
+      <form onSubmit={handleSave} className="space-y-6">
         {/* プロフィール画像エリア */}
         <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="flex flex-col sm:flex-row sm:items-center gap-6">
             <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-2xl font-semibold text-white ring-2 ring-slate-200 dark:ring-slate-600">
-              {profileImage ? (
+              {(previewDataUrl ?? profileImage) ? (
                 <img
-                  src={profileImage}
+                  src={previewDataUrl ?? profileImage ?? ""}
                   alt="プロフィール画像を配置"
                   className="h-full w-full object-cover"
                 />
@@ -308,23 +327,35 @@ export default function ProfileImageSettingsPage() {
           </div>
         </section>
 
-        {/* 成功メッセージエリア */}
+        {/* 成功・エラーメッセージ（アカウント情報と同じ） */}
         {successMessage && (
           <div className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
             {successMessage}
           </div>
         )}
+        {errors.submit && (
+          <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">
+            {errors.submit}
+          </div>
+        )}
 
-        {/* 設定に戻るボタンエリア */}
-        <div className="flex justify-between pt-2">
+        {/* ボタンエリア（アカウント情報と同じレイアウト） */}
+        <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4 pt-2">
           <Link
             href="/mypage/settings"
             className="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
           >
             設定に戻る
           </Link>
+          <button
+            type="submit"
+            disabled={!profileImageFile || isSubmitting}
+            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-blue-500 dark:hover:bg-blue-600"
+          >
+            {isSubmitting ? "保存中..." : "変更を保存"}
+          </button>
         </div>
-      </div>
+      </form>
     </SettingsLayout>
   );
 }
