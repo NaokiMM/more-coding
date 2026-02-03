@@ -272,179 +272,189 @@ export default function SettingsPage() {
       />
 
       {/* Main Content */}
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8">
+      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
+        {/* Breadcrumb & Title */}
+        <nav className="mb-6 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
           <Link
             href="/mypage"
-            className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            <svg
-              className="mr-2 h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            マイページに戻る
+            マイページ
           </Link>
-          <h1 className="mt-4 text-3xl font-bold text-slate-900 dark:text-white">
-            設定
-          </h1>
-        </div>
+          <span aria-hidden>/</span>
+          <span className="text-slate-700 dark:text-slate-300 font-medium">設定</span>
+        </nav>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          アカウント設定
+        </h1>
 
-        {/* Settings Form */}
-        <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Profile Image */}
-            <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                プロフィール画像
-              </label>
-              <div className="flex items-center gap-6">
-                <div className="relative">
-                  <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
-                    {profileImage ? (
-                      <img
-                        src={profileImage}
-                        alt="Profile"
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <span>
-                        {formData.name.charAt(0).toUpperCase() || "U"}
-                      </span>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Account Info Card */}
+          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
+              アカウント情報
+            </h2>
+            <div className="space-y-5">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+                >
+                  お名前
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`block w-full rounded-lg border bg-white px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:bg-slate-700 dark:text-white dark:placeholder-slate-500 ${
+                    errors.name
+                      ? "border-red-500 focus:ring-red-500 dark:border-red-500"
+                      : "border-slate-300 dark:border-slate-600"
+                  }`}
+                  placeholder="山田 太郎"
+                />
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+                )}
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+                >
+                  メールアドレス
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled
+                  className="block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-slate-500 dark:border-slate-600 dark:bg-slate-700/50 dark:text-slate-400 cursor-not-allowed"
+                />
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  メールアドレスは変更できません
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Profile Image Card */}
+          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
+              プロフィール画像
+            </h2>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-xl font-semibold text-white ring-2 ring-slate-200 dark:ring-slate-600">
+                {profileImage ? (
+                  <img
+                    src={profileImage}
+                    alt="プロフィール"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span>{formData.name.charAt(0).toUpperCase() || "?"}</span>
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <label
+                  htmlFor="image-upload"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  画像を選択
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handleImageChange}
+                  disabled={uploadStatus === "uploading"}
+                  className="hidden"
+                />
+                {profileImageFile && (
+                  <div className="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="truncate">{profileImageFile.name}</span>
+                    {uploadStatus === "uploading" && (
+                      <span className="text-amber-600 dark:text-amber-400">アップロード中...</span>
+                    )}
+                    {uploadStatus === "success" && (
+                      <span className="text-emerald-600 dark:text-emerald-400">✓ 完了</span>
+                    )}
+                    {uploadStatus === "error" && (
+                      <span className="text-red-600 dark:text-red-400">✗ 失敗</span>
                     )}
                   </div>
-                </div>
-                <div className="flex-1">
-                  <label
-                    htmlFor="image-upload"
-                    className="cursor-pointer rounded-lg border-2 border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-                  >
-                    画像を選択
-                  </label>
-                  <input
-                    id="image-upload"
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    onChange={handleImageChange}
-                    disabled={uploadStatus === "uploading"}
-                    className="hidden"
-                  />
-                  {profileImageFile && (
-                    <div className="mt-2">
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        {profileImageFile.name}
-                      </p>
-                      {uploadStatus === "uploading" && (
-                        <p className="mt-1 text-xs text-blue-600">アップロード中...</p>
-                      )}
-                      {uploadStatus === "success" && (
-                        <p className="mt-1 text-xs text-green-600">✓ アップロード完了</p>
-                      )}
-                      {uploadStatus === "error" && (
-                        <p className="mt-1 text-xs text-red-600">✗ アップロード失敗</p>
-                      )}
-                    </div>
-                  )}
-                  {errors.image && (
-                    <p className="mt-1 text-sm text-red-600">{errors.image}</p>
-                  )}
-                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                    JPEG、PNG、WebP形式、5MB以下
-                  </p>
-                </div>
+                )}
+                {errors.image && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.image}</p>
+                )}
+                <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+                  JPEG、PNG、WebP／5MB以下
+                </p>
               </div>
             </div>
+          </section>
 
-            {/* Name */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >
-                お名前
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className={`w-full rounded-lg border px-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white dark:border-slate-600 ${
-                  errors.name
-                    ? "border-red-500 focus:ring-red-500"
-                    : "border-slate-300"
-                }`}
-                placeholder="山田 太郎"
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-              )}
+          {/* Messages */}
+          {successMessage && (
+            <div className="rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400">
+              {successMessage}
             </div>
-
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >
-                メールアドレス
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                disabled
-                className="w-full rounded-lg border border-slate-300 bg-slate-100 px-4 py-3 text-slate-500 dark:bg-slate-700 dark:text-slate-400 dark:border-slate-600 cursor-not-allowed"
-              />
-              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                メールアドレスは変更できません
-              </p>
+          )}
+          {errors.submit && (
+            <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">
+              {errors.submit}
             </div>
+          )}
 
-            {/* Success Message */}
-            {successMessage && (
-              <div className="rounded-lg bg-green-50 p-3 text-sm text-green-600 dark:bg-green-900/20 dark:text-green-400">
-                {successMessage}
-              </div>
-            )}
-
-            {/* Error Message */}
-            {errors.submit && (
-              <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
-                {errors.submit}
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <div className="flex gap-4">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                {isSubmitting ? "更新中..." : "変更を保存"}
-              </button>
+          {/* Actions */}
+          <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-4 pt-2">
+            <div className="flex gap-3">
               <Link
                 href="/mypage"
-                className="rounded-lg border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                className="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
               >
                 キャンセル
               </Link>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-blue-500 dark:hover:bg-blue-600"
+              >
+                {isSubmitting ? "保存中..." : "変更を保存"}
+              </button>
             </div>
-          </form>
-        </div>
+          </div>
+          <div className="flex justify-center pt-6">
+            <Link
+              href="/mypage"
+              className="inline-flex w-fit items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            >
+              <svg
+                className="mr-1.5 h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              マイページに戻る
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );
