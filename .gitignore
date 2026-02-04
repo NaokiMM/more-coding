@@ -48,3 +48,4 @@ README.local.md
 **/*.tfstate
 **/*.tfstate.*
 /s3-assets/
+/lambda/
