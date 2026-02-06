@@ -19,14 +19,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"), // ★追加：本番ドメイン
-  title: "More Coding - IT資格学習プラットフォーム",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  title: "More Coding - ITのコーディング学習と資格が取得できるWebアプリ",
   description:
-    "IT資格の紹介と学習ができるプラットフォーム。TypeScript、React、Vueなどの技術を学べます。",
+    "ITのコーディング学習と資格が取得できるWebアプリです。React・TypeScript・Vue・Next.jsが学べます。",
   alternates: {
-    canonical: "/", // ★追加：トップの正規URL
+    canonical: "/",
   },
-  // apple-icon.pngを追加
   manifest: "/manifest.json",
   icons: {
     icon: "/pwa-icon.png",

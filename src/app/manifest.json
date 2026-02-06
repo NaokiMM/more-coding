@@ -1,7 +1,7 @@
 {
-  "name": "More Coding - IT資格学習プラットフォーム",
+  "name": "More Coding - ITのコーディング学習と資格が取得できるWebアプリ",
   "short_name": "More Coding",
-  "description": "IT資格の紹介と学習ができるプラットフォーム。TypeScript、React、Vueなどの技術を学べます。",
+  "description": "ITのコーディング学習と資格が取得できるWebアプリです。React・TypeScript・Vue・Next.jsが学べます。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
