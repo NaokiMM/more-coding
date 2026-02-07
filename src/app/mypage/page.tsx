@@ -110,10 +110,12 @@ export default function MyPage() {
   };
 
 /*
+========================================
  UI =
  マイページのトップ画面
  - プロフィール表示
  - 学習進捗テーブル
+========================================
 */
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
