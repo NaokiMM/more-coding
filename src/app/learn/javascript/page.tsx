@@ -11,7 +11,7 @@ export default function JavaScriptLearnPage() {
     {
       id: "associate",
       name: "Associate",
-      description: "JavaScriptの基礎を学びます。変数、関数、オブジェクトなど基本的な概念から始めましょう。",
+      description: "JavaScriptの基礎を学びます。<br />変数、関数、オブジェクトなど基本的な概念から始めましょう。",
       color: "from-yellow-500 to-orange-600",
       icon: "🌱",
       topics: [

@@ -57,7 +57,7 @@ export default function JavaScriptAssociatePage() {
             Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            JavaScriptの基礎を学びます。変数、関数、オブジェクトなど基本的な概念から始めましょう。
+            JavaScriptの基礎を学びます。<br />変数、関数、オブジェクトなど基本的な概念から始めましょう。
           </p>
           {/* Membership Badges */}
           <div className="mt-6 flex items-center justify-center gap-3">
