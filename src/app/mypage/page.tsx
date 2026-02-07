@@ -1,6 +1,26 @@
-// マイページ（トップページ）
+/*
+ MyPage（/mypage）
+ --------------------
+ マイページのトップ画面。
 
-// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
+ 【役割】
+ - 認証状態を確認し、未認証の場合は /login へリダイレクトする
+ - 表示用コンポーネント（ProfileSection / Banner / Table）を組み立てる
+ - ログアウト確認モーダルの表示制御を行う
+ - 学習進捗はカスタムフック（useProgressItems）で取得し、表示コンポーネントへ渡す
+
+ 【構成】
+ - Header（右上ナビ・ログアウト導線）
+ - ProfileSection（ユーザー情報表示）
+ - FreeMemberUpgradeBanner（無料会員のみ）
+ - LearningProgressTable（進捗表示：loading/error/empty を含む）
+ - ホームへ戻る導線
+
+ 【設計方針】
+ - データ取得ロジックは hooks へ、UI 表示は components へ分離
+ - page.tsx は画面全体のフローと配置（composition）に集中する
+*/
+
 "use client";
 
 import Link from "next/link";
@@ -9,58 +29,33 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 import ConfirmModal from "@/components/ConfirmModal";
-import { getProgressItems } from "@/lib/progressApi";
-
-interface ProgressItem {
-  problemId: string;
-  status: string;
-  attempts: number;
-  lastAnsweredAt?: string;
-}
+import ProfileSection from "./components/ProfileSection";
+import FreeMemberUpgradeBanner from "./components/FreeMemberUpgradeBanner";
+import LearningProgressTable from "./components/LearningProgressTable";
+import { useProgressItems } from "./hooks/useProgressItems";
 
 export default function MyPage() {
   const router = useRouter();
   const { user, loading, isAuthenticated, signOut } = useAuth();
-  const [progressItems, setProgressItems] = useState<ProgressItem[]>([]);
-  const [progressLoading, setProgressLoading] = useState(true);
-  const [progressError, setProgressError] = useState<string | null>(null);
+  const { items: progressItems, loading: progressLoading, error: progressError } = useProgressItems(
+    "basic-01",
+    !!isAuthenticated,
+    loading
+  );
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  // 認証チェック
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       router.push("/login");
     }
   }, [loading, isAuthenticated, router]);
 
-  // 学習進捗取得処理（マイページ）
-  // 認証完了後に、指定コースの進捗データを API から取得する
-  // ローディング／エラー状態もここで管理する
-  useEffect(() => {
-    if (!isAuthenticated || loading) return;
+  const handleLogoutClick = () => setShowLogoutModal(true);
+  const handleLogoutConfirm = () => {
+    signOut();
+    router.push("/login");
+  };
 
-    const fetchProgress = async () => {
-      try {
-        setProgressLoading(true);
-        setProgressError(null);
-        const response = await getProgressItems("basic-01");
-        setProgressItems(response.items || []);
-      } catch (error: any) {
-        if (error.message?.includes("認証が切れています")) {
-          setProgressError("認証が切れています。再ログインしてください。");
-        } else {
-          setProgressError(error.message || "進捗の取得に失敗しました");
-        }
-      } finally {
-        setProgressLoading(false);
-      }
-    };
-
-    fetchProgress();
-  // 依存配列: 対象データが変更されたら、再実行される
-  }, [isAuthenticated, loading]);
-
-  // ローディング中または未認証の場合は何も表示しない
   if (loading || !isAuthenticated || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -72,68 +67,10 @@ export default function MyPage() {
     );
   }
 
-  // 三項演算子: ユーザー情報をフォーマット（auth.name を優先）
-  const userDisplayName = user.auth?.name || user.name || user.email || "ユーザー";
-  const userEmail = user.email || "";
-  // TODO: 会員登録日を管理できるようにする
-  // DynamoDB に保存し、Lambda 経由で取得する
-  const joinDate = user["custom:joinDate"] || "不明";
-
-  // ユーザーに会員種別があればそれを使う。なければ「free（無料会員）」として扱う。
   const subscriptionType = user.subscriptionType || "free";
-  // 三項演算子: 会員種別が premium なら「有料会員」
-  // それ以外なら「無料会員」
-  const membershipLabel = subscriptionType === "premium" ? "有料会員" : "無料会員";
-  const membershipColor = subscriptionType === "premium" 
-    ? "bg-gradient-to-r from-yellow-500 to-orange-500" 
-    : "bg-gradient-to-r from-slate-500 to-slate-600";
 
-  // プロフィール画像（localStorageから取得、またはユーザー属性から）
-  // TODO: プロフィール画像は localStorage ではなく、
-  // S3（署名付きURL）から取得する方式に変更する
-  const profileImage =
-    user.picture ||
-    user["custom:picture"] ||
-    (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
-
-  // ログアウトボタン押下時：確認モーダルを表示
-  const handleLogoutClick = () => setShowLogoutModal(true);
-
-  // ログアウト確定時：サインアウト処理後にログイン画面へ遷移
-  const handleLogoutConfirm = () => {
-    signOut();
-    router.push("/login");
-  };
-
-  // 学習進捗テーブル表示用：
-  // lastAnsweredAt（ISO文字列）を「YYYY/MM/DD HH:mm」形式に変換する
-  // 値がない／不正な場合は "-" を表示する
-  const formatDate = (dateString?: string): string => {
-    if (!dateString) return "-";
-    try {
-      const date = new Date(dateString);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      return `${year}/${month}/${day} ${hours}:${minutes}`;
-    } catch {
-      return "-";
-    }
-  };
-
-/*
-========================================
- UI =
- マイページのトップ画面
- - プロフィール表示
- - 学習進捗テーブル
-========================================
-*/
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Header */}
       <Header
         rightContent={
           <nav className="hidden md:flex items-center gap-6">
@@ -162,150 +99,17 @@ export default function MyPage() {
         cancelLabel="キャンセル"
       />
 
-      {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Profile Section */}
-        <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
-          <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between">
-            <div className="flex items-center gap-6">
-              <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
-                {profileImage ? (
-                  <img
-                    src={profileImage}
-                    alt={userDisplayName}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <span>{userDisplayName.charAt(0).toUpperCase()}</span>
-                )}
-              </div>
-              <div>
-                <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-                    {userDisplayName}
-                  </h1>
-                  <span className={`rounded-full px-3 py-1 text-xs font-semibold text-white ${membershipColor}`}>
-                    {membershipLabel}
-                  </span>
-                </div>
-                <p className="mt-1 text-slate-600 dark:text-slate-400">
-                  {userEmail}
-                </p>
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-500">
-                  会員登録日: {joinDate}
-                </p>
-              </div>
-            </div>
-            <div className="mt-4 md:mt-0 flex flex-row gap-3">
-              <Link
-                href="/mypage/settings"
-                className="rounded-lg border-2 border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-              >
-                設定を編集
-              </Link>
-              <button
-                onClick={handleLogoutClick}
-                className="rounded-lg border-2 border-red-300 bg-white px-6 py-2 text-sm font-semibold text-red-600 transition-all hover:bg-red-50 dark:border-red-600 dark:bg-slate-700 dark:text-red-400 dark:hover:bg-red-900/20"
-              >
-                ログアウト
-              </button>
-            </div>
-          </div>
-        </div>
+        <ProfileSection user={user} onLogoutClick={handleLogoutClick} />
 
-        {/* Free Member UI */}
-        {subscriptionType === "free" && (
-          <div className="mb-8 rounded-2xl border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-slate-100 p-6 shadow-lg dark:border-slate-600 dark:from-slate-800 dark:to-slate-900">
-            <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-slate-500 to-slate-600 text-2xl shadow-lg">
-                  👤
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                    無料会員プラン
-                  </h3>
-                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                    現在無料プランをご利用中です。<br />有料会員にアップグレードすると、全てのコースにアクセスできます。
-                  </p>
-                </div>
-              </div>
-              <Link
-                href="/pricing"
-                className="rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-              >
-                有料会員にアップグレード
-              </Link>
-            </div>
-          </div>
-        )}
+        {subscriptionType === "free" && <FreeMemberUpgradeBanner />}
 
-        {/* Learning Progress Section */}
-        <div className="mb-8">
-          <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
-            学習進捗
-          </h2>
-          <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
-            {progressLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="mr-3 h-5 w-5 animate-spin rounded-full border-2 border-blue-600 border-t-transparent"></div>
-                <p className="text-slate-600 dark:text-slate-400">読み込み中…</p>
-              </div>
-            ) : progressError ? (
-              <div className="rounded-lg bg-red-50 p-4 text-red-600 dark:bg-red-900/20 dark:text-red-400">
-                <p className="text-center">{progressError}</p>
-              </div>
-            ) : progressItems.length === 0 ? (
-              <p className="text-center text-slate-600 dark:text-slate-400">
-                まだ学習進捗がありません。
-              </p>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-slate-200 dark:border-slate-700">
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
-                        問題ID
-                      </th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
-                        ステータス
-                      </th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
-                        試行回数
-                      </th>
-                      <th className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-white">
-                        最終回答日時
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {progressItems.map((item, index) => (
-                      <tr
-                        key={item.problemId || index}
-                        className="border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50"
-                      >
-                        <td className="px-4 py-3 text-sm text-slate-900 dark:text-white">
-                          {item.problemId}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
-                          {item.status}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
-                          {item.attempts}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
-                          {formatDate(item.lastAnsweredAt)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        </div>
+        <LearningProgressTable
+          items={progressItems}
+          loading={progressLoading}
+          error={progressError}
+        />
 
-        {/* Back to Home Section */}
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <Link
@@ -333,4 +137,3 @@ export default function MyPage() {
     </div>
   );
 }
-
