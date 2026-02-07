@@ -85,15 +85,18 @@ export default function MyPage() {
     user["custom:picture"] ||
     (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
 
-
-
+  // ログアウトボタン押下時：確認モーダルを表示
   const handleLogoutClick = () => setShowLogoutModal(true);
+
+  // ログアウト確定時：サインアウト処理後にログイン画面へ遷移
   const handleLogoutConfirm = () => {
     signOut();
     router.push("/login");
   };
 
-  // 日付を日本時間でフォーマット
+  // 学習進捗テーブル表示用：
+  // lastAnsweredAt（ISO文字列）を「YYYY/MM/DD HH:mm」形式に変換する
+  // 値がない／不正な場合は "-" を表示する
   const formatDate = (dateString?: string): string => {
     if (!dateString) return "-";
     try {
