@@ -33,7 +33,9 @@ export default function MyPage() {
     }
   }, [loading, isAuthenticated, router]);
 
-  // 学習進捗を取得
+  // 学習進捗取得処理（マイページ）
+  // 認証完了後に、指定コースの進捗データを API から取得する
+  // ローディング／エラー状態もここで管理する
   useEffect(() => {
     if (!isAuthenticated || loading) return;
 
@@ -55,6 +57,7 @@ export default function MyPage() {
     };
 
     fetchProgress();
+  // 依存配列: 対象データが変更されたら、再実行される
   }, [isAuthenticated, loading]);
 
   // ローディング中または未認証の場合は何も表示しない
@@ -69,17 +72,25 @@ export default function MyPage() {
     );
   }
 
-  // ユーザー情報をフォーマット（auth.name を優先）
+  // 三項演算子: ユーザー情報をフォーマット（auth.name を優先）
   const userDisplayName = user.auth?.name || user.name || user.email || "ユーザー";
   const userEmail = user.email || "";
+  // TODO: 会員登録日を管理できるようにする
+  // DynamoDB に保存し、Lambda 経由で取得する
   const joinDate = user["custom:joinDate"] || "不明";
-  // 会員種別（デフォルトは無料会員）
+
+  // ユーザーに会員種別があればそれを使う。なければ「free（無料会員）」として扱う。
   const subscriptionType = user.subscriptionType || "free";
+  // 三項演算子: 会員種別が premium なら「有料会員」
+  // それ以外なら「無料会員」
   const membershipLabel = subscriptionType === "premium" ? "有料会員" : "無料会員";
   const membershipColor = subscriptionType === "premium" 
     ? "bg-gradient-to-r from-yellow-500 to-orange-500" 
     : "bg-gradient-to-r from-slate-500 to-slate-600";
+
   // プロフィール画像（localStorageから取得、またはユーザー属性から）
+  // TODO: プロフィール画像は localStorage ではなく、
+  // S3（署名付きURL）から取得する方式に変更する
   const profileImage =
     user.picture ||
     user["custom:picture"] ||
@@ -215,7 +226,7 @@ export default function MyPage() {
                     無料会員プラン
                   </h3>
                   <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-                    現在無料プランをご利用中です。有料会員にアップグレードすると、すべてのコースにアクセスできます。
+                    現在無料プランをご利用中です。<br />有料会員にアップグレードすると、全てのコースにアクセスできます。
                   </p>
                 </div>
               </div>
