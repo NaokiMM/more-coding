@@ -41,6 +41,8 @@ const NODEJS_PROFESSIONAL = "/learn/nodejs/professional";
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
   const router = useRouter();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -50,12 +52,16 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
 
   useEffect(() => {
     if (authLoading) return;
+    if (isAuthenticated && user && !isPaidMember) {
+      router.replace("/learn/nodejs");
+      return;
+    }
     if (!isAuthenticated || !user) {
       setShowStartDialog(false);
       return;
     }
     if (!hasStarted) setShowStartDialog(true);
-  }, [isAuthenticated, user, authLoading, hasStarted]);
+  }, [isAuthenticated, user, authLoading, hasStarted, isPaidMember, router]);
 
   const handleStartStudy = () => {
     if (isAuthenticated && user) {
