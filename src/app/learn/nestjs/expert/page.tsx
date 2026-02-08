@@ -7,10 +7,36 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { categoriesData } from "@/lib/categories/nestjs/expert-categories";
 import Header from "@/components/Header";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function NestJSExpertPage() {
+  const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
+
+  useEffect(() => {
+    if (authLoading) return;
+    if (!isPaidMember) {
+      router.replace("/learn/nestjs");
+    }
+  }, [authLoading, isPaidMember, router]);
+
+  if (authLoading || !isPaidMember) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <Header />
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <p className="text-slate-500 dark:text-slate-400">読み込み中...</p>
+        </div>
+      </div>
+    );
+  }
+
   const categories = categoriesData.map((cat) => ({
     ...cat,
     description: `${cat.name}について学習します。`,
