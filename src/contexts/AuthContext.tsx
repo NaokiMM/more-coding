@@ -53,6 +53,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [cognitoUser, setCognitoUser] = useState<CognitoUser | null>(null);
   const [loading, setLoading] = useState(true);
 
+  /*
+    認証ユーザーをロードする処理。
+    1. Cognitoから現在ユーザー取得
+    2. セッションがあれば /me API を呼ぶ
+    3. 本来は API Gateway 経由でユーザー情報を取得するが、
+    失敗した場合は Cognito から直接取得する
+  */
   const loadUser = async () => {
     try {
       const currentUser = await getCurrentUser();
@@ -127,6 +134,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await loadUser();
   };
 
+  /*
+    認証情報と操作を Context に提供し、
+    配下のコンポーネント（画面）を表示する
+  */
   return (
     <AuthContext.Provider
       value={{
@@ -154,5 +165,3 @@ export function useAuth() {
   }
   return context;
 }
-
-
