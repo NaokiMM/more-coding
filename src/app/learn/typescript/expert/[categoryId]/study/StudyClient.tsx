@@ -38,6 +38,8 @@ interface StudyClientProps {
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
   const router = useRouter();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -49,6 +51,11 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
   useEffect(() => {
     if (authLoading) return; // 認証情報の読み込み中は何もしない
 
+    if (isAuthenticated && user && !isPaidMember) {
+      router.replace("/learn/typescript");
+      return;
+    }
+
     if (!isAuthenticated || !user) {
       // ログインしていない場合は開始確認ダイアログを表示しない
       setShowStartDialog(false);
@@ -59,7 +66,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
     if (!hasStarted) {
       setShowStartDialog(true);
     }
-  }, [isAuthenticated, user, authLoading, hasStarted]);
+  }, [isAuthenticated, user, authLoading, hasStarted, isPaidMember, router]);
 
   // 学習開始のハンドラー
   const handleStartStudy = () => {
