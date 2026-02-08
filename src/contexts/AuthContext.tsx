@@ -63,15 +63,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         try {
           const session = await getSession();
           if (session) {
-            const response = await fetch(
-              "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com/me",
-              {
-                headers: {
-                  Authorization: `Bearer ${session.idToken}`,
-                },
-              }
-            );
-            
+            const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+            if (!API_BASE_URL) throw new Error("NEXT_PUBLIC_API_BASE_URL is not set");
+
+            const response = await fetch(`${API_BASE_URL}/me`, {
+              headers: {
+                Authorization: `Bearer ${session.idToken}`,
+              },
+            });
+
             if (response.ok) {
               const data: MeResponse = await response.json();
               // auth と item をマージして User 型に変換

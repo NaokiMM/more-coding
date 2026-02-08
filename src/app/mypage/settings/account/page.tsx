@@ -41,9 +41,10 @@ export default function AccountSettingsPage() {
       const session = await getSession();
       if (!session) throw new Error("認証が必要です");
 
-      const apiBaseUrl =
-        process.env.NEXT_PUBLIC_API_GATEWAY_URL ||
-        "https://h7sqt3sfpj.execute-api.ap-northeast-1.amazonaws.com";
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      if (!apiBaseUrl) {
+        throw new Error("NEXT_PUBLIC_API_BASE_URL is not set");
+      }
 
       const response = await fetch(`${apiBaseUrl}/me`, {
         method: "PUT",
