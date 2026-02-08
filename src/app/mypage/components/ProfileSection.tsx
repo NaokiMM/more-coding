@@ -39,12 +39,13 @@ export default function ProfileSection({ user, onLogoutClick }: ProfileSectionPr
   const joinDate = user["custom:joinDate"] || "不明";
 
   const subscriptionType = user.subscriptionType || "free";
-  const membershipLabel = subscriptionType === "premium" ? "有料会員" : "無料会員";
+  const membershipLabel =
+    subscriptionType === "paid" ? "有料会員" : "無料会員";
   const membershipColor =
-    subscriptionType === "premium"
+    subscriptionType === "paid"
       ? "bg-gradient-to-r from-yellow-500 to-orange-500"
       : "bg-gradient-to-r from-slate-500 to-slate-600";
-
+  
   const profileImage =
     user.picture ||
     user["custom:picture"] ||
