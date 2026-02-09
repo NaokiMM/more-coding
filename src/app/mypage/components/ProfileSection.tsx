@@ -36,7 +36,9 @@ interface ProfileSectionProps {
 export default function ProfileSection({ user, onLogoutClick }: ProfileSectionProps) {
   const userDisplayName = user.auth?.name || user.name || user.email || "ユーザー";
   const userEmail = user.email || "";
-  const joinDate = user["custom:joinDate"] || "不明";
+  const joinDateRaw = user["custom:joinDate"];
+  const joinDate =
+    typeof joinDateRaw === "string" && joinDateRaw ? joinDateRaw : "不明";
 
   const subscriptionType = user.subscriptionType || "free";
   const membershipLabel =
@@ -46,10 +48,12 @@ export default function ProfileSection({ user, onLogoutClick }: ProfileSectionPr
       ? "bg-gradient-to-r from-yellow-500 to-orange-500"
       : "bg-gradient-to-r from-slate-500 to-slate-600";
   
-  const profileImage =
+  const profileImageRaw =
     user.picture ||
     user["custom:picture"] ||
     (typeof window !== "undefined" ? localStorage.getItem("profileImage") : null);
+  const profileImage =
+    typeof profileImageRaw === "string" ? profileImageRaw : null;
 
   return (
     <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
