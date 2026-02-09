@@ -31,11 +31,5 @@ export const handler = async (event) => {
 
   if (!sub) return json(401, { ok: false, message: "Unauthorized" });
 
-  // ここに質問系ルートを追加していく
-  // 例:
-  // GET /questions
-  // POST /questions
-  // GET /questions/{id}
-
   return json(404, { ok: false, message: "Not Found", note: "Implement questions routes here." });
 };
