@@ -49,7 +49,11 @@ export interface ProgressHistoryItem {
   studiedAt: string;
 }
 
-export async function getProgressHistory(): Promise<{ item: ProgressHistoryItem | null }> {
+/** API は item または items 配列で返す場合がある */
+export async function getProgressHistory(): Promise<{
+  item?: ProgressHistoryItem | null;
+  items?: ProgressHistoryItem[];
+}> {
   return await apiFetch("/history", {
     method: "GET",
   });
