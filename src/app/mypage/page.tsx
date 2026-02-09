@@ -14,6 +14,7 @@
  - ProfileSection（ユーザー情報表示）
  - FreeMemberUpgradeBanner（無料会員のみ）
  - LearningProgressTable（進捗表示：loading/error/empty を含む）
+ - ResumeLearningSection（学習再開：UIのみ、後々再開先・日時を表示予定）
  - ホームへ戻る導線
 
  【設計方針】
@@ -32,6 +33,7 @@ import ConfirmModal from "@/components/ConfirmModal";
 import ProfileSection from "./components/ProfileSection";
 import FreeMemberUpgradeBanner from "./components/FreeMemberUpgradeBanner";
 import LearningProgressTable from "./components/LearningProgressTable";
+import ResumeLearningSection from "./components/ResumeLearningSection";
 import { useProgressItems } from "./hooks/useProgressItems";
 
 export default function MyPage() {
@@ -109,6 +111,8 @@ export default function MyPage() {
           loading={progressLoading}
           error={progressError}
         />
+
+        <ResumeLearningSection />
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
           <div className="text-center">
