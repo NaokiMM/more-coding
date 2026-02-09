@@ -3,28 +3,30 @@
 
   DynamoDB:
   - PK: userId
-  - SK: problemId = "history#<ISO8601>"
-  - 属性: content, level, material, studiedAt
+  - SK: progressId = "progress#history#<ISO8601>"
 
   APIs:
-  - POST /progress/history
+  - POST /history
       body: { material, level, content, studiedAt? }
-  - GET  /progress/history
-      最新1件を返す
+  - GET  /history?limit=30
 */
-
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
-  PutCommand,
   QueryCommand,
+  PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
 const json = (statusCode, obj) => ({
   statusCode,
-  headers: { "content-type": "application/json" },
+  headers: {
+    "content-type": "application/json",
+    "access-control-allow-origin": "http://localhost:3000",
+    "access-control-allow-headers": "authorization,content-type",
+    "access-control-allow-methods": "GET,POST,OPTIONS",
+  },
   body: JSON.stringify(obj),
 });
 
@@ -35,16 +37,15 @@ export const handler = async (event) => {
     const method = event?.requestContext?.http?.method;
     const path = event?.requestContext?.http?.path;
 
-    const userId = event?.requestContext?.authorizer?.jwt?.claims?.sub;
-
-    if (!userId) return json(401, { message: "Unauthorized" });
+    if (method === "OPTIONS") return json(204, {});
     if (!TableName) return json(500, { message: "PROGRESS_TABLE is not set" });
 
-    // =========================
-    // GET /progress/history
-    // 最新の履歴を1件だけ返す
-    // =========================
-    if (method === "GET" && path?.endsWith("/progress/history")) {
+    const claims = event?.requestContext?.authorizer?.jwt?.claims;
+    const userId = claims?.sub;
+    if (!userId) return json(401, { message: "Unauthorized" });
+
+    // GET /history (最新1件)
+    if (method === "GET" && path?.endsWith("/history")) {
       const res = await ddb.send(
         new QueryCommand({
           TableName,
@@ -54,21 +55,15 @@ export const handler = async (event) => {
             ":p": "history#",
           },
           Limit: 1,
-          ScanIndexForward: false, // 新しい順 → 先頭1件
+          ScanIndexForward: false,
         })
       );
 
-      return json(200, {
-        ok: true,
-        item: res.Items?.[0] ?? null,
-      });
+      return json(200, { ok: true, items: res.Items ?? [] });
     }
 
-    // =========================
-    // POST /progress/history
-    // body: { material, level, content, studiedAt? }
-    // =========================
-    if (method === "POST" && path?.endsWith("/progress/history")) {
+    // POST /history (履歴追加)
+    if (method === "POST" && path?.endsWith("/history")) {
       const body = event?.body ? JSON.parse(event.body) : {};
       const { material, level, content, studiedAt } = body;
 
@@ -90,7 +85,12 @@ export const handler = async (event) => {
         studiedAt: now,
       };
 
-      await ddb.send(new PutCommand({ TableName, Item: item }));
+      await ddb.send(
+        new PutCommand({
+          TableName,
+          Item: item,
+        })
+      );
 
       return json(200, { ok: true, item });
     }

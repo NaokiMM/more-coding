@@ -4,7 +4,7 @@
  前回の学習履歴を取得・管理するためのカスタムフック。
 
  【役割】
- - GET /progress/history で最新1件の学習履歴を取得する
+ - GET /history で最新1件の学習履歴を取得する
  - 取得結果（item）・ローディング状態（loading）・エラー状態（error）をまとめて提供する
 
  【実行条件】
@@ -43,7 +43,9 @@ export function useProgressHistory(
         setLoading(true);
         setError(null);
         const response = await getProgressHistory();
-        setItem(response.item ?? null);
+        // API は items 配列で返す場合があるので両方対応
+        const data = response.items?.[0] ?? response.item ?? null;
+        setItem(data);
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : String(err);
         if (message?.includes("認証が切れています")) {

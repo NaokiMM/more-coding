@@ -6,7 +6,6 @@ import { apiFetch, getAccessTokenFromStorage } from "./apiFetch";
 
 /**
  * アクセストークンを取得
- * トークンが存在しない場合は例外をスロー
  */
 export function getAccessToken(): string {
   const token = getAccessTokenFromStorage();
@@ -17,7 +16,7 @@ export function getAccessToken(): string {
 }
 
 /**
- * 進捗回答を送信
+ * 進捗回答を送信（既存のまま）
  */
 export interface PostProgressAnswerInput {
   setId: string;
@@ -39,13 +38,29 @@ export async function postProgressAnswer(
 }
 
 /**
- * 進捗アイテムを取得
+ * 前回の学習履歴を取得（最新1件）
+ */
+export interface ProgressHistoryItem {
+  userId: string;
+  problemId: string;
+  content: string;
+  level: string;
+  material: string;
+  studiedAt: string;
+}
+
+export async function getProgressHistory(): Promise<{ item: ProgressHistoryItem | null }> {
+  return await apiFetch("/history", {
+    method: "GET",
+  });
+}
+
+/**
+ * 進捗アイテムを取得（setId 指定）
  */
 export async function getProgressItems(setId: string): Promise<any> {
   return await apiFetch(
     `/progress/items?setId=${encodeURIComponent(setId)}`,
-    {
-      method: "GET",
-    }
+    { method: "GET" }
   );
 }

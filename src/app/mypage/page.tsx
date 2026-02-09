@@ -7,7 +7,7 @@
  - 認証状態を確認し、未認証の場合は /login へリダイレクトする
  - 表示用コンポーネント（ProfileSection / Banner / Table）を組み立てる
  - ログアウト確認モーダルの表示制御を行う
- - 学習進捗はカスタムフック（useProgressItems）で取得し、表示コンポーネントへ渡す
+ - 前回の学習履歴はカスタムフック（useProgressHistory）で取得し、表示コンポーネントへ渡す
 
  【構成】
  - Header（右上ナビ・ログアウト導線）
@@ -34,13 +34,12 @@ import ProfileSection from "./components/ProfileSection";
 import FreeMemberUpgradeBanner from "./components/FreeMemberUpgradeBanner";
 import LearningProgressTable from "./components/LearningProgressTable";
 import ResumeLearningSection from "./components/ResumeLearningSection";
-import { useProgressItems } from "./hooks/useProgressItems";
+import { useProgressHistory } from "./hooks/useProgressHistory";
 
 export default function MyPage() {
   const router = useRouter();
   const { user, loading, isAuthenticated, signOut } = useAuth();
-  const { items: progressItems, loading: progressLoading, error: progressError } = useProgressItems(
-    "basic-01",
+  const { item: progressItem, loading: progressLoading, error: progressError } = useProgressHistory(
     !!isAuthenticated,
     loading
   );
@@ -107,7 +106,7 @@ export default function MyPage() {
         {subscriptionType === "free" && <FreeMemberUpgradeBanner />}
 
         <LearningProgressTable
-          items={progressItems}
+          item={progressItem}
           loading={progressLoading}
           error={progressError}
         />
