@@ -3,14 +3,12 @@
 
   DynamoDB:
   - PK: userId
-  - SK: problemId = "history#<ISO8601>"
-  - 属性: content, level, material, studiedAt
+  - SK: progressId = "progress#history#<ISO8601>"
 
   APIs:
   - POST /progress/history
       body: { material, level, content, studiedAt? }
-  - GET  /progress/history
-      最新1件を返す
+  - GET  /progress/history?limit=30
 */
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
@@ -48,10 +46,10 @@ export const handler = async (event) => {
       const res = await ddb.send(
         new QueryCommand({
           TableName,
-          KeyConditionExpression: "userId = :u AND begins_with(problemId, :p)",
+          KeyConditionExpression: "userId = :u AND begins_with(progressId, :p)",
           ExpressionAttributeValues: {
             ":u": userId,
-            ":p": "history#",
+            ":p": "progress#history#",
           },
           Limit: 1,
           ScanIndexForward: false, // 新しい順 → 先頭1件
@@ -62,7 +60,7 @@ export const handler = async (event) => {
         ok: true,
         item: res.Items?.[0] ?? null,
       });
-    }
+      }
 
     // =========================
     // POST /progress/history
@@ -83,7 +81,7 @@ export const handler = async (event) => {
 
       const item = {
         userId,
-        problemId: `history#${now}`,
+        progressId: `progress#history#${now}`,
         material,
         level,
         content,
