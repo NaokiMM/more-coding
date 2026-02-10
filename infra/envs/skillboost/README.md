@@ -1,7 +1,7 @@
 
-## envs/skillboost
+## envs/more-coding
 
-`skillboost` 環境用の Terraform 定義を管理します。
+`more-coding` 環境用の Terraform 定義を管理します。
 
 ### provider.tf
 
