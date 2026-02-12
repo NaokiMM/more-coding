@@ -45,7 +45,7 @@ export const handler = async (event) => {
     if (!userId) return json(401, { message: "Unauthorized" });
 
     // GET /history (最新1件)
-    if (method === "GET" && path?.endsWith("/history")) {
+    if (method === "GET" && path?.endsWith("/me/learning-histories")) {
       const res = await ddb.send(
         new QueryCommand({
           TableName,

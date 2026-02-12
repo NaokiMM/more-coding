@@ -41,12 +41,12 @@ export const handler = async (event) => {
   if (!bucket) return json(500, { ok: false, message: "PROFILE_IMAGES_BUCKET is missing" });
 
   // =========================
-  // POST /profile-image
+  // POST
   // 署名付きPUT URLを発行（S3へ直接アップロードするため）
   // body: { contentType: "image/png" | "image/jpeg" | "image/webp" }
   // return: { key, uploadUrl }
   // =========================
-  if (method === "POST" && path === "/profile-image") {
+  if (method === "POST" && path === "/me/profile-image") {
     let body = {};
     try {
       body = JSON.parse(event.body ?? "{}");
@@ -77,12 +77,12 @@ export const handler = async (event) => {
   }
 
   // =========================
-  // PUT /profile-image
+  // PUT
   // アップロード完了の「確定」(commit) 用
   // いったん最小で 200 を返すだけ（後でS3 CopyObject/DB保存に拡張）
   // body例: { key: "profiles/{sub}/{id}.webp" }
   // =========================
-  if (method === "PUT" && path === "/profile-image") {
+  if (method === "PUT" && path === "/me/profile-image") {
     let body = {};
     try {
       body = JSON.parse(event.body ?? "{}");
@@ -105,9 +105,9 @@ export const handler = async (event) => {
   }
 
   // =========================
-  // GET /profile-image
+  // GET
   // =========================
-  if (method === "GET" && path === "/profile-image") {
+  if (method === "GET" && path === "/me/profile-image") {
     const key = `profiles/${sub}/latest.webp`;
     const url = `${ORIGIN}/${key}`;
 
