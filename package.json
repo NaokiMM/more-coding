@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build",
-    "postbuild": "node scripts/fix-static-paths.js && next-sitemap",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint",
     "test": "jest"
