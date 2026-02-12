@@ -1,4 +1,5 @@
 // lambda/skillboost-billing/index.mjs
+// passは/me/subscription GET
 // 課金状態の取得
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";

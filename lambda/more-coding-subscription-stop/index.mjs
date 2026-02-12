@@ -1,3 +1,4 @@
+// passは/me/subscription DELETE
 export const handler = async (event) => {
     // TODO implement
     const response = {

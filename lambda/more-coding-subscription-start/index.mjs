@@ -1,3 +1,4 @@
+// passは/me/subscription POST
 export const handler = async (event) => {
     // TODO implement
     const response = {
