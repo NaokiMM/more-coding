@@ -42,6 +42,7 @@ Top-Down Readability（トップダウン設計）
 ##### API: API Gateway
 ##### オブジェクトストレージ: S3
 ##### CDN: CloudFront
+##### ドメイン管理: Route53
 ##### アカウン制御: IAM
 ##### コンテナサービス: Docker
 ##### 監視・ログ：CloudWatch
@@ -49,6 +50,19 @@ Top-Down Readability（トップダウン設計）
 ## 試験実施ツール
 ### Safe Exam Browser
 https://safeexambrowser.org/download_en.html
+
+## テスト方針
+### 単体テスト
+ロジック単位の検証は自動テストで実施する。
+
+### 結合テスト
+API と DB、フロントエンドと API の連携部分を検証する。
+
+### システムテスト（E2E）
+システム全体の動作確認は
+Playwright を使用して自動化する。
+ブラウザ操作（画面遷移・フォーム入力・API応答確認など）を自動実行し、本番に近い環境での動作保証を行う。
+重要なユーザーフロー（認証、サブスクリプション処理など）を中心に自動化し、UXや最終確認は必要に応じて手動テストを併用する。
 
 ## AI面接
 https://aistudio.google.com　にて、Gemini APIを使用する。
