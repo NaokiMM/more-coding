@@ -48,3 +48,11 @@ README.local.md
 **/*.tfstate
 **/*.tfstate.*
 /s3-assets/
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
