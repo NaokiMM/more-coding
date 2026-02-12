@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllCategories } from "@/lib/posts";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import BlogList from "@/components/BlogList";
@@ -8,17 +8,18 @@ export const metadata: Metadata = {
   description: "More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。",
 };
 
-export default async function BlogPage() {
-  const posts = await getAllPosts();
+export default async function BlogsPage() {
+  const [posts, categories] = await Promise.all([
+    getAllPosts(),
+    getAllCategories(),
+  ]);
 
-  // すべてのタグを取得（重複を除去）
   const allTags = Array.from(
     new Set(posts.flatMap((post) => post.tags))
   ).sort();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Header */}
       <Header />
 
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 max-w-7xl">
@@ -30,8 +31,13 @@ export default async function BlogPage() {
             More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。
           </p>
         </header>
-        
-        <BlogList posts={posts} allTags={allTags} />
+
+        <BlogList
+          posts={posts}
+          allTags={allTags}
+          allCategories={categories}
+          currentCategory={null}
+        />
       </div>
     </div>
   );

@@ -6,25 +6,52 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeHighlight from "rehype-highlight";
 import { visit } from "unist-util-visit";
-import type { Root, Element } from "hast";
+import type { Root } from "hast";
 import { type Post, type PostMetadata } from "@/types/post";
 
-const postsDirectory = path.join(process.cwd(), "content/posts");
+const blogsDirectory = path.join(process.cwd(), "content/blogs");
+
+/**
+ * カテゴリフォルダ内の .md ファイルを再帰的に取得
+ * @returns { category, slug } の配列
+ */
+function getBlogFiles(): { category: string; slug: string }[] {
+  const result: { category: string; slug: string }[] = [];
+
+  function scanDir(dir: string, category: string) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        scanDir(fullPath, entry.name);
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        const slug = entry.name.replace(/\.md$/, "");
+        result.push({ category, slug });
+      }
+    }
+  }
+
+  const categories = fs.readdirSync(blogsDirectory, { withFileTypes: true });
+  for (const cat of categories) {
+    if (cat.isDirectory()) {
+      scanDir(path.join(blogsDirectory, cat.name), cat.name);
+    } else if (cat.isFile() && cat.name.endsWith(".md")) {
+      const slug = cat.name.replace(/\.md$/, "");
+      result.push({ category: "", slug });
+    }
+  }
+
+  return result;
+}
 
 /**
  * 最初のh1要素を削除するrehypeプラグイン
- * 
- * 注意: Markdown側でh1を書かない運用に切り替えることで、
- * このプラグインは不要になります。その場合はこの関数を削除して
- * remark().use(remarkRehype)の後に.use(rehypeRemoveFirstHeading)を
- * 呼び出している行も削除してください。
  */
 function rehypeRemoveFirstHeading() {
   return (tree: Root) => {
     let firstHeadingRemoved = false;
     visit(tree, "element", (node, index, parent) => {
       if (!firstHeadingRemoved && node.tagName === "h1" && parent !== undefined && index !== undefined) {
-        // 最初のh1を削除
         if ("children" in parent && Array.isArray(parent.children)) {
           parent.children.splice(index, 1);
           firstHeadingRemoved = true;
@@ -36,19 +63,23 @@ function rehypeRemoveFirstHeading() {
 
 /**
  * すべての記事のメタデータを取得（日付降順）
+ * @param category - 指定した場合はそのカテゴリのみ
  */
-export async function getAllPosts(): Promise<PostMetadata[]> {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.md$/, "");
-      const fullPath = path.join(postsDirectory, fileName);
+export async function getAllPosts(category?: string): Promise<PostMetadata[]> {
+  const files = getBlogFiles();
+  const allPostsData = files
+    .filter((f) => !category || f.category === category)
+    .map(({ category: cat, slug }) => {
+      const fullPath =
+        cat
+          ? path.join(blogsDirectory, cat, `${slug}.md`)
+          : path.join(blogsDirectory, `${slug}.md`);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
 
       return {
         slug,
+        category: cat,
         title: data.title as string,
         date: data.date as string,
         tags: (data.tags as string[]) || [],
@@ -56,21 +87,25 @@ export async function getAllPosts(): Promise<PostMetadata[]> {
       };
     });
 
-  // 日付で降順ソート（新しい順）
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 /**
- * 指定されたslugの記事を取得（メタデータ + HTML本文）
+ * すべてのカテゴリを取得
  */
-export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+export async function getAllCategories(): Promise<string[]> {
+  const files = getBlogFiles();
+  const categories = new Set(files.map((f) => f.category).filter(Boolean));
+  return Array.from(categories).sort();
+}
+
+/**
+ * 指定された category と slug の記事を取得（メタデータ + HTML本文）
+ */
+export async function getPostBySlug(category: string, slug: string): Promise<Post | null> {
+  const fullPath = category
+    ? path.join(blogsDirectory, category, `${slug}.md`)
+    : path.join(blogsDirectory, `${slug}.md`);
 
   if (!fs.existsSync(fullPath)) {
     return null;
@@ -79,7 +114,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  // MarkdownをHTMLに変換（先頭のh1を削除）
   const processedContent = await remark()
     .use(remarkRehype)
     .use(rehypeRemoveFirstHeading)
@@ -91,6 +125,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
   return {
     slug,
+    category,
     title: data.title as string,
     date: data.date as string,
     tags: (data.tags as string[]) || [],
@@ -100,11 +135,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 }
 
 /**
- * すべての記事のslugを取得（generateStaticParams用）
+ * すべての記事の params を取得（generateStaticParams用）
  */
-export async function getAllPostSlugs(): Promise<string[]> {
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => fileName.replace(/\.md$/, ""));
+export async function getAllPostParams(): Promise<{ category: string; slug: string }[]> {
+  return getBlogFiles();
 }

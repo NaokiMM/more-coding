@@ -7,9 +7,23 @@ import type { PostMetadata } from "@/types/post";
 interface BlogListProps {
   posts: PostMetadata[];
   allTags: string[];
+  allCategories?: string[];
+  currentCategory?: string | null;
 }
 
-export default function BlogList({ posts, allTags }: BlogListProps) {
+const CATEGORY_LABELS: Record<string, string> = {
+  frontend: "フロントエンド",
+  backend: "バックエンド",
+  devops: "DevOps",
+  typescript: "TypeScript",
+};
+
+export default function BlogList({
+  posts,
+  allTags,
+  allCategories = [],
+  currentCategory = null,
+}: BlogListProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   // 選択されたタグでフィルタリング
@@ -29,14 +43,51 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
     }
   };
 
+  const getPostHref = (post: PostMetadata) =>
+    post.category ? `/blogs/${post.category}/${post.slug}` : `/blogs/_/${post.slug}`;
+
   return (
     <>
-      {/* カテゴリ（タグ）フィルター */}
+      {/* カテゴリリンク */}
+      {allCategories.length > 0 && (
+        <div className="mb-6">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              カテゴリ:
+            </span>
+            <Link
+              href="/blogs"
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                currentCategory === null
+                  ? "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+                  : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+              }`}
+            >
+              すべて
+            </Link>
+            {allCategories.map((cat) => (
+              <Link
+                key={cat}
+                href={`/blogs/${cat}`}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  currentCategory === cat
+                    ? "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                }`}
+              >
+                {CATEGORY_LABELS[cat] ?? cat}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* タグフィルター */}
       {allTags.length > 0 && (
         <div className="mb-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-              カテゴリ:
+              タグ:
             </span>
             <button
               onClick={() => setSelectedTag(null)}
@@ -84,7 +135,7 @@ export default function BlogList({ posts, allTags }: BlogListProps) {
           {filteredPosts.map((post) => (
             <Link
               key={post.slug}
-              href={`/blog/${post.slug}`}
+              href={getPostHref(post)}
               className="group relative overflow-hidden rounded-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 p-6 transition-all hover:scale-[1.02] hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-600"
             >
               <article className="h-full flex flex-col">

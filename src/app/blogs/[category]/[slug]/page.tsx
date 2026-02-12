@@ -1,28 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostBySlug, getAllPostSlugs } from "@/lib/posts";
+import { getPostBySlug, getAllPostParams } from "@/lib/posts";
 import type { Metadata } from "next";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ category: string; slug: string }>;
 };
 
-/**
- * 静的生成用のパラメータを生成
- */
 export async function generateStaticParams() {
-  const slugs = await getAllPostSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  const params = await getAllPostParams();
+  return params.map(({ category, slug }) => ({ category, slug }));
 }
 
-/**
- * メタデータを生成（SEO対応）
- */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getPostBySlug(resolvedParams.slug);
+  const { category, slug } = await params;
+  const post = await getPostBySlug(category, slug);
 
   if (!post) {
     return {
@@ -44,18 +36,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const resolvedParams = await params;
-  const post = await getPostBySlug(resolvedParams.slug);
+  const { category, slug } = await params;
+  const post = await getPostBySlug(category, slug);
 
   if (!post) {
     notFound();
   }
 
+  const backHref = category ? `/blogs/${category}` : "/blogs";
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 max-w-4xl">
         <Link
-          href="/blog"
+          href={backHref}
           className="inline-block mb-6 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
         >
           ← ブログ一覧に戻る
@@ -66,7 +60,7 @@ export default async function BlogPostPage({ params }: Props) {
             <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">
               {post.title}
             </h1>
-            
+
             <div className="text-sm text-slate-500 dark:text-slate-400 mb-4">
               <time dateTime={post.date}>
                 {new Date(post.date).toLocaleDateString("ja-JP", {
@@ -76,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
                 })}
               </time>
             </div>
-            
+
             {post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.tags.map((tag) => (

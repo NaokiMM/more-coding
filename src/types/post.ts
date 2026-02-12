@@ -3,6 +3,7 @@
  */
 export interface PostMetadata {
   slug: string;
+  category: string;
   title: string;
   date: string;
   tags: string[];
