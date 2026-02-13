@@ -44,6 +44,8 @@ export type TranslationKey =
   | "tech.nestjs.description"
   | "tech.express.name"
   | "tech.express.description"
+  | "tech.gin.name"
+  | "tech.gin.description"
   | "tech.laravel.name"
   | "tech.laravel.description"
   | "tech.ai-interview.name"
@@ -110,6 +112,8 @@ export const translations = {
     "tech.nestjs.description": "TypeScriptベースのNode.jsフレームワーク。モジュール、コントローラー、サービス、依存性注入などのエンタープライズレベルのアプリケーション開発を学びます。",
     "tech.express.name": "Express.js",
     "tech.express.description": "Node.jsの軽量で柔軟なWebアプリケーションフレームワーク。ルーティング、ミドルウェア、テンプレートエンジンなどのスキルを身につけます。",
+    "tech.gin.name": "Gin",
+    "tech.gin.description": "Goの高速なWebフレームワーク。ルーティング、ミドルウェア、JSON API開発などのスキルを身につけます。",
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "PHPのモダンなWebアプリケーションフレームワーク。Eloquent ORM、ルーティング、ミドルウェア、認証などのスキルを身につけます。",
     "tech.ai-interview.name": "AI面接",
@@ -175,6 +179,8 @@ export const translations = {
     "tech.nestjs.description": "TypeScript-based Node.js framework. Learn enterprise-level application development with modules, controllers, services, and dependency injection.",
     "tech.express.name": "Express.js",
     "tech.express.description": "Lightweight and flexible web application framework for Node.js. Master skills such as routing, middleware, and template engines.",
+    "tech.gin.name": "Gin",
+    "tech.gin.description": "High-performance web framework for Go. Master skills such as routing, middleware, and JSON API development.",
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
     "tech.ai-interview.name": "AI Interview",

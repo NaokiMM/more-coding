@@ -76,6 +76,13 @@ export default function Home() {
       icon: "⚡",
     },
     {
+      id: "gin",
+      nameKey: "tech.gin.name" as const,
+      descriptionKey: "tech.gin.description" as const,
+      color: "from-cyan-500 to-teal-600",
+      icon: "Gin",
+    },
+    {
       id: "laravel",
       nameKey: "tech.laravel.name" as const,
       descriptionKey: "tech.laravel.description" as const,
