@@ -93,6 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               };
               setUser(userData);
               // console.log("課金状態:", userData.subscriptionType);
+              // console.log("membershipTier:", userData.membershipTier);
             } else {
               // APIから取得できない場合はCognitoから取得
               const attributes = await getUserAttributes(currentUser);

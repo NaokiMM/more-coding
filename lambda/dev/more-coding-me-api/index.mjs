@@ -47,45 +47,32 @@ export const handler = async (event) => {
   // ユーザー情報を取得する
   // =========================
   if (method === "GET" && path === "/me") {
-    const key = { pk: `USER#${sub}`, sk: "PROFILE" };
-
-    // DynamoDBからユーザー情報を取得
-    const got = await ddb.send(
-      new GetCommand({
-        TableName: membersTable,
-        Key: key,
-      })
-    );
-
-    // 初回アクセス → レコード作成
+    const key = { userId: `USER#${sub}`, timestamp: 0 };
+  
+    const got = await ddb.send(new GetCommand({ TableName: membersTable, Key: key }));
+  
     if (!got.Item) {
       const now = new Date().toISOString();
-
       const item = {
         ...key,
         createdAt: now,
         updatedAt: now,
-
-        // 有料会員属性
-        membershipTier: "free", // "free" | "paid" など
-        isPaid: false,          // boolean
-        paidAt: null,           // string(ISO) | null
+        membershipTier: "free",
+        isPaid: false,
+        paidAt: null,
+        name: name ?? null,
+        email: email ?? null,
       };
-
-      // DynamoDBに新規ユーザー情報を保存
-      await ddb.send(
-        new PutCommand({
-          TableName: membersTable,
-          Item: item,
-        })
-      );
-
-      // 新規ユーザー
-      return json(200, { ok: true, created: true, auth: { sub, name, email }, item });
+      await ddb.send(new PutCommand({ TableName: membersTable, Item: item }));
+      return json(200, { ok: true, created: true, item });
     }
-
-    // 既存ユーザー
-    return json(200, { ok: true, created: false, auth: { sub, name, email }, item: got.Item });
+  
+    return json(200, {
+      ok: true,
+      created: false,
+      auth: { sub, name, email },
+      item: got.Item
+    });
   }
 
   // 404 Not Found
