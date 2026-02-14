@@ -54,7 +54,7 @@ export async function getProgressHistory(): Promise<{
   item?: ProgressHistoryItem | null;
   items?: ProgressHistoryItem[];
 }> {
-  return await apiFetch("/history", {
+  return await apiFetch("/me/learning-histories", {
     method: "GET",
   });
 }

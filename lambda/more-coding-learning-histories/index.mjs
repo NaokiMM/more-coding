@@ -6,9 +6,9 @@
   - SK: progressId = "progress#history#<ISO8601>"
 
   APIs:
-  - POST /history
+  - POST /me/learning-histories
       body: { material, level, content, studiedAt? }
-  - GET  /history?limit=30
+  - GET  /me/learning-histories?limit=30
 */
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
@@ -44,7 +44,7 @@ export const handler = async (event) => {
     const userId = claims?.sub;
     if (!userId) return json(401, { message: "Unauthorized" });
 
-    // GET /history (最新1件)
+    // GET /me/learning-histories (最新1件)
     if (method === "GET" && path?.endsWith("/me/learning-histories")) {
       const res = await ddb.send(
         new QueryCommand({
@@ -62,8 +62,8 @@ export const handler = async (event) => {
       return json(200, { ok: true, items: res.Items ?? [] });
     }
 
-    // POST /history (履歴追加)
-    if (method === "POST" && path?.endsWith("/history")) {
+    // POST /me/learning-histories (履歴追加)
+    if (method === "POST" && path?.endsWith("/me/learning-histories")) {
       const body = event?.body ? JSON.parse(event.body) : {};
       const { material, level, content, studiedAt } = body;
 
