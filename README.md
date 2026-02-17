@@ -46,6 +46,7 @@ Top-Down Readability（トップダウン設計）
 ##### アカウン制御: IAM
 ##### コンテナサービス: Docker
 ##### 監視・ログ：CloudWatch
+##### IAC:Terraform
 
 ## 試験実施ツール
 ### Safe Exam Browser
