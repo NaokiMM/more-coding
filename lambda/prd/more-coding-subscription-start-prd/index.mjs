@@ -1,0 +1,10 @@
+// passは/me/subscription POST
+const ENV_NAME = "prd";
+export const handler = async (event) => {
+    // TODO implement
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify('Hello from Lambda!'),
+    };
+    return response;
+  };
