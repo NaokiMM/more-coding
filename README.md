@@ -9,6 +9,10 @@ https://github.com/NaokiMM/more-coding
 https://drive.google.com/drive/u/0/folders/12MTCsc9PduvNM-P7HixS1Ve5Kz-vwIAL
 
 # 開発構成要素
+## Stgブランチ
+AWS AmpligyでStgブランチを本番同様、デプロイしています。
+また、Stgブランチは認証機能付きであるためUsername/Passwordが必要です。
+
 ## 環境変数の扱い
 設定値（URL など）はコードに直接書かず、環境変数として管理する。
 ### .env.local
