@@ -5,7 +5,7 @@ https://more-coding.com/
 ## GitHub
 https://github.com/NaokiMM/more-coding
 
-## 事業内ドキュメント/教材
+## 教材資料（非公開）
 https://drive.google.com/drive/u/0/folders/12MTCsc9PduvNM-P7HixS1Ve5Kz-vwIAL
 
 # 開発構成要素
