@@ -1,6 +1,5 @@
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 
-const ENV_NAME = "prd";
 const ses = new SESv2Client({});
 
 const jsonResponse = (statusCode, obj) => ({
