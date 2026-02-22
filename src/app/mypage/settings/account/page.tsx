@@ -141,22 +141,6 @@ export default function AccountSettingsPage() {
           </div>
         )}
 
-        {/* 開発環境のみ表示（next dev のとき NODE_ENV=development のため表示） */}
-        {/* NODE_ENV は Next.js が自動設定する組み込み環境変数のため .env 定義は不要 */}
-        {process.env.NODE_ENV === "development" && (
-          <section className="rounded-xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-900/20">
-            <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200 mb-2">
-              開発用
-            </h3>
-            <button
-              type="button"
-              className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600"
-            >
-              課金処理
-            </button>
-          </section>
-        )}
-
         <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4 pt-2">
           <Link
             href="/mypage/settings"
