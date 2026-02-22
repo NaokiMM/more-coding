@@ -1,7 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand, GetCommand } from "@aws-sdk/lib-dynamodb";
 
-const ENV_NAME = "prd";
 // DynamoDB用の“操作役インスタンス”を作ってる
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
