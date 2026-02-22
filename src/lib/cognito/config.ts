@@ -2,8 +2,10 @@ import { CognitoUserPool } from "amazon-cognito-identity-js";
 
 // Cognito設定を取得する関数
 const getPoolData = (): { UserPoolId: string; ClientId: string } => {
+
   const userPoolId = process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID;
   const clientId = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID;
+  // console.log("COGNITO ENV", { userPoolId, clientId });
 
   const missingVars: string[] = [];
   if (!userPoolId) {
