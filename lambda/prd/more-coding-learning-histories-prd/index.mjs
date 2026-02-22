@@ -17,7 +17,6 @@ import {
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 
-const ENV_NAME = "prd";
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
 const json = (statusCode, obj) => ({
