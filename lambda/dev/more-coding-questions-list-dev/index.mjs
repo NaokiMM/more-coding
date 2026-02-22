@@ -4,6 +4,7 @@
 
 // const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 const corsHeaders = {

@@ -5,6 +5,7 @@
 // const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
 const ENV_NAME = "stg";
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 const corsHeaders = {

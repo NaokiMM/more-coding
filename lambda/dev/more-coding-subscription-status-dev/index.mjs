@@ -5,9 +5,10 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand } from "@aws-sdk/lib-dynamodb";
 
+const ENV_NAME = "dev";
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
-// 直書き禁止（いったん現状踏襲）
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 const corsHeaders = {

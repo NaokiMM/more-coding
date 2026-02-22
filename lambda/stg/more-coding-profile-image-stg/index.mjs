@@ -5,7 +5,7 @@ import crypto from "crypto";
 const ENV_NAME = "stg";
 const s3 = new S3Client({});
 
-// 本番はCloudFront、開発中は localhost を許可したい場合はここで調整
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 const corsHeaders = {

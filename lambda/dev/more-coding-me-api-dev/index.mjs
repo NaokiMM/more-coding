@@ -4,7 +4,7 @@ import { DynamoDBDocumentClient, PutCommand, GetCommand } from "@aws-sdk/lib-dyn
 // DynamoDB用の“操作役インスタンス”を作ってる
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
-// 本番はCloudFront、開発中は localhost を許可したい場合はここで調整
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 // CORS設定
