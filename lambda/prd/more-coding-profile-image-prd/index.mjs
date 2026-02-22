@@ -2,10 +2,9 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import crypto from "crypto";
 
-const ENV_NAME = "prd";
 const s3 = new S3Client({});
 
-// 本番はCloudFront、開発中は localhost を許可したい場合はここで調整
+// CloudFrontで許可するOrigin
 const ORIGIN = process.env.ALLOWED_ORIGIN;
 
 const corsHeaders = {
