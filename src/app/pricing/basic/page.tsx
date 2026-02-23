@@ -9,8 +9,11 @@ import Header from "@/components/Header";
 const isDev = process.env.NODE_ENV === "development";
 
 export default function BasicPlanPage() {
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
 
   // ローディング中の場合はローディング表示
   if (loading) {
@@ -59,7 +62,19 @@ export default function BasicPlanPage() {
                 本格的に学習を始めたい方向けのプランです
               </p>
               <div className="mt-8 flex flex-col items-center gap-2">
-                {isDev ? (
+                {isPaidMember ? (
+                  <>
+                    <p className="rounded-lg bg-green-100 px-6 py-3 text-base font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-200">
+                      すでに有料会員です
+                    </p>
+                    <Link
+                      href="/mypage"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      マイページへ
+                    </Link>
+                  </>
+                ) : isDev ? (
                   <>
                     <Link
                       href="/signup"

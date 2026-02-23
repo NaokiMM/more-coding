@@ -5,23 +5,31 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Header from "@/components/Header";
+import { useAuth } from "@/contexts/AuthContext";
 import { calculateUsdFromJpy } from "@/lib/currency";
 
 const isDev = process.env.NODE_ENV === "development";
 
 export default function PricingPage() {
   const router = useRouter();
+  const { user } = useAuth();
   const [calculatedUsd, setCalculatedUsd] = useState<number | null>(null);
   const [calculatedUsdYearly, setCalculatedUsdYearly] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingYearly, setLoadingYearly] = useState<boolean>(false);
 
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
+
   const handlePlanClick = (planId: string) => {
+    // 課金重複防止（UX）: ローカルで有料会員なら申し込み導線を出さない
+    if ((planId === "basic" || planId === "basic-yearly") && isPaidMember) {
+      router.push("/mypage");
+      return;
+    }
     if (planId === "basic") {
-      // 月額ベーシックプランの詳細ページに遷移
       router.push("/pricing/basic");
     } else if (planId === "basic-yearly") {
-      // 年額ベーシックプランの詳細ページに遷移
       router.push("/pricing/basic-yearly");
     }
   };
@@ -337,7 +345,14 @@ export default function PricingPage() {
                   )}
                 </ul>
                 <div className="mt-auto">
-                  {plan.id === "basic" && !isDev ? (
+                  {plan.id === "basic" && isPaidMember ? (
+                    <Link
+                      href="/mypage"
+                      className="block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/50"
+                    >
+                      有料会員です
+                    </Link>
+                  ) : plan.id === "basic" && !isDev ? (
                     <div className="flex flex-col items-center gap-2">
                       <span
                         className="block w-full rounded-lg bg-slate-400 px-6 py-3 text-center text-sm font-semibold text-white cursor-not-allowed opacity-90"
@@ -354,6 +369,13 @@ export default function PricingPage() {
                     >
                       {plan.buttonText}
                     </button>
+                  ) : plan.id === "basic-yearly" && isPaidMember ? (
+                    <Link
+                      href="/mypage"
+                      className="block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/50"
+                    >
+                      有料会員です
+                    </Link>
                   ) : plan.id === "basic-yearly" && "unavailable" in plan && plan.unavailable ? (
                     <div className="flex flex-col items-center gap-2">
                       <span

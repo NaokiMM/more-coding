@@ -7,8 +7,11 @@ import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 export default function BasicYearlyPlanPage() {
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const subscriptionType = user?.subscriptionType ?? "free";
+  const isPaidMember = subscriptionType === "paid";
 
   // ローディング中の場合はローディング表示
   if (loading) {
@@ -66,13 +69,29 @@ export default function BasicYearlyPlanPage() {
                 年間契約でさらにお得に学習を始めたい方向けのプランです
               </p>
               <div className="mt-8 flex flex-col items-center gap-2">
-                <span
-                  className="inline-flex cursor-not-allowed items-center rounded-lg bg-slate-400 px-8 py-4 text-base font-semibold text-white opacity-90"
-                  aria-disabled="true"
-                >
-                  申し込む
-                </span>
-                <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                {isPaidMember ? (
+                  <>
+                    <p className="rounded-lg bg-green-100 px-6 py-3 text-base font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-200">
+                      すでに有料会員です
+                    </p>
+                    <Link
+                      href="/mypage"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      マイページへ
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <span
+                      className="inline-flex cursor-not-allowed items-center rounded-lg bg-slate-400 px-8 py-4 text-base font-semibold text-white opacity-90"
+                      aria-disabled="true"
+                    >
+                      申し込む
+                    </span>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                  </>
+                )}
               </div>
             </div>
 
