@@ -60,12 +60,20 @@ export default function BasicPlanPage() {
               </p>
               <div className="mt-8 flex flex-col items-center gap-2">
                 {isDev ? (
-                  <Link
-                    href="/signup"
-                    className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-                  >
-                    申し込む
-                  </Link>
+                  <>
+                    <Link
+                      href="/signup"
+                      className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                    >
+                      申し込む
+                    </Link>
+                    <Link
+                      href="/pricing/success"
+                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      課金完了をテスト（POST /me/subscription）
+                    </Link>
+                  </>
                 ) : (
                   <>
                     <span
