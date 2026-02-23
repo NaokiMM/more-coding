@@ -65,6 +65,15 @@ export default function BasicYearlyPlanPage() {
               <p className="mt-4 text-center text-slate-600 dark:text-slate-400">
                 年間契約でさらにお得に学習を始めたい方向けのプランです
               </p>
+              <div className="mt-8 flex flex-col items-center gap-2">
+                <span
+                  className="inline-flex cursor-not-allowed items-center rounded-lg bg-slate-400 px-8 py-4 text-base font-semibold text-white opacity-90"
+                  aria-disabled="true"
+                >
+                  申し込む
+                </span>
+                <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+              </div>
             </div>
 
             {/* Features */}

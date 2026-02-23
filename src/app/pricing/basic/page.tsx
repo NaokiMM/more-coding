@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
+const isDev = process.env.NODE_ENV === "development";
+
 export default function BasicPlanPage() {
   const { loading } = useAuth();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -56,6 +58,26 @@ export default function BasicPlanPage() {
               <p className="mt-4 text-center text-slate-600 dark:text-slate-400">
                 本格的に学習を始めたい方向けのプランです
               </p>
+              <div className="mt-8 flex flex-col items-center gap-2">
+                {isDev ? (
+                  <Link
+                    href="/signup"
+                    className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                  >
+                    申し込む
+                  </Link>
+                ) : (
+                  <>
+                    <span
+                      className="inline-flex cursor-not-allowed items-center rounded-lg bg-slate-400 px-8 py-4 text-base font-semibold text-white opacity-90"
+                      aria-disabled="true"
+                    >
+                      申し込む
+                    </span>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Features */}

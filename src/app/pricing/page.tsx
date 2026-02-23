@@ -7,6 +7,8 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { calculateUsdFromJpy } from "@/lib/currency";
 
+const isDev = process.env.NODE_ENV === "development";
+
 export default function PricingPage() {
   const router = useRouter();
   const [calculatedUsd, setCalculatedUsd] = useState<number | null>(null);
@@ -112,6 +114,7 @@ export default function PricingPage() {
       buttonText: "今すぐ始める",
       buttonLink: "/signup",
       popular: false,
+      unavailable: true,
     },
   ];
 
@@ -334,7 +337,34 @@ export default function PricingPage() {
                   )}
                 </ul>
                 <div className="mt-auto">
-                  {plan.id === "basic" || plan.id === "basic-yearly" ? (
+                  {plan.id === "basic" && !isDev ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <span
+                        className="block w-full rounded-lg bg-slate-400 px-6 py-3 text-center text-sm font-semibold text-white cursor-not-allowed opacity-90"
+                        aria-disabled="true"
+                      >
+                        {plan.buttonText}
+                      </span>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                    </div>
+                  ) : plan.id === "basic" ? (
+                    <button
+                      onClick={() => handlePlanClick(plan.id)}
+                      className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg bg-gradient-to-r ${plan.color} text-white`}
+                    >
+                      {plan.buttonText}
+                    </button>
+                  ) : plan.id === "basic-yearly" && "unavailable" in plan && plan.unavailable ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <span
+                        className="block w-full rounded-lg bg-slate-400 px-6 py-3 text-center text-sm font-semibold text-white cursor-not-allowed opacity-90"
+                        aria-disabled="true"
+                      >
+                        {plan.buttonText}
+                      </span>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                    </div>
+                  ) : plan.id === "basic-yearly" ? (
                     <button
                       onClick={() => handlePlanClick(plan.id)}
                       className={`block w-full rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg bg-gradient-to-r ${plan.color} text-white`}
