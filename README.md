@@ -34,7 +34,7 @@ Top-Down Readability（トップダウン設計）
 ### 理由
 ファイルを開いた時点で「何をするコードか」を即座に把握できたり、実装詳細や補助処理を後回しにでき、読み進めやすいため。
 
-## GitHub への
+## GitHub への適用ルール
 
 ### コミット・プッシュルール
 1 push = 1 機能追加 を原則とし、各内容は「何をしたのか」を第三者に説明できる、理解しやすい形にまとめる。
@@ -48,6 +48,11 @@ Top-Down Readability（トップダウン設計）
 #### 4. 最低1件のレビュー承認後にマージ
 
 ※承認なしでは main にマージできません。
+
+### GitHubブランチ設定方法
+#### Repositry > Settings > Branches > Branch protection rule内でブランチルールを設定
+#### PR必須: Require a pull request before merging > Require approvals（1）
+#### 管理者もPR必須: Do not allow bypassing the above settings
 
 ## AWSクラウドの主な使用サービス
 ##### DB: DynamoDB
