@@ -1,6 +1,6 @@
 /**
  * 課金・サブスクリプションAPI
- * Lambda POST /me/subscription と連携
+ * Lambda POST /me/subscription（課金開始）・DELETE /me/subscription（解約）と連携
  */
 
 import { apiFetch } from "./apiFetch";
@@ -8,6 +8,11 @@ import { apiFetch } from "./apiFetch";
 export interface StartSubscriptionResult {
   ok: boolean;
   alreadyPaid?: boolean;
+}
+
+export interface CancelSubscriptionResult {
+  ok: boolean;
+  alreadyFree?: boolean;
 }
 
 /**
@@ -20,4 +25,15 @@ export async function startSubscription(): Promise<StartSubscriptionResult> {
     body: JSON.stringify({}),
   });
   return data as StartSubscriptionResult;
+}
+
+/**
+ * 解約をバックエンドに反映する（DELETE /me/subscription）
+ * isPaid = false, membershipTier = "free", paidAt を削除
+ */
+export async function cancelSubscription(): Promise<CancelSubscriptionResult> {
+  const data = await apiFetch("/me/subscription", {
+    method: "DELETE",
+  });
+  return data as CancelSubscriptionResult;
 }
