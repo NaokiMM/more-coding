@@ -137,14 +137,23 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 whitespace-pre-line">
             {t("home.hero.description")}
           </p>
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/signup"
+              className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:w-auto"
+            >
+              {t("home.hero.signupCta")}
+            </Link>
             <Link
               href="#technologies"
-              className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              className="w-full rounded-lg border-2 border-slate-300 bg-white px-8 py-3.5 text-center text-sm font-semibold text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:w-auto"
             >
-              {t("home.hero.getStarted")}
+              {t("home.hero.viewTechnologies")}
             </Link>
           </div>
+          <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            {t("home.hero.signupHint")}
+          </p>
         </div>
       </section>
 
@@ -157,6 +166,15 @@ export default function Home() {
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             {t("home.technologies.description")}
           </p>
+          <Link
+            href="/signup"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-100 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+          >
+            {t("home.technologies.signupPrompt")}
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {technologies.map((tech) => (

@@ -15,8 +15,12 @@ export type TranslationKey =
   | "home.hero.title2"
   | "home.hero.description"
   | "home.hero.getStarted"
+  | "home.hero.signupCta"
+  | "home.hero.viewTechnologies"
+  | "home.hero.signupHint"
   | "home.technologies.title"
   | "home.technologies.description"
+  | "home.technologies.signupPrompt"
   | "home.technologies.getStarted"
   | "home.about.title"
   | "home.about.description"
@@ -83,8 +87,12 @@ export const translations = {
     "home.hero.title2": "スキルアップ",
     "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nIT資格の取得を目指すプラットフォームです。",
     "home.hero.getStarted": "学習を始める",
+    "home.hero.signupCta": "無料ではじめる",
+    "home.hero.viewTechnologies": "学習できる技術を見る",
+    "home.hero.signupHint": "会員登録は無料。登録後すぐに学習を始められます",
     "home.technologies.title": "学習できる技術・資格",
     "home.technologies.description": "最新のフロントエンド・バックエンド技術を体系的に学べます",
+    "home.technologies.signupPrompt": "無料会員登録で今すぐ学習を開始",
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
     "home.about.description": "IT資格の取得を目指す方のための学習プラットフォームです。\n実践的な技術を学びながら、資格取得に必要な知識を身につけられます。",
@@ -150,8 +158,12 @@ export const translations = {
     "home.hero.title2": "Engineering Learning",
     "home.hero.description": "Learn the latest technologies like TypeScript, React, and Vue.js while aiming to obtain IT certifications on our platform.",
     "home.hero.getStarted": "Get Started",
+    "home.hero.signupCta": "Start for Free",
+    "home.hero.viewTechnologies": "View technologies",
+    "home.hero.signupHint": "Free to sign up. Start learning right after registration.",
     "home.technologies.title": "Technologies & Certifications You Can Learn",
     "home.technologies.description": "Systematically learn the latest frontend and backend technologies",
+    "home.technologies.signupPrompt": "Sign up for free and start learning now",
     "home.technologies.getStarted": "Get Started",
     "home.about.title": "About More Coding",
     "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
