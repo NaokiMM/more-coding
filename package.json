@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
+    "@stripe/stripe-js": "^8.8.0",
     "amazon-cognito-identity-js": "^6.3.16",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
@@ -24,6 +25,7 @@
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-rehype": "^11.1.2",
+    "stripe": "^20.3.1",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
