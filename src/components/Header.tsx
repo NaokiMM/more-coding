@@ -13,6 +13,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/lib/i18n";
 import ConfirmModal from "@/components/ConfirmModal";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 interface HeaderProps {
   rightContent?: React.ReactNode;
@@ -78,7 +79,8 @@ export default function Header({ rightContent }: HeaderProps) {
           {tKey("serviceTitle")}
         </span>
       </Link>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3 sm:gap-4">
+        <LanguageSwitcher />
         {rightContent ? (
           <>
             {/* スマホ: 共通の認証ナビを表示 */}
@@ -132,7 +134,9 @@ export default function Header({ rightContent }: HeaderProps) {
                 {tKey("serviceTitle")}
               </span>
             </Link>
-            <div className="flex items-center gap-4" />
+            <div className="flex items-center gap-4">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </header>

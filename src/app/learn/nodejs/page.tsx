@@ -6,16 +6,22 @@ import Link from "next/link";
 import { useState } from "react";
 import Header from "@/components/Header";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { t } from "@/lib/i18n";
 
 export default function NodeJSLearnPage() {
   const { user, loading: authLoading } = useAuth();
+  const { language } = useLanguage();
   const subscriptionType = user?.subscriptionType ?? "free";
   const isPaidMember = subscriptionType === "paid";
+  const tKey = (key: string) => t(language, key);
+  const formatHours = (hours: number) => tKey("learn.estimatedTimeFormat").replace("{hours}", String(hours));
+
   const levels = [
     {
       id: "associate",
-      name: "Associate",
-      description: "Node.jsの基礎を学びます。モジュールシステム、非同期処理、基本的なAPI構築などから始めましょう。",
+      nameKey: "learn.level.associate" as const,
+      descriptionKey: "learn.nodejs.associate.description" as const,
       color: "from-green-500 to-emerald-600",
       icon: "🌱",
       topics: [
@@ -25,13 +31,13 @@ export default function NodeJSLearnPage() {
         "基本的なHTTPサーバー構築",
         "ファイルシステム操作",
       ],
-      estimatedTime: "15時間",
+      estimatedHours: 15,
       lessons: 20,
     },
     {
       id: "professional",
-      name: "Professional",
-      description: "より高度なNode.jsの機能を学び、実践的なアプリケーション開発スキルを身につけます。",
+      nameKey: "learn.level.professional" as const,
+      descriptionKey: "learn.nodejs.professional.description" as const,
       color: "from-emerald-500 to-teal-600",
       icon: "📚",
       topics: [
@@ -42,13 +48,13 @@ export default function NodeJSLearnPage() {
         "プロセス管理とクラスター",
         "パフォーマンス最適化",
       ],
-      estimatedTime: "25時間",
+      estimatedHours: 25,
       lessons: 35,
     },
     {
       id: "expert",
-      name: "Expert",
-      description: "高度なNode.jsパターンとアーキテクチャを学び、大規模アプリケーション開発のエキスパートを目指します。",
+      nameKey: "learn.level.expert" as const,
+      descriptionKey: "learn.nodejs.expert.description" as const,
       color: "from-teal-500 to-cyan-600",
       icon: "🚀",
       topics: [
@@ -59,13 +65,13 @@ export default function NodeJSLearnPage() {
         "セキュリティベストプラクティス",
         "デプロイメントとCI/CD",
       ],
-      estimatedTime: "35時間",
+      estimatedHours: 35,
       lessons: 50,
     },
     {
       id: "exam",
-      name: "本番試験",
-      description: "実際の試験形式で実力を試し、合格に向けた最終準備を行います。",
+      nameKey: "learn.exam" as const,
+      descriptionKey: "learn.examDescription" as const,
       color: "from-orange-500 to-red-600",
       icon: "📝",
       topics: [
@@ -76,7 +82,7 @@ export default function NodeJSLearnPage() {
         "よく出る問題パターン",
         "合格ライン突破のコツ",
       ],
-      estimatedTime: "15時間",
+      estimatedHours: 15,
       lessons: 20,
     },
   ];
@@ -96,10 +102,10 @@ export default function NodeJSLearnPage() {
             N
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Node.js
+            {tKey("tech.nodejs.name")}
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            JavaScriptランタイム環境。<br />サーバーサイドアプリケーション開発の基礎を学びます。
+            {tKey("tech.nodejs.description")}
           </p>
         </div>
 
@@ -136,14 +142,14 @@ export default function NodeJSLearnPage() {
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
                   >
-                    {level.name}
+                    {tKey(level.nameKey)}
                   </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {level.id === "exam" ? level.name : `${level.name}`}
+                  {tKey(level.nameKey)}
                 </h2>
                 <p className="mb-4 text-slate-600 dark:text-slate-400">
-                  {level.description}
+                  {tKey(level.descriptionKey)}
                 </p>
 
                 {/* Stats */}
@@ -162,7 +168,7 @@ export default function NodeJSLearnPage() {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span>{level.estimatedTime}</span>
+                    <span>{formatHours(level.estimatedHours)}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <svg
@@ -178,7 +184,7 @@ export default function NodeJSLearnPage() {
                         d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                       />
                     </svg>
-                    <span>{level.lessons}レッスン</span>
+                    <span>{level.lessons} {tKey("learn.lessons")}</span>
                   </div>
                 </div>
 
@@ -186,7 +192,7 @@ export default function NodeJSLearnPage() {
                 {selectedLevel === level.id && (
                   <div className="mt-4 space-y-2 border-t border-slate-200 pt-4 dark:border-slate-700">
                     <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
-                      学習内容:
+                      {tKey("learn.learningContent")}:
                     </h3>
                     <ul className="space-y-1">
                       {level.topics.map((topic, index) => (
@@ -218,18 +224,18 @@ export default function NodeJSLearnPage() {
                 {level.id === "associate" && (
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-300">
-                      無料会員
+                      {tKey("learn.freeMember")}
                     </span>
                     <span className="text-xs text-slate-500 dark:text-slate-400">・</span>
                     <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                      有料会員
+                      {tKey("learn.paidMember")}
                     </span>
                   </div>
                 )}
                 {(level.id === "professional" || level.id === "expert") && (
                   <div className="mt-4 flex items-center justify-center">
                     <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                      有料会員
+                      {tKey("learn.paidMember")}
                     </span>
                   </div>
                 )}
@@ -241,13 +247,13 @@ export default function NodeJSLearnPage() {
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    学習を始める
+                    {tKey("learn.getStarted")}
                   </Link>
                 ) : level.id === "professional" ? (
                   <>
                     {authLoading ? (
                       <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-70`} onClick={(e) => e.stopPropagation()}>
-                        読み込み中...
+                        {tKey("common.loading")}
                       </div>
                     ) : isPaidMember ? (
                       <Link
@@ -255,17 +261,17 @@ export default function NodeJSLearnPage() {
                         className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                         onClick={(e) => e.stopPropagation()}
                       >
-                        学習を始める
+                        {tKey("learn.getStarted")}
                       </Link>
                     ) : (
                       <>
                         <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`} onClick={(e) => e.stopPropagation()}>
-                          学習を始める
+                          {tKey("learn.getStarted")}
                         </div>
                         <div className="mt-4 flex flex-col items-center justify-center gap-2 rounded-lg bg-amber-50 px-4 py-2 dark:bg-amber-900/20">
-                          <span className="text-sm font-semibold text-amber-800 dark:text-amber-200">有料会員限定</span>
+                          <span className="text-sm font-semibold text-amber-800 dark:text-amber-200">{tKey("learn.paidMemberOnly")}</span>
                           <Link href="/pricing" className="text-xs font-medium text-amber-600 underline hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300" onClick={(e) => e.stopPropagation()}>
-                            料金プランを見る
+                            {tKey("learn.viewPricing")}
                           </Link>
                         </div>
                       </>
@@ -275,7 +281,7 @@ export default function NodeJSLearnPage() {
                   <>
                     {authLoading ? (
                       <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-70`} onClick={(e) => e.stopPropagation()}>
-                        読み込み中...
+                        {tKey("common.loading")}
                       </div>
                     ) : isPaidMember ? (
                       <Link
@@ -283,17 +289,17 @@ export default function NodeJSLearnPage() {
                         className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                         onClick={(e) => e.stopPropagation()}
                       >
-                        学習を始める
+                        {tKey("learn.getStarted")}
                       </Link>
                     ) : (
                       <>
                         <div className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg opacity-50 cursor-not-allowed`} onClick={(e) => e.stopPropagation()}>
-                          学習を始める
+                          {tKey("learn.getStarted")}
                         </div>
                         <div className="mt-4 flex flex-col items-center justify-center gap-2 rounded-lg bg-amber-50 px-4 py-2 dark:bg-amber-900/20">
-                          <span className="text-sm font-semibold text-amber-800 dark:text-amber-200">有料会員限定</span>
+                          <span className="text-sm font-semibold text-amber-800 dark:text-amber-200">{tKey("learn.paidMemberOnly")}</span>
                           <Link href="/pricing" className="text-xs font-medium text-amber-600 underline hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300" onClick={(e) => e.stopPropagation()}>
-                            料金プランを見る
+                            {tKey("learn.viewPricing")}
                           </Link>
                         </div>
                       </>
@@ -305,7 +311,7 @@ export default function NodeJSLearnPage() {
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    学習を始める
+                    {tKey("learn.getStarted")}
                   </Link>
                 )}
               </div>
@@ -332,7 +338,7 @@ export default function NodeJSLearnPage() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            ホームに戻る
+            {tKey("learn.backToHome")}
           </Link>
         </div>
       </div>
