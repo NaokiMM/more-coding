@@ -88,6 +88,16 @@ Playwright を使用して自動化する。
 ## AI面接
 https://aistudio.google.com　にて、Gemini APIを使用する。
 
+## 請求サービス
+Stripeを使用している。
+
+### 必要なコマンド
+#### ログイン確認
+stripe login
+
+#### ログイン確認
+stripe config --list
+
 ## Contribution / コントリビューション
 本リポジトリは OSSに近い運用 をしています。
 
