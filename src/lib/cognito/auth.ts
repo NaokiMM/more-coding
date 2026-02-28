@@ -93,6 +93,71 @@ export const signOut = (): void => {
   }
 };
 
+// パスワードリセット用の確認コードを送信
+export const forgotPassword = async (
+  email: string
+): Promise<{ success: boolean; error?: string }> => {
+  return new Promise((resolve) => {
+    try {
+      const userPool = getUserPool();
+      const cognitoUser = new CognitoUser({
+        Username: email,
+        Pool: userPool,
+      });
+      cognitoUser.forgotPassword({
+        onSuccess: () => resolve({ success: true }),
+        onFailure: (err) =>
+          resolve({
+            success: false,
+            error: err.message || "確認コードの送信に失敗しました",
+          }),
+        inputVerificationCode: () => resolve({ success: true }),
+      });
+    } catch (error) {
+      resolve({
+        success: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : "確認コードの送信に失敗しました",
+      });
+    }
+  });
+};
+
+// パスワードリセットを完了（確認コードと新パスワードで確定）
+export const confirmForgotPassword = async (
+  email: string,
+  verificationCode: string,
+  newPassword: string
+): Promise<{ success: boolean; error?: string }> => {
+  return new Promise((resolve) => {
+    try {
+      const userPool = getUserPool();
+      const cognitoUser = new CognitoUser({
+        Username: email,
+        Pool: userPool,
+      });
+      cognitoUser.confirmPassword(verificationCode, newPassword, {
+        onSuccess: () => resolve({ success: true }),
+        onFailure: (err) =>
+          resolve({
+            success: false,
+            error: err.message || "パスワードの変更に失敗しました",
+          }),
+      });
+    } catch (error) {
+      resolve({
+        success: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : "パスワードの変更に失敗しました",
+      });
+    }
+  });
+};
+
 // セッションを取得
 export const getSession = (): Promise<{
   accessToken: string;

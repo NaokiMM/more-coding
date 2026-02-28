@@ -4,14 +4,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "@/lib/cognito";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { refreshUser } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
@@ -20,6 +21,11 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [resetSuccess, setResetSuccess] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get("reset") === "success") setResetSuccess(true);
+  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -108,6 +114,11 @@ export default function LoginPage() {
           </div>
 
           <div className="rounded-2xl bg-white p-8 shadow-xl dark:bg-slate-800">
+            {resetSuccess && (
+              <div className="mb-6 rounded-lg bg-green-50 p-3 text-sm text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                パスワードを変更しました。新しいパスワードでログインしてください。
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email */}
               <div>
