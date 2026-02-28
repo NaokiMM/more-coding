@@ -10,6 +10,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { t } from "@/lib/i18n";
 import ConfirmModal from "@/components/ConfirmModal";
 
 interface HeaderProps {
@@ -18,8 +20,10 @@ interface HeaderProps {
 
 export default function Header({ rightContent }: HeaderProps) {
   const { isAuthenticated, loading, signOut } = useAuth();
+  const { language } = useLanguage();
   const router = useRouter();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const tKey = (key: string) => t(language, key);
 
   const handleLogoutClick = () => setShowLogoutModal(true);
   const handleLogoutConfirm = () => {
@@ -36,13 +40,13 @@ export default function Header({ rightContent }: HeaderProps) {
             href="/mypage"
             className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
           >
-            マイページ
+            {tKey("nav.mypage")}
           </Link>
           <button
             onClick={handleLogoutClick}
             className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
-            ログアウト
+            {tKey("nav.logout")}
           </button>
         </>
       ) : (
@@ -51,13 +55,13 @@ export default function Header({ rightContent }: HeaderProps) {
             href="/login"
             className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
           >
-            ログイン
+            {tKey("nav.login")}
           </Link>
           <Link
             href="/signup"
             className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-2 sm:px-4 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
           >
-            新規登録
+            {tKey("nav.signup")}
           </Link>
         </>
       )}
@@ -71,7 +75,7 @@ export default function Header({ rightContent }: HeaderProps) {
           MC
         </div>
         <span className="text-xl font-bold text-slate-900 dark:text-white">
-          More Coding
+          {tKey("serviceTitle")}
         </span>
       </Link>
       <div className="flex items-center gap-4">
@@ -106,9 +110,9 @@ export default function Header({ rightContent }: HeaderProps) {
           open={showLogoutModal}
           onClose={() => setShowLogoutModal(false)}
           onConfirm={handleLogoutConfirm}
-          title="ログアウトしますか？"
-          confirmLabel="ログアウト"
-          cancelLabel="キャンセル"
+          title={tKey("modal.logoutConfirmTitle")}
+          confirmLabel={tKey("modal.logout")}
+          cancelLabel={tKey("modal.cancel")}
         />
       </>
     );
@@ -125,7 +129,7 @@ export default function Header({ rightContent }: HeaderProps) {
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
-                More Coding
+                {tKey("serviceTitle")}
               </span>
             </Link>
             <div className="flex items-center gap-4" />
@@ -148,9 +152,9 @@ export default function Header({ rightContent }: HeaderProps) {
         open={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}
         onConfirm={handleLogoutConfirm}
-        title="ログアウトしますか？"
-        confirmLabel="ログアウト"
-        cancelLabel="キャンセル"
+        title={tKey("modal.logoutConfirmTitle")}
+        confirmLabel={tKey("modal.logout")}
+        cancelLabel={tKey("modal.cancel")}
       />
     </>
   );
