@@ -1,13 +1,8 @@
 /**
  * Vue Associate カテゴリ一覧ページ
- * 
- * ルート: /learn/vue/associate
- * 
- * このページは、Vue Associateレベルの学習カテゴリ一覧を表示します。
- * 各カテゴリ（例：基礎・設計思想、テンプレート・描画・UI構造など）をクリックすると、そのカテゴリの学習ページに遷移します。
+ * ルート: /learn/vue/associate。言語選択は「学習を始めますか？」画面で行う。
  */
 
-// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
 import Link from "next/link";

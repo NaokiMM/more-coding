@@ -1,22 +1,44 @@
 /**
  * React Associate カテゴリ 学習ページ（サーバーコンポーネント）
- * 
+ *
  * ルート: /learn/react/associate/[categoryId]/study
- * 
- * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientコンポーネントに渡すサーバーコンポーネントです。
- * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
+ * locale 未指定時は「学習を始めますか？」で言語選択。?locale=jp|en|cn で S3: questions/{locale}/react/associate/{filename}
  */
 
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as reactAssociateCategoriesData } from "@/lib/categories/react/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-// URL パラメータから categoryId を取得
-export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
 
-  // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
+  const category = reactAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/react/associate/${categoryId}/study`;
+  const backHref = "/learn/react/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-cyan-500 to-blue-600"
+        icon="🌱"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
+
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -27,8 +49,8 @@ export function generateStaticParams() {
   }));
 }
 
-// categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+// categoryId に対応する学習データ(JSON)を S3 から取得する（パス: questions/{locale}/react/associate/{file}）
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
   
   // reactAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = reactAssociateCategoriesData.find((cat) => cat.id === categoryId);
@@ -43,9 +65,9 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
     throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
   }
 
-  // CloudFront経由のS3からJSONをHTTP fetchで取得
+  // CloudFront経由のS3からJSONをHTTP fetchで取得（新パス: locale/教材種類/レベル/内容）
   try {
-    const jsonUrl = `${baseUrl}/questions/react/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "react", "associate", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });

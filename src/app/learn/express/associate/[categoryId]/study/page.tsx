@@ -1,22 +1,41 @@
 /**
  * Express.js Associate カテゴリ 学習ページ（サーバーコンポーネント）
- *
- * ルート: /learn/express/associate/[categoryId]/study
- *
- * 指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientに渡します。s3-assets/express/associate/*.json に対応。
+ * locale 未指定時は「学習を始めますか？」で言語選択。?locale=jp|en|cn で S3: questions/{locale}/express/associate/{filename}
  */
 
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as expressAssociateCategoriesData } from "@/lib/categories/express/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
 interface PageProps {
   params: Promise<{ categoryId: string }>;
+  searchParams?: Promise<{ locale?: string }> | { locale?: string };
 }
 
-export default async function StudyPage({ params }: PageProps) {
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await params;
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = searchParams ? await Promise.resolve(searchParams) : {};
+  const locale = resolvedSearch?.locale;
+
+  const category = expressAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/express/associate/${categoryId}/study`;
+  const backHref = "/learn/express/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-gray-600 to-gray-800"
+        icon="⚡"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -26,7 +45,7 @@ export function generateStaticParams() {
   }));
 }
 
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
   const category = expressAssociateCategoriesData.find((cat) => cat.id === categoryId);
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);
@@ -38,7 +57,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/express/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "express", "associate", category.file);
     const response = await fetch(jsonUrl, { next: { revalidate: 60 } });
 
     if (!response.ok) {

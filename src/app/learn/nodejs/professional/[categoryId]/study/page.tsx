@@ -8,15 +8,38 @@
  */
 
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as nodejsProfessionalCategoriesData } from "@/lib/categories/nodejs/professional-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-interface PageProps {
-  params: Promise<{ categoryId: string }>;
-}
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
 
-export default async function StudyPage({ params }: PageProps) {
-  const { categoryId } = await params;
-  const categoryData = await getCategoryData(categoryId);
+export default async function StudyPage({ params, searchParams }: PageProps) {
+  const { categoryId } = await Promise.resolve(params);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
+
+  const category = nodejsProfessionalCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/nodejs/professional/${categoryId}/study`;
+  const backHref = "/learn/nodejs/professional";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-green-600 to-green-800"
+        icon="🟢"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -26,7 +49,7 @@ export function generateStaticParams() {
   }));
 }
 
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
   const category = nodejsProfessionalCategoriesData.find((cat) => cat.id === categoryId);
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);
@@ -38,7 +61,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/nodejs/professional/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "nodejs", "professional", category.file);
     const response = await fetch(jsonUrl, { next: { revalidate: 60 } });
 
     if (!response.ok) {

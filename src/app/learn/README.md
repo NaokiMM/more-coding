@@ -10,10 +10,14 @@
 ## ディレクトリ構造
 
 ```
-/questions/{technology}/{course}/{filename}.json
+/questions/{locale}/{technology}/{course}/{filename}.json
 ```
 
-例: `/questions/nextjs/associate/api-middleware.json`
+- `locale`: 教材言語（`jp` | `en` | `cn`）。教材開始前にユーザーが選択し、途中変更不可。
+- `technology`: 教材種類（例: nextjs, react）
+- `course`: レベル（例: associate, professional, expert）
+
+例: `/questions/jp/nextjs/associate/api-middleware.json`
 
 ## JSON型定義
 
@@ -74,11 +78,18 @@ interface CategoryData {
 
 ## データの取得方法
 
-各学習ページ（例: `/learn/nextjs/associate/[categoryId]/study`）では、以下の形式でS3からJSONを取得します：
+各学習ページでは、URLの `?locale=jp|en|cn` を用いてS3からJSONを取得します（`@/lib/learnLocale` の `getQuestionsJsonUrl` を使用）：
 
 ```typescript
-const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
-const jsonUrl = `${baseUrl}/questions/{technology}/{course}/${filename}`;
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
+
+// searchParams.locale を検証し、無効なら /learn/{technology} へ redirect
+const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, technology, course, filename);
 ```
 
 ファイル名（`filename`）は、各カテゴリの定義ファイル（例: `src/lib/categories/nextjs/associate-categories.ts`）の`file`プロパティで指定されています。
+
+## 教材言語（ロケール）の選択
+
+- 各教材トップ（例: `/learn/react`）で、ロケール未選択時は「教材の言語を選択」画面（JP/EN/CN プルダウン）を表示する。
+- 選択後は `?locale=jp` 等がURLに付与され、以降の学習・試験ページでは同じロケールでS3パスが組み立てられる。途中での言語変更はできない。

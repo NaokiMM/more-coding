@@ -5,15 +5,38 @@
  */
 
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as ginAssociateCategoriesData } from "@/lib/categories/gin/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-interface PageProps {
-  params: Promise<{ categoryId: string }>;
-}
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
 
-export default async function StudyPage({ params }: PageProps) {
-  const { categoryId } = await params;
-  const categoryData = await getCategoryData(categoryId);
+export default async function StudyPage({ params, searchParams }: PageProps) {
+  const { categoryId } = await Promise.resolve(params);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
+
+  const category = ginAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/gin/associate/${categoryId}/study`;
+  const backHref = "/learn/gin/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-sky-500 to-blue-600"
+        icon="🔷"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -23,7 +46,7 @@ export function generateStaticParams() {
   }));
 }
 
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
   const category = ginAssociateCategoriesData.find((cat) => cat.id === categoryId);
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);
@@ -35,7 +58,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData> {
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/gin/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "gin", "associate", category.file);
     const response = await fetch(jsonUrl, { next: { revalidate: 60 } });
 
     if (!response.ok) {

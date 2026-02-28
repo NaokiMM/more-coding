@@ -6,15 +6,38 @@
 
 import { notFound } from "next/navigation";
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as devtoolsExpertCategoriesData } from "@/lib/categories/devtools/expert-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-export default async function StudyPage({
-  params,
-}: {
+type PageProps = {
   params: { categoryId: string } | Promise<{ categoryId: string }>;
-}) {
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
+
+  const category = devtoolsExpertCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/devtools/expert/${categoryId}/study`;
+  const backHref = "/learn/devtools/expert";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-orange-500 to-amber-600"
+        icon="🛠"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
 
   if (!categoryData) {
     notFound();
@@ -35,7 +58,7 @@ function parseCorrectAnswer(correctAnswer: string): number {
   return match ? match[1].toUpperCase().charCodeAt(0) - 65 : 0;
 }
 
-async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData | null> {
   const category = devtoolsExpertCategoriesData.find((cat) => cat.id === categoryId);
 
   if (!category) {
@@ -48,7 +71,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/devtools/expert/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "devtools", "expert", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });

@@ -9,15 +9,38 @@
 
 import { notFound } from "next/navigation";
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as nuxtjsAssociateCategoriesData } from "@/lib/categories/nuxtjs/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-export default async function StudyPage({
-  params,
-}: {
+type PageProps = {
   params: { categoryId: string } | Promise<{ categoryId: string }>;
-}) {
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
+
+  const category = nuxtjsAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/nuxtjs/associate/${categoryId}/study`;
+  const backHref = "/learn/nuxtjs/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-green-600 to-emerald-700"
+        icon="💚"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
 
   if (!categoryData) {
     notFound();
@@ -32,7 +55,7 @@ export function generateStaticParams() {
   }));
 }
 
-async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData | null> {
   const category = nuxtjsAssociateCategoriesData.find((cat) => cat.id === categoryId);
 
   if (!category) {
@@ -45,7 +68,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
   }
 
   try {
-    const jsonUrl = `${baseUrl}/questions/nuxtjs/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "nuxtjs", "associate", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });

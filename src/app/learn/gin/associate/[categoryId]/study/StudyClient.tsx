@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { categoriesData } from "@/lib/categories/gin/associate-categories";
+import { useLearnLocale } from "@/hooks/useLearnLocale";
+import { LEARN_LOCALES, LEARN_LOCALE_LABELS, type LearnLocale, isValidLearnLocale } from "@/lib/learnLocale";
 import EndStudyButton from "@/components/EndStudyButton";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -40,6 +42,8 @@ const GIN_ASSOCIATE = "/learn/gin/associate";
 
 export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const { learnHref, locale: urlLocale } = useLearnLocale();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
   const category = categoriesData.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -195,7 +199,30 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
               </div>
               <h1 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">{category.name}</h1>
               <p className="mb-2 text-lg font-semibold text-slate-700 dark:text-slate-300">学習を始めますか？</p>
-              <p className="mb-8 text-slate-600 dark:text-slate-400">全{total}問の問題に取り組みます。</p>
+              <p className="mb-4 text-slate-600 dark:text-slate-400">全{total}問の問題に取り組みます。教材の言語を選択してください（選択後は途中で変更できません）。</p>
+              <div className="mb-6 flex flex-col items-center gap-2">
+                <label htmlFor="study-dialog-locale" className="block w-full max-w-xs text-left text-sm font-medium text-slate-700 dark:text-slate-300">
+                  教材の言語
+                </label>
+                <select
+                  id="study-dialog-locale"
+                  value={urlLocale ?? "jp"}
+                  onChange={(e) => {
+                    const next = e.target.value as LearnLocale;
+                    if (isValidLearnLocale(next) && pathname) {
+                      const separator = pathname.includes("?") ? "&" : "?";
+                      router.push(`${pathname}${separator}locale=${next}`);
+                    }
+                  }}
+                  className="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+                >
+                  {LEARN_LOCALES.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {LEARN_LOCALE_LABELS[loc]}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={handleStartStudy}
@@ -204,7 +231,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   学習を開始する
                 </button>
                 <Link
-                  href={GIN_ASSOCIATE}
+                  href={learnHref("/learn/gin/associate")}
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る

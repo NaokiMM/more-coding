@@ -1,28 +1,47 @@
 /**
  * Next.js Associate カテゴリ 学習ページ（サーバーコンポーネント）
- * 
- * ルート: /learn/nextjs/associate/[categoryId]/study
- * 
- * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientコンポーネントに渡すサーバーコンポーネントです。
- * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
+ * locale 未指定時は「学習を始めますか？」で言語選択。?locale=jp|en|cn で S3: questions/{locale}/nextjs/associate/{filename}
  */
 
 import { notFound } from "next/navigation";
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as nextjsAssociateCategoriesData } from "@/lib/categories/nextjs/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-// URL パラメータから categoryId を取得
-export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
 
-  // データが取得できない場合は404を返す
+  const category = nextjsAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/nextjs/associate/${categoryId}/study`;
+  const backHref = "/learn/nextjs/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-gray-700 to-gray-900"
+        icon="▲"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
+
   if (!categoryData) {
     notFound();
   }
 
-  // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -33,25 +52,22 @@ export function generateStaticParams() {
   }));
 }
 
-// categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+// categoryId に対応する学習データ(JSON)を S3 から取得する（パス: questions/{locale}/nextjs/associate/{file}）
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData | null> {
   
-  // nextjsAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = nextjsAssociateCategoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
     return null;
   }
 
-  // 環境変数のチェック
   const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
   if (!baseUrl) {
     return null;
   }
 
-  // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `${baseUrl}/questions/nextjs/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "nextjs", "associate", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });

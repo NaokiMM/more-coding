@@ -1,22 +1,41 @@
 /**
  * Vue Associate カテゴリ 学習ページ（サーバーコンポーネント）
- * 
- * ルート: /learn/vue/associate/[categoryId]/study
- * 
- * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientコンポーネントに渡すサーバーコンポーネントです。
- * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
+ * locale 未指定時は「学習を始めますか？」で言語選択。?locale=jp|en|cn で S3: questions/{locale}/vue/associate/{filename}
  */
 
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as vueAssociateCategoriesData } from "@/lib/categories/vue/associate-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-// URL パラメータから categoryId を取得
-export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
 
-  // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
+  const category = vueAssociateCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/vue/associate/${categoryId}/study`;
+  const backHref = "/learn/vue/associate";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-green-500 to-emerald-600"
+        icon="🌱"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -27,25 +46,22 @@ export function generateStaticParams() {
   }));
 }
 
-// categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData> {
+// categoryId に対応する学習データ(JSON)を S3 から取得する（パス: questions/{locale}/vue/associate/{file}）
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
   
-  // vueAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = vueAssociateCategoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);
   }
 
-  // 環境変数のチェック
   const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
   if (!baseUrl) {
     throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
   }
 
-  // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `${baseUrl}/questions/vue/associate/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "vue", "associate", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });

@@ -1,13 +1,9 @@
 /**
  * React Associate カテゴリ一覧ページ
- * 
  * ルート: /learn/react/associate
- * 
- * このページは、React Associateレベルの学習カテゴリ一覧を表示します。
- * 各カテゴリ（例：概要・考え方・全体像、コンポーネント・JSX・描画など）をクリックすると、そのカテゴリの学習ページに遷移します。
+ * カテゴリをクリックすると study へ。言語選択は「学習を始めますか？」画面で行う。
  */
 
-// サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
 import Link from "next/link";

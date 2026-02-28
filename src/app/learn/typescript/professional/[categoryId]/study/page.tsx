@@ -10,19 +10,43 @@
 
 import { notFound } from "next/navigation";
 import StudyClient from "./StudyClient";
+import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
 import { categoriesData as tsProfessionalCategoriesData } from "@/lib/categories/typescript/professional-categories";
+import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
-// URL パラメータから categoryId を取得
-export default async function StudyPage({ params }: { params: { categoryId: string } | Promise<{ categoryId: string }> }) {
+type PageProps = {
+  params: { categoryId: string } | Promise<{ categoryId: string }>;
+  searchParams: { locale?: string } | Promise<{ locale?: string }>;
+};
+
+export default async function StudyPage({ params, searchParams }: PageProps) {
   const { categoryId } = await Promise.resolve(params);
-  const categoryData = await getCategoryData(categoryId);
+  const resolvedSearch = await Promise.resolve(searchParams);
+  const locale = resolvedSearch?.locale;
 
-  // データが取得できない場合は404を返す
+  const category = tsProfessionalCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/typescript/professional/${categoryId}/study`;
+  const backHref = "/learn/typescript/professional";
+
+  if (!locale || !isValidLearnLocale(locale)) {
+    return (
+      <StudyStartWithLocaleSelect
+        studyPath={studyPath}
+        categoryName={category?.name ?? "学習"}
+        backHref={backHref}
+        backLabel="カテゴリ一覧に戻る"
+        colorClass="from-blue-500 to-indigo-600"
+        icon="📘"
+      />
+    );
+  }
+
+  const categoryData = await getCategoryData(categoryId, locale);
+
   if (!categoryData) {
     notFound();
   }
 
-  // StudyClientコンポーネントにカテゴリIDとカテゴリデータを渡す
   return <StudyClient categoryId={categoryId} categoryData={categoryData} />;
 }
 
@@ -34,7 +58,7 @@ export function generateStaticParams() {
 }
 
 // categoryId に対応する学習データ(JSON)を S3 から取得する
-async function getCategoryData(categoryId: string): Promise<CategoryData | null> {
+async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData | null> {
   
   // tsProfessionalCategoriesDataからcategoryIdに対応するカテゴリを検索
   const category = tsProfessionalCategoriesData.find((cat) => cat.id === categoryId);
@@ -51,7 +75,7 @@ async function getCategoryData(categoryId: string): Promise<CategoryData | null>
 
   // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = `${baseUrl}/questions/typescript/professional/${category.file}`;
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "typescript", "professional", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });
