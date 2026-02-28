@@ -1,9 +1,18 @@
+/**
+ * BlogList コンポーネント
+ *
+ * ブログ記事一覧を表示し、カテゴリ・タグでフィルタリングできるUIを提供する。
+ * - カテゴリリンク: フロントエンド / バックエンド / DevOps / TypeScript などで絞り込み
+ * - タグフィルター: 選択したタグに該当する記事のみ表示
+ * - 記事カード: 日付・タイトル・抜粋・タグを表示し、クリックで記事詳細へ遷移
+ */
 "use client";
 
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import type { PostMetadata } from "@/types/post";
 
+/** ブログ一覧に渡す props */
 interface BlogListProps {
   posts: PostMetadata[];
   allTags: string[];
@@ -11,6 +20,7 @@ interface BlogListProps {
   currentCategory?: string | null;
 }
 
+/** カテゴリIDと表示ラベルの対応（日本語表示用） */
 const CATEGORY_LABELS: Record<string, string> = {
   frontend: "フロントエンド",
   backend: "バックエンド",
@@ -24,9 +34,10 @@ export default function BlogList({
   allCategories = [],
   currentCategory = null,
 }: BlogListProps) {
+  /** 現在選択中のタグ（null のときは全件表示） */
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  // 選択されたタグでフィルタリング
+  /** 選択タグでフィルタした記事リスト（タグ未選択時は posts をそのまま返す） */
   const filteredPosts = useMemo(() => {
     if (!selectedTag) {
       return posts;
@@ -34,15 +45,22 @@ export default function BlogList({
     return posts.filter((post) => post.tags.includes(selectedTag));
   }, [posts, selectedTag]);
 
+  /**
+   * タグボタンクリック時のハンドラ。
+   * 同じタグを再度クリックした場合はフィルタを解除し、別のタグならそのタグでフィルタする。
+   */
   const handleTagClick = (tag: string) => {
     if (selectedTag === tag) {
-      // 同じタグをクリックした場合はフィルタを解除
       setSelectedTag(null);
     } else {
       setSelectedTag(tag);
     }
   };
 
+  /**
+   * 記事の詳細ページURLを生成する。
+   * カテゴリがある場合は /blogs/{category}/{slug}、ない場合は /blogs/_/{slug} を返す。
+   */
   const getPostHref = (post: PostMetadata) =>
     post.category ? `/blogs/${post.category}/${post.slug}` : `/blogs/_/${post.slug}`;
 

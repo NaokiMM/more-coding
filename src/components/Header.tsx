@@ -1,3 +1,9 @@
+/**
+ * Header コンポーネント
+ *
+ * サイト共通の固定ヘッダー。左にロゴ（More Coding）、右に認証ナビ（ログイン時: マイページ・ログアウト、未ログイン時: ログイン・新規登録）を表示する。
+ * rightContent を渡すと、PCではその内容を右側に表示し、スマホでは認証ナビを表示する。ログアウト時は ConfirmModal で確認してからトップへ遷移する。
+ */
 "use client";
 
 import { useState } from "react";

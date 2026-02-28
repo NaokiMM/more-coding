@@ -1,7 +1,16 @@
+/**
+ * ConfirmModal コンポーネント
+ *
+ * 確認ダイアログを表示し、ユーザーの「OK」「キャンセル」選択を受け付ける。
+ * - オーバーレイクリックまたは Escape キーで閉じる
+ * - アクセシビリティ: role="dialog", aria-modal, aria-labelledby を指定
+ * - variant で確認ボタンの見た目を変更可能（default = 青紫、danger = 赤系）
+ */
 "use client";
 
 import { useCallback, useEffect } from "react";
 
+/** 確認モーダルに渡す props */
 interface ConfirmModalProps {
   open: boolean;
   onClose: () => void;
@@ -10,7 +19,6 @@ interface ConfirmModalProps {
   description?: string;
   confirmLabel?: string;
   cancelLabel?: string;
-  /** 確認ボタンのスタイル（danger = 赤系） */
   variant?: "default" | "danger";
 }
 
@@ -24,11 +32,19 @@ export default function ConfirmModal({
   cancelLabel = "キャンセル",
   variant = "default",
 }: ConfirmModalProps) {
+  /**
+   * 確認ボタンクリック時: 先にモーダルを閉じてから onConfirm を実行する。
+   * 閉じた後に親の状態更新が走るため、この順序にしている。
+   */
   const handleConfirm = useCallback(() => {
     onClose();
     onConfirm();
   }, [onClose, onConfirm]);
 
+  /**
+   * モーダル表示中は Escape キーで閉じられるようにする。
+   * クリーンアップでイベントリスナーを解除する。
+   */
   useEffect(() => {
     if (!open) return;
     const onEscape = (e: KeyboardEvent) => {
@@ -40,20 +56,24 @@ export default function ConfirmModal({
 
   if (!open) return null;
 
+  /** variant に応じた確認ボタンのクラス（danger は赤系グラデーション） */
   const confirmButtonClass =
     variant === "danger"
       ? "flex-1 rounded-lg bg-gradient-to-r from-red-500 to-red-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90"
       : "flex-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90";
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="confirm-modal-title"
-      aria-describedby={description ? "confirm-modal-desc" : undefined}
-      onClick={(e) => e.target === e.currentTarget && onClose()}
-    >
+    <>
+      {/* オーバーレイ: クリックで閉じる。子要素のクリックは伝播させない */}
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-modal-title"
+        aria-describedby={description ? "confirm-modal-desc" : undefined}
+        onClick={(e) => e.target === e.currentTarget && onClose()}
+      >
+      {/* モーダル本体: ここをクリックしても閉じない */}
       <div
         className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl dark:bg-slate-800"
         onClick={(e) => e.stopPropagation()}
@@ -80,5 +100,6 @@ export default function ConfirmModal({
         </div>
       </div>
     </div>
+    </>
   );
 }

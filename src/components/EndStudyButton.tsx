@@ -1,3 +1,10 @@
+/**
+ * EndStudyButton コンポーネント
+ *
+ * 学習終了ボタンと確認ダイアログを表示する。
+ * クリックで「学習を終了しますか？」ダイアログを出し、
+ * 確認でトップページへ遷移する。Escape またはオーバーレイクリックでダイアログを閉じる。
+ */
 "use client";
 
 import { useCallback, useEffect, useState } from "react";

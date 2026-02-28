@@ -1,3 +1,9 @@
+/**
+ * SettingsLayout コンポーネント
+ *
+ * 設定系ページ用の共通レイアウト。認証必須で、未ログイン時は /login へリダイレクトする。
+ * Header、パンくず（マイページ / 設定 / 任意の末尾）、オプションの見出し、そして children を表示する。
+ */
 "use client";
 
 import Link from "next/link";

@@ -1,3 +1,10 @@
+/**
+ * ScrollToBottomButton コンポーネント
+ *
+ * 画面左下に固定表示される「1つ前に戻る」ボタン。
+ * トップページ（/）および学習ページ（/study）では表示せず、それ以外のページでのみ表示する。
+ * クリックでブラウザの履歴を1つ戻る（router.back()）。
+ */
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";

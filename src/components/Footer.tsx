@@ -1,3 +1,10 @@
+/**
+ * Footer コンポーネント
+ *
+ * サイト共通のフッター。ロゴ・タグライン、サービス・会社・アカウントのリンク群、著作権表示を表示する。
+ * 表示文言は LanguageContext と useTranslation で言語切り替えに対応。
+ * 料金ページ（/pricing）上で料金リンクをクリックした場合はページ内トップへスムーズスクロールする。
+ */
 "use client";
 
 import Link from "next/link";

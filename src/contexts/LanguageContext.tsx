@@ -2,7 +2,9 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Language = "ja" | "en";
+export type Language = "ja" | "en" | "cn";
+
+const LANGUAGES: Language[] = ["ja", "en", "cn"];
 
 interface LanguageContextType {
   language: Language;
@@ -26,7 +28,7 @@ export function LanguageProvider({
     setMounted(true);
     // ローカルストレージから言語設定を読み込む
     const savedLanguage = localStorage.getItem("language") as Language | null;
-    if (savedLanguage && (savedLanguage === "ja" || savedLanguage === "en")) {
+    if (savedLanguage && LANGUAGES.includes(savedLanguage)) {
       setLanguageState(savedLanguage);
     }
   }, []);
@@ -41,8 +43,9 @@ export function LanguageProvider({
   };
 
   const toggleLanguage = () => {
-    const newLang = language === "ja" ? "en" : "ja";
-    setLanguage(newLang);
+    const idx = LANGUAGES.indexOf(language);
+    const nextIdx = (idx + 1) % LANGUAGES.length;
+    setLanguage(LANGUAGES[nextIdx]);
   };
 
   // マウント後にHTMLのlang属性を設定
