@@ -111,8 +111,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(attributes as User);
         }
       } else {
-        setUser(null);
-        setCognitoUser(null);
+        // Cognito にいなければ Google セッションを確認
+        try {
+          const sessionRes = await fetch("/api/auth/session");
+          if (sessionRes.ok) {
+            const data = await sessionRes.json();
+            if (data.user) {
+              setUser(data.user as User);
+              setCognitoUser(null);
+            } else {
+              setUser(null);
+              setCognitoUser(null);
+            }
+          } else {
+            setUser(null);
+            setCognitoUser(null);
+          }
+        } catch {
+          setUser(null);
+          setCognitoUser(null);
+        }
       }
     // try catch でエラーを処理
     } catch (error) {
@@ -131,6 +149,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = () => {
     cognitoSignOut();
+    fetch("/api/auth/signout", { method: "POST" }).catch(() => {});
     setUser(null);
     setCognitoUser(null);
   };
