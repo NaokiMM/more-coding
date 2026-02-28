@@ -14,12 +14,18 @@ import Stripe from "stripe";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-// Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-01-28.clover",
-});
+// ビルド時（ページデータ収集時）に env が無いと Stripe がエラーになるため、実行時に遅延初期化
+let stripeInstance: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
+    stripeInstance = new Stripe(key, { apiVersion: "2026-01-28.clover" });
+  }
+  return stripeInstance;
+}
 
-// 必須ENV
+// 必須ENV（実行時チェック用）
 const PRICE_ID = process.env.STRIPE_PRICE_ID!;
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
 
@@ -71,6 +77,7 @@ export async function POST(request: NextRequest) {
 
     // 2) Stripe Checkout Session作成（サブスク）
     // 任意: 顧客メール / ユーザーID を metadata に入れておくとWebhookで紐付けしやすい
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price: PRICE_ID, quantity: 1 }],
