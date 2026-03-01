@@ -4,13 +4,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "@/lib/cognito";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refreshUser } = useAuth();
@@ -352,6 +352,18 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
+        <div className="animate-pulse text-slate-500 dark:text-slate-400">読み込み中...</div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }
 
