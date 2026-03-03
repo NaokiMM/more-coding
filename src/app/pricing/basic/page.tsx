@@ -2,18 +2,47 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
+import { AlreadySubscribedError, createCheckoutSession } from "@/lib/subscriptionApi";
 
 const isDev = process.env.NODE_ENV === "development";
 
 export default function BasicPlanPage() {
   const { user, loading } = useAuth();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const subscriptionType = user?.subscriptionType ?? "free";
   const isPaidMember = subscriptionType === "paid";
+
+  const handleCheckout = useCallback(async () => {
+    setErrorMessage(null);
+
+    if (!user) {
+      window.location.href = "/login?redirect=/pricing/basic";
+      return;
+    }
+
+    try {
+      setIsProcessing(true);
+      const result = await createCheckoutSession();
+      if (!result.ok || !result.url) {
+        throw new Error(result.message || "チェックアウトの作成に失敗しました");
+      }
+      window.location.href = result.url;
+    } catch (error) {
+      if (error instanceof AlreadySubscribedError) {
+        window.location.href = "/mypage";
+        return;
+      }
+      setErrorMessage(error instanceof Error ? error.message : "決済処理中にエラーが発生しました");
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [user]);
 
   // ローディング中の場合はローディング表示
   if (loading) {
@@ -74,30 +103,27 @@ export default function BasicPlanPage() {
                       マイページへ
                     </Link>
                   </>
-                ) : isDev ? (
-                  <>
-                    <Link
-                      href="/signup"
-                      className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-                    >
-                      申し込む
-                    </Link>
-                    <Link
-                      href="/pricing/success"
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      課金完了をテスト（POST /me/subscription）
-                    </Link>
-                  </>
                 ) : (
                   <>
-                    <span
-                      className="inline-flex cursor-not-allowed items-center rounded-lg bg-slate-400 px-8 py-4 text-base font-semibold text-white opacity-90"
-                      aria-disabled="true"
+                    <button
+                      type="button"
+                      onClick={handleCheckout}
+                      disabled={isProcessing}
+                      className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      申し込む
-                    </span>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">現在利用不可能</p>
+                      {isProcessing ? "決済ページへ遷移中..." : "申し込む"}
+                    </button>
+                    {isDev && (
+                      <Link
+                        href="/pricing/success"
+                        className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        課金完了をテスト（POST /me/subscription）
+                      </Link>
+                    )}
+                    {errorMessage && (
+                      <p className="text-sm text-red-600 dark:text-red-400 mt-2">{errorMessage}</p>
+                    )}
                   </>
                 )}
               </div>

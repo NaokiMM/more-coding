@@ -20,14 +20,15 @@ function getStripe(): Stripe {
   if (!stripeInstance) {
     const key = process.env.STRIPE_SECRET_KEY;
     if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-    stripeInstance = new Stripe(key, { apiVersion: "2026-01-28.clover" });
+    // apiVersion は指定しなければパッケージデフォルトが利用される
+    stripeInstance = new Stripe(key);
   }
   return stripeInstance;
 }
 
 // 必須ENV（実行時チェック用）
-const PRICE_ID = process.env.STRIPE_PRICE_ID!;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL!;
+const PRICE_ID = process.env.STRIPE_BASIC_MONTHLY_PRICE_ID!;
+const APP_URL = process.env.NEXT_PUBLIC_APP_BASE_URL || process.env.NEXT_PUBLIC_SITE_URL || "";
 
 export async function POST(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
@@ -44,10 +45,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Server misconfiguration: STRIPE_SECRET_KEY" }, { status: 500 });
   }
   if (!PRICE_ID) {
-    return NextResponse.json({ message: "Server misconfiguration: STRIPE_PRICE_ID" }, { status: 500 });
+    return NextResponse.json({ message: "Server misconfiguration: STRIPE_BASIC_MONTHLY_PRICE_ID" }, { status: 500 });
   }
   if (!APP_URL) {
-    return NextResponse.json({ message: "Server misconfiguration: NEXT_PUBLIC_APP_URL" }, { status: 500 });
+    return NextResponse.json({ message: "Server misconfiguration: NEXT_PUBLIC_APP_BASE_URL / NEXT_PUBLIC_SITE_URL" }, { status: 500 });
   }
 
   try {
