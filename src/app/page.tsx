@@ -78,13 +78,6 @@ export default function Home() {
       icon: "⚡",
     },
     {
-      id: "laravel",
-      nameKey: "tech.laravel.name" as const,
-      descriptionKey: "tech.laravel.description" as const,
-      color: "from-red-500 to-red-700",
-      icon: "🔴",
-    },
-    {
       id: "django",
       nameKey: "tech.django.name" as const,
       descriptionKey: "tech.django.description" as const,
