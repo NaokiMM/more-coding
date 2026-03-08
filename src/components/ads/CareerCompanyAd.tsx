@@ -4,7 +4,7 @@
  */
 export default function CareerCompanyAd() {
   return (
-    <div className="inline-block">
+    <div className="inline-block w-full max-w-[300px] mx-auto">
       <a
         href="https://px.a8.net/svt/ejp?a8mat=4AZ687+7CXWZ6+5UK0+5YZ75"
         rel="nofollow"

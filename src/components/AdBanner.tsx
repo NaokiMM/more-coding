@@ -39,7 +39,7 @@ export default function AdBanner() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* 1つ目: キャリアカンパニー（A8.net） */}
         <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800">
-          <div className="p-4">
+          <div className="flex justify-center p-4">
             <CareerCompanyAd />
           </div>
           <div className="px-6 pb-6">
