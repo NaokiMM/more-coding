@@ -83,8 +83,8 @@ export const translations = {
     "nav.signup": "会員登録",
     
     // Home Page
-    "home.hero.title1": "エンジニアリング学習で",
-    "home.hero.title2": "スキルアップ",
+    "home.hero.title1": "Js・Ts に特化した",
+    "home.hero.title2": "エンジニア学習アプリ",
     "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nIT資格の取得を目指すプラットフォームです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
@@ -154,8 +154,8 @@ export const translations = {
     "nav.signup": "Sign Up",
     
     // Home Page
-    "home.hero.title1": "Boost Your Skills with",
-    "home.hero.title2": "Engineering Learning",
+    "home.hero.title1": "JS/TS-Focused",
+    "home.hero.title2": "Engineering Learning App",
     "home.hero.description": "Learn the latest technologies like TypeScript, React, and Vue.js while aiming to obtain IT certifications on our platform.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
