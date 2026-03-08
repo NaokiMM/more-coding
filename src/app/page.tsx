@@ -78,13 +78,6 @@ export default function Home() {
       icon: "⚡",
     },
     {
-      id: "django",
-      nameKey: "tech.django.name" as const,
-      descriptionKey: "tech.django.description" as const,
-      color: "from-green-600 to-emerald-700",
-      icon: "🐍",
-    },
-    {
       id: "devtools",
       nameKey: "tech.devtools.name" as const,
       descriptionKey: "tech.devtools.description" as const,
