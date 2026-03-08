@@ -2,12 +2,14 @@
 
 // ホームページ
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/lib/i18n";
 import Header from "@/components/Header";
 import AdBanner from "@/components/AdBanner";
 
 export default function Home() {
+  const router = useRouter();
   const { language } = useLanguage();
   const tKey = (key: string) => t(language, key);
 
@@ -74,13 +76,6 @@ export default function Home() {
       descriptionKey: "tech.express.description" as const,
       color: "from-gray-600 to-gray-800",
       icon: "⚡",
-    },
-    {
-      id: "gin",
-      nameKey: "tech.gin.name" as const,
-      descriptionKey: "tech.gin.description" as const,
-      color: "from-cyan-500 to-teal-600",
-      icon: "Gin",
     },
     {
       id: "laravel",
@@ -178,10 +173,13 @@ export default function Home() {
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {technologies.map((tech) => (
-            <Link
+            <div
               key={tech.id}
-              href={`/learn/${tech.id}`}
-              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800"
+              role="button"
+              tabIndex={0}
+              onClick={() => router.push(`/learn/${tech.id}`)}
+              onKeyDown={(e) => e.key === "Enter" && router.push(`/learn/${tech.id}`)}
+              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 cursor-pointer"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 transition-opacity group-hover:opacity-10`} />
               <div className="relative">
@@ -194,24 +192,35 @@ export default function Home() {
                 <p className="text-slate-600 dark:text-slate-300">
                   {tKey(tech.descriptionKey)}
                 </p>
-                <div className="mt-6 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
-                  {tKey("home.technologies.getStarted")}
-                  <svg
-                    className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <span className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
+                    {tKey("home.technologies.getStarted")}
+                    <svg
+                      className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </span>
+                  {"tutorialHref" in tech && tech.tutorialHref && (
+                    <Link
+                      href={tech.tutorialHref}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-sm font-medium text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300 hover:underline"
+                    >
+                      教材
+                    </Link>
+                  )}
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
