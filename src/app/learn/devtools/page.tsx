@@ -23,7 +23,7 @@ export default function DevToolsLearnPage() {
       id: "associate",
       nameKey: "learn.level.associate" as const,
       descriptionKey: "learn.devtools.associate.description" as const,
-      color: "from-indigo-500 to-purple-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🌱",
       topics: [
         "Console 操作・ログ活用",
@@ -39,7 +39,7 @@ export default function DevToolsLearnPage() {
       id: "professional",
       nameKey: "learn.level.professional" as const,
       descriptionKey: "learn.devtools.professional.description" as const,
-      color: "from-purple-500 to-indigo-600",
+      color: "from-slate-700 to-blue-600",
       icon: "📚",
       topics: [
         "Networkパネルの活用",
@@ -56,7 +56,7 @@ export default function DevToolsLearnPage() {
       id: "expert",
       nameKey: "learn.level.expert" as const,
       descriptionKey: "learn.devtools.expert.description" as const,
-      color: "from-purple-600 to-pink-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🚀",
       topics: [
         "カスタムコードスニペット",
@@ -73,7 +73,7 @@ export default function DevToolsLearnPage() {
       id: "exam",
       nameKey: "learn.exam" as const,
       descriptionKey: "learn.examDescription" as const,
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
       icon: "📝",
       topics: [
         "模擬試験（全3回）",
@@ -99,7 +99,7 @@ export default function DevToolsLearnPage() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-700 to-blue-600 text-white text-3xl font-bold shadow-lg">
             🔧
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -139,7 +139,7 @@ export default function DevToolsLearnPage() {
                         : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : level.id === "expert"
-                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
                   >
@@ -324,7 +324,7 @@ export default function DevToolsLearnPage() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

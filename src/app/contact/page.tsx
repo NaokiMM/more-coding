@@ -179,7 +179,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
+                  className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
                 >
                   ホームへ戻る
                 </Link>
@@ -370,7 +370,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-3 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>
@@ -408,7 +408,7 @@ export default function ContactPage() {
       <div className="mx-auto max-w-3xl px-4 pb-16 text-center sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+          className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
         >
           <svg
             className="mr-2 h-5 w-5"

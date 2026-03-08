@@ -40,7 +40,7 @@ export default function EndStudyButton({ categoryId, technology, courseType }: E
     <>
       <button
         onClick={handleOpenDialog}
-        className="ml-auto flex h-14 items-center gap-2 rounded-lg bg-gradient-to-r from-red-500 to-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+        className="ml-auto flex h-14 items-center gap-2 rounded-lg bg-gradient-to-r from-slate-600 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
         aria-label="学習を終了する"
       >
         <span>終了</span>
@@ -75,7 +75,7 @@ export default function EndStudyButton({ categoryId, technology, courseType }: E
               </button>
               <button
                 onClick={handleConfirmEnd}
-                className="flex-1 rounded-lg bg-gradient-to-r from-red-500 to-red-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90"
+                className="flex-1 rounded-lg bg-gradient-to-r from-slate-600 to-blue-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90"
               >
                 終了する
               </button>

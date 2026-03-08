@@ -31,7 +31,7 @@ export default function StudyStartWithLocaleSelect({
   categoryName,
   backHref,
   backLabel = "戻る",
-  colorClass = "from-blue-500 to-purple-600",
+  colorClass = "from-blue-500 to-blue-700",
   icon = "📚",
 }: StudyStartWithLocaleSelectProps) {
   const router = useRouter();
@@ -49,7 +49,7 @@ export default function StudyStartWithLocaleSelect({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">

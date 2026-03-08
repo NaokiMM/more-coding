@@ -5,21 +5,21 @@ export const categoriesData = [
     name: "Eloquent内部構造とデータベースパフォーマンスチューニング",
     file: "eloquent-internals-and-database-performance-tuning.json",
     icon: "⚡",
-    color: "from-red-600 to-pink-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "http-kernel-middleware-and-request-lifecycle",
     name: "HTTPカーネル、ミドルウェア、リクエストライフサイクル",
     file: "http-kernel-middleware-and-request-lifecycle.json",
     icon: "🔄",
-    color: "from-purple-600 to-indigo-600",
+    color: "from-slate-700 to-blue-600",
   },
   {
     id: "scaling-strategies-queues-cache-and-jobs",
     name: "スケーリング戦略、キュー、キャッシュ、ジョブ",
     file: "scaling-strategies-queues-cache-and-jobs.json",
     icon: "📈",
-    color: "from-indigo-600 to-blue-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "security-hardening-and-framework-internals",
@@ -33,6 +33,6 @@ export const categoriesData = [
     name: "サービスコンテナと依存性注入の内部構造",
     file: "service-container-and-dependency-injection-internals.json",
     icon: "🔧",
-    color: "from-orange-600 to-red-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

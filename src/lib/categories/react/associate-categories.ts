@@ -29,13 +29,13 @@ export const categoriesData = [
     name: "State・Hooks・副作用",
     file: "state-hooks-side-effects.json",
     icon: "🛠️",
-    color: "from-blue-600 to-indigo-600",
+    color: "from-blue-600 to-blue-800",
   },
   {
     id: "event-form-optimization-tools",
     name: "イベント・フォーム・最適化・周辺ツール",
     file: "event-form-optimization-tools.json",
     icon: "⚡",
-    color: "from-indigo-500 to-blue-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

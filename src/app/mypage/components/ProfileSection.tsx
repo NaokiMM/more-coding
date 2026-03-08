@@ -59,7 +59,7 @@ export default function ProfileSection({ user, onLogoutClick }: ProfileSectionPr
     <div className="mb-8 rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
       <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between">
         <div className="flex items-center gap-6">
-          <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-purple-600 text-2xl font-bold text-white">
+          <div className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-blue-800 text-2xl font-bold text-white">
             {profileImage ? (
               <img
                 src={profileImage}

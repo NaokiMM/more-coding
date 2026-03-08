@@ -59,8 +59,8 @@ export default function ConfirmModal({
   /** variant に応じた確認ボタンのクラス（danger は赤系グラデーション） */
   const confirmButtonClass =
     variant === "danger"
-      ? "flex-1 rounded-lg bg-gradient-to-r from-red-500 to-red-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90"
-      : "flex-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90";
+      ? "flex-1 rounded-lg bg-gradient-to-r from-slate-600 to-blue-600 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90"
+      : "flex-1 rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 py-2.5 text-sm font-semibold text-white shadow transition hover:opacity-90";
 
   return (
     <>

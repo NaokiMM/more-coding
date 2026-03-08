@@ -15,7 +15,7 @@ export const categoriesData = [
     name: "ユニオン型とインターセクション型",
     file: "union-intersection.json",
     icon: "🔀",
-    color: "from-indigo-500 to-indigo-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "type-guards",
@@ -36,7 +36,7 @@ export const categoriesData = [
     name: "デコレータ",
     file: "decorators.json",
     icon: "✨",
-    color: "from-violet-500 to-violet-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "classes-inheritance",

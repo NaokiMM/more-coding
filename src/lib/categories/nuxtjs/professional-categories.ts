@@ -26,13 +26,13 @@ export const categoriesData = [
     name: "認証と認可パターン",
     file: "authentication-and-authorization-patterns.json",
     icon: "🔐",
-    color: "from-indigo-500 to-violet-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "testing-and-debugging",
     name: "テストとデバッグ",
     file: "testing-and-debugging.json",
     icon: "🧪",
-    color: "from-violet-500 to-purple-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

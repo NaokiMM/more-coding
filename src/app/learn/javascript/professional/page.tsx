@@ -62,7 +62,7 @@ export default function JavaScriptProfessionalPage() {
         </nav>
 
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-600 to-blue-600 text-white text-3xl font-bold shadow-lg">
             📚
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -123,7 +123,7 @@ export default function JavaScriptProfessionalPage() {
         <div className="mt-12 text-center">
           <Link
             href="/learn/javascript"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

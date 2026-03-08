@@ -24,7 +24,7 @@ export const categoriesData = [
     name: "型安全の実装",
     file: "type-safe-implementation.json",
     icon: "🔗",
-    color: "from-purple-500 to-purple-600",
+    color: "from-slate-600 to-blue-600",
   },
   {
     id: "data-operation-with-standard-api",
@@ -38,6 +38,6 @@ export const categoriesData = [
     name: "実務パターン",
     file: "practical-patterns.json",
     icon: "⚡",
-    color: "from-pink-500 to-pink-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

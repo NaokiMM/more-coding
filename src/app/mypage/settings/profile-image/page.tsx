@@ -234,7 +234,7 @@ export default function ProfileImageSettingsPage() {
         {/* プロフィール画像エリア */}
         <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-violet-500 text-2xl font-semibold text-white ring-2 ring-slate-200 dark:ring-slate-600">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-2xl font-semibold text-white ring-2 ring-slate-200 dark:ring-slate-600">
               {profileImage ? (
                 <img
                   src={profileImage}

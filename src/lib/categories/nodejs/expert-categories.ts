@@ -26,13 +26,13 @@ export const categoriesData = [
     name: "ストリームとバッファの内部",
     file: "streams-and-buffers-internals.json",
     icon: "🌊",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "performance-and-security-hardening",
     name: "パフォーマンスとセキュリティ強化",
     file: "performance-and-security-hardening.json",
     icon: "🛡️",
-    color: "from-indigo-500 to-violet-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

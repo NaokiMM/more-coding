@@ -19,7 +19,7 @@ export const categoriesData = [
     name: "REST API 設計とバリデーション",
     file: "rest-api-design-and-validation.json",
     icon: "📨",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "authentication-authorization-flow",

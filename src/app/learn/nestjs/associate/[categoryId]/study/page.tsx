@@ -33,7 +33,7 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
         categoryName={category?.name ?? "学習"}
         backHref={backHref}
         backLabel="カテゴリ一覧に戻る"
-        colorClass="from-red-600 to-red-800"
+        colorClass="from-slate-700 to-blue-800"
         icon="🔴"
       />
     );

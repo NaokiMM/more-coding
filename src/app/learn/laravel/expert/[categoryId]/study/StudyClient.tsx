@@ -139,7 +139,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                   MC
                 </div>
                 <span className="text-xl font-bold text-slate-900 dark:text-white">More Coding</span>
@@ -151,7 +151,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
             <div className="text-center">
               <div className="mb-6 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-4xl">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-4xl">
                   🔒
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                   MC
                 </div>
                 <span className="text-xl font-bold text-slate-900 dark:text-white">More Coding</span>
@@ -258,7 +258,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">More Coding</span>
@@ -314,7 +314,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
 
         <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
           <div className="mb-6 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-lg font-bold text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-lg font-bold text-white">
               {currentQuestionIndex + 1}
             </span>
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white">

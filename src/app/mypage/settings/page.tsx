@@ -130,7 +130,7 @@ export default function SettingsPage() {
       <div className="mt-10 flex justify-center">
         <Link
           href="/mypage"
-          className="inline-flex w-fit items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+          className="inline-flex w-fit items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
         >
           <svg
             className="mr-1.5 h-4 w-4"

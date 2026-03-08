@@ -63,7 +63,7 @@ export default function TypeScriptLearnPage() {
       id: "specialty",
       nameKey: "learn.level.specialty" as const,
       descriptionKey: "learn.typescript.specialty.description" as const,
-      color: "from-purple-500 to-pink-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🚀",
       topics: [
         "条件付き型（Conditional Types）",
@@ -80,7 +80,7 @@ export default function TypeScriptLearnPage() {
       id: "exam",
       nameKey: "learn.exam" as const,
       descriptionKey: "learn.examDescription" as const,
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
       icon: "📝",
       topics: [
         "模擬試験（全3回）",
@@ -146,7 +146,7 @@ export default function TypeScriptLearnPage() {
                         : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : level.id === "specialty"
-                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
                   >
@@ -331,7 +331,7 @@ export default function TypeScriptLearnPage() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

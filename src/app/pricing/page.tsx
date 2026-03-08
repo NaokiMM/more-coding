@@ -158,11 +158,11 @@ export default function PricingPage() {
             <div
               key={plan.id}
               className={`relative flex flex-col overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 ${
-                plan.popular ? "ring-2 ring-purple-500" : ""
+                plan.popular ? "ring-2 ring-blue-500" : ""
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-500 to-pink-600 px-4 py-1 text-xs font-semibold text-white rounded-bl-lg">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-slate-700 to-blue-600 px-4 py-1 text-xs font-semibold text-white rounded-bl-lg">
                   おすすめ
                 </div>
               )}
@@ -417,7 +417,7 @@ export default function PricingPage() {
         <div className="text-center">
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

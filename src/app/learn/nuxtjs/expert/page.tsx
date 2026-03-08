@@ -62,7 +62,7 @@ export default function NuxtJSExpertPage() {
         </nav>
 
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-700 to-blue-600 text-white text-3xl font-bold shadow-lg">
             🚀
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -95,7 +95,7 @@ export default function NuxtJSExpertPage() {
                   >
                     {category.icon}
                   </div>
-                  <span className="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                     Expert
                   </span>
                 </div>
@@ -109,7 +109,7 @@ export default function NuxtJSExpertPage() {
                   <span>{category.estimatedTime}</span>
                   <span>{category.lessons}問</span>
                 </div>
-                <div className="mt-4 flex items-center text-sm font-semibold text-purple-600 dark:text-purple-400">
+                <div className="mt-4 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400">
                   <span>学習を始める</span>
                   <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

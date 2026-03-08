@@ -19,7 +19,7 @@ export const categoriesData = [
     name: "バリデーションとバインディング",
     file: "validation-binding.json",
     icon: "📋",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "authentication",

@@ -22,7 +22,7 @@ export default function LaravelLearnPage() {
       id: "associate",
       nameKey: "learn.level.associate" as const,
       descriptionKey: "learn.laravel.associate.description" as const,
-      color: "from-red-500 to-orange-600",
+      color: "from-slate-600 to-blue-600",
       icon: "🌱",
       topics: [
         "Laravelとは・概要・全体像",
@@ -38,7 +38,7 @@ export default function LaravelLearnPage() {
       id: "professional",
       nameKey: "learn.level.professional" as const,
       descriptionKey: "learn.laravel.professional.description" as const,
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
       icon: "📚",
       topics: [
         "認証と認可",
@@ -55,7 +55,7 @@ export default function LaravelLearnPage() {
       id: "expert",
       nameKey: "learn.level.expert" as const,
       descriptionKey: "learn.laravel.expert.description" as const,
-      color: "from-red-600 to-pink-600",
+      color: "from-slate-600 to-blue-600",
       icon: "🚀",
       topics: [
         "サービスコンテナと依存性注入",
@@ -72,7 +72,7 @@ export default function LaravelLearnPage() {
       id: "exam",
       nameKey: "learn.exam" as const,
       descriptionKey: "learn.examDescription" as const,
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
       icon: "📝",
       topics: [
         "模擬試験（全3回）",
@@ -98,7 +98,7 @@ export default function LaravelLearnPage() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-orange-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-600 to-blue-600 text-white text-3xl font-bold shadow-lg">
             L
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -138,7 +138,7 @@ export default function LaravelLearnPage() {
                         : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : level.id === "expert"
-                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                         : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                     }`}
                   >
@@ -323,7 +323,7 @@ export default function LaravelLearnPage() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

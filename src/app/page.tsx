@@ -67,7 +67,7 @@ export default function Home() {
       id: "nestjs",
       nameKey: "tech.nestjs.name" as const,
       descriptionKey: "tech.nestjs.description" as const,
-      color: "from-red-600 to-red-800",
+      color: "from-slate-700 to-blue-800",
       icon: "🔴",
     },
     {
@@ -81,7 +81,7 @@ export default function Home() {
       id: "devtools",
       nameKey: "tech.devtools.name" as const,
       descriptionKey: "tech.devtools.description" as const,
-      color: "from-indigo-500 to-purple-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🔧",
     },
     {
@@ -95,7 +95,7 @@ export default function Home() {
       id: "ai-interview",
       nameKey: "tech.ai-interview.name" as const,
       descriptionKey: "tech.ai-interview.description" as const,
-      color: "from-purple-500 to-pink-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🤖",
     },
   ];
@@ -111,7 +111,7 @@ export default function Home() {
           <h1 className="text-5xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
             {tKey("home.hero.title1")}
             <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               {tKey("home.hero.title2")}
             </span>
           </h1>
@@ -121,7 +121,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/signup"
-              className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:w-auto"
+              className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-3.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:w-auto"
             >
               {tKey("home.hero.signupCta")}
             </Link>
@@ -218,7 +218,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-12 text-center text-white">
+        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white">
           <h2 className="text-3xl font-bold sm:text-4xl">
             {tKey("home.about.title")}
           </h2>

@@ -26,13 +26,13 @@ export const categoriesData = [
     name: "高度な Composables と状態管理",
     file: "advanced-composables-and-state-management.json",
     icon: "🧩",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "security-and-authentication-patterns",
     name: "セキュリティと認証パターン",
     file: "security-and-authentication-patterns.json",
     icon: "🛡️",
-    color: "from-indigo-500 to-violet-600",
+    color: "from-slate-600 to-blue-600",
   },
 ] as const;

@@ -33,6 +33,6 @@ export const categoriesData = [
     name: "テスト・デバッグとDevTools活用",
     file: "testing-debugging-and-devtools-usage.json",
     icon: "✨",
-    color: "from-blue-600 to-indigo-700",
+    color: "from-blue-600 to-blue-800",
   },
 ] as const;

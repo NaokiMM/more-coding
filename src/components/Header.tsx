@@ -60,7 +60,7 @@ export default function Header({ rightContent }: HeaderProps) {
           </Link>
           <Link
             href="/signup"
-            className="rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-2 sm:px-4 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
+            className="rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-3 py-2 sm:px-4 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
           >
             {tKey("nav.signup")}
           </Link>
@@ -72,7 +72,7 @@ export default function Header({ rightContent }: HeaderProps) {
   const headerInner = (
     <>
       <Link href="/" className="flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
           MC
         </div>
         <span className="text-xl font-bold text-slate-900 dark:text-white">
@@ -127,7 +127,7 @@ export default function Header({ rightContent }: HeaderProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">

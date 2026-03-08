@@ -19,7 +19,7 @@ export const categoriesData = [
     name: "リクエスト・レスポンス",
     file: "request_response.json",
     icon: "📨",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "error_handling_config",

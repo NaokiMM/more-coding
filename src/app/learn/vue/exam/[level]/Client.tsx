@@ -24,7 +24,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
       name: "Expert",
       description:
         "高度なVue.jsパターンとアーキテクチャを試験形式で確認。大規模アプリケーション開発のスキルを試します。",
-      color: "from-purple-500 to-pink-600",
+      color: "from-slate-700 to-blue-600",
       icon: "🚀",
     },
   } as const;
@@ -91,7 +91,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
       name: "よく出る問題パターン",
       description: "頻出する問題パターンを集中的に学習できます。",
       icon: "🎯",
-      color: "from-red-500 to-pink-600",
+      color: "from-slate-600 to-blue-600",
       questions: 150,
       estimatedTime: "4時間",
     },
@@ -100,7 +100,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
       name: "合格ライン突破のコツ",
       description: "合格点を確実に取るための戦略とテクニックを学びます。",
       icon: "🏆",
-      color: "from-orange-600 to-red-700",
+      color: "from-slate-600 to-blue-700",
       lessons: 8,
       estimatedTime: "2時間",
     },
@@ -112,7 +112,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
@@ -196,7 +196,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                         : level === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                        : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                     }`}
                   >
                     {currentLevel.name}
@@ -285,7 +285,7 @@ export default function VueExamLevelClient({ level }: { level: Level }) {
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path

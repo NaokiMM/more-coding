@@ -19,7 +19,7 @@ export const categoriesData = [
     name: "エラー境界と障害の分離",
     file: "error-boundaries-and-failure-isolation.json",
     icon: "🛡️",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "high-performance-routing-and-scaling-strategies",

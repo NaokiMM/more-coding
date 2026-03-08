@@ -5,7 +5,7 @@ export const categoriesData = [
         name: "基礎・レンダリング",
         file: "basics_rendering.json",
         icon: "🛠️",
-        color: "from-pink-500 to-rose-600",
+        color: "from-slate-600 to-blue-600",
     },
     {
       // 画面表示用のID且つaws-s3にアップロードしたファイル名
@@ -22,21 +22,21 @@ export const categoriesData = [
       name: "ビルド・運用(SEO/エラー/配信)",
       file: "build_operations_seo.json",
       icon: "📦",
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
     },
     {
       id: "routing_layout",
       name: "ルーティング・レイアウト",
       file: "routing_layout.json",
       icon: "🔗",
-      color: "from-red-500 to-pink-600",
+      color: "from-slate-600 to-blue-600",
     },
     {
       id: "config_modules_plugins",
       name: "設定・拡張（モジュール/プラグイン）",
       file: "config_modules_plugins.json",
       icon: "⚡",
-      color: "from-rose-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
     },
   ] as const;
   

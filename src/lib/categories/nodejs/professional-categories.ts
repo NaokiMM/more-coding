@@ -33,6 +33,6 @@ export const categoriesData = [
     name: "テストとデバッグ",
     file: "testing-and-debugging.json",
     icon: "🧪",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
 ] as const;

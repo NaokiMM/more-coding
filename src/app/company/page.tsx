@@ -152,13 +152,13 @@ export default function CompanyPage() {
       {/* Vision & Mission */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 p-8 text-white shadow-lg">
+          <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-8 text-white shadow-lg">
             <h2 className="text-2xl font-bold mb-4">{vision.title}</h2>
             <p className="text-lg leading-relaxed opacity-90">
               {vision.description}
             </p>
           </div>
-          <div className="rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 p-8 text-white shadow-lg">
+          <div className="rounded-2xl bg-gradient-to-br from-slate-700 to-blue-600 p-8 text-white shadow-lg">
             <h2 className="text-2xl font-bold mb-4">{mission.title}</h2>
             <p className="text-lg leading-relaxed opacity-90">
               {mission.description}
@@ -227,7 +227,7 @@ export default function CompanyPage() {
         <div className="text-center">
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"

@@ -78,7 +78,7 @@ export default function CorporateLoginPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
@@ -107,7 +107,7 @@ export default function CorporateLoginPage() {
       <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white text-2xl font-bold shadow-lg">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 text-white text-2xl font-bold shadow-lg">
               🏢
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -209,7 +209,7 @@ export default function CorporateLoginPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {isSubmitting ? "ログイン中..." : "法人ログイン"}
               </button>
@@ -238,7 +238,7 @@ export default function CorporateLoginPage() {
           </div>
 
           {/* Corporate Features */}
-          <div className="mt-8 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-6 dark:from-slate-800 dark:to-slate-700">
+          <div className="mt-8 rounded-2xl bg-gradient-to-br from-blue-50 to-slate-100 p-6 dark:from-slate-800 dark:to-slate-700">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
               法人プランの特徴
             </h2>
@@ -314,7 +314,7 @@ export default function CorporateLoginPage() {
           <div className="mt-12 text-center">
             <Link
               href="/"
-              className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
             >
               <svg
                 className="mr-2 h-5 w-5"

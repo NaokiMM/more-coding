@@ -19,7 +19,7 @@ export const categoriesData = [
     name: "パフォーマンス最適化",
     file: "performance-optimization.json",
     icon: "⚡",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     id: "security-best-practices",

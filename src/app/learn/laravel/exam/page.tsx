@@ -12,7 +12,7 @@ export default function LaravelExamPage() {
       id: "associate",
       name: "本番試験 Associate",
       description: "Laravel基礎レベルの本番試験。ルーティング、コントローラー、Eloquent ORMなど基本的な概念を試験形式で確認します。",
-      color: "from-red-500 to-orange-600",
+      color: "from-slate-600 to-blue-600",
       icon: "🌱",
       topics: [
         "Laravelとは・概要・全体像",
@@ -28,7 +28,7 @@ export default function LaravelExamPage() {
       id: "professional",
       name: "本番試験 Professional",
       description: "より高度なLaravelの機能を試験形式で確認。実践的なアプリケーション開発スキルを試します。",
-      color: "from-orange-500 to-red-600",
+      color: "from-slate-600 to-blue-600",
       icon: "📚",
       topics: [
         "認証と認可",
@@ -45,7 +45,7 @@ export default function LaravelExamPage() {
       id: "expert",
       name: "本番試験 Expert",
       description: "高度なLaravelパターンとアーキテクチャを試験形式で確認。エキスパートレベルのスキルを試します。",
-      color: "from-red-600 to-pink-600",
+      color: "from-slate-600 to-blue-600",
       icon: "🚀",
       topics: [
         "サービスコンテナと依存性注入",
@@ -68,7 +68,7 @@ export default function LaravelExamPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold text-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
                 MC
               </div>
               <span className="text-xl font-bold text-slate-900 dark:text-white">
@@ -113,7 +113,7 @@ export default function LaravelExamPage() {
         </nav>
 
         <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-600 text-white text-3xl font-bold shadow-lg">
+          <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-slate-600 to-blue-600 text-white text-3xl font-bold shadow-lg">
             📝
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
@@ -151,7 +151,7 @@ export default function LaravelExamPage() {
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                         : level.id === "professional"
                         ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+                        : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                     }`}
                   >
                     {level.name.split(" ")[1]}
@@ -264,7 +264,7 @@ export default function LaravelExamPage() {
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             <svg
               className="mr-2 h-5 w-5"
