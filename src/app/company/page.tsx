@@ -10,7 +10,7 @@ export default function CompanyPage() {
     address: "開示請求があった場合は、遅滞なく開示いたします。",
     phone: "開示請求があった場合は、遅滞なく開示いたします。",
     representative: "松本尚輝",
-    business: "IT資格学習プラットフォームの運営・開発",
+    business: "JS・TS領域で1流エンジニアを目指す方のための学習サイトの運営・開発",
   };
 
   const vision = {
@@ -44,11 +44,11 @@ export default function CompanyPage() {
   const businessAreas = [
     {
       title: "オンライン学習プラットフォーム",
-      description: "IT資格取得に向けた体系的な学習コンテンツの提供",
+      description: "JS・TS領域で1流エンジニアを目指す方のための体系的な学習コンテンツの提供",
     },
     {
       title: "問題集・模擬試験サービス",
-      description: "各種IT資格試験に対応した問題集と模擬試験の提供",
+      description: "各種JS・TS領域の学習コンテンツに対応した問題集と模擬試験の提供",
     },
     {
       title: "学習進捗管理システム",

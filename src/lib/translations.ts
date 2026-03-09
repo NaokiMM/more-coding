@@ -84,8 +84,8 @@ export const translations = {
     
     // Home Page
     "home.hero.title1": "Js・Ts に特化した",
-    "home.hero.title2": "エンジニア学習アプリ",
-    "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nIT資格の取得を目指すプラットフォームです。",
+    "home.hero.title2": "エンジニア学習サイト",
+    "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nJS・TS領域で1流エンジニアを目指す方のための学習サイトです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
     "home.hero.viewTechnologies": "学習できる技術を見る",
@@ -95,7 +95,7 @@ export const translations = {
     "home.technologies.signupPrompt": "無料会員登録で今すぐ学習を開始",
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
-    "home.about.description": "IT資格の取得を目指す方のための学習プラットフォームです。\n実践的な技術を学びながら、資格取得に必要な知識を身につけられます。",
+    "home.about.description": "JS・TS領域で1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
@@ -130,7 +130,7 @@ export const translations = {
     "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
-    "footer.tagline": "IT資格の取得を目指す方のための学習プラットフォーム",
+    "footer.tagline": "JS・TS領域で1流エンジニアを目指す方のための学習サイト",
     "footer.services.title": "サービス",
     "footer.company.title": "事業情報",
     "footer.account.title": "アカウント",
