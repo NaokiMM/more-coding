@@ -66,20 +66,6 @@ export default function Home() {
       icon: "🟢",
     },
     {
-      id: "nestjs",
-      nameKey: "tech.nestjs.name" as const,
-      descriptionKey: "tech.nestjs.description" as const,
-      color: "from-slate-700 to-blue-800",
-      icon: "🔴",
-    },
-    {
-      id: "express",
-      nameKey: "tech.express.name" as const,
-      descriptionKey: "tech.express.description" as const,
-      color: "from-gray-600 to-gray-800",
-      icon: "⚡",
-    },
-    {
       id: "ai-interview",
       nameKey: "tech.ai-interview.name" as const,
       descriptionKey: "tech.ai-interview.description" as const,
