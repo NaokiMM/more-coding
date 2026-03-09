@@ -80,20 +80,6 @@ export default function Home() {
       icon: "⚡",
     },
     {
-      id: "devtools",
-      nameKey: "tech.devtools.name" as const,
-      descriptionKey: "tech.devtools.description" as const,
-      color: "from-slate-700 to-blue-600",
-      icon: "🔧",
-    },
-    {
-      id: "seo",
-      nameKey: "tech.seo.name" as const,
-      descriptionKey: "tech.seo.description" as const,
-      color: "from-emerald-500 to-teal-600",
-      icon: "🔍",
-    },
-    {
       id: "ai-interview",
       nameKey: "tech.ai-interview.name" as const,
       descriptionKey: "tech.ai-interview.description" as const,
