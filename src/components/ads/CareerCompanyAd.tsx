@@ -12,7 +12,6 @@ export default function CareerCompanyAd() {
         className="block rounded-2xl overflow-hidden shadow-lg hover:opacity-90 transition-opacity"
       >
         <img
-          border={0}
           width={300}
           height={250}
           alt="IT業界特化！未経験に徹底的に寄り添う。伴走型転職支援サービス【キャリアカンパニー】"
@@ -22,7 +21,6 @@ export default function CareerCompanyAd() {
       </a>
       {/* インプレッション計測用ピクセル */}
       <img
-        border={0}
         width={1}
         height={1}
         src="https://www11.a8.net/0.gif?a8mat=4AZ687+7CXWZ6+5UK0+5YZ75"

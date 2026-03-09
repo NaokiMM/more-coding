@@ -195,7 +195,7 @@ export default function Home() {
                       />
                     </svg>
                   </span>
-                  {"tutorialHref" in tech && tech.tutorialHref && (
+                  {"tutorialHref" in tech && typeof tech.tutorialHref === "string" ? (
                     <Link
                       href={tech.tutorialHref}
                       onClick={(e) => e.stopPropagation()}
@@ -203,7 +203,7 @@ export default function Home() {
                     >
                       教材
                     </Link>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
