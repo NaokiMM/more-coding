@@ -14,9 +14,15 @@ export default function Home() {
   const tKey = (key: string) => t(language, key);
 
   const recommendItems = [
-    "home.recommend.item1" as const,
-    "home.recommend.item2" as const,
-    "home.recommend.item3" as const,
+    {
+      key: "home.recommend.item1" as const,
+    },
+    {
+      key: "home.recommend.item2" as const,
+    },
+    {
+      key: "home.recommend.item3" as const,
+    },
   ];
 
   const technologies = [
@@ -119,24 +125,26 @@ export default function Home() {
       </section>
 
       {/* Recommended For Section */}
-      <section className="mx-auto max-w-5xl px-4 pb-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-white/80 p-6 shadow-md ring-1 ring-slate-200 dark:bg-slate-800/80 dark:ring-slate-700">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+      <section className="mx-auto max-w-7xl px-4 pt-2 pb-16 sm:px-6 lg:px-8">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
             {tKey("home.recommend.title")}
           </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            {recommendItems.map((itemKey) => (
-              <div
-                key={itemKey}
-                className="flex items-start gap-2 rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-800 dark:bg-slate-900/60 dark:text-slate-100"
-              >
-                <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
-                  ✓
-                </span>
-                <p>{tKey(itemKey)}</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {recommendItems.map((item) => (
+            <div
+              key={item.key}
+              className="flex h-full flex-col items-center rounded-2xl bg-white p-6 text-center shadow-lg ring-1 ring-slate-100 dark:bg-slate-800 dark:ring-slate-700"
+            >
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white">
+                ✓
               </div>
-            ))}
-          </div>
+              <p className="text-base font-semibold leading-relaxed text-slate-800 dark:text-slate-100">
+                {tKey(item.key)}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

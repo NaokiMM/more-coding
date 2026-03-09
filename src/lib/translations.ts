@@ -1,4 +1,4 @@
-export type TranslationKey = 
+export type TranslationKey =
   // Navigation
   | "nav.home"
   | "nav.technologies"
@@ -60,14 +60,14 @@ export type TranslationKey =
   | "tech.ai-interview.description"
   | "tech.django.name"
   | "tech.django.description"
-  
+
   // Footer
   | "footer.tagline"
   | "footer.services.title"
   | "footer.company.title"
   | "footer.account.title"
   | "footer.copyright"
-  
+
   // Common
   | "common.loading"
   | "common.user"
@@ -101,9 +101,9 @@ export const translations = {
     "home.about.title": "モアコーディングについて",
     "home.about.description": "JS・TS領域で1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
     "home.recommend.title": "こんな方におすすめ！",
-    "home.recommend.item1": "フロントエンドもバックエンドもバランスよく学びたい",
-    "home.recommend.item2": "ReactやVue、Next.jsなどモダンな技術で開発したい",
-    "home.recommend.item3": "どんな言語・技術から学び始めればいいか分からない",
+    "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",
+    "home.recommend.item2": "モダンな技術で開発したい",
+    "home.recommend.item3": "どの言語を学習すればいいか分からない",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
