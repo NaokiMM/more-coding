@@ -24,6 +24,10 @@ export type TranslationKey =
   | "home.technologies.getStarted"
   | "home.about.title"
   | "home.about.description"
+  | "home.recommend.title"
+  | "home.recommend.item1"
+  | "home.recommend.item2"
+  | "home.recommend.item3"
   
   // Technologies
   | "tech.javascript.name"
@@ -96,6 +100,10 @@ export const translations = {
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
     "home.about.description": "JS・TS領域で1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
+    "home.recommend.title": "こんな方におすすめ！",
+    "home.recommend.item1": "フロントエンドもバックエンドもバランスよく学びたい",
+    "home.recommend.item2": "ReactやVue、Next.jsなどモダンな技術で開発したい",
+    "home.recommend.item3": "どんな言語・技術から学び始めればいいか分からない",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
@@ -167,6 +175,10 @@ export const translations = {
     "home.technologies.getStarted": "Get Started",
     "home.about.title": "About More Coding",
     "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
+    "home.recommend.title": "Recommended for people like this",
+    "home.recommend.item1": "Want to learn both frontend and backend",
+    "home.recommend.item2": "Want to build with modern technologies like React, Vue, and Next.js",
+    "home.recommend.item3": "Are not sure which language or technology to start with",
     
     // Technologies
     "tech.javascript.name": "JavaScript",

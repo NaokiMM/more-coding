@@ -13,6 +13,12 @@ export default function Home() {
   const { language } = useLanguage();
   const tKey = (key: string) => t(language, key);
 
+  const recommendItems = [
+    "home.recommend.item1" as const,
+    "home.recommend.item2" as const,
+    "home.recommend.item3" as const,
+  ];
+
   const technologies = [
     {
       id: "javascript",
@@ -109,6 +115,28 @@ export default function Home() {
           <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
             {tKey("home.hero.signupHint")}
           </p>
+        </div>
+      </section>
+
+      {/* Recommended For Section */}
+      <section className="mx-auto max-w-5xl px-4 pb-4 sm:px-6 lg:px-8">
+        <div className="rounded-2xl bg-white/80 p-6 shadow-md ring-1 ring-slate-200 dark:bg-slate-800/80 dark:ring-slate-700">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+            {tKey("home.recommend.title")}
+          </h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {recommendItems.map((itemKey) => (
+              <div
+                key={itemKey}
+                className="flex items-start gap-2 rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-800 dark:bg-slate-900/60 dark:text-slate-100"
+              >
+                <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                  ✓
+                </span>
+                <p>{tKey(itemKey)}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
