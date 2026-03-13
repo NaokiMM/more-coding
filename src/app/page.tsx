@@ -142,13 +142,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 吹き出し（食べながら応援） */}
-          <div className="hidden max-w-xs text-left text-sm text-slate-700 dark:text-slate-200 sm:block">
-            <p className="font-semibold">「オリジナルうさぎが、にんじんかじりながら待ってるよ。」</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-              JS / TS の学習も、にんじんみたいに一口ずつゆっくり味わっていきましょう。
-            </p>
-          </div>
+          
         </div>
       </div>
     );
