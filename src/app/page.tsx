@@ -86,6 +86,74 @@ export default function Home() {
     },
   ];
 
+  const RabbitMascot = () => {
+    return (
+      <div className="mt-10 flex justify-center">
+        <div className="relative flex items-center gap-6 rounded-3xl bg-white/80 px-6 py-4 shadow-lg ring-1 ring-slate-100 backdrop-blur dark:bg-slate-800/90 dark:ring-slate-700">
+          {/* オリジナルうさぎ */}
+          <div className="relative flex flex-col items-center">
+            {/* 耳 */}
+            <div className="flex gap-2">
+              <div className="relative h-10 w-4 rounded-full bg-slate-100 shadow-sm dark:bg-slate-600">
+                <div className="absolute inset-1 rounded-full bg-pink-200 dark:bg-pink-300/80" />
+              </div>
+              <div className="relative h-10 w-4 rounded-full bg-slate-100 shadow-sm dark:bg-slate-600">
+                <div className="absolute inset-1 rounded-full bg-pink-200 dark:bg-pink-300/80" />
+              </div>
+            </div>
+            {/* 顔 */}
+            <div className="relative mt-1 h-16 w-18 rounded-3xl bg-white shadow-md dark:bg-slate-800">
+              {/* 目 */}
+              <div className="absolute left-4 top-5 h-2 w-2 rounded-full bg-slate-800 dark:bg-slate-100" />
+              <div className="absolute right-4 top-5 h-2 w-2 rounded-full bg-slate-800 dark:bg-slate-100" />
+              {/* 鼻 */}
+              <div className="absolute left-1/2 top-7 h-1.5 w-2 -translate-x-1/2 rounded-full bg-pink-400 dark:bg-pink-300" />
+              {/* 口 */}
+              <div className="absolute left-1/2 top-8 h-3 w-5 -translate-x-1/2 rounded-b-full border-b-2 border-pink-400 dark:border-pink-300" />
+              {/* ほっぺ */}
+              <div className="absolute left-1 top-7 h-2.5 w-4 rounded-full bg-pink-200/80 dark:bg-pink-300/70" />
+              <div className="absolute right-1 top-7 h-2.5 w-4 rounded-full bg-pink-200/80 dark:bg-pink-300/70" />
+
+              {/* くわえているにんじん */}
+              <div className="pointer-events-none absolute right-0 top-8 origin-left animate-bounce [animation-duration:1.4s]">
+                <div className="relative h-7 w-3 -rotate-15">
+                  {/* 葉っぱ */}
+                  <div className="absolute -top-2 left-1/2 flex -translate-x-1/2 gap-0.5">
+                    <div className="h-2.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                    <div className="h-2.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                  </div>
+                  {/* 本体 */}
+                  <div className="absolute inset-0 rounded-[999px] bg-gradient-to-b from-orange-400 to-orange-600 shadow-md" />
+                  {/* スジ */}
+                  <div className="absolute inset-x-0.5 top-2 h-0.5 rounded-full bg-orange-300/70" />
+                </div>
+              </div>
+            </div>
+            {/* 体＋前足 */}
+            <div className="mt-1 flex flex-col items-center">
+              <div className="flex items-end gap-1">
+                {/* 前足 */}
+                <div className="h-4 w-3 rounded-full bg-slate-100 shadow-sm dark:bg-slate-700" />
+                <div className="h-5 w-8 rounded-3xl bg-slate-100 shadow-sm dark:bg-slate-700" />
+                <div className="h-4 w-3 rounded-full bg-slate-100 shadow-sm dark:bg-slate-700" />
+              </div>
+              {/* 影 */}
+              <div className="mt-1 h-2 w-12 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 opacity-80 dark:from-slate-600/80 dark:to-slate-500/80" />
+            </div>
+          </div>
+
+          {/* 吹き出し（食べながら応援） */}
+          <div className="hidden max-w-xs text-left text-sm text-slate-700 dark:text-slate-200 sm:block">
+            <p className="font-semibold">「オリジナルうさぎが、にんじんかじりながら待ってるよ。」</p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              JS / TS の学習も、にんじんみたいに一口ずつゆっくり味わっていきましょう。
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
@@ -101,6 +169,7 @@ export default function Home() {
               {tKey("home.hero.title2")}
             </span>
           </h1>
+          <RabbitMascot />
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 whitespace-pre-line">
             {tKey("home.hero.description")}
           </p>
