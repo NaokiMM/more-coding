@@ -198,12 +198,12 @@ export default function Home() {
           {recommendItems.map((item) => (
             <div
               key={item.key}
-              className="flex h-full flex-col items-center rounded-2xl bg-white p-6 text-center shadow-lg ring-1 ring-slate-100 dark:bg-slate-800 dark:ring-slate-700"
+              className="group flex h-full flex-col items-center rounded-2xl bg-white/90 p-6 text-center shadow-lg ring-1 ring-slate-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:bg-gradient-to-br hover:from-blue-600/95 hover:to-indigo-600/95 dark:bg-slate-800/90 dark:ring-slate-700"
             >
-              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-bold text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-blue-600 motion-safe:animate-bounce">
                 ✓
               </div>
-              <p className="text-base font-semibold leading-relaxed text-slate-800 dark:text-slate-100">
+              <p className="text-base font-semibold leading-relaxed text-slate-800 dark:text-slate-100 transition-colors duration-300 group-hover:text-white">
                 {tKey(item.key)}
               </p>
             </div>
@@ -244,7 +244,7 @@ export default function Home() {
               <div className="relative">
                 {"recommendationLabel" in tech && tech.recommendationLabel ? (
                   <div className="absolute right-4 top-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5d142] px-4 py-1.5 text-sm font-bold text-amber-900 shadow-lg ring-1 ring-[#e2b800]/70 dark:bg-[#facc15] dark:text-slate-900">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5d142] px-4 py-1.5 text-sm font-bold text-amber-900 shadow-lg ring-1 ring-[#e2b800]/70 motion-safe:animate-bounce [animation-duration:1.8s] dark:bg-[#facc15] dark:text-slate-900">
                       <span className="text-base">★</span>
                       <span>{tech.recommendationLabel}</span>
                     </span>
@@ -299,7 +299,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white">
+        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white motion-safe:animate-bounce [animation-duration:4.5s]">
           <h2 className="text-3xl font-bold sm:text-4xl">
             {tKey("home.about.title")}
           </h2>
