@@ -1,7 +1,7 @@
 {
-  "name": "More Coding - ITのコーディング学習と資格が取得できるWebアプリ",
+  "name": "More Coding - JS/TSがメインで学習できるWebアプリ",
   "short_name": "More Coding",
-  "description": "ITのコーディング学習と資格が取得できるWebアプリです。React・TypeScript・Vue・Next.jsが学べます。",
+  "description": "JS/TSがメインで学習できるWebアプリです。コーディング学習と資格取得ができます。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
