@@ -12,7 +12,7 @@ TypeScript / React のコードをサンドボックスで実行し、結果を�
 - `POST /run` はスタブ（実行は未実装）
 
 ```bash
-cd code-executor && npm install && npm run dev
+cd express/code-executor && npm install && npm run dev
 # http://localhost:4000/health
 ```
 
