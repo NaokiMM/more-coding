@@ -24,6 +24,8 @@ export type TranslationKey =
   | "home.technologies.getStarted"
   | "home.about.title"
   | "home.about.description"
+  | "home.counseling.cta"
+  | "home.counseling.button"
   | "home.recommend.title"
   | "home.recommend.item1"
   | "home.recommend.item2"
@@ -96,7 +98,9 @@ export const translations = {
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
     "home.about.description": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
-    "home.recommend.title": "こんな方におすすめ！",
+    "home.counseling.cta": "まずは初回無料カウンセリング\nMTGを行いましょう！",
+    "home.counseling.button": "お問い合わせはこちら",
+    "home.recommend.title": "モアコーディングは\nこんな方におすすめ！",
     "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",
     "home.recommend.item2": "モダンな技術で開発したい",
     "home.recommend.item3": "どの言語を学習すればいいか分からない",
@@ -167,7 +171,9 @@ export const translations = {
     "home.technologies.getStarted": "Get Started",
     "home.about.title": "About More Coding",
     "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
-    "home.recommend.title": "Recommended for people like this",
+    "home.counseling.cta": "Let's start with a free initial\ncounseling meeting!",
+    "home.counseling.button": "Contact us",
+    "home.recommend.title": "More Coding is\nrecommended for people like this",
     "home.recommend.item1": "Want to learn both frontend and backend",
     "home.recommend.item2": "Want to build with modern technologies like React and Next.js",
     "home.recommend.item3": "Are not sure which language or technology to start with",

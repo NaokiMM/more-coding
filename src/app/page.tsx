@@ -159,10 +159,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Counseling CTA */}
+      <section className="mx-auto max-w-7xl px-4 pt-2 pb-8 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <p className="text-3xl font-semibold text-slate-800 dark:text-slate-100 sm:text-4xl whitespace-pre-line">
+            {tKey("home.counseling.cta")}
+          </p>
+          <Link
+            href="/contact"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+          >
+            {tKey("home.counseling.button")}
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
       {/* Recommended For Section */}
-      <section className="mx-auto max-w-7xl px-4 pt-2 pb-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl whitespace-pre-line">
             {tKey("home.recommend.title")}
           </h2>
         </div>
@@ -191,6 +209,7 @@ export default function Home() {
           </h2>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
             {tKey("home.technologies.description")}
+            <span className="ml-1" aria-hidden>🐰</span>
           </p>
           <Link
             href="/signup"
