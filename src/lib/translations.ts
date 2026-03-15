@@ -95,7 +95,7 @@ export const translations = {
     "home.technologies.signupPrompt": "無料会員登録で今すぐ学習を開始",
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
-    "home.about.description": "JS・TS領域で1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
+    "home.about.description": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
     "home.recommend.title": "こんな方におすすめ！",
     "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",
     "home.recommend.item2": "モダンな技術で開発したい",
@@ -130,7 +130,7 @@ export const translations = {
     "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
-    "footer.tagline": "JS・TS領域で1流エンジニアを目指す方のための学習サイト",
+    "footer.tagline": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイト",
     "footer.services.title": "サービス",
     "footer.company.title": "事業情報",
     "footer.account.title": "アカウント",
