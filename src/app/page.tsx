@@ -67,10 +67,10 @@ export default function Home() {
             {/* 耳（ぴょこぴょこ動く） */}
             <div className="flex gap-2">
               <div className="relative h-10 w-4 rounded-full bg-slate-100 shadow-sm dark:bg-slate-600 animate-bounce [animation-duration:1.8s]">
-                <div className="absolute inset-1 rounded-full bg-pink-200 dark:bg-pink-300/80" />
+                <div className="absolute inset-1 rounded-full bg-blue-200 dark:bg-blue-300/80" />
               </div>
               <div className="relative h-10 w-4 rounded-full bg-slate-100 shadow-sm dark:bg-slate-600 animate-bounce [animation-duration:1.8s] [animation-delay:150ms]">
-                <div className="absolute inset-1 rounded-full bg-pink-200 dark:bg-pink-300/80" />
+                <div className="absolute inset-1 rounded-full bg-blue-200 dark:bg-blue-300/80" />
               </div>
             </div>
             {/* 顔 */}
@@ -79,12 +79,12 @@ export default function Home() {
               <div className="absolute left-4 top-5 h-2 w-2 rounded-full bg-slate-800 dark:bg-slate-100" />
               <div className="absolute right-4 top-5 h-2 w-2 rounded-full bg-slate-800 dark:bg-slate-100" />
               {/* 鼻 */}
-              <div className="absolute left-1/2 top-7 h-1.5 w-2 -translate-x-1/2 rounded-full bg-pink-400 dark:bg-pink-300" />
+              <div className="absolute left-1/2 top-7 h-1.5 w-2 -translate-x-1/2 rounded-full bg-blue-400 dark:bg-blue-300" />
               {/* 口 */}
-              <div className="absolute left-1/2 top-8 h-3 w-5 -translate-x-1/2 rounded-b-full border-b-2 border-pink-400 dark:border-pink-300" />
+              <div className="absolute left-1/2 top-8 h-3 w-5 -translate-x-1/2 rounded-b-full border-b-2 border-blue-400 dark:border-blue-300" />
               {/* ほっぺ（ほんのり点滅） */}
-              <div className="absolute left-1 top-7 h-2.5 w-4 rounded-full bg-pink-200/80 dark:bg-pink-300/70 animate-pulse" />
-              <div className="absolute right-1 top-7 h-2.5 w-4 rounded-full bg-pink-200/80 dark:bg-pink-300/70 animate-pulse [animation-delay:200ms]" />
+              <div className="absolute left-1 top-7 h-2.5 w-4 rounded-full bg-blue-200/80 dark:bg-blue-300/70 animate-pulse" />
+              <div className="absolute right-1 top-7 h-2.5 w-4 rounded-full bg-blue-200/80 dark:bg-blue-300/70 animate-pulse [animation-delay:200ms]" />
 
               {/* くわえているにんじん（モグモグ） */}
               <div className="pointer-events-none absolute right-0 top-8 origin-left animate-bounce [animation-duration:0.9s]">
