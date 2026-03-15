@@ -50,13 +50,6 @@ export default function Home() {
       icon: "▲",
     },
     {
-      id: "nuxtjs",
-      nameKey: "tech.nuxtjs.name" as const,
-      descriptionKey: "tech.nuxtjs.description" as const,
-      color: "from-green-600 to-emerald-700",
-      icon: "ν",
-    },
-    {
       id: "ai-interview",
       nameKey: "tech.ai-interview.name" as const,
       descriptionKey: "tech.ai-interview.description" as const,

@@ -38,8 +38,6 @@ export type TranslationKey =
   | "tech.react.description"
   | "tech.nextjs.name"
   | "tech.nextjs.description"
-  | "tech.nuxtjs.name"
-  | "tech.nuxtjs.description"
   | "tech.devtools.name"
   | "tech.devtools.description"
   | "tech.seo.name"
@@ -85,7 +83,7 @@ export const translations = {
     "nav.signup": "会員登録",
     
     // Home Page
-    "home.hero.title1": "Js・Ts に特化した",
+    "home.hero.title1": "Ts に特化した",
     "home.hero.title2": "エンジニア学習サイト",
     "home.hero.description": "TypeScript、Reactなどの最新技術を学びながら、\nJS・TS領域で1流エンジニアを目指す方のための学習サイトです。",
     "home.hero.getStarted": "学習を始める",
@@ -112,8 +110,6 @@ export const translations = {
     "tech.react.description": "ユーザーインターフェース構築のためのJavaScriptライブラリ。コンポーネントベースの開発が可能です。",
     "tech.nextjs.name": "Next.js",
     "tech.nextjs.description": "Reactベースのフルスタックフレームワーク。SSR、SSG、APIルートなどの機能を提供します。",
-    "tech.nuxtjs.name": "Nuxt.js",
-    "tech.nuxtjs.description": "Vue.jsベースのフルスタックフレームワーク。SSR、静的サイト生成、モジュールシステムを提供します。",
     "tech.devtools.name": "DevTools",
     "tech.devtools.description": "ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。",
     "tech.seo.name": "SEO",
@@ -158,7 +154,7 @@ export const translations = {
     "nav.signup": "Sign Up",
     
     // Home Page
-    "home.hero.title1": "JS/TS-Focused",
+    "home.hero.title1": "TS-Focused",
     "home.hero.title2": "Engineering Learning App",
     "home.hero.description": "Learn the latest technologies like TypeScript and React while aiming to obtain IT certifications on our platform.",
     "home.hero.getStarted": "Get Started",
@@ -185,8 +181,6 @@ export const translations = {
     "tech.react.description": "A JavaScript library for building user interfaces. Enables component-based development.",
     "tech.nextjs.name": "Next.js",
     "tech.nextjs.description": "A React-based full-stack framework. Provides features like SSR, SSG, and API routes.",
-    "tech.nuxtjs.name": "Nuxt.js",
-    "tech.nuxtjs.description": "A Vue.js-based full-stack framework. Provides SSR, static site generation, and a module system.",
     "tech.devtools.name": "DevTools",
     "tech.devtools.description": "Master skills such as debugging, performance analysis, and network monitoring by utilizing browser developer tools.",
     "tech.seo.name": "SEO",
