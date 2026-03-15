@@ -27,13 +27,6 @@ export default function Home() {
 
   const technologies = [
     {
-      id: "javascript",
-      nameKey: "tech.javascript.name" as const,
-      descriptionKey: "tech.javascript.description" as const,
-      color: "from-yellow-500 to-orange-600",
-      icon: "JS",
-    },
-    {
       id: "typescript",
       nameKey: "tech.typescript.name" as const,
       descriptionKey: "tech.typescript.description" as const,
@@ -69,13 +62,6 @@ export default function Home() {
       descriptionKey: "tech.nuxtjs.description" as const,
       color: "from-green-600 to-emerald-700",
       icon: "ν",
-    },
-    {
-      id: "nodejs",
-      nameKey: "tech.nodejs.name" as const,
-      descriptionKey: "tech.nodejs.description" as const,
-      color: "from-green-600 to-green-800",
-      icon: "🟢",
     },
     {
       id: "ai-interview",
