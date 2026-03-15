@@ -85,7 +85,7 @@ export const translations = {
     // Home Page
     "home.hero.title1": "Ts に特化した",
     "home.hero.title2": "エンジニア学習サイト",
-    "home.hero.description": "TypeScript、Reactなどの最新技術を学びながら、\nJS・TS領域で1流エンジニアを目指す方のための学習サイトです。",
+    "home.hero.description": "TypeScript、React等のTS領域の技術を学びながら、\nTS領域で1流エンジニアを目指す方のための学習サイトです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
     "home.hero.viewTechnologies": "学習できる技術を見る",

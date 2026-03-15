@@ -5,7 +5,7 @@ import BlogList from "@/components/BlogList";
 
 export const metadata: Metadata = {
   title: "ブログ - More Coding",
-  description: "More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。",
+  description: "More Coding（モアコーディング）の技術ブログ。TypeScript、React等のTS領域の技術について学べます。",
 };
 
 export default async function BlogsPage() {
@@ -28,7 +28,7 @@ export default async function BlogsPage() {
             ブログ
           </h1>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-            More Coding（モアコーディング）の技術ブログ。Next.js、TypeScript、Reactなどの最新技術について学べます。
+            More Coding（モアコーディング）の技術ブログ。TypeScript、React等のTS領域の技術について学べます。
           </p>
         </header>
 
