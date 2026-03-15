@@ -36,8 +36,6 @@ export type TranslationKey =
   | "tech.typescript.description"
   | "tech.react.name"
   | "tech.react.description"
-  | "tech.vue.name"
-  | "tech.vue.description"
   | "tech.nextjs.name"
   | "tech.nextjs.description"
   | "tech.nuxtjs.name"
@@ -89,7 +87,7 @@ export const translations = {
     // Home Page
     "home.hero.title1": "Js・Ts に特化した",
     "home.hero.title2": "エンジニア学習サイト",
-    "home.hero.description": "TypeScript、React、Vue.jsなどの最新技術を学びながら、\nJS・TS領域で1流エンジニアを目指す方のための学習サイトです。",
+    "home.hero.description": "TypeScript、Reactなどの最新技術を学びながら、\nJS・TS領域で1流エンジニアを目指す方のための学習サイトです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
     "home.hero.viewTechnologies": "学習できる技術を見る",
@@ -112,8 +110,6 @@ export const translations = {
     "tech.typescript.description": "型安全性を持つJavaScriptのスーパーセット。大規模なアプリケーション開発に最適です。",
     "tech.react.name": "React",
     "tech.react.description": "ユーザーインターフェース構築のためのJavaScriptライブラリ。コンポーネントベースの開発が可能です。",
-    "tech.vue.name": "Vue.js",
-    "tech.vue.description": "プログレッシブなJavaScriptフレームワーク。段階的に採用できる柔軟性が特徴です。",
     "tech.nextjs.name": "Next.js",
     "tech.nextjs.description": "Reactベースのフルスタックフレームワーク。SSR、SSG、APIルートなどの機能を提供します。",
     "tech.nuxtjs.name": "Nuxt.js",
@@ -164,7 +160,7 @@ export const translations = {
     // Home Page
     "home.hero.title1": "JS/TS-Focused",
     "home.hero.title2": "Engineering Learning App",
-    "home.hero.description": "Learn the latest technologies like TypeScript, React, and Vue.js while aiming to obtain IT certifications on our platform.",
+    "home.hero.description": "Learn the latest technologies like TypeScript and React while aiming to obtain IT certifications on our platform.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
     "home.hero.viewTechnologies": "View technologies",
@@ -177,7 +173,7 @@ export const translations = {
     "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
     "home.recommend.title": "Recommended for people like this",
     "home.recommend.item1": "Want to learn both frontend and backend",
-    "home.recommend.item2": "Want to build with modern technologies like React, Vue, and Next.js",
+    "home.recommend.item2": "Want to build with modern technologies like React and Next.js",
     "home.recommend.item3": "Are not sure which language or technology to start with",
     
     // Technologies
@@ -187,8 +183,6 @@ export const translations = {
     "tech.typescript.description": "A superset of JavaScript with type safety. Ideal for large-scale application development.",
     "tech.react.name": "React",
     "tech.react.description": "A JavaScript library for building user interfaces. Enables component-based development.",
-    "tech.vue.name": "Vue.js",
-    "tech.vue.description": "A progressive JavaScript framework. Characterized by the flexibility to adopt gradually.",
     "tech.nextjs.name": "Next.js",
     "tech.nextjs.description": "A React-based full-stack framework. Provides features like SSR, SSG, and API routes.",
     "tech.nuxtjs.name": "Nuxt.js",

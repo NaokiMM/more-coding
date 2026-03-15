@@ -43,13 +43,6 @@ export default function Home() {
       recommendationLabel: "推奨No.2",
     },
     {
-      id: "vue",
-      nameKey: "tech.vue.name" as const,
-      descriptionKey: "tech.vue.description" as const,
-      color: "from-green-500 to-emerald-600",
-      icon: "Vue",
-    },
-    {
       id: "nextjs",
       nameKey: "tech.nextjs.name" as const,
       descriptionKey: "tech.nextjs.description" as const,
