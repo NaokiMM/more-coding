@@ -21,6 +21,7 @@ export default function ContactPage() {
 
   const categories = [
     { value: "", label: "選択してください" },
+    { value: "free-initial-mtg", label: "無料初回MTG" },
     { value: "service", label: "サービスについて" },
     { value: "pricing", label: "料金について" },
     { value: "technical", label: "技術的な質問" },
