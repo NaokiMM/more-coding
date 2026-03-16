@@ -48,7 +48,7 @@ export default function CompanyPage() {
     },
     {
       title: "問題集・模擬試験サービス",
-      description: "各種JS・TS領域の学習コンテンツに対応した問題集と模擬試験の提供",
+      description: "各種TS領域の学習コンテンツに対応した問題集と模擬試験の提供",
     },
     {
       title: "学習進捗管理システム",
