@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="frontendGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="40" fill="url(#frontendGradient)"/>
+  <circle cx="260" cy="190" r="90" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="960" cy="470" r="140" fill="rgba(15,23,42,0.22)"/>
+  <rect x="260" y="210" width="680" height="280" rx="24" fill="rgba(15,23,42,0.95)"/>
+  <rect x="290" y="240" width="140" height="14" rx="7" fill="#38BDF8" opacity="0.9"/>
+  <rect x="290" y="280" width="380" height="10" rx="5" fill="#CBD5F5" opacity="0.9"/>
+  <rect x="290" y="305" width="320" height="10" rx="5" fill="#CBD5F5" opacity="0.7"/>
+  <rect x="290" y="330" width="260" height="10" rx="5" fill="#CBD5F5" opacity="0.5"/>
+  <rect x="290" y="380" width="120" height="34" rx="17" fill="#22C55E" opacity="0.9"/>
+  <rect x="430" y="380" width="120" height="34" rx="17" fill="#0EA5E9" opacity="0.9"/>
+  <text x="290" y="403" fill="white" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont" font-weight="600">
+    Start Learning
+  </text>
+  <text x="430" y="403" fill="white" font-size="14" font-family="system-ui, -apple-system, BlinkMacSystemFont" font-weight="600">
+    See Docs
+  </text>
+  <text x="280" y="180" fill="white" font-size="40" font-family="system-ui, -apple-system, BlinkMacSystemFont" font-weight="700">
+    Frontend Development
+  </text>
+  <text x="280" y="220" fill="#DBEAFE" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont">
+    React / Next.js / TypeScript / UI
+  </text>
+</svg>
+

@@ -2,16 +2,35 @@
 
 // ホームページ
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/lib/i18n";
 import Header from "@/components/Header";
 import AdBanner from "@/components/AdBanner";
+import type { PostMetadata } from "@/types/post";
 
 export default function Home() {
   const router = useRouter();
   const { language } = useLanguage();
   const tKey = (key: string) => t(language, key);
+
+  const [latestPosts, setLatestPosts] = useState<PostMetadata[]>([]);
+
+  useEffect(() => {
+    const fetchLatest = async () => {
+      try {
+        const res = await fetch("/api/blogs/latest");
+        if (!res.ok) return;
+        const data = (await res.json()) as PostMetadata[];
+        setLatestPosts(data);
+      } catch {
+        // 失敗時は何もしない（表示しない）
+      }
+    };
+    fetchLatest();
+  }, []);
 
   const recommendItems = [
     {
@@ -282,6 +301,96 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Latest Blogs Section */}
+      {latestPosts.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+          <div className="mb-6 text-center">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              モアコーディングの最新ブログ
+            </h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+              モアコーディングや技術に関するブログ
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {latestPosts.map((post) => {
+              const href = post.category
+                ? `/blogs/${post.category}/${post.slug}`
+                : `/blogs/_/${post.slug}`;
+              const imageSrc =
+                post.category === "frontend"
+                  ? "/images/blog/frontend-default.svg"
+                  : post.category === "backend"
+                  ? "/images/blog/backend-default.svg"
+                  : post.category === "devops"
+                  ? "/images/blog/devops-default.svg"
+                  : post.category === "typescript"
+                  ? "/images/blog/typescript-default.svg"
+                  : "/images/blog/default.svg";
+
+              return (
+                <Link
+                  key={`${post.category}-${post.slug}`}
+                  href={href}
+                  className="group overflow-hidden rounded-2xl bg-white/90 shadow-lg ring-1 ring-slate-100 transition-all hover:-translate-y-1 hover:shadow-2xl dark:bg-slate-800/90 dark:ring-slate-700"
+                >
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src={imageSrc}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex h-full flex-col p-4">
+                    <time
+                      dateTime={post.date}
+                      className="mb-2 text-xs text-slate-500 dark:text-slate-400"
+                    >
+                      {new Date(post.date).toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      })}
+                    </time>
+                    <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="mb-3 line-clamp-2 text-xs text-slate-600 dark:text-slate-300">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    {post.tags.length > 0 && (
+                      <div className="mt-auto flex flex-wrap gap-1">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700 dark:bg-slate-700 dark:text-slate-200"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-6 text-center">
+            <Link
+              href="/blogs"
+              className="inline-flex items-center rounded-full bg-slate-100 px-6 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
+            >
+              もっと見る
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Ad Banner */}
       <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
