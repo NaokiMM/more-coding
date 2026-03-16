@@ -416,3 +416,18 @@ body {
 .prose .hljs-builtin-name {
   color: #4ec9b0;
 }
+
+/* うさぎアイコンの左右ぴょんぴょんアニメーション */
+.rabbit-hop {
+  animation: rabbit-hop 2.2s ease-in-out infinite;
+}
+
+@keyframes rabbit-hop {
+  0%,
+  100% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
