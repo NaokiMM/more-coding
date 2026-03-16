@@ -23,14 +23,14 @@ process.env：コードから環境変数を取得するための入口
 .env.local の値は Next.js 起動時に読み込まれ、process.env 経由で利用される。
 これにより、同じコードをローカル・本番で使い回せる。
 
-## Express（バックエンド）
-Express で動かすバックエンドサービスを置いている。
+## Hono（バックエンド）
+Hono で動かすバックエンドサービスを置いている。
 
 - **code-executor** — LeetCode 風のコード実行 API（TypeScript/React のサンドボックス実行）
   - `GET /health` で死活確認、`POST /run` でコード実行
-  - 起動: `cd express/code-executor && npm install && npm run dev`（http://localhost:4000）
+  - 起動: `cd hono/code-executor && npm install && npm run dev`（http://localhost:4000）
 
-詳細・API 仕様・開発の進め方は [express/README.md](express/README.md) および [express/code-executor/README.md](express/code-executor/README.md) を参照。
+詳細・API 仕様・開発の進め方は `hono/README.md` および `hono/code-executor/README.md` を参照。
 
 # Secretsファイルリスト
 ※チーム内メンバーより提供必要有り。
