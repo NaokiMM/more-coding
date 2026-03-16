@@ -98,7 +98,7 @@ export const translations = {
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
     "home.about.description": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
-    "home.counseling.cta": "まずは初回無料カウンセリング\nMTGを行いましょう！",
+    "home.counseling.cta": "30分初回無料カウンセリング\nMTGを受け付けています。\n勉強に不安がある方は是非一度ご連絡してください。",
     "home.counseling.button": "お問い合わせはこちら",
     "home.recommend.title": "モアコーディングは\nこんな方におすすめ！",
     "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",

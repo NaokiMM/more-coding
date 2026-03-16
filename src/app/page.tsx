@@ -181,9 +181,23 @@ export default function Home() {
       {/* Counseling CTA */}
       <section className="mx-auto max-w-7xl px-4 pt-2 pb-8 sm:px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-3xl font-semibold text-slate-800 dark:text-slate-100 sm:text-4xl whitespace-pre-line">
-            {tKey("home.counseling.cta")}
-          </p>
+          {(() => {
+            const lines = tKey("home.counseling.cta").split("\n");
+            return (
+              <>
+                <p className="text-3xl font-semibold text-slate-800 dark:text-slate-100 sm:text-4xl">
+                  {lines[0]}
+                  <br />
+                  {lines[1]}
+                </p>
+                {lines[2] && (
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    {lines[2]}
+                  </p>
+                )}
+              </>
+            );
+          })()}
           <Link
             href="/contact"
             className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
