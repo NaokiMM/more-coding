@@ -413,7 +413,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white motion-safe:animate-bounce [animation-duration:4.5s]">
+        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white">
           <h2 className="text-3xl font-bold sm:text-4xl">
             {tKey("home.about.title")}
           </h2>
