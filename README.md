@@ -5,9 +5,6 @@ https://more-coding.com/
 ## GitHub
 https://github.com/NaokiMM/more-coding
 
-## 教材資料（非公開）
-https://drive.google.com/drive/u/0/folders/12MTCsc9PduvNM-P7HixS1Ve5Kz-vwIAL
-
 # 開発構成要素
 ## Stgブランチ
 AWS AmpligyでStgブランチを本番同様、デプロイしています。 
@@ -76,10 +73,6 @@ Top-Down Readability（トップダウン設計）
 ##### コンテナサービス: Docker
 ##### 監視・ログ：CloudWatch
 ##### IAC:Terraform
-
-## 試験実施ツール
-### Safe Exam Browser
-https://safeexambrowser.org/download_en.html
 
 ## テスト方針
 ### 単体テスト
