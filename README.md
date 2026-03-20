@@ -25,6 +25,9 @@ Hono で動かすバックエンドサービスを置いている。
 
 - **code-executor** — LeetCode 風のコード実行 API（TypeScript/React のサンドボックス実行）
   - `GET /health` で死活確認、`POST /run` でコード実行
+  - GraphQL サービスも用意しており、フロント/クライアントは `POST /graphql` で `query`/`mutation` を実行できます
+    - `GET /graphql` で GraphiQL（手動で動作確認）
+    - いまの最小構成: `Query.health` と `Mutation.run`（`/run` と同じスタブ返却）
   - 起動: `cd hono/code-executor && npm install && npm run dev`（http://localhost:4000）
 
 詳細・API 仕様・開発の進め方は `hono/README.md` および `hono/code-executor/README.md` を参照。
@@ -59,6 +62,13 @@ Top-Down Readability（トップダウン設計）
 #### Repositry > Settings > Branches > Branch protection rule内でブランチルールを設定
 #### PR必須: Require a pull request before merging > Require approvals（1）
 #### 管理者もPR必須: Do not allow bypassing the above settings
+
+## 使用している外部サービス
+- AWS: DynamoDB, Cognito, Amazon SES, Lambda, API Gateway, S3, CloudFront, Route53, IAM, CloudWatch
+- Google Gemini API（AI面接）
+- Stripe（請求）
+- Playwright（E2E）
+- GraphQL: code-executor の `POST /graphql`（Query.health / Mutation.run）
 
 ## AWSクラウドの主な使用サービス
 ##### DB: DynamoDB
