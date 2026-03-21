@@ -11,10 +11,10 @@ import {
 } from "@/lib/learnLocale";
 
 interface StudyStartWithLocaleSelectProps {
-  /** 学習開始後に遷移するURL（?locale= は付与しない）。例: /learn/react/associate/xyz/study */
+  /** 学習開始後に遷移するURL（?locale= は付与しない）。例: /learn/nextjs/associate/xyz/study */
   studyPath: string;
   categoryName: string;
-  /** 戻るリンク（例: /learn/react/associate） */
+  /** 戻るリンク（例: /learn/nextjs/associate） */
   backHref: string;
   backLabel?: string;
   /** カードのグラデーション（tailwind）。例: from-cyan-500 to-blue-600 */

@@ -54,19 +54,12 @@ export default function Home() {
       recommendationLabel: "推奨No.1",
     },
     {
-      id: "react",
-      nameKey: "tech.react.name" as const,
-      descriptionKey: "tech.react.description" as const,
-      color: "from-cyan-500 to-blue-600",
-      icon: "⚛️",
-      recommendationLabel: "推奨No.2",
-    },
-    {
       id: "nextjs",
       nameKey: "tech.nextjs.name" as const,
       descriptionKey: "tech.nextjs.description" as const,
       color: "from-gray-700 to-gray-900",
       icon: "▲",
+      recommendationLabel: "推奨No.2",
     },
   ];
 
