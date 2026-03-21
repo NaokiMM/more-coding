@@ -19,17 +19,21 @@ export default function Home() {
   const [latestPosts, setLatestPosts] = useState<PostMetadata[]>([]);
 
   useEffect(() => {
+    let cancelled = false;
     const fetchLatest = async () => {
       try {
         const res = await fetch("/api/blogs/latest");
-        if (!res.ok) return;
+        if (!res.ok || cancelled) return;
         const data = (await res.json()) as PostMetadata[];
-        setLatestPosts(data);
+        if (!cancelled) setLatestPosts(data);
       } catch {
         // 失敗時は何もしない（表示しない）
       }
     };
     fetchLatest();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const recommendItems = [
@@ -52,14 +56,6 @@ export default function Home() {
       color: "from-slate-700 to-blue-600",
       icon: "🤖",
       recommendationLabel: "推奨No.1",
-    },
-    {
-      id: "nextjs",
-      nameKey: "tech.nextjs.name" as const,
-      descriptionKey: "tech.nextjs.description" as const,
-      color: "from-gray-700 to-gray-900",
-      icon: "▲",
-      recommendationLabel: "推奨No.2",
     },
   ];
 

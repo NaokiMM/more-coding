@@ -3,7 +3,7 @@
 // サーバー側で生成されたHTMLに対してクライアント（CSR）で動作するJavaScriptを付与するための宣言
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { getCurrentUser, getUserAttributes, getSession, signOut as cognitoSignOut } from "@/lib/cognito";
 
@@ -59,16 +59,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     2. セッションがあれば /me API を呼ぶ
     3. 本来は API Gateway 経由でユーザー情報を取得するが、
     失敗した場合は Cognito から直接取得する
+
+    shouldAbort が true のときは状態更新しない（Strict Mode の二重マウントや
+    画面遷移後に非同期が遅れて完了した場合の警告・不整合を防ぐ）。
   */
-  const loadUser = async () => {
+  const loadUser = useCallback(async (shouldAbort: () => boolean) => {
     try {
       const currentUser = await getCurrentUser();
+      if (shouldAbort()) return;
       if (currentUser) {
         setCognitoUser(currentUser);
-        
+
         // API Gatewayからユーザー情報を取得
         try {
           const session = await getSession();
+          if (shouldAbort()) return;
           if (session) {
             const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
             if (!API_BASE_URL) throw new Error("NEXT_PUBLIC_API_BASE_URL is not set");
@@ -79,8 +84,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               },
             });
 
+            if (shouldAbort()) return;
+
             if (response.ok) {
               const data: MeResponse = await response.json();
+              if (shouldAbort()) return;
               // auth と item をマージして User 型に変換
               const userData: User = {
                 ...data.item,
@@ -97,25 +105,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             } else {
               // APIから取得できない場合はCognitoから取得
               const attributes = await getUserAttributes(currentUser);
+              if (shouldAbort()) return;
               setUser(attributes as User);
             }
           } else {
             // セッションがない場合はCognitoから取得
             const attributes = await getUserAttributes(currentUser);
+            if (shouldAbort()) return;
             setUser(attributes as User);
           }
         } catch (apiError) {
           console.error("Error fetching user from API:", apiError);
           // APIエラーの場合はCognitoから取得
           const attributes = await getUserAttributes(currentUser);
+          if (shouldAbort()) return;
           setUser(attributes as User);
         }
       } else {
         // Cognito にいなければ Google セッションを確認
         try {
           const sessionRes = await fetch("/api/auth/session");
+          if (shouldAbort()) return;
           if (sessionRes.ok) {
             const data = await sessionRes.json();
+            if (shouldAbort()) return;
             if (data.user) {
               setUser(data.user as User);
               setCognitoUser(null);
@@ -128,6 +141,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setCognitoUser(null);
           }
         } catch {
+          if (shouldAbort()) return;
           setUser(null);
           setCognitoUser(null);
         }
@@ -135,17 +149,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // try catch でエラーを処理
     } catch (error) {
       console.error("Error loading user:", error);
+      if (shouldAbort()) return;
       setUser(null);
       setCognitoUser(null);
     // 最終時にloadingをfalseにする
     } finally {
-      setLoading(false);
+      if (!shouldAbort()) {
+        setLoading(false);
+      }
     }
-  };
+  }, []);
 
   useEffect(() => {
-    loadUser();
-  }, []);
+    let cancelled = false;
+    void loadUser(() => cancelled);
+    return () => {
+      cancelled = true;
+    };
+  }, [loadUser]);
 
   const signOut = () => {
     cognitoSignOut();
@@ -155,7 +176,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const refreshUser = async () => {
-    await loadUser();
+    await loadUser(() => false);
   };
 
   /*

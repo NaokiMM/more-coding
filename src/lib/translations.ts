@@ -34,8 +34,6 @@ export type TranslationKey =
   // Technologies
   | "tech.javascript.name"
   | "tech.javascript.description"
-  | "tech.nextjs.name"
-  | "tech.nextjs.description"
   | "tech.devtools.name"
   | "tech.devtools.description"
   | "tech.seo.name"
@@ -104,8 +102,6 @@ export const translations = {
     // Technologies
     "tech.javascript.name": "JavaScript",
     "tech.javascript.description": "Web開発の基本となるプログラミング言語。動的なウェブサイトとアプリケーションを構築できます。",
-    "tech.nextjs.name": "Next.js",
-    "tech.nextjs.description": "Reactベースのフルスタックフレームワーク。SSR、SSG、APIルートなどの機能を提供します。",
     "tech.devtools.name": "DevTools",
     "tech.devtools.description": "ブラウザの開発者ツールを活用して、デバッグ、パフォーマンス分析、ネットワーク監視などのスキルを身につけます。",
     "tech.seo.name": "SEO",
@@ -173,8 +169,6 @@ export const translations = {
     // Technologies
     "tech.javascript.name": "JavaScript",
     "tech.javascript.description": "A fundamental programming language for web development. You can build dynamic websites and applications.",
-    "tech.nextjs.name": "Next.js",
-    "tech.nextjs.description": "A React-based full-stack framework. Provides features like SSR, SSG, and API routes.",
     "tech.devtools.name": "DevTools",
     "tech.devtools.description": "Master skills such as debugging, performance analysis, and network monitoring by utilizing browser developer tools.",
     "tech.seo.name": "SEO",
