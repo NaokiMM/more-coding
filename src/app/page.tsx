@@ -51,7 +51,6 @@ export default function Home() {
       descriptionKey: "tech.ai-interview.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🤖",
-      recommendationLabel: "推奨",
     },
   ];
 
