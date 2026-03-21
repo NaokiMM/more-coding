@@ -46,27 +46,12 @@ export default function Home() {
 
   const technologies = [
     {
-      id: "typescript",
-      nameKey: "tech.typescript.name" as const,
-      descriptionKey: "tech.typescript.description" as const,
-      color: "from-blue-500 to-blue-700",
-      icon: "TS",
-      recommendationLabel: "推奨No.1",
-    },
-    {
-      id: "react",
-      nameKey: "tech.react.name" as const,
-      descriptionKey: "tech.react.description" as const,
-      color: "from-cyan-500 to-blue-600",
-      icon: "⚛️",
-      recommendationLabel: "推奨No.2",
-    },
-    {
       id: "nextjs",
       nameKey: "tech.nextjs.name" as const,
       descriptionKey: "tech.nextjs.description" as const,
       color: "from-gray-700 to-gray-900",
       icon: "▲",
+      recommendationLabel: "推奨No.1",
     },
     {
       id: "ai-interview",
@@ -74,6 +59,7 @@ export default function Home() {
       descriptionKey: "tech.ai-interview.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🤖",
+      recommendationLabel: "推奨No.2",
     },
   ];
 
@@ -355,6 +341,7 @@ export default function Home() {
                       src={imageSrc}
                       alt={post.title}
                       fill
+                      unoptimized
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -377,9 +364,9 @@ export default function Home() {
                         {post.excerpt}
                       </p>
                     )}
-                    {post.tags.length > 0 && (
+                    {(post.tags ?? []).length > 0 && (
                       <div className="mt-auto flex flex-wrap gap-1">
-                        {post.tags.slice(0, 3).map((tag) => (
+                        {(post.tags ?? []).slice(0, 3).map((tag) => (
                           <span
                             key={tag}
                             className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700 dark:bg-slate-700 dark:text-slate-200"

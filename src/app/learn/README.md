@@ -91,5 +91,5 @@ const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, technology, course, filenam
 
 ## 教材言語（ロケール）の選択
 
-- 各教材トップ（例: `/learn/react`）で、ロケール未選択時は「教材の言語を選択」画面（JP/EN/CN プルダウン）を表示する。
+- 各教材トップ（例: `/learn/nextjs`）で、ロケール未選択時は「教材の言語を選択」画面（JP/EN/CN プルダウン）を表示する。
 - 選択後は `?locale=jp` 等がURLに付与され、以降の学習・試験ページでは同じロケールでS3パスが組み立てられる。途中での言語変更はできない。
