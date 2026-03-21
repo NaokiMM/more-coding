@@ -69,23 +69,6 @@ export default function AIInterviewLearnPage() {
       estimatedHours: 35,
       lessons: 50,
     },
-    {
-      id: "exam",
-      nameKey: "learn.exam" as const,
-      descriptionKey: "learn.ai-interview.exam.description" as const,
-      color: "from-slate-600 to-blue-600",
-      icon: "📝",
-      topics: [
-        "模擬面接（全3回）",
-        "過去問題演習",
-        "面接対策ポイント",
-        "時間配分のコツ",
-        "よく出る質問パターン",
-        "合格ライン突破のコツ",
-      ],
-      estimatedHours: 15,
-      lessons: 20,
-    },
   ];
 
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
@@ -128,7 +111,7 @@ export default function AIInterviewLearnPage() {
         </div>
 
         {/* Levels Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {levels.map((level) => (
             <div
               key={level.id}
@@ -259,15 +242,7 @@ export default function AIInterviewLearnPage() {
                 )}
 
                 {/* Action Button */}
-                {level.id === "exam" ? (
-                  <Link
-                    href="/learn/ai-interview/exam"
-                    className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {tKey("learn.getStarted")}
-                  </Link>
-                ) : level.id === "associate" ? (
+                {level.id === "associate" ? (
                   <Link
                     href="/learn/ai-interview/associate"
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
