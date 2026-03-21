@@ -218,7 +218,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
             {tKey("home.technologies.title")}
           </h2>
-          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
+          <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 whitespace-pre-line">
             {tKey("home.technologies.description")}
             <span className="ml-1" aria-hidden>🐰</span>
           </p>
