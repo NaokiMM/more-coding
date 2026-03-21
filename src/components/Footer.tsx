@@ -45,11 +45,6 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">{tKey("footer.services.title")}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/#technologies" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
-                  {tKey("nav.technologies")}
-                </Link>
-              </li>
-              <li>
                 <Link href="/blogs" className="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                   {tKey("nav.blog")}
                 </Link>
