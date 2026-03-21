@@ -95,9 +95,9 @@ export const translations = {
     "home.counseling.cta": "30分初回無料カウンセリング\nMTGを受け付けています。\n勉強に不安がある方は是非一度ご連絡してください。",
     "home.counseling.button": "お問い合わせはこちら",
     "home.recommend.title": "モアコーディングは\nこんな方におすすめ！",
-    "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",
-    "home.recommend.item2": "モダンな技術で開発したい",
-    "home.recommend.item3": "どの言語を学習すればいいか分からない",
+    "home.recommend.item1": "就職・転職の面接本番に向けて、本番に近い形で準備したい",
+    "home.recommend.item2": "技術の説明を言葉にして話す力を、繰り返し鍛えたい",
+    "home.recommend.item3": "通勤やスキマ時間など、短時間でも続けられる練習がしたい",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
@@ -161,10 +161,10 @@ export const translations = {
     "home.about.description": "An AI interview platform for engineers.\nPractice realistic Q&A modeled on real interviews so you can show up with confidence.",
     "home.counseling.cta": "Let's start with a free initial\ncounseling meeting!",
     "home.counseling.button": "Contact us",
-    "home.recommend.title": "More Coding is\nrecommended for people like this",
-    "home.recommend.item1": "Want to learn both frontend and backend",
-    "home.recommend.item2": "Want to build with modern technologies",
-    "home.recommend.item3": "Are not sure which language or technology to start with",
+    "home.recommend.title": "More Coding is a great fit\nif this sounds like you",
+    "home.recommend.item1": "Preparing for real job interviews and want practice that feels close to the real thing",
+    "home.recommend.item2": "Want to get better at explaining technical topics out loud, through repetition",
+    "home.recommend.item3": "Need short practice sessions you can keep up during commutes or spare moments",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
