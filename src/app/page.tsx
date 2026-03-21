@@ -232,7 +232,7 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-8">
           {technologies.map((tech) => (
             <div
               key={tech.id}
@@ -240,7 +240,7 @@ export default function Home() {
               tabIndex={0}
               onClick={() => router.push(`/learn/${tech.id}`)}
               onKeyDown={(e) => e.key === "Enter" && router.push(`/learn/${tech.id}`)}
-              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 cursor-pointer"
+              className="group relative w-full max-w-md overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 cursor-pointer"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 transition-opacity group-hover:opacity-10`} />
               <div className="relative">
