@@ -6,7 +6,6 @@
   "home.hero.description": "Practice mock interviews with AI whenever you want.\nBuilt for engineers who want to stand out in job searches and career moves.",
   "home.hero.getStarted": "Get Started",
   "home.hero.signupCta": "Start for Free",
-  "home.hero.viewTechnologies": "View technologies",
   "home.hero.signupHint": "Free to sign up. Start learning right after registration.",
   "home.technologies.title": "Interview Practice & Learning Content",
   "home.technologies.description": "Practice with AI mock interviews in a realistic setting.\nAdditional engineering courses are available whenever you need them.",
@@ -37,7 +36,7 @@
   "tech.laravel.name": "Laravel",
   "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
   "tech.ai-interview.name": "AI Interview",
-  "tech.ai-interview.description": "AI-powered interview practice platform. Master practical interview skills and succeed in job hunting and career change activities.",
+  "tech.ai-interview.description": "Mock interviews with AI for job search and career moves.",
   "tech.django.name": "Django",
   "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
   "nav.home": "Home",
@@ -149,7 +148,7 @@
   "learn.seo.associate.description": "Learn SEO concepts, key terms, and how search engines work.",
   "learn.seo.professional.description": "Learn practical SEO tactics, technical SEO, and content optimization.",
   "learn.seo.expert.description": "Learn advanced SEO strategy, data analysis, and performance measurement.",
-  "learn.ai-interview.associate.description": "Learn AI interview basics. Master fundamental interview skills and answering techniques.",
-  "learn.ai-interview.professional.description": "Learn practical AI interview skills for various question patterns.",
-  "learn.ai-interview.expert.description": "Learn advanced AI interview techniques for any situation."
+  "learn.ai-interview.associate.description": "Basics of questions and answers.",
+  "learn.ai-interview.professional.description": "Skills for realistic interview questions.",
+  "learn.ai-interview.expert.description": "Advanced scenarios and tough questions."
 }

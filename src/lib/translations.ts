@@ -16,7 +16,6 @@ export type TranslationKey =
   | "home.hero.description"
   | "home.hero.getStarted"
   | "home.hero.signupCta"
-  | "home.hero.viewTechnologies"
   | "home.hero.signupHint"
   | "home.technologies.title"
   | "home.technologies.description"
@@ -84,7 +83,6 @@ export const translations = {
     "home.hero.description": "AIとの模擬面接で、いつでも反復練習ができます。\n就職・転職で勝ち抜きたいエンジニア向けのサービスです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
-    "home.hero.viewTechnologies": "学習できる技術を見る",
     "home.hero.signupHint": "会員登録は無料。登録後すぐに学習を始められます",
     "home.technologies.title": "面接練習と学習コンテンツ",
     "home.technologies.description": "AIとの模擬面接で実践的に練習できます。\n必要に応じて、他分野のエンジニア向け教材もご利用いただけます。",
@@ -117,7 +115,7 @@ export const translations = {
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "PHPのモダンなWebアプリケーションフレームワーク。Eloquent ORM、ルーティング、ミドルウェア、認証などのスキルを身につけます。",
     "tech.ai-interview.name": "AI面接",
-    "tech.ai-interview.description": "AIを活用した面接練習プラットフォーム。実践的な面接スキルを身につけ、就職・転職活動を成功させます。",
+    "tech.ai-interview.description": "AIと模擬面接で練習。就活・転職に使えます。",
     "tech.django.name": "Django",
     "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
@@ -151,7 +149,6 @@ export const translations = {
     "home.hero.description": "Practice mock interviews with AI whenever you want.\nBuilt for engineers who want to stand out in job searches and career moves.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
-    "home.hero.viewTechnologies": "View technologies",
     "home.hero.signupHint": "Free to sign up. Start learning right after registration.",
     "home.technologies.title": "Interview Practice & Learning Content",
     "home.technologies.description": "Practice with AI mock interviews in a realistic setting.\nAdditional engineering courses are available whenever you need them.",
@@ -184,7 +181,7 @@ export const translations = {
     "tech.laravel.name": "Laravel",
     "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
     "tech.ai-interview.name": "AI Interview",
-    "tech.ai-interview.description": "AI-powered interview practice platform. Master practical interview skills and succeed in job hunting and career change activities.",
+    "tech.ai-interview.description": "Mock interviews with AI for job search and career moves.",
     "tech.django.name": "Django",
     "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
     
