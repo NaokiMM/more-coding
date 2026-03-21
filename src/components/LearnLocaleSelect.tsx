@@ -11,7 +11,7 @@ import {
 } from "@/lib/learnLocale";
 
 interface LearnLocaleSelectProps {
-  /** この教材のトップパス（例: /learn/nextjs）。選択後に ?locale=jp を付けてリダイレクトする */
+  /** この教材のトップパス（例: /learn/ai-interview）。選択後に ?locale=jp を付けてリダイレクトする */
   techPath: string;
   /** 教材名（表示用、例: React） */
   techName?: string;

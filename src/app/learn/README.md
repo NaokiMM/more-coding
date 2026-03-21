@@ -14,10 +14,10 @@
 ```
 
 - `locale`: 教材言語（`jp` | `en` | `cn`）。教材開始前にユーザーが選択し、途中変更不可。
-- `technology`: 教材種類（例: nextjs, react）
+- `technology`: 教材種類（例: `ai-interview`, `django`）
 - `course`: レベル（例: associate, professional, expert）
 
-例: `/questions/jp/nextjs/associate/api-middleware.json`
+例: `/questions/jp/django/associate/overview-introduction.json`
 
 ## JSON型定義
 
@@ -35,7 +35,7 @@ interface CategoryData {
   categoryId: string;      // カテゴリID
   categoryName: string;    // カテゴリ名
   course: string;          // コース名（例: "associate", "professional"）
-  technology: string;      // 技術名（例: "nextjs", "typescript"）
+  technology: string;      // 技術名（例: "django", "ai-interview"）
   questions: Question[];   // 問題の配列
   metadata: {
     version: string;       // バージョン
@@ -49,23 +49,23 @@ interface CategoryData {
 
 ```json
 {
-  "categoryId": "api-middleware",
-  "categoryName": "Next.js - API・ミドルウェア",
+  "categoryId": "overview-introduction",
+  "categoryName": "Django - 概要・導入",
   "course": "associate",
-  "technology": "nextjs",
+  "technology": "django",
   "questions": [
     {
       "id": "q1",
-      "question": "Next.jsでAPIルートを作成する際の正しい方法は？",
+      "question": "DjangoのMTV（またはMVC）において、ユーザーからのリクエストを最初に受け取るのは？",
       "type": "multiple-choice",
       "options": [
-        "app/api/route.ts に配置する",
-        "pages/api/route.ts に配置する",
-        "components/api/route.ts に配置する",
-        "public/api/route.ts に配置する"
+        "Model",
+        "Template",
+        "View",
+        "Middleware"
       ],
-      "correctAnswer": 0,
-      "explanation": "App Routerを使用する場合、APIルートは app/api/route.ts に配置します。"
+      "correctAnswer": 2,
+      "explanation": "Viewがリクエストを処理し、必要に応じてModelとTemplateと連携します。"
     }
   ],
   "metadata": {
@@ -87,9 +87,9 @@ import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib
 const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, technology, course, filename);
 ```
 
-ファイル名（`filename`）は、各カテゴリの定義ファイル（例: `src/lib/categories/nextjs/associate-categories.ts`）の`file`プロパティで指定されています。
+ファイル名（`filename`）は、各カテゴリの定義ファイル（例: `src/lib/categories/django/associate-categories.ts`）の`file`プロパティで指定されています。
 
 ## 教材言語（ロケール）の選択
 
-- 各教材トップ（例: `/learn/nextjs`）で、ロケール未選択時は「教材の言語を選択」画面（JP/EN/CN プルダウン）を表示する。
+- 各教材トップ（例: `/learn/ai-interview`）で、ロケール未選択時は「教材の言語を選択」画面（JP/EN/CN プルダウン）を表示する。
 - 選択後は `?locale=jp` 等がURLに付与され、以降の学習・試験ページでは同じロケールでS3パスが組み立てられる。途中での言語変更はできない。

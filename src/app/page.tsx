@@ -46,20 +46,12 @@ export default function Home() {
 
   const technologies = [
     {
-      id: "nextjs",
-      nameKey: "tech.nextjs.name" as const,
-      descriptionKey: "tech.nextjs.description" as const,
-      color: "from-gray-700 to-gray-900",
-      icon: "▲",
-      recommendationLabel: "推奨No.1",
-    },
-    {
       id: "ai-interview",
       nameKey: "tech.ai-interview.name" as const,
       descriptionKey: "tech.ai-interview.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🤖",
-      recommendationLabel: "推奨No.2",
+      recommendationLabel: "推奨",
     },
   ];
 
