@@ -39,3 +39,10 @@ export const categoriesData = [
     color: "from-slate-700 to-blue-600",
   },
 ] as const;
+
+/** カテゴリ一覧を経由せず入るときの既定 URL（先頭カテゴリの study） */
+export function getAssociateFirstStudyPath(): string {
+  const first = categoriesData[0];
+  if (!first) return "/learn/ai-interview";
+  return `/learn/ai-interview/associate/${first.id}/study`;
+}

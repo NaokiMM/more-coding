@@ -25,7 +25,7 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
 
   const category = aiInterviewAssociateCategoriesData.find((c) => c.id === categoryId);
   const studyPath = `/learn/ai-interview/associate/${categoryId}/study`;
-  const backHref = "/learn/ai-interview/associate";
+  const backHref = "/learn/ai-interview";
 
   if (!locale || !isValidLearnLocale(locale)) {
     return (
@@ -33,7 +33,7 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
         studyPath={studyPath}
         categoryName={category?.name ?? "学習"}
         backHref={backHref}
-        backLabel="カテゴリ一覧に戻る"
+        backLabel="AI面接に戻る"
         colorClass="from-slate-600 to-blue-600"
         icon="🤖"
       />

@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const category = categoriesData.find((cat) => cat.id === categoryId);
   
   if (!category) {
-    redirect("/learn/ai-interview/associate");
+    redirect("/learn/ai-interview");
   }
 
   // 学習ページにリダイレクト

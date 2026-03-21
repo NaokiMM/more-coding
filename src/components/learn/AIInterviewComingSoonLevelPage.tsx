@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/lib/i18n";
+import { getAssociateFirstStudyPath } from "@/lib/categories/ai-interview/associate-categories";
 
 type LevelNameKey = "learn.level.professional" | "learn.level.expert";
 
@@ -68,7 +69,7 @@ export default function AIInterviewComingSoonLevelPage({
             {tKey("learn.ai-interview.comingSoon.description")}
           </p>
           <Link
-            href="/learn/ai-interview/associate"
+            href={getAssociateFirstStudyPath()}
             className="mt-10 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:from-blue-700 hover:to-blue-800"
           >
             {tKey("learn.ai-interview.comingSoon.ctaAssociate")}

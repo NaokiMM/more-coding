@@ -255,7 +255,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   ログインする
                 </button>
                 <Link
-                  href="/learn/ai-interview/associate"
+                  href="/learn/ai-interview"
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -337,7 +337,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   学習を開始する
                 </button>
                 <Link
-                  href={learnHref("/learn/ai-interview/associate")}
+                  href={learnHref("/learn/ai-interview")}
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -397,7 +397,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           </Link>
           <span>/</span>
           <Link
-            href="/learn/ai-interview/associate"
+            href="/learn/ai-interview"
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             Associate

@@ -9,6 +9,10 @@ import Header from "@/components/Header";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/lib/i18n";
+import {
+  categoriesData,
+  getAssociateFirstStudyPath,
+} from "@/lib/categories/ai-interview/associate-categories";
 
 export default function AIInterviewLearnPage() {
   const { user, loading: authLoading } = useAuth();
@@ -153,27 +157,48 @@ export default function AIInterviewLearnPage() {
                       {tKey("learn.learningContent")}:
                     </h3>
                     <ul className="space-y-1">
-                      {level.topics.map((topic, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
-                        >
-                          <svg
-                            className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                      {level.topics.map((topic, index) => {
+                        const associateCat =
+                          level.id === "associate"
+                            ? categoriesData[index]
+                            : undefined;
+                        const row = (
+                          <>
+                            <svg
+                              className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            <span>{topic}</span>
+                          </>
+                        );
+                        return (
+                          <li
+                            key={index}
+                            className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          <span>{topic}</span>
-                        </li>
-                      ))}
+                            {associateCat ? (
+                              <Link
+                                href={`/learn/ai-interview/associate/${associateCat.id}/study`}
+                                className="flex items-start gap-2 hover:text-blue-600 dark:hover:text-blue-400"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {row}
+                              </Link>
+                            ) : (
+                              <div className="flex items-start gap-2">{row}</div>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 )}
@@ -201,7 +226,7 @@ export default function AIInterviewLearnPage() {
                 {/* Action Button */}
                 {level.id === "associate" ? (
                   <Link
-                    href="/learn/ai-interview/associate"
+                    href={getAssociateFirstStudyPath()}
                     className={`mt-6 block w-full rounded-lg bg-gradient-to-r ${level.color} px-4 py-3 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                     onClick={(e) => e.stopPropagation()}
                   >
