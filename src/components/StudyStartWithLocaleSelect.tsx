@@ -77,7 +77,9 @@ export default function StudyStartWithLocaleSelect({
               学習を始めますか？
             </p>
             <p className="mb-6 text-slate-600 dark:text-slate-400">
-              教材の言語を選択してから開始してください。選択後は途中で変更できません。
+              教材の言語を選択してから開始してください。
+              <br />
+              選択後は途中で変更できません。
             </p>
 
             <div className="mb-8 flex flex-col items-center gap-2">
