@@ -150,5 +150,9 @@
   "learn.seo.expert.description": "高度なSEO戦略、データ分析、パフォーマンス測定と改善手法を学びます。",
   "learn.ai-interview.associate.description": "聞かれ方・答え方の基礎。",
   "learn.ai-interview.professional.description": "実践的な質問への対応力。",
-  "learn.ai-interview.expert.description": "難易度の高い場面までカバー。"
+  "learn.ai-interview.expert.description": "難易度の高い場面までカバー。",
+  "learn.ai-interview.comingSoon.title": "教材は準備中です",
+  "learn.ai-interview.comingSoon.description": "このレベルの教材は現在準備中です。しばらくは Associate のコンテンツから学習をお進めください。",
+  "learn.ai-interview.comingSoon.ctaAssociate": "Associate で学習する",
+  "learn.ai-interview.comingSoon.backToHub": "AI面接一覧に戻る"
 }

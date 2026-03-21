@@ -150,5 +150,9 @@
   "learn.seo.expert.description": "学习高级 SEO 策略、数据分析与效果测量改善。",
   "learn.ai-interview.associate.description": "提问与回答的基础。",
   "learn.ai-interview.professional.description": "应对更贴近实战的提问。",
-  "learn.ai-interview.expert.description": "高难度场景与进阶技巧。"
+  "learn.ai-interview.expert.description": "高难度场景与进阶技巧。",
+  "learn.ai-interview.comingSoon.title": "内容即将上线",
+  "learn.ai-interview.comingSoon.description": "该等级教材正在准备中。请先使用 Associate 内容继续学习。",
+  "learn.ai-interview.comingSoon.ctaAssociate": "前往 Associate 学习",
+  "learn.ai-interview.comingSoon.backToHub": "返回 AI 面接"
 }

@@ -150,5 +150,9 @@
   "learn.seo.expert.description": "Learn advanced SEO strategy, data analysis, and performance measurement.",
   "learn.ai-interview.associate.description": "Basics of questions and answers.",
   "learn.ai-interview.professional.description": "Skills for realistic interview questions.",
-  "learn.ai-interview.expert.description": "Advanced scenarios and tough questions."
+  "learn.ai-interview.expert.description": "Advanced scenarios and tough questions.",
+  "learn.ai-interview.comingSoon.title": "Content coming soon",
+  "learn.ai-interview.comingSoon.description": "Lessons for this level are not available yet. You can continue with the Associate curriculum in the meantime.",
+  "learn.ai-interview.comingSoon.ctaAssociate": "Study with Associate",
+  "learn.ai-interview.comingSoon.backToHub": "Back to AI Interview"
 }
