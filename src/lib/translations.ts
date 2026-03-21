@@ -87,7 +87,7 @@ export const translations = {
     // Home Page
     "home.hero.title1": "エンジニア向け",
     "home.hero.title2": "AI面接サイト",
-    "home.hero.description": "TypeScript、React等のTS領域の技術を学びながら、\nTS領域で1流エンジニアを目指す方のための学習サイトです。",
+    "home.hero.description": "AIとの模擬面接で、いつでも反復練習ができます。\n就職・転職で勝ち抜きたいエンジニア向けのサービスです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
     "home.hero.viewTechnologies": "学習できる技術を見る",
@@ -97,7 +97,7 @@ export const translations = {
     "home.technologies.signupPrompt": "無料会員登録で今すぐ学習を開始",
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
-    "home.about.description": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
+    "home.about.description": "エンジニア向けのAI面接プラットフォームです。\n本番を想定した質疑応答で、自信を持って面接に臨めるようサポートします。",
     "home.counseling.cta": "30分初回無料カウンセリング\nMTGを受け付けています。\n勉強に不安がある方は是非一度ご連絡してください。",
     "home.counseling.button": "お問い合わせはこちら",
     "home.recommend.title": "モアコーディングは\nこんな方におすすめ！",
@@ -134,7 +134,7 @@ export const translations = {
     "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
-    "footer.tagline": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイト",
+    "footer.tagline": "エンジニアの就職・転職を支えるAI面接練習プラットフォーム",
     "footer.services.title": "サービス",
     "footer.company.title": "事業情報",
     "footer.account.title": "アカウント",
@@ -160,7 +160,7 @@ export const translations = {
     // Home Page
     "home.hero.title1": "For Engineers",
     "home.hero.title2": "AI Interview Platform",
-    "home.hero.description": "Learn the latest technologies like TypeScript and React while aiming to obtain IT certifications on our platform.",
+    "home.hero.description": "Practice mock interviews with AI whenever you want.\nBuilt for engineers who want to stand out in job searches and career moves.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
     "home.hero.viewTechnologies": "View technologies",
@@ -170,7 +170,7 @@ export const translations = {
     "home.technologies.signupPrompt": "Sign up for free and start learning now",
     "home.technologies.getStarted": "Get Started",
     "home.about.title": "About More Coding",
-    "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
+    "home.about.description": "An AI interview platform for engineers.\nPractice realistic Q&A modeled on real interviews so you can show up with confidence.",
     "home.counseling.cta": "Let's start with a free initial\ncounseling meeting!",
     "home.counseling.button": "Contact us",
     "home.recommend.title": "More Coding is\nrecommended for people like this",
@@ -207,7 +207,7 @@ export const translations = {
     "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
     
     // Footer
-    "footer.tagline": "A learning platform for those aiming to obtain IT certifications",
+    "footer.tagline": "AI interview practice for engineers in job search and career transitions",
     "footer.services.title": "Services",
     "footer.company.title": "Company",
     "footer.account.title": "Account",
