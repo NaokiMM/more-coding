@@ -83,7 +83,7 @@ export default function StudyStartWithLocaleSelect({
             <div className="mb-8 flex flex-col items-center gap-2">
               <label
                 htmlFor="study-locale"
-                className="block w-full max-w-xs text-left text-sm font-medium text-slate-700 dark:text-slate-300"
+                className="block w-full max-w-60 text-left text-sm font-medium text-slate-700 dark:text-slate-300"
               >
                 教材の言語
               </label>
@@ -91,7 +91,7 @@ export default function StudyStartWithLocaleSelect({
                 id="study-locale"
                 value={selected}
                 onChange={(e) => setSelected(e.target.value as LearnLocale)}
-                className="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+                className="w-full max-w-60 rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
               >
                 {LEARN_LOCALES.map((loc) => (
                   <option key={loc} value={loc}>
@@ -101,17 +101,17 @@ export default function StudyStartWithLocaleSelect({
               </select>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="mx-auto flex w-full max-w-60 flex-col items-stretch gap-4">
               <button
                 type="button"
                 onClick={handleStart}
-                className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-5 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
               >
                 学習を開始する
               </button>
               <Link
                 href={backHref}
-                className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                className="inline-flex justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-3 text-base font-semibold text-white shadow-md transition-all hover:from-blue-700 hover:to-blue-800 hover:shadow-lg"
               >
                 {backLabel}
               </Link>
