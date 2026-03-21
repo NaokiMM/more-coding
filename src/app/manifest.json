@@ -1,7 +1,7 @@
 {
-  "name": "More Coding - JS/TSがメインで学習できるWebアプリ",
+  "name": "More Coding - エンジニア向けAI面接サイト",
   "short_name": "More Coding",
-  "description": "JS/TSがメインで学習できるWebアプリです。コーディング学習と資格取得ができます。",
+  "description": "エンジニア向けのAI面接練習ができるWebアプリです。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

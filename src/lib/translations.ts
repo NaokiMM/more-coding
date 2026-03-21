@@ -85,8 +85,8 @@ export const translations = {
     "nav.signup": "会員登録",
     
     // Home Page
-    "home.hero.title1": "Ts に特化した",
-    "home.hero.title2": "エンジニア学習サイト",
+    "home.hero.title1": "エンジニア向け",
+    "home.hero.title2": "AI面接サイト",
     "home.hero.description": "TypeScript、React等のTS領域の技術を学びながら、\nTS領域で1流エンジニアを目指す方のための学習サイトです。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
@@ -158,8 +158,8 @@ export const translations = {
     "nav.signup": "Sign Up",
     
     // Home Page
-    "home.hero.title1": "TS-Focused",
-    "home.hero.title2": "Engineering Learning App",
+    "home.hero.title1": "For Engineers",
+    "home.hero.title2": "AI Interview Platform",
     "home.hero.description": "Learn the latest technologies like TypeScript and React while aiming to obtain IT certifications on our platform.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
