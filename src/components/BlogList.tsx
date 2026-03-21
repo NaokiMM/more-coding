@@ -2,7 +2,7 @@
  * BlogList コンポーネント
  *
  * ブログ記事一覧を表示し、カテゴリ・タグでフィルタリングできるUIを提供する。
- * - カテゴリリンク: フロントエンド / バックエンド / DevOps / TypeScript などで絞り込み
+ * - カテゴリリンク: フロントエンド / バックエンド / DevOps などで絞り込み
  * - タグフィルター: 選択したタグに該当する記事のみ表示
  * - 記事カード: 日付・タイトル・抜粋・タグを表示し、クリックで記事詳細へ遷移
  */
@@ -25,7 +25,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   frontend: "フロントエンド",
   backend: "バックエンド",
   devops: "DevOps",
-  typescript: "TypeScript",
 };
 
 export default function BlogList({
@@ -58,8 +57,6 @@ export default function BlogList({
                 ? "/images/blog/backend-default.svg"
                 : post.category === "devops"
                 ? "/images/blog/devops-default.svg"
-                : post.category === "typescript"
-                ? "/images/blog/typescript-default.svg"
                 : "/images/blog/default.svg";
 
             return (

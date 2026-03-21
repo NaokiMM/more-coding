@@ -54,19 +54,12 @@ export default function Home() {
       recommendationLabel: "推奨No.1",
     },
     {
-      id: "typescript",
-      nameKey: "tech.typescript.name" as const,
-      descriptionKey: "tech.typescript.description" as const,
-      color: "from-blue-500 to-blue-700",
-      icon: "TS",
-      recommendationLabel: "推奨No.2",
-    },
-    {
       id: "react",
       nameKey: "tech.react.name" as const,
       descriptionKey: "tech.react.description" as const,
       color: "from-cyan-500 to-blue-600",
       icon: "⚛️",
+      recommendationLabel: "推奨No.2",
     },
     {
       id: "nextjs",
@@ -340,8 +333,6 @@ export default function Home() {
                   ? "/images/blog/backend-default.svg"
                   : post.category === "devops"
                   ? "/images/blog/devops-default.svg"
-                  : post.category === "typescript"
-                  ? "/images/blog/typescript-default.svg"
                   : "/images/blog/default.svg";
 
               return (

@@ -34,8 +34,6 @@ export type TranslationKey =
   // Technologies
   | "tech.javascript.name"
   | "tech.javascript.description"
-  | "tech.typescript.name"
-  | "tech.typescript.description"
   | "tech.react.name"
   | "tech.react.description"
   | "tech.nextjs.name"
@@ -108,8 +106,6 @@ export const translations = {
     // Technologies
     "tech.javascript.name": "JavaScript",
     "tech.javascript.description": "Web開発の基本となるプログラミング言語。動的なウェブサイトとアプリケーションを構築できます。",
-    "tech.typescript.name": "TypeScript",
-    "tech.typescript.description": "型安全性を持つJavaScriptのスーパーセット。大規模なアプリケーション開発に最適です。",
     "tech.react.name": "React",
     "tech.react.description": "ユーザーインターフェース構築のためのJavaScriptライブラリ。コンポーネントベースの開発が可能です。",
     "tech.nextjs.name": "Next.js",
@@ -181,8 +177,6 @@ export const translations = {
     // Technologies
     "tech.javascript.name": "JavaScript",
     "tech.javascript.description": "A fundamental programming language for web development. You can build dynamic websites and applications.",
-    "tech.typescript.name": "TypeScript",
-    "tech.typescript.description": "A superset of JavaScript with type safety. Ideal for large-scale application development.",
     "tech.react.name": "React",
     "tech.react.description": "A JavaScript library for building user interfaces. Enables component-based development.",
     "tech.nextjs.name": "Next.js",

@@ -13,7 +13,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   frontend: "フロントエンド",
   backend: "バックエンド",
   devops: "DevOps",
-  typescript: "TypeScript",
 };
 
 export async function generateStaticParams() {
