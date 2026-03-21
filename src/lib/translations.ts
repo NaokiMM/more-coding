@@ -75,7 +75,7 @@ export const translations = {
   ja: {
     // Navigation
     "nav.home": "ホーム",
-    "nav.technologies": "学習できる技術・資格",
+    "nav.technologies": "サービス・学習コンテンツ",
     "nav.blog": "ブログ",
     "nav.company": "事業概要",
     "nav.pricing": "料金一覧",
@@ -85,25 +85,25 @@ export const translations = {
     "nav.signup": "会員登録",
     
     // Home Page
-    "home.hero.title1": "Ts に特化した",
-    "home.hero.title2": "エンジニア学習サイト",
-    "home.hero.description": "TypeScript、React等のTS領域の技術を学びながら、\nTS領域で1流エンジニアを目指す方のための学習サイトです。",
+    "home.hero.title1": "エンジニアに特化した",
+    "home.hero.title2": "AI面接サービス",
+    "home.hero.description": "エンジニア職の面接を、AI相手にいつでも練習できます。\n面接対策に加え、技術学習コンテンツもご利用いただけます。",
     "home.hero.getStarted": "学習を始める",
     "home.hero.signupCta": "無料ではじめる",
-    "home.hero.viewTechnologies": "学習できる技術を見る",
-    "home.hero.signupHint": "会員登録は無料。登録後すぐに学習を始められます",
-    "home.technologies.title": "学習できる技術・資格",
-    "home.technologies.description": "最新のフロントエンド・バックエンド技術を体系的に学べます",
-    "home.technologies.signupPrompt": "無料会員登録で今すぐ学習を開始",
+    "home.hero.viewTechnologies": "サービス・学習内容を見る",
+    "home.hero.signupHint": "会員登録は無料。登録後すぐに面接練習や学習を始められます",
+    "home.technologies.title": "サービス・学習コンテンツ",
+    "home.technologies.description": "AI面接練習を中心に、最新のフロントエンド・バックエンド技術も体系的に学べます",
+    "home.technologies.signupPrompt": "無料会員登録で今すぐはじめる",
     "home.technologies.getStarted": "学習を始める",
     "home.about.title": "モアコーディングについて",
-    "home.about.description": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトです。\n実践的な技術を学びながら、エンジニアとしてのスキルを身につけられます。",
-    "home.counseling.cta": "30分初回無料カウンセリング\nMTGを受け付けています。\n勉強に不安がある方は是非一度ご連絡してください。",
+    "home.about.description": "エンジニアの就職・転職に役立つAI面接練習を提供しています。\n面接対策とあわせて、実践的な技術学習でスキルアップも図れます。",
+    "home.counseling.cta": "30分初回無料カウンセリング\nMTGを受け付けています。\n面接・学習で不安がある方はぜひ一度ご連絡ください。",
     "home.counseling.button": "お問い合わせはこちら",
     "home.recommend.title": "モアコーディングは\nこんな方におすすめ！",
-    "home.recommend.item1": "フロントもバックエンドもバランスよく学びたい",
-    "home.recommend.item2": "モダンな技術で開発したい",
-    "home.recommend.item3": "どの言語を学習すればいいか分からない",
+    "home.recommend.item1": "エンジニア面接の答え方や話し方に不安がある",
+    "home.recommend.item2": "本番前に何度も面接練習をしたい",
+    "home.recommend.item3": "技術学習と面接対策をまとめて進めたい",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
@@ -134,7 +134,7 @@ export const translations = {
     "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
-    "footer.tagline": "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイト",
+    "footer.tagline": "エンジニアの就職・転職に役立つAI面接練習と、実践的な技術学習を提供するサービス",
     "footer.services.title": "サービス",
     "footer.company.title": "事業情報",
     "footer.account.title": "アカウント",
@@ -148,7 +148,7 @@ export const translations = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.technologies": "Technologies & Certifications",
+    "nav.technologies": "Services & learning",
     "nav.blog": "Blog",
     "nav.company": "Company",
     "nav.pricing": "Pricing",
@@ -158,25 +158,25 @@ export const translations = {
     "nav.signup": "Sign Up",
     
     // Home Page
-    "home.hero.title1": "TS-Focused",
-    "home.hero.title2": "Engineering Learning App",
-    "home.hero.description": "Learn the latest technologies like TypeScript and React while aiming to obtain IT certifications on our platform.",
+    "home.hero.title1": "Engineer-focused",
+    "home.hero.title2": "AI interview service",
+    "home.hero.description": "Practice engineering interviews anytime with an AI interviewer.\nWe also offer technical learning content to support your growth.",
     "home.hero.getStarted": "Get Started",
     "home.hero.signupCta": "Start for Free",
-    "home.hero.viewTechnologies": "View technologies",
-    "home.hero.signupHint": "Free to sign up. Start learning right after registration.",
-    "home.technologies.title": "Technologies & Certifications You Can Learn",
-    "home.technologies.description": "Systematically learn the latest frontend and backend technologies",
-    "home.technologies.signupPrompt": "Sign up for free and start learning now",
+    "home.hero.viewTechnologies": "View services & learning",
+    "home.hero.signupHint": "Free to sign up. Start interview practice and learning right after registration.",
+    "home.technologies.title": "Services & learning content",
+    "home.technologies.description": "AI interview practice at the core, plus structured frontend and backend learning",
+    "home.technologies.signupPrompt": "Sign up for free and get started now",
     "home.technologies.getStarted": "Get Started",
     "home.about.title": "About More Coding",
-    "home.about.description": "A learning platform for those aiming to obtain IT certifications.\nLearn practical technologies while acquiring the knowledge necessary for certification.",
-    "home.counseling.cta": "Let's start with a free initial\ncounseling meeting!",
+    "home.about.description": "We help engineers prepare for job searches and career moves with AI interview practice.\nCombine interview prep with hands-on technical learning.",
+    "home.counseling.cta": "Book a free 30-minute\ncounseling session!\nReach out if you have concerns about interviews or learning.",
     "home.counseling.button": "Contact us",
     "home.recommend.title": "More Coding is\nrecommended for people like this",
-    "home.recommend.item1": "Want to learn both frontend and backend",
-    "home.recommend.item2": "Want to build with modern technologies like React and Next.js",
-    "home.recommend.item3": "Are not sure which language or technology to start with",
+    "home.recommend.item1": "Unsure how to answer or present yourself in engineering interviews",
+    "home.recommend.item2": "Want to rehearse interviews many times before the real thing",
+    "home.recommend.item3": "Want to tackle technical learning and interview prep in one place",
     
     // Technologies
     "tech.javascript.name": "JavaScript",
@@ -207,7 +207,7 @@ export const translations = {
     "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
     
     // Footer
-    "footer.tagline": "A learning platform for those aiming to obtain IT certifications",
+    "footer.tagline": "AI interview practice and hands-on technical learning for engineers",
     "footer.services.title": "Services",
     "footer.company.title": "Company",
     "footer.account.title": "Account",

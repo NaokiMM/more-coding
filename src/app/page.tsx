@@ -46,12 +46,20 @@ export default function Home() {
 
   const technologies = [
     {
+      id: "ai-interview",
+      nameKey: "tech.ai-interview.name" as const,
+      descriptionKey: "tech.ai-interview.description" as const,
+      color: "from-slate-700 to-blue-600",
+      icon: "🤖",
+      recommendationLabel: "推奨No.1",
+    },
+    {
       id: "typescript",
       nameKey: "tech.typescript.name" as const,
       descriptionKey: "tech.typescript.description" as const,
       color: "from-blue-500 to-blue-700",
       icon: "TS",
-      recommendationLabel: "推奨No.1",
+      recommendationLabel: "推奨No.2",
     },
     {
       id: "react",
@@ -59,7 +67,6 @@ export default function Home() {
       descriptionKey: "tech.react.description" as const,
       color: "from-cyan-500 to-blue-600",
       icon: "⚛️",
-      recommendationLabel: "推奨No.2",
     },
     {
       id: "nextjs",
@@ -67,13 +74,6 @@ export default function Home() {
       descriptionKey: "tech.nextjs.description" as const,
       color: "from-gray-700 to-gray-900",
       icon: "▲",
-    },
-    {
-      id: "ai-interview",
-      nameKey: "tech.ai-interview.name" as const,
-      descriptionKey: "tech.ai-interview.description" as const,
-      color: "from-slate-700 to-blue-600",
-      icon: "🤖",
     },
   ];
 

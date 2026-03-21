@@ -10,7 +10,7 @@ export default function CompanyPage() {
     address: "開示請求があった場合は、遅滞なく開示いたします。",
     phone: "開示請求があった場合は、遅滞なく開示いたします。",
     representative: "松本尚輝",
-    business: "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための学習サイトの運営・開発",
+    business: "エンジニア向けAI面接練習サービスおよびオンライン技術学習プラットフォームの運営・開発",
   };
 
   const vision = {
@@ -20,13 +20,13 @@ export default function CompanyPage() {
 
   const mission = {
     title: "ミッション",
-    description: "最新の技術トレンドを反映した高品質な学習コンテンツを提供し、エンジニアのスキルアップとキャリア成長を支援します。",
+    description: "AI面接練習と技術学習コンテンツを通じて、エンジニアの採用・転職成功と継続的なスキルアップを支援します。",
   };
 
   const values = [
     {
-      title: "質の高い学習",
-      description: "業界の最新トレンドを反映した、実践的な学習コンテンツを提供します。",
+      title: "実践に直結する面接・学習体験",
+      description: "AI面接と技術学習の両面から、現場で役立つ力を身につけられるよう設計しています。",
       icon: "📚",
     },
     {
@@ -43,16 +43,16 @@ export default function CompanyPage() {
 
   const businessAreas = [
     {
-      title: "オンライン学習プラットフォーム",
-      description: "TypeScript、React等のTS領域の技術を学びながら、1流エンジニアを目指す方のための体系的な学習コンテンツの提供",
+      title: "AI面接練習サービス",
+      description: "エンジニア職向けの面接をAIと繰り返し練習できる機能の提供",
     },
     {
-      title: "問題集・模擬試験サービス",
-      description: "各種TS領域の学習コンテンツに対応した問題集と模擬試験の提供",
+      title: "オンライン技術学習・資格対策",
+      description: "フロントエンド・バックエンド等の体系的な学習コンテンツ、問題集・模擬試験の提供",
     },
     {
-      title: "学習進捗管理システム",
-      description: "個人の学習進捗を可視化し、効率的な学習をサポート",
+      title: "学習進捗管理",
+      description: "個人の学習進捗を可視化し、効率的な学習と面接準備をサポート",
     },
   ];
 
@@ -68,7 +68,7 @@ export default function CompanyPage() {
             事業概要
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            ITエンジニアのスキルアップと<br />キャリア成長を支援する学習プラットフォーム
+            エンジニアの面接準備とスキルアップを<br />一体で支援するプラットフォーム
           </p>
         </div>
       </section>

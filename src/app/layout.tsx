@@ -20,9 +20,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
-  title: "More Coding - JS/TSがメインで学習できるWebアプリ",
+  title: "More Coding - エンジニア向けAI面接と技術学習",
   description:
-    "JS/TSがメインで学習できるWebアプリです。コーディング学習と資格取得ができます。",
+    "エンジニア職向けのAI面接練習ができるサービスです。面接対策に加え、コーディング学習や資格対策コンテンツも利用できます。",
   alternates: {
     canonical: "/",
   },
