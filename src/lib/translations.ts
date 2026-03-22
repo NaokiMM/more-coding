@@ -44,14 +44,8 @@ export type TranslationKey =
   | "tech.nestjs.description"
   | "tech.express.name"
   | "tech.express.description"
-  | "tech.gin.name"
-  | "tech.gin.description"
-  | "tech.laravel.name"
-  | "tech.laravel.description"
   | "tech.ai-interview.name"
   | "tech.ai-interview.description"
-  | "tech.django.name"
-  | "tech.django.description"
 
   // Footer
   | "footer.tagline"
@@ -112,14 +106,8 @@ export const translations = {
     "tech.nestjs.description": "TypeScriptベースのNode.jsフレームワーク。モジュール、コントローラー、サービス、依存性注入などのエンタープライズレベルのアプリケーション開発を学びます。",
     "tech.express.name": "Express.js",
     "tech.express.description": "Node.jsの軽量で柔軟なWebアプリケーションフレームワーク。ルーティング、ミドルウェア、テンプレートエンジンなどのスキルを身につけます。",
-    "tech.gin.name": "Gin",
-    "tech.gin.description": "Goの高速なWebフレームワーク。ルーティング、ミドルウェア、JSON API開発などのスキルを身につけます。",
-    "tech.laravel.name": "Laravel",
-    "tech.laravel.description": "PHPのモダンなWebアプリケーションフレームワーク。Eloquent ORM、ルーティング、ミドルウェア、認証などのスキルを身につけます。",
     "tech.ai-interview.name": "AI面接",
     "tech.ai-interview.description": "AIを活用した面接練習プラットフォーム。実践的な面接スキルを身につけ、就職・転職活動を成功させます。",
-    "tech.django.name": "Django",
-    "tech.django.description": "Pythonの高水準なWebアプリケーションフレームワーク。MVCパターン、ORM、管理画面などのスキルを身につけます。",
     
     // Footer
     "footer.tagline": "エンジニアの就職・転職に役立つAI面接練習と、実践的な技術学習を提供するサービス",
@@ -179,14 +167,8 @@ export const translations = {
     "tech.nestjs.description": "TypeScript-based Node.js framework. Learn enterprise-level application development with modules, controllers, services, and dependency injection.",
     "tech.express.name": "Express.js",
     "tech.express.description": "Lightweight and flexible web application framework for Node.js. Master skills such as routing, middleware, and template engines.",
-    "tech.gin.name": "Gin",
-    "tech.gin.description": "High-performance web framework for Go. Master skills such as routing, middleware, and JSON API development.",
-    "tech.laravel.name": "Laravel",
-    "tech.laravel.description": "Modern PHP web application framework. Master skills such as Eloquent ORM, routing, middleware, and authentication.",
     "tech.ai-interview.name": "AI Interview",
     "tech.ai-interview.description": "AI-powered interview practice platform. Master practical interview skills and succeed in job hunting and career change activities.",
-    "tech.django.name": "Django",
-    "tech.django.description": "High-level Python web application framework. Master skills such as MVC pattern, ORM, and admin interface.",
     
     // Footer
     "footer.tagline": "AI interview practice and hands-on technical learning for engineers",
