@@ -1,41 +1,38 @@
-// AI面接 Associateのカテゴリデータ
+// AI面接 Associate のカテゴリ（id は URL セグメント、file は S3 上の JSON ファイル名）
 export const categoriesData = [
   {
-    // 画面表示用のID且つaws-s3にアップロードしたファイル名
-    id: "overview-preparation",
-    // 画面表示用の名前
-    name: "概要・準備方法",
-    // aws-s3にアップロードしたファイル名
-    file: "overview-preparation.json",
+    id: "coding-deep-understanding",
+    name: "コーディングに関する全般知識",
+    file: "coding_deep_understanding.json",
     icon: "📋",
     color: "from-slate-700 to-blue-600",
   },
   {
-    id: "self-introduction-motivation",
-    name: "自己紹介・志望動機",
-    file: "self-introduction-motivation.json",
-    icon: "👋",
-    color: "from-slate-600 to-blue-600",
-  },
-  {
-    id: "strengths-weaknesses-self-pr",
-    name: "長所・短所・自己PR",
-    file: "strengths-weaknesses-self-pr.json",
-    icon: "💪",
+    id: "cloud-architecture-and-operations",
+    name: "クラウド（設計・運用）",
+    file: "cloud_architecture_and_operations.json",
+    icon: "🌐",
     color: "from-slate-700 to-blue-600",
   },
   {
-    id: "answer-techniques",
-    name: "質問への回答テクニック",
-    file: "answer-techniques.json",
-    icon: "💡",
-    color: "from-slate-600 to-blue-700",
+    id: "upstream-processes",
+    name: "上流工程（要件〜設計）",
+    file: "upstream_processes.json",
+    icon: "📝",
+    color: "from-slate-700 to-blue-600",
   },
   {
-    id: "expression-posture-speaking",
-    name: "表情・姿勢・話し方",
-    file: "expression-posture-speaking.json",
-    icon: "🎭",
+    id: "security-measures",
+    name: "セキュリティ（対策）",
+    file: "security_measures.json",
+    icon: "🔒",
+    color: "from-slate-700 to-blue-600",
+  },
+  {
+    id: "team-management",
+    name: "マネジメント（チーム単位）",
+    file: "team_management.json",
+    icon: "👥",
     color: "from-slate-700 to-blue-600",
   },
 ] as const;

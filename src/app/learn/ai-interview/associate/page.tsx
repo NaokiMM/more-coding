@@ -84,7 +84,7 @@ export default function AIInterviewAssociatePage() {
             Associate
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
-            AI面接の基礎を学びます。基本的な面接スキルと回答のコツをマスターしましょう。
+            AI面接 Associate レベルの学習カテゴリ一覧です。
           </p>
           {/* Membership Badges */}
           <div className="mt-6 flex items-center justify-center gap-3">
