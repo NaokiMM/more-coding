@@ -8,6 +8,9 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { categoriesData as aiInterviewAssociateCategories } from "@/lib/categories/ai-interview/associate-categories";
+import { categoriesData as aiInterviewProfessionalCategories } from "@/lib/categories/ai-interview/professional-categories";
+import { categoriesData as aiInterviewExpertCategories } from "@/lib/categories/ai-interview/expert-categories";
 import { t } from "@/lib/i18n";
 
 export default function AIInterviewLearnPage() {
@@ -24,13 +27,7 @@ export default function AIInterviewLearnPage() {
       descriptionKey: "learn.ai-interview.associate.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🌱",
-      topics: [
-        "AI面接 - 概要・準備方法",
-        "AI面接 - 自己紹介・志望動機",
-        "AI面接 - 長所・短所・自己PR",
-        "AI面接 - 質問への回答テクニック",
-        "AI面接 - 表情・姿勢・話し方",
-      ],
+      topics: aiInterviewAssociateCategories.map((c) => c.name),
     },
     {
       id: "professional",
@@ -38,14 +35,7 @@ export default function AIInterviewLearnPage() {
       descriptionKey: "learn.ai-interview.professional.description" as const,
       color: "from-slate-600 to-blue-600",
       icon: "📚",
-      topics: [
-        "技術面接の対策",
-        "ケーススタディへの対応",
-        "チームワーク・リーダーシップ",
-        "過去の経験の伝え方",
-        "逆質問の準備",
-        "ストレス面接への対応",
-      ],
+      topics: aiInterviewProfessionalCategories.map((c) => c.name),
     },
     {
       id: "expert",
@@ -53,14 +43,7 @@ export default function AIInterviewLearnPage() {
       descriptionKey: "learn.ai-interview.expert.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🚀",
-      topics: [
-        "エグゼクティブレベルの面接",
-        "複数面接官への対応",
-        "難易度の高い質問への回答",
-        "交渉・条件提示のテクニック",
-        "面接後のフォローアップ",
-        "内定獲得の戦略",
-      ],
+      topics: aiInterviewExpertCategories.map((c) => c.name),
     },
   ];
 
@@ -153,9 +136,9 @@ export default function AIInterviewLearnPage() {
                       {tKey("learn.learningContent")}:
                     </h3>
                     <ul className="space-y-1">
-                      {level.topics.map((topic, index) => (
+                      {level.topics.map((topic) => (
                         <li
-                          key={index}
+                          key={topic}
                           className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400"
                         >
                           <svg

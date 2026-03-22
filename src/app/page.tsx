@@ -139,18 +139,12 @@ export default function Home() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300 whitespace-pre-line">
             {tKey("home.hero.description")}
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex justify-center">
             <Link
               href="/signup"
               className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-3.5 text-center text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl sm:w-auto"
             >
               {tKey("home.hero.signupCta")}
-            </Link>
-            <Link
-              href="#technologies"
-              className="w-full rounded-lg border-2 border-slate-300 bg-white px-8 py-3.5 text-center text-sm font-semibold text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:w-auto"
-            >
-              {tKey("home.hero.viewTechnologies")}
             </Link>
           </div>
           <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
