@@ -4,7 +4,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { categoriesData } from "@/lib/categories/ai-interview/associate-categories";
 import { useLearnLocale } from "@/hooks/useLearnLocale";
 import { LEARN_LOCALES, LEARN_LOCALE_LABELS, type LearnLocale, isValidLearnLocale } from "@/lib/learnLocale";
 import EndStudyButton from "@/components/EndStudyButton";
@@ -30,17 +29,33 @@ interface CategoryData {
   };
 }
 
+/** カテゴリカード表示用（associate / professional 共通） */
+export type AIInterviewStudyCategoryMeta = {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+};
+
+export type AIInterviewStudyRouteConfig = {
+  listPath: string;
+  listLabel: string;
+  courseType: "associate" | "professional" | "expert";
+  categories: readonly AIInterviewStudyCategoryMeta[];
+};
+
 interface StudyClientProps {
   categoryId: string;
   categoryData: CategoryData;
+  route: AIInterviewStudyRouteConfig;
 }
 
-export default function StudyClient({ categoryId, categoryData }: StudyClientProps) {
+export default function StudyClient({ categoryId, categoryData, route }: StudyClientProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { learnHref, locale: urlLocale } = useLearnLocale();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
-  const category = categoriesData.find((cat) => cat.id === categoryId);
+  const category = route.categories.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answerText, setAnswerText] = useState("");
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
@@ -255,7 +270,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   ログインする
                 </button>
                 <Link
-                  href="/learn/ai-interview/associate"
+                  href={route.listPath}
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -337,7 +352,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                   学習を開始する
                 </button>
                 <Link
-                  href={learnHref("/learn/ai-interview/associate")}
+                  href={learnHref(route.listPath)}
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
@@ -397,13 +412,13 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
           </Link>
           <span>/</span>
           <Link
-            href="/learn/ai-interview/associate"
+            href={route.listPath}
             className="hover:text-slate-900 dark:hover:text-white transition-colors"
           >
-            Associate
+            {route.listLabel}
           </Link>
           <span>/</span>
-          <span className="text-slate-900 dark:text-white">{category.name}</span>
+          <span className="text-slate-900 dark:text-white">{category?.name ?? ""}</span>
           <span>/</span>
           <span className="text-slate-900 dark:text-white">学習</span>
         </nav>
@@ -412,13 +427,13 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
         <div className="mb-8">
           <div className="mb-4 flex items-center gap-4">
             <div
-              className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${category.color} text-3xl shadow-lg`}
+              className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${category?.color ?? "from-slate-700 to-blue-600"} text-3xl shadow-lg`}
             >
-              {category.icon}
+              {category?.icon ?? "📚"}
             </div>
             <div>
               <h1 className="mb-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                {category.name}
+                {category?.name ?? ""}
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-400">
                 問題を解いて理解を深めましょう
@@ -454,7 +469,7 @@ export default function StudyClient({ categoryId, categoryData }: StudyClientPro
                 </span>
               </div>
             )}
-            <EndStudyButton categoryId={categoryId} technology="ai-interview" courseType="associate" />
+            <EndStudyButton categoryId={categoryId} technology="ai-interview" courseType={route.courseType} />
           </div>
 
           {/* Question Text */}

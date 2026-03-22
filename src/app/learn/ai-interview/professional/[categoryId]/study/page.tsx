@@ -1,16 +1,12 @@
 /**
- * AI面接 Associate カテゴリ 学習ページ（サーバーコンポーネント）
- * 
- * ルート: /learn/ai-interview/associate/[categoryId]/study
- * 
- * このページは、指定されたカテゴリIDの学習データ（問題集）をS3から取得し、
- * StudyClientコンポーネントに渡すサーバーコンポーネントです。
- * 実際の学習UI（問題表示、解答、解説など）はStudyClientコンポーネントで実装されています。
+ * AI面接 Professional カテゴリ 学習ページ（サーバーコンポーネント）
+ *
+ * ルート: /learn/ai-interview/professional/[categoryId]/study
  */
 
-import StudyClient from "./StudyClient";
+import StudyClient from "@/app/learn/ai-interview/associate/[categoryId]/study/StudyClient";
 import StudyStartWithLocaleSelect from "@/components/StudyStartWithLocaleSelect";
-import { categoriesData as aiInterviewAssociateCategoriesData } from "@/lib/categories/ai-interview/associate-categories";
+import { categoriesData as aiInterviewProfessionalCategoriesData } from "@/lib/categories/ai-interview/professional-categories";
 import { getQuestionsJsonUrl, isValidLearnLocale, type LearnLocale } from "@/lib/learnLocale";
 
 type PageProps = {
@@ -23,9 +19,9 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
   const resolvedSearch = await Promise.resolve(searchParams);
   const locale = resolvedSearch?.locale;
 
-  const category = aiInterviewAssociateCategoriesData.find((c) => c.id === categoryId);
-  const studyPath = `/learn/ai-interview/associate/${categoryId}/study`;
-  const backHref = "/learn/ai-interview/associate";
+  const category = aiInterviewProfessionalCategoriesData.find((c) => c.id === categoryId);
+  const studyPath = `/learn/ai-interview/professional/${categoryId}/study`;
+  const backHref = "/learn/ai-interview/professional";
 
   if (!locale || !isValidLearnLocale(locale)) {
     return (
@@ -42,40 +38,34 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
 
   const categoryData = await getCategoryData(categoryId, locale);
   const studyRoute = {
-    listPath: "/learn/ai-interview/associate",
-    listLabel: "Associate",
-    courseType: "associate" as const,
-    categories: aiInterviewAssociateCategoriesData,
+    listPath: "/learn/ai-interview/professional",
+    listLabel: "Professional",
+    courseType: "professional" as const,
+    categories: aiInterviewProfessionalCategoriesData,
   };
   return <StudyClient categoryId={categoryId} categoryData={categoryData} route={studyRoute} />;
 }
 
-// 静的エクスポート用: 生成するページのURL一覧を定義
 export function generateStaticParams() {
-  return aiInterviewAssociateCategoriesData.map((category) => ({
+  return aiInterviewProfessionalCategoriesData.map((category) => ({
     categoryId: category.id,
   }));
 }
 
-// categoryId に対応する学習データ(JSON)を S3 から取得する
 async function getCategoryData(categoryId: string, locale: LearnLocale): Promise<CategoryData> {
-  
-  // aiInterviewAssociateCategoriesDataからcategoryIdに対応するカテゴリを検索
-  const category = aiInterviewAssociateCategoriesData.find((cat) => cat.id === categoryId);
-  
+  const category = aiInterviewProfessionalCategoriesData.find((cat) => cat.id === categoryId);
+
   if (!category) {
     throw new Error(`Category not found: ${categoryId}`);
   }
 
-  // 環境変数のチェック
   const baseUrl = process.env.NEXT_PUBLIC_QUESTIONS_BASE_URL;
   if (!baseUrl) {
     throw new Error("NEXT_PUBLIC_QUESTIONS_BASE_URL is not set");
   }
 
-  // CloudFront経由のS3からJSONをHTTP fetchで取得
   try {
-    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "ai-interview", "associate", category.file);
+    const jsonUrl = getQuestionsJsonUrl(baseUrl, locale, "ai-interview", "professional", category.file);
     const response = await fetch(jsonUrl, {
       next: { revalidate: 60 },
     });
@@ -85,19 +75,18 @@ async function getCategoryData(categoryId: string, locale: LearnLocale): Promise
     }
 
     const jsonData: JsonQuestion[] = await response.json();
-    
-    // JSON配列をCategoryData形式に変換（フォーム入力用のシンプルな形式）
+
     const questions: Question[] = jsonData.map((q) => ({
       id: q.id,
       question: q.question,
       category: q.category,
       filename: q.filename,
     }));
-    
+
     const categoryData: CategoryData = {
       categoryId: categoryId,
       categoryName: category.name,
-      course: "associate",
+      course: "professional",
       technology: "ai-interview",
       questions: questions,
       metadata: {
@@ -106,7 +95,7 @@ async function getCategoryData(categoryId: string, locale: LearnLocale): Promise
         totalQuestions: questions.length,
       },
     };
-    
+
     return categoryData;
   } catch (error) {
     if (error instanceof Error) {
@@ -116,9 +105,6 @@ async function getCategoryData(categoryId: string, locale: LearnLocale): Promise
   }
 }
 
-// ---- 型定義（types） ----
-
-// JSON教材の形式（フォーム入力・AI評価用のシンプルな形式）
 interface JsonQuestion {
   id: number;
   question: string;
