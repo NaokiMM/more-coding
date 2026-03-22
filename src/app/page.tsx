@@ -55,7 +55,6 @@ export default function Home() {
       descriptionKey: "tech.ai-interview.description" as const,
       color: "from-slate-700 to-blue-600",
       icon: "🤖",
-      recommendationLabel: "推奨No.1",
     },
   ];
 
@@ -248,14 +247,6 @@ export default function Home() {
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 transition-opacity group-hover:opacity-10`} />
               <div className="relative">
-                {"recommendationLabel" in tech && tech.recommendationLabel ? (
-                  <div className="absolute right-4 top-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5d142] px-4 py-1.5 text-sm font-bold text-amber-900 shadow-lg ring-1 ring-[#e2b800]/70 motion-safe:animate-bounce [animation-duration:1.8s] dark:bg-[#facc15] dark:text-slate-900">
-                      <span className="text-base">★</span>
-                      <span>{tech.recommendationLabel}</span>
-                    </span>
-                  </div>
-                ) : null}
                 <div className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${tech.color} text-white text-2xl font-bold shadow-lg`}>
                   {tech.icon}
                 </div>
