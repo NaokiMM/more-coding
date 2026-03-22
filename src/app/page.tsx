@@ -243,11 +243,11 @@ export default function Home() {
               tabIndex={0}
               onClick={() => router.push(`/learn/${tech.id}`)}
               onKeyDown={(e) => e.key === "Enter" && router.push(`/learn/${tech.id}`)}
-              className="group relative w-full max-w-md overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 cursor-pointer"
+              className="group relative w-full max-w-xl overflow-hidden rounded-2xl bg-white p-10 shadow-lg transition-all hover:scale-105 hover:shadow-2xl dark:bg-slate-800 cursor-pointer"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 transition-opacity group-hover:opacity-10`} />
               <div className="relative">
-                <div className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${tech.color} text-white text-2xl font-bold shadow-lg`}>
+                <div className={`mb-6 mx-auto flex h-28 w-28 items-center justify-center rounded-2xl bg-gradient-to-br ${tech.color} text-white text-5xl font-bold shadow-xl`}>
                   {tech.icon}
                 </div>
                 <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
