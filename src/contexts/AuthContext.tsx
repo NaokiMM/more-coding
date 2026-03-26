@@ -122,29 +122,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(attributes as User);
         }
       } else {
-        // Cognito にいなければ Google セッションを確認
-        try {
-          const sessionRes = await fetch("/api/auth/session");
-          if (shouldAbort()) return;
-          if (sessionRes.ok) {
-            const data = await sessionRes.json();
-            if (shouldAbort()) return;
-            if (data.user) {
-              setUser(data.user as User);
-              setCognitoUser(null);
-            } else {
-              setUser(null);
-              setCognitoUser(null);
-            }
-          } else {
-            setUser(null);
-            setCognitoUser(null);
-          }
-        } catch {
-          if (shouldAbort()) return;
-          setUser(null);
-          setCognitoUser(null);
-        }
+        // Cognito にいなければ未認証（Googleログインは削除済み）
+        if (shouldAbort()) return;
+        setUser(null);
+        setCognitoUser(null);
       }
     // try catch でエラーを処理
     } catch (error) {
