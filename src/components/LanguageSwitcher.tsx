@@ -17,9 +17,10 @@ const META: Record<
   ja: { flag: "🇯🇵", label: "JP", fullName: "日本語", aria: "言語を切り替える" },
   en: { flag: "🇺🇸", label: "EN", fullName: "English", aria: "Switch language" },
   cn: { flag: "🇨🇳", label: "CN", fullName: "中文", aria: "切换语言" },
+  kr: { flag: "🇰🇷", label: "KR", fullName: "한국어", aria: "언어 변경" },
 };
 
-const LANGUAGES: Language[] = ["ja", "en", "cn"];
+const LANGUAGES: Language[] = ["ja", "en", "cn", "kr"];
 
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();

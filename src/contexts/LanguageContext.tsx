@@ -2,9 +2,9 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-export type Language = "ja" | "en" | "cn";
+export type Language = "ja" | "en" | "cn" | "kr";
 
-const LANGUAGES: Language[] = ["ja", "en", "cn"];
+const LANGUAGES: Language[] = ["ja", "en", "cn", "kr"];
 
 interface LanguageContextType {
   language: Language;
