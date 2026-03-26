@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLearnLocale } from "@/hooks/useLearnLocale";
-import { LEARN_LOCALES, LEARN_LOCALE_LABELS, type LearnLocale, isValidLearnLocale } from "@/lib/learnLocale";
 import EndStudyButton from "@/components/EndStudyButton";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -52,8 +51,8 @@ interface StudyClientProps {
 
 export default function StudyClient({ categoryId, categoryData, route }: StudyClientProps) {
   const router = useRouter();
-  const pathname = usePathname();
-  const { learnHref, locale: urlLocale } = useLearnLocale();
+  usePathname(); // NOTE: 既存のフック依存を壊さないため呼び出しは維持（戻るリンク等で利用する可能性がある）
+  useLearnLocale();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
   const category = route.categories.find((cat) => cat.id === categoryId);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -62,32 +61,7 @@ export default function StudyClient({ categoryId, categoryData, route }: StudyCl
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [evaluationResult, setEvaluationResult] = useState<any>(null);
-  const [hasStarted, setHasStarted] = useState(false);
-  const [showStartDialog, setShowStartDialog] = useState(false);
-
-  // ログイン状態とユーザーIDを確認
-  useEffect(() => {
-    if (authLoading) return; // 認証情報の読み込み中は何もしない
-
-    if (!isAuthenticated || !user) {
-      // ログインしていない場合は開始確認ダイアログを表示しない
-      setShowStartDialog(false);
-      return;
-    }
-
-    // ログインしている場合、学習を開始していなければ確認ダイアログを表示
-    if (!hasStarted) {
-      setShowStartDialog(true);
-    }
-  }, [isAuthenticated, user, authLoading, hasStarted]);
-
-  // 学習開始のハンドラー
-  const handleStartStudy = () => {
-    if (isAuthenticated && user) {
-      setHasStarted(true);
-      setShowStartDialog(false);
-    }
-  };
+  const [hasStarted] = useState(true);
 
   // ログインページへリダイレクト
   const handleGoToLogin = () => {
@@ -96,13 +70,12 @@ export default function StudyClient({ categoryId, categoryData, route }: StudyCl
 
   // タイマーの開始（問題が表示された時）
   useEffect(() => {
-    // hasStarted が true になり、表示中の問題インデックスが変わったタイミングでのみ初期化
-    if (hasStarted) {
-      setTimeRemaining(120); // 2分 = 120秒
-      setIsTimeUp(false);
-      setAnswerText("");
-      setEvaluationResult(null);
-    }
+    // 表示中の問題インデックスが変わったタイミングで初期化
+    if (!hasStarted) return;
+    setTimeRemaining(120); // 2分 = 120秒
+    setIsTimeUp(false);
+    setAnswerText("");
+    setEvaluationResult(null);
   }, [currentQuestionIndex, hasStarted]);
 
   // タイマーのカウントダウン
@@ -271,88 +244,6 @@ export default function StudyClient({ categoryId, categoryData, route }: StudyCl
                 </button>
                 <Link
                   href={route.listPath}
-                  className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-                >
-                  戻る
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // 学習開始確認ダイアログ
-  if (showStartDialog && !hasStarted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 text-white font-bold text-lg">
-                  MC
-                </div>
-                <span className="text-xl font-bold text-slate-900 dark:text-white">
-                  More Coding
-                </span>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-slate-800">
-            <div className="text-center">
-              <div className="mb-6 flex justify-center">
-                <div
-                  className={`flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br ${category?.color || "from-blue-500 to-blue-700"} text-4xl shadow-lg`}
-                >
-                  {category?.icon || "📚"}
-                </div>
-              </div>
-              <h1 className="mb-4 text-3xl font-bold text-slate-900 dark:text-white">
-                {category?.name || "学習"}
-              </h1>
-              <p className="mb-2 text-lg font-semibold text-slate-700 dark:text-slate-300">
-                学習を始めますか？
-              </p>
-              <p className="mb-4 text-slate-600 dark:text-slate-400">
-                全{total}問の問題に取り組みます。教材の言語を選択してください（選択後は途中で変更できません）。
-              </p>
-              <div className="mb-6 flex flex-col items-center gap-2">
-                <label htmlFor="study-dialog-locale" className="block w-full max-w-xs text-left text-sm font-medium text-slate-700 dark:text-slate-300">
-                  教材の言語
-                </label>
-                <select
-                  id="study-dialog-locale"
-                  value={urlLocale ?? "jp"}
-                  onChange={(e) => {
-                    const next = e.target.value as LearnLocale;
-                    if (isValidLearnLocale(next) && pathname) {
-                      const separator = pathname.includes("?") ? "&" : "?";
-                      router.push(`${pathname}${separator}locale=${next}`);
-                    }
-                  }}
-                  className="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
-                >
-                  {LEARN_LOCALES.map((loc) => (
-                    <option key={loc} value={loc}>
-                      {LEARN_LOCALE_LABELS[loc]}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex justify-center gap-4">
-                <button
-                  onClick={handleStartStudy}
-                  className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-                >
-                  学習を開始する
-                </button>
-                <Link
-                  href={learnHref(route.listPath)}
                   className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 text-base font-semibold text-slate-700 transition-all hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                 >
                   戻る
