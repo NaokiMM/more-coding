@@ -5,20 +5,27 @@
  * 横並びで3つの広告カードを表示します（1つ目: キャリアカンパニー、2つ目: A8.net、3つ目: A8.net 広告）。
  */
 
+"use client";
+
 import CareerCompanyAd from "./ads/CareerCompanyAd";
 import NewA8Ad from "./ads/NewA8Ad";
 import ThirdA8Ad from "./ads/ThirdA8Ad";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { t } from "@/lib/i18n";
 
 export default function AdBanner() {
+  const { language } = useLanguage();
+  const tKey = (key: string) => t(language, key);
+
   return (
     <div className="mt-6 mb-4">
       {/* 見出し */}
       <div className="mb-6 text-center">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-          おすすめの転職サイト・スクール
+          {tKey("home.adBanner.title")}
         </h2>
         <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-          ITエンジニアのキャリアアップをサポートするサービスをご紹介
+          {tKey("home.adBanner.description")}
         </p>
       </div>
 

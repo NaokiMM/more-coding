@@ -288,10 +288,10 @@ export default function Home() {
         <section className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
           <div className="mb-6 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              モアコーディングの最新ブログ
+              {tKey("home.latestBlogs.title")}
             </h2>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              モアコーディングや技術に関するブログ
+              {tKey("home.latestBlogs.description")}
             </p>
           </div>
 
@@ -365,7 +365,7 @@ export default function Home() {
               href="/blogs"
               className="inline-flex items-center rounded-full bg-slate-100 px-8 py-3 text-base font-semibold text-slate-700 transition-colors hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
             >
-              もっと見る
+              {tKey("home.latestBlogs.more")}
             </Link>
           </div>
         </section>
