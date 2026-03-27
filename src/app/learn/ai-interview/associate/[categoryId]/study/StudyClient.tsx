@@ -127,14 +127,33 @@ export default function StudyClient({ categoryId, categoryData, route }: StudyCl
       });
 
       if (!response.ok) {
-        throw new Error("評価の取得に失敗しました");
+        // API 側で { error, details } を返しているので、その内容を読み取って原因を表示する
+        let errorMessage = `HTTP ${response.status}`;
+        let errorDetails: unknown = null;
+        try {
+          const body = await response.json();
+          if (body?.error) errorMessage = String(body.error);
+          if ("details" in body) errorDetails = body.details;
+
+          console.error("Evaluation API error response:", body);
+        } catch {
+          console.error("Evaluation API error (non-json response). status:", response.status);
+        }
+
+        alert(
+          `回答の評価中にエラーが発生しました。` +
+            `\n理由: ${errorMessage}` +
+            (errorDetails ? `\n詳細: ${String(errorDetails)}` : "")
+        );
+        return;
       }
 
       const data = await response.json();
       setEvaluationResult(data.evaluation);
     } catch (error) {
       console.error("Error submitting answer:", error);
-      alert("回答の評価中にエラーが発生しました。もう一度お試しください。");
+      const message = error instanceof Error ? error.message : "Unknown error";
+      alert("回答の評価中にエラーが発生しました。もう一度お試しください。\n理由: " + message);
     } finally {
       setIsSubmitting(false);
     }
