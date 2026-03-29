@@ -21,13 +21,12 @@ process.env：コードから環境変数を取得するための入口
 これにより、同じコードをローカル・本番で使い回せる。
 
 ## Hono（バックエンド）
-Hono で動かすバックエンドサービスを置いている。
+more-coding 向けの HTTP バックエンド（Hono）を置いている。Next と役割分担し、長めの処理や将来のコード実行などをここに寄せる想定。
 
-- **code-executor** — LeetCode 風のコード実行 API（TypeScript/React のサンドボックス実行）
-  - `GET /health` で死活確認、`POST /run` でコード実行
-  - 起動: `cd hono/code-executor && npm install && npm run dev`（http://localhost:4000）
+- **api**（`hono/api`）— `GET /health`、`POST /run`（実行はスタブ）
+  - 起動: `cd hono/api && npm install && npm run dev`（http://localhost:4000）
 
-詳細・API 仕様・開発の進め方は `hono/README.md` および `hono/code-executor/README.md` を参照。
+詳細は `hono/README.md` および `hono/api/README.md` を参照。
 
 # Secretsファイルリスト
 ※チーム内メンバーより提供必要有り。

@@ -14,9 +14,9 @@
 
 ### 開発・構成（概略）
 - フロント/本体は Next.js
-- バックエンドは Hono（例: `hono/code-executor`）
+- HTTP バックエンドは Hono（`hono/api`）
   - `GET /health` で死活確認
-  - `POST /run` でコード実行
+  - `POST /run` はコード実行用スタブ（実装は別途）
 
 ### コーディング手法
 - `Top-Down Readability（トップダウン設計）` を優先する

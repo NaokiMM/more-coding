@@ -39,6 +39,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Hono（more-coding-api）ビルド出力
+hono/api/dist/
+
 # local
 README.local.md
 

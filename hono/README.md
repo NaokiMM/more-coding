@@ -1,7 +1,7 @@
 # hono
 
-Hono で動かすバックエンドサービスを置くディレクトリ。
+more-coding 用の **Hono バックエンド** を置くディレクトリ。
 
-- **code-executor** — LeetCode 風のコード実行 API（TS/React のサンドボックス実行）
+- **api** — サイト共通の HTTP API（死活確認・将来のコード実行スタブなど）
 
-各サービスの起動方法はサブディレクトリの README を参照。
+起動・API 一覧・ディレクトリ構成は `hono/api/README.md` を参照。
