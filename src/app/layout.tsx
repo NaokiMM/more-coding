@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   // ?v= でキャッシュを無効化（アイコン差し替え時にインクリメント）
   icons: {
-    icon: "/pwa-icon.png?v=3",
-    apple: "/apple-pwa-icon.png?v=3",
+    icon: "/pwa-icon.png?v=4",
+    apple: "/apple-pwa-icon.png?v=4",
   },
 };
 
