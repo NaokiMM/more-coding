@@ -58,3 +58,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Terraform
+**/.terraform/*
+**/.terraform.lock.hcl
