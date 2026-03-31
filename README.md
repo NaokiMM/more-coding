@@ -33,6 +33,8 @@ Terraform `terraform/envs/prd` と Next.js/（Hono/Lambda）連携の全体像�
 
 ![more-coding prd 構成図](assets/more-coding-architecture-prd.png)
 
+![aws prd 構成図](assets/aws-architecture-prd.png)
+
 # Secretsファイルリスト
 ※チーム内メンバーより提供必要有り。
 ・.env.local
