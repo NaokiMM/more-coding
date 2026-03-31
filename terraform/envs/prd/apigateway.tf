@@ -1,4 +1,3 @@
-/*
 # --------------------
 # API Gateway (HTTP API)
 # --------------------
@@ -33,4 +32,3 @@ import {
   to = aws_apigatewayv2_api.http_api_prd
   id = "3vzpk49lm0"
 }
-*/
