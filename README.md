@@ -28,6 +28,11 @@ more-coding 向けの HTTP バックエンド（Hono）を置いている。Next
 
 詳細は `hono/README.md` および `hono/api/README.md` を参照。
 
+## システム構成図（prd）
+Terraform `terraform/envs/prd` と Next.js/（Hono/Lambda）連携の全体像です。
+
+![more-coding prd 構成図](assets/more-coding-architecture-prd.png)
+
 # Secretsファイルリスト
 ※チーム内メンバーより提供必要有り。
 ・.env.local
