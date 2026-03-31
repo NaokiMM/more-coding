@@ -31,9 +31,7 @@ more-coding 向けの HTTP バックエンド（Hono）を置いている。Next
 ## システム構成図（prd）
 Terraform `terraform/envs/prd` と Next.js/（Hono/Lambda）連携の全体像です。
 
-![more-coding prd 構成図](assets/more-coding-architecture-prd.png)
-
-![aws prd 構成図](assets/aws-architecture-prd.png)
+![more-coding prd 構成図](assets/aws-architecture-prd.png)
 
 # Secretsファイルリスト
 ※チーム内メンバーより提供必要有り。
