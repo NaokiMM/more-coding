@@ -16,5 +16,19 @@ terraform init
 ## 定期実行の準備
 terraform plan
 
+## Terraformファイル（.tf）を自動でキレイに整形するコマンド
+terraform fmt
+
+## 「AWSの実態をTerraform用コードに変換するための中間データを見る」
+terraform show
+
+## 各tfファイルのRoutes・Integrations・Authorizers取得
+aws 対象リソース get-routes \
+  --api-id AWS画面に記載されている \
+  --region AWS画面に記載されている \
+  --profile AdministratorAccess-077793792738（SSOログイン時に使用している）
+  -- json > xxxxxxx.json（ここに出力させた方がわかりやすい。）
+
+--------------------------------------------------------------------
 ## tfの状態にAWSを合わせる（問題なければ実行）
 terraform apply
