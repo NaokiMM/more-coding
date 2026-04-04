@@ -36,7 +36,7 @@ import {
 }
 
 ########################################
-################ Routes ################
+########## API Gateway Routes ##########
 ########################################
 
 resource "aws_apigatewayv2_route" "get_me_subscription" {
@@ -205,7 +205,7 @@ import {
 }
 
 ########################################
-############ Integrations ##############
+###### API Gateway Integrations #######
 ########################################
 
 resource "aws_apigatewayv2_integration" "me_api_prd" {
@@ -344,7 +344,7 @@ import {
 }
 
 ########################################
-############ Authorization #############
+###### API Gateway Authorization #######
 ########################################
 
 resource "aws_apigatewayv2_authorizer" "jwt_prd_authorizer" {
