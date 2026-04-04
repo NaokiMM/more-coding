@@ -32,13 +32,13 @@ resource "aws_cloudfront_distribution" "cdn_prd" {
 
   # Behaviors
   ordered_cache_behavior {
-    path_pattern             = "/questions/*"
-    target_origin_id         = "more-coding-learning-content-prd.s3.ap-northeast-1.amazonaws.com-mltm94cf23z"
-    viewer_protocol_policy   = "redirect-to-https"
-    allowed_methods          = ["GET", "HEAD"]
-    cached_methods           = ["GET", "HEAD"]
-    compress                 = true
-    cache_policy_id          = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    path_pattern               = "/questions/*"
+    target_origin_id           = "more-coding-learning-content-prd.s3.ap-northeast-1.amazonaws.com-mltm94cf23z"
+    viewer_protocol_policy     = "redirect-to-https"
+    allowed_methods            = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD"]
+    compress                   = true
+    cache_policy_id            = "658327ea-f89d-4fab-a63d-7e88639e58f6"
     response_headers_policy_id = "eaab4381-ed33-4a86-88ca-d9558dc6cd63"
   }
 
