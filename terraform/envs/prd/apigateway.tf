@@ -4,7 +4,7 @@
 
 resource "aws_apigatewayv2_api" "http_api_prd" {
   name          = "more-coding-http-api-prd"
-  protocol_type = "HTTP"
+  protocol_type = "HTTP" # 軽量・低コストなHTTP APIを採用
 
   # CORS設定
   cors_configuration {
@@ -13,6 +13,7 @@ resource "aws_apigatewayv2_api" "http_api_prd" {
       "authorization",
       "content-type",
     ]
+    # 許可するHTTPメソッド一覧（CRUD+CORS対応（OPTIONS））
     allow_methods = [
       "DELETE",
       "GET",
@@ -20,16 +21,20 @@ resource "aws_apigatewayv2_api" "http_api_prd" {
       "POST",
       "PUT",
     ]
+    # 許可するオリジン（本番のCloudFrontドメインと独自ドメインのみ）
     allow_origins = [
       "https://d3gklr0mt0llh9.cloudfront.net",
       "https://more-coding.com",
     ]
+    # フロントから参照可能にするレスポンスヘッダー（今回は不要）
+    # CORSの許可結果を一切覚えない
     expose_headers = []
     max_age        = 0
   }
 }
 
 # API Gateway 全体（本体）の import
+# 既存のAPI GatewayをTerraformのstate（状態）に取り込み管理対象にする
 import {
   to = aws_apigatewayv2_api.http_api_prd
   id = "3vzpk49lm0"
@@ -38,6 +43,15 @@ import {
 ########################################
 ########## API Gateway Routes ##########
 ########################################
+
+# resourceの説明
+# route_keyはAPIのパスとメソッド
+# authorization_type・authorizer_idは認証まわり（Authorizationにある）
+# targetはどこに処理飛ばすか（Integrationsにある）
+
+# importの説明
+# toはTerraform側のリソース
+# idは既存RouteのID（コンソールのRoute detailsにある）
 
 resource "aws_apigatewayv2_route" "get_me_subscription" {
   api_id             = aws_apigatewayv2_api.http_api_prd.id
@@ -208,6 +222,14 @@ import {
 ###### API Gateway Integrations #######
 ########################################
 
+# resourceの説明
+# API GatewayからLambdaにリクエストを送る設定（Integrations画面の内容）
+# integration_uriは実行するLambda、その他はPayloadやTimeoutなどの設定
+
+# importの説明
+# 既存のIntegrationをTerraformで管理するための取り込み
+# idはAPI ID / Integration ID（Integrations画面のID）
+
 resource "aws_apigatewayv2_integration" "me_api_prd" {
   api_id                 = aws_apigatewayv2_api.http_api_prd.id
   integration_type       = "AWS_PROXY"
@@ -346,6 +368,14 @@ import {
 ########################################
 ###### API Gateway Authorization #######
 ########################################
+
+# resourceの説明
+# Authorizationで設定している認証（JWT）の内容
+# トークンをどこから取るか・どのユーザープールを使うかを定義
+
+# importの説明
+# 既存のAuthorization設定をTerraformで管理するための取り込み
+# idはAPI ID / Authorizer ID（Authorizationの画面にある）
 
 resource "aws_apigatewayv2_authorizer" "jwt_prd_authorizer" {
   api_id           = aws_apigatewayv2_api.http_api_prd.id
