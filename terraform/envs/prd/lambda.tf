@@ -1,9 +1,13 @@
 # --------------------
 # Lambda Functions
 # --------------------
-resource "aws_lambda_function" "questions_list_prd" {
-  function_name = "more-coding-questions-list-prd"
-  role          = "arn:aws:iam::077793792738:role/service-role/more-coding-questions-list-prd-role-me22t1pa"
+
+# ========================================
+# Lambda Function
+# ========================================
+resource "aws_lambda_function" "question_list_prd" {
+  function_name = "more-coding-question-list-prd"
+  role          = "arn:aws:iam::077793792738:role/service-role/more-coding-question-list-prd-role-me22t1pa"
   handler       = "index.handler"
   runtime       = "nodejs24.x"
   description   = "prd"
@@ -15,7 +19,13 @@ resource "aws_lambda_function" "questions_list_prd" {
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "me_api_prd" {
   function_name = "more-coding-me-api-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-me-api-prd-role-mamp2pn7"
@@ -31,7 +41,13 @@ resource "aws_lambda_function" "me_api_prd" {
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "subscription_status_prd" {
   function_name = "more-coding-subscription-status-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-subscription-status-prd-role-qnme5100"
@@ -40,7 +56,13 @@ resource "aws_lambda_function" "subscription_status_prd" {
   description   = "prd"
   filename      = "dummy.zip"
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "subscription_start_prd" {
   function_name = "more-coding-subscription-start-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-subscription-start-prd-role-29ogp0w4"
@@ -56,6 +78,13 @@ resource "aws_lambda_function" "subscription_start_prd" {
   }
 }
 
+# ========================================
+# End Lambda Function
+# ========================================
+
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "subscription_stop_prd" {
   function_name = "more-coding-subscription-stop-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-subscription-stop-prd-role-smt2u4r9"
@@ -70,7 +99,13 @@ resource "aws_lambda_function" "subscription_stop_prd" {
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "inquiries_api_prd" {
   function_name = "more-coding-inquiries-api-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-inquiries-api-prd-role-1oy07r2e"
@@ -86,7 +121,13 @@ resource "aws_lambda_function" "inquiries_api_prd" {
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "learning_histories_prd" {
   function_name = "more-coding-learning-histories-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-learning-histories-prd-role-fahbfj7w"
@@ -102,7 +143,13 @@ resource "aws_lambda_function" "learning_histories_prd" {
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "learning_session_resume_prd" {
   function_name = "more-coding-learning-session-resume-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-learning-session-resume-prd-role-8onpf95f"
@@ -112,11 +159,17 @@ resource "aws_lambda_function" "learning_session_resume_prd" {
 
   environment {
     variables = {
-      PROGRESS_TABLE = "more-coding-learning-session-resume-prd"
+      PROGRESS_TABLE = "more-coding-user-resume-learning-prd"
     }
   }
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Lambda Function
+# ========================================
 resource "aws_lambda_function" "profile_image_prd" {
   function_name = "more-coding-profile-image-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-profile-image-prd-role-ytvrcjs1"
@@ -125,10 +178,16 @@ resource "aws_lambda_function" "profile_image_prd" {
   description   = "prd"
   filename      = "dummy.zip"
 }
+# ========================================
+# End Lambda Function
+# ========================================
 
+# ========================================
+# Import Lambda Functions
+# ========================================
 import {
-  to = aws_lambda_function.questions_list_prd
-  id = "more-coding-questions-list-prd"
+  to = aws_lambda_function.question_list_prd
+  id = "more-coding-question-list-prd"
 }
 
 import {
@@ -170,3 +229,6 @@ import {
   to = aws_lambda_function.profile_image_prd
   id = "more-coding-profile-image-prd"
 }
+# ========================================
+# End Import Lambda Functions
+# ========================================

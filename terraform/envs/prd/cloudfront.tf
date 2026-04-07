@@ -1,6 +1,14 @@
 # --------------------
 # CloudFront Distributions
 # --------------------
+resource "aws_cloudfront_origin_access_control" "learning_content_prd" {
+  name                              = "more-coding-learning-content-prd-oac"
+  description                       = "OAC for more-coding-learning-content-prd (prd)"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
 resource "aws_cloudfront_distribution" "cdn_prd" {
   # --------------------
   # General
@@ -33,7 +41,7 @@ resource "aws_cloudfront_distribution" "cdn_prd" {
   origin {
     domain_name              = "more-coding-learning-content-prd.s3.ap-northeast-1.amazonaws.com"
     origin_id                = "more-coding-learning-content-prd.s3.ap-northeast-1.amazonaws.com-mltm94cf23z"
-    origin_access_control_id = "E1RZ1IG3NWYRD3"
+    origin_access_control_id = aws_cloudfront_origin_access_control.learning_content_prd.id
   }
 
   # --------------------
@@ -80,4 +88,9 @@ resource "aws_cloudfront_distribution" "cdn_prd" {
 import {
   to = aws_cloudfront_distribution.cdn_prd
   id = "E7FYRVVFZPAQ7"
+}
+
+import {
+  to = aws_cloudfront_origin_access_control.learning_content_prd
+  id = "E1RZ1IG3NWYRD3"
 }
