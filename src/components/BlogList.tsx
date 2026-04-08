@@ -25,6 +25,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   frontend: "フロントエンド",
   backend: "バックエンド",
   devops: "DevOps",
+  career: "キャリア",
 };
 
 export default function BlogList({
