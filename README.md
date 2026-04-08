@@ -78,6 +78,15 @@ Top-Down Readability（トップダウン設計）
 ##### 監視・ログ：CloudWatch
 ##### IAC:Terraform
 
+## Well-Architected Tool
+### 目的
+AWS Well-Architected Tool（WAT）で、運用/セキュリティ/コスト等の観点を定期的に点検して改善点を管理する。
+
+### 運用メモ（最低限）
+・AWSコンソール → Well-Architected Tool で Workload を作成/選択する  
+・定期的に Review を実施し、結果（重要な指摘・対応方針）を残す  
+・必要に応じて Lens（例: Serverless）を追加して再評価する  
+
 ## テスト方針
 ### 単体テスト
 ロジック単位の検証は自動テストで実施する。
