@@ -78,6 +78,16 @@ Top-Down Readability（トップダウン設計）
 ##### 監視・ログ：CloudWatch
 ##### IAC:Terraform
 
+## Google Postmaster Tools
+more-coding.com から Amazon SES で送るメールについて、Gmail 側の指標を把握するため [Google Postmaster Tools](https://postmaster.google.com/) の利用を開始している。
+
+### 目的
+到達率・ドメイン/送信元のレピュテーションなどを把握し、SPF/DKIM/DMARC や送信運用の改善に役立てる。
+
+### 運用メモ（最低限）
+・Postmaster Tools でドメイン（more-coding.com）を登録し、案内に従って DNS を確認する  
+・SES の送信設定と整合するよう、認証レコードや From ドメインを維持する  
+
 ## Well-Architected Tool
 ### 目的
 AWS Well-Architected Tool（WAT）で、運用/セキュリティ/コスト等の観点を定期的に点検して改善点を管理する。
