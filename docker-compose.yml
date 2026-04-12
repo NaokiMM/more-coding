@@ -1,9 +1,61 @@
 services:
+  # ----------------------
+  # DynamoDB Local（既存）
+  # ----------------------
   dynamodb:
-  # 常時最新バージョンを使用するためにlatestを指定
+    # DynamoDBのローカル版（テスト用）
     image: amazon/dynamodb-local:latest
-  # Java の jar ファイルでDynamoDB Local を起動
-  # 使い捨てDBを使うためのオプション
+    # インメモリで起動（データは再起動で消える）
     command: "-jar DynamoDBLocal.jar -sharedDb -inMemory"
     ports:
+      # ローカルPCの8000 → コンテナの8000
       - "8000:8000"
+
+  # ----------------------
+  # PostgreSQL（Redash内部DB）
+  # ----------------------
+  postgres:
+    # Redashが内部で使うDB
+    image: postgres:13
+    environment:
+      # DBユーザー
+      POSTGRES_USER: redash
+      # DBパスワード
+      POSTGRES_PASSWORD: redash
+      # DB名
+      POSTGRES_DB: redash
+    ports:
+      # 必須ではない（デバッグ用に開けてる）
+      - "5432:5432"
+
+  # ----------------------
+  # Redis（ジョブ管理用）
+  # ----------------------
+  redis:
+    # クエリ実行のキュー管理に使う
+    image: redis:7
+    ports:
+      # 必須ではない（デバッグ用）
+      - "6379:6379"
+
+  # ----------------------
+  # Redash本体
+  # ----------------------
+  server:
+    # Redashの公式イメージ
+    image: redash/redash:10.1.0.b50633
+    depends_on:
+      # 起動順（これらが先に立つ）
+      - postgres
+      - redis
+    ports:
+      # http://localhost:5000 でアクセス
+      - "5001:5000"
+    environment:
+      # PostgreSQLへの接続URL
+      REDASH_DATABASE_URL: "postgresql://redash:redash@postgres:5432/redash"
+      # Redisへの接続URL
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      # ログのバッファ設定（基本そのままでOK）
+      PYTHONUNBUFFERED: 0
+      REDASH_COOKIE_SECRET: "e4c45c922cd3bc2c82c4b7dd504d5f7c39b8b1ac24f59b39be245a8b5601b16d"

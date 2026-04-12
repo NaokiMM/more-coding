@@ -28,6 +28,52 @@ more-coding 向けの HTTP バックエンド（Hono）を置いている。Next
 
 詳細は `hono/README.md` および `hono/api/README.md` を参照。
 
+## Redash（ローカル Docker）
+[Redash](https://redash.io/) はクエリ可視化・ダッシュボード用の OSS です。本リポジトリの `docker-compose.yml` では、**ローカル開発用**に Redash とその内部依存（PostgreSQL・Redis）を定義しています。既存の **DynamoDB Local**（ポート 8000）と同じ Compose ファイルでまとめて起動できます。
+
+### Compose で定義されているサービス（要点）
+| サービス | 役割 | ホスト側ポート（例） |
+|---------|------|---------------------|
+| `dynamodb` | DynamoDB Local（従来どおり） | 8000 |
+| `postgres` | Redash のメタデータ用 DB | 5432（デバッグ用に公開） |
+| `redis` | クエリジョブのキュー | 6379（デバッグ用に公開） |
+| `server` | Redash 本体（Web） | **5001** → コンテナ内 5000 |
+
+ホストの **5000** が他プロセス（macOS の AirPlay レシーバー等）と競合しやすいため、Redash への接続は **`http://localhost:5001`** としています。
+
+### 初回セットアップ（DB マイグレーション）
+1. **`REDASH_COOKIE_SECRET` を必ず設定する**  
+   未設定のまま `create_db` を実行すると、Redash が起動時に例外で終了します。ローカル用のランダム値を生成して `docker-compose.yml` の `server` サービス環境変数 `REDASH_COOKIE_SECRET` に設定してください。
+
+   ```bash
+   openssl rand -hex 32
+   ```
+
+2. **PostgreSQL / Redis を起動したうえでスキーマ作成**
+
+   ```bash
+   docker compose run --rm server create_db
+   ```
+
+### 起動・停止
+リポジトリルートで実行します。
+
+```bash
+# バックグラウンド起動（DynamoDB Local・Postgres・Redis・Redash すべて）
+docker compose up -d
+
+# 停止・削除（コンテナのみ。名前付きボリュームを使っていないため DB データはコンテナ削除で失われる点に注意）
+docker compose down
+```
+
+ブラウザで **`http://localhost:5001`** を開き、表示された画面に従って管理者アカウントを作成してください（初回アクセス時）。
+
+### 注意（Apple Silicon など）
+Redash 公式イメージは **linux/amd64** の場合があり、`docker compose up` 時にプラットフォーム不一致の警告が出ることがあります。通常はエミュレーションで動作しますが、初回起動はイメージ取得で時間がかかることがあります。
+
+### 本番・共有環境について
+`REDASH_COOKIE_SECRET` はセッション署名に使う秘密情報です。**本番や複数人で共有する環境では、リポジトリに固定値をコミットせず**、`.env` やシークレット管理に寄せる運用を推奨します（`.env` は Git に含めない）。
+
 ## システム構成図（prd）
 Terraform `terraform/envs/prd` と Next.js/（Hono/Lambda）連携の全体像です。
 
