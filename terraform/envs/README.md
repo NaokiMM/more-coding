@@ -1,21 +1,17 @@
 # terraformの手順書
 ## Terraform運用フロー
-・tfを修正する（featureブランチ）
 
-・terraform plan を実行する  
-  → この変更でAWSに何が起きるか確認する
-
-・PRを作成する  
-  → 変更内容とplan結果を共有
-
-・レビューする  
-  → コード + planの差分が意図どおりか確認
-
-・PRをmainにマージする  
-  → mainが正しい状態になる
-
-・mainに対してterraform applyを実行する  
-  → mainの内容をAWSに反映する
+1. `.tf` を修正する（feature ブランチで作業）
+2. `terraform plan` を実行する
+   - この変更で AWS に何が起きるか確認する
+3. PR を作成する
+   - 変更内容と plan 結果を共有する
+4. レビューする
+   - コードと plan の差分が意図どおりか確認する
+5. PR を `main` にマージする
+   - `main` が正しい状態になる
+6. `main` に対して `terraform apply` を実行する
+   - `main` の内容を AWS に反映する
 
 ## Gitルール
 ### terraform関連でgitにアップロードするものとそうでないもの。
