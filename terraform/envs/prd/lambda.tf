@@ -6,7 +6,7 @@
 # Lambda Function
 # ========================================
 resource "aws_lambda_function" "question_list_prd" {
-  function_name = "more-coding-question-list-prd"
+  function_name = "more-coding-questions-list-prd"
   role          = "arn:aws:iam::077793792738:role/service-role/more-coding-question-list-prd-role-me22t1pa"
   handler       = "index.handler"
   runtime       = "nodejs24.x"
@@ -187,7 +187,7 @@ resource "aws_lambda_function" "profile_image_prd" {
 # ========================================
 import {
   to = aws_lambda_function.question_list_prd
-  id = "more-coding-question-list-prd"
+  id = "more-coding-questions-list-prd"
 }
 
 import {
