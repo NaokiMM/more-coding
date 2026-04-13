@@ -15,31 +15,45 @@
 
 ## Gitルール
 ### terraform関連でgitにアップロードするものとそうでないもの。
-・.tf系のファイル → Gitアップロードする（OK）
-・tfstate → Gitアップロードしない（絶対NG）
-・.lock.hcl → 基本はアップロードする（←ここだけ違う）
+
+- `.tf` 系のファイル → Git にコミットする（OK）
+- `tfstate` → Git にコミットしない（絶対 NG。バックエンド側で管理）
+- `.terraform.lock.hcl` → 基本はコミットする（**tfstate とは扱いが逆**なので混同しない）
 
 ## terraform操作の事前準備
-cd terraform/envs/prd
-rm -rf .terraform
-rm -f .terraform.lock.hcl
+作業ディレクトリへ移動する。
 
-### terraform初回 or terraformが壊れた時だけ使用
+```bash
+cd terraform/envs/prd
+```
+
+### `terraform init` の切り分け（必要なときだけ）
+`init` が期待どおり動かないときの例。
+
+- `rm -rf .terraform` … ローカルのプロバイダ展開などをやり直す
+- `rm -f .terraform.lock.hcl` … **通常は行わない**。プロバイダ解決の不整合を疑うときの最終手段（チームで lock を共有している場合は特に慎重に）
+
+### 初回セットアップ、または上記のあと
 terraform init
 
 ## terraform定常操作
 ### terraformファイル（.tf）を自動でキレイに整形するコマンド
 terraform fmt
 
-###「AWSの実態をTerraform用コードに変換するための中間データを見る」
-terraform show
+### state や保存した plan を人が読みやすい形で表示する
+`terraform show` … 現在の state を表示  
+`terraform show tfplan` … `terraform plan -out=tfplan` で保存した plan を表示
 
-### 各tfファイルのRoutes・Integrations・Authorizers取得
-aws 対象リソース get-routes \
-  --api-id AWS画面に記載されている \
-  --region AWS画面に記載されている \
-  --profile AdministratorAccess-077793792738（SSOログイン時に使用している）
-  -- json > xxxxxxx.json（ここに出力させた方がわかりやすい。）
+### HTTP API（API Gateway v2）の Routes 一覧を JSON で取得
+`prd` の API は HTTP API（v2）想定。Integrations や Authorizers は `get-integrations` / `get-authorizers` など別サブコマンド。
+
+```bash
+aws apigatewayv2 get-routes \
+  --api-id '<AWS コンソールの API ID>' \
+  --region ap-northeast-1 \
+  --profile AdministratorAccess-077793792738 \
+  --output json > routes.json
+```
 
 ### tfの文法や参照ミス の確認
 terraform validate
@@ -55,18 +69,21 @@ terraform plan -out=tfplan
 terraform apply tfplan
 
 ## apply準備
-### 削除防止を追加
+### 削除防止を追加（該当 `resource` ブロック内）
+```hcl
 lifecycle {
   prevent_destroy = true
 }
+```
 
 ## apply実行
-### tfの状態にAWSを合わせる（問題なければ実行）
+### コードが表す望ましい状態を AWS に反映する（問題なければ実行）
 terraform apply
 
 ## terraform import手法
 全体方針（共通パターン）
-  • AWS から リソース一覧を取得
-  • 各リソースの 詳細を JSON に保存
-  • JSON を見ながら Terraform に落とす
-  • 必要なら import で state に取り込む
+
+- AWS からリソース一覧を取得する
+- 各リソースの詳細を JSON に保存する
+- JSON を見ながら Terraform に落とす
+- 必要なら `import` で state に取り込む
